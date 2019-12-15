@@ -102,7 +102,7 @@ class Form extends Component {
 	}
 
 	render() {
-		let symbol = this.state.currency === 'eth' ? 'Ξ' : '$';
+		let symbol = this.state.currency === 'eth' ? 'Ξ' : 'H';
 
 		let file_label = !this.state.wrong_file && this.state.file_name !== '' ? this.state.file_name : 'Select file';
 
@@ -151,8 +151,8 @@ class Form extends Component {
 						<label className="custom-control-label" htmlFor="payment1">Ethereum</label>
 					</div>
 					<div className="custom-control custom-radio custom-control-inline">
-						<input type="radio" id="payment2" name="payment" className="custom-control-input" value="usd" onChange={this.handleCurrency} />
-						<label className="custom-control-label" htmlFor="payment2">USD (Stable Token)</label>
+						<input type="radio" id="payment3" name="payment" className="custom-control-input" value="usd" onChange={this.handleCurrency} />
+						<label className="custom-control-label" htmlFor="payment3">Hydro</label>
 					</div>
 				</div>
 				<div className="form-group row">
