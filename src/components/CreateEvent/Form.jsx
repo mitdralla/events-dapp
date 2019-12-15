@@ -147,12 +147,12 @@ class Form extends Component {
 				<div className="form-group">
 					<p>Payment Options:</p>
 					<div className="custom-control custom-radio custom-control-inline">
-						<input type="radio" id="payment1" name="payment" className="custom-control-input" defaultChecked="true" value="eth" onChange={this.handleCurrency} />
-						<label className="custom-control-label" htmlFor="payment1">Ethereum</label>
+						<input type="radio" id="payment2" name="payment" className="custom-control-input" defaultChecked="true" value="hydro" onChange={this.handleCurrency} />
+						<label className="custom-control-label" htmlFor="payment2">Hydro</label>
 					</div>
 					<div className="custom-control custom-radio custom-control-inline">
-						<input type="radio" id="payment3" name="payment" className="custom-control-input" value="usd" onChange={this.handleCurrency} />
-						<label className="custom-control-label" htmlFor="payment3">Hydro</label>
+						<input type="radio" id="payment1" name="payment" className="custom-control-input" value="eth" onChange={this.handleCurrency} />
+						<label className="custom-control-label" htmlFor="payment1">Ethereum</label>
 					</div>
 				</div>
 				<div className="form-group row">

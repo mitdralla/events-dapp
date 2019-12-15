@@ -30,7 +30,7 @@ class Sidebar extends Component {
 					{user}
 				</div>
 				<div className="menu mt-5">
-					<h5>I want to buy tickets</h5>
+					<h5>Events & Tickets</h5>
 					<ul className="nav flex-column">
 						<li className="nav-item">
 							<Link to="/findevents/1" className="nav-link">Find Events</Link>
@@ -39,7 +39,7 @@ class Sidebar extends Component {
 							<Link to="/mytickets/1" className="nav-link">My Tickets</Link>
 						</li>
 					</ul>
-					<h5 className="mt-5">I want to create event</h5>
+					<h5 className="mt-5">Manage Events</h5>
 					<ul className="nav flex-column">
 						<li className="nav-item">
 							<Link to="/createevent" className="nav-link">Create event</Link>
@@ -51,7 +51,7 @@ class Sidebar extends Component {
 					<h5 className="mt-5">Tools</h5>
 					<ul className="nav flex-column">
 						<li className="nav-item">
-							<Link to="/token" className="nav-link">Get Hydro</Link>
+							<Link to="/token" className="nav-link">Get Hydro Tokens</Link>
 						</li>
 					</ul>
 				</div>

@@ -7,8 +7,12 @@ body {
 	font-weight: 300;
 }
 
-h1, h2, h3, h4, h5 {
+h1, h2, h3, h4 {
 	font-weight: 100;
+}
+
+h5 {
+  font-weight: 300;
 }
 
 .logo a {
@@ -21,6 +25,7 @@ p.emoji {
 
 h5 a {
 	font-weight: 900;
+	color: #333333;
 }
 
 #sidebar-wrapper.my-sidebar {
