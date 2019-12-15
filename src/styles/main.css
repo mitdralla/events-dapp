@@ -19,8 +19,12 @@ p.emoji {
 	font-size: 300%;
 }
 
+h5 a {
+	font-weight: 900;
+}
+
 #sidebar-wrapper.my-sidebar {
-	background-color: #607D8B;
+	background-color: #5f5f5f;
 	color: #FAFAFA;
 	padding: 20px;
 }

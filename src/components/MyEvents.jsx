@@ -80,7 +80,7 @@ class MyEvents extends Component {
 
 		return (
 			<div>
-				<h2>My events</h2>
+				<h2>My Events</h2>
 				<hr />
 				{body}
 			</div>
