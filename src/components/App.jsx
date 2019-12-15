@@ -99,7 +99,7 @@ class App extends Component {
 					<div id="page-content-wrapper">
 						<div className="container-fluid">
 							<h1 className="text-center logo">
-								<Link to="/">SnowVents</Link>
+								<Link to="/">Snowflake Events Marketplace</Link>
 							</h1>
 							<p className="text-center">A marketplace for listing events & buy tickets in Hydro!</p>
 							<div className="mt-4">
