@@ -103,7 +103,7 @@ class Event extends Component {
 			let image = this.getImage();
 			let description = this.getDescription();
 
-			let symbol = event_data[3] ? '$' : 'Ξ';
+			let symbol = event_data[3] ? 'H' : 'Ξ';
 
 			let price = this.context.drizzle.web3.utils.fromWei(event_data[2]);
 			let date = new Date(parseInt(event_data[1], 10) * 1000);
@@ -143,7 +143,7 @@ class Event extends Component {
 					<ul className="list-group list-group-flush">
 						<li className="list-group-item">Price: {symbol}{price}</li>
 						<li className="list-group-item">{date.toLocaleDateString()} at {date.toLocaleTimeString()}</li>
-						<li className="list-group-item">Seats: {event_data[6]}/{max_seats}</li>
+						<li className="list-group-item">Tickets: {event_data[6]}/{max_seats}</li>
 					</ul>
 					<div className="card-footer text-muted text-center">
 						<button className="btn btn-dark" onClick={this.buyTicket} disabled={disabled}><i className="fas fa-ticket-alt"></i> Buy Ticket</button>

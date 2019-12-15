@@ -51,7 +51,7 @@ class Sidebar extends Component {
 					<h5 className="mt-5">Tools</h5>
 					<ul className="nav flex-column">
 						<li className="nav-item">
-							<Link to="/token" className="nav-link">Get USD Tokens</Link>
+							<Link to="/token" className="nav-link">Get Hydro</Link>
 						</li>
 					</ul>
 				</div>

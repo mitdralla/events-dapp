@@ -152,7 +152,7 @@ class EventPage extends Component {
 								<ul className="list-group list-group-flush">
 									<li className="list-group-item">Price: {symbol}{price}</li>
 									<li className="list-group-item">{date.toLocaleDateString()} at {date.toLocaleTimeString()}</li>
-									<li className="list-group-item">Seats: {event_data[6]}/{max_seats}</li>
+									<li className="list-group-item">Tickets: {event_data[6]}/{max_seats}</li>
 								</ul>
 							</div>
 						</div>
