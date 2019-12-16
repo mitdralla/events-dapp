@@ -64,7 +64,7 @@ class Event extends Component {
 		let description = <Loading />;
 		if (this.state.ipfs_problem) description = <p className="text-center mb-0 event-description"><span role="img" aria-label="monkey">🙊</span>We can not load description</p>;
 		if (this.state.description !== null) {
-			let text = this.state.description.length > 100 ? this.state.description.slice(0, 100) + '...' : this.state.description;
+			let text = this.state.description.length > 140 ? this.state.description.slice(0, 140) + '...' : this.state.description;
 			description = <p className="card-text event-description">{text}</p>;
 		}
 		return description;

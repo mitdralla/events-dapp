@@ -33,6 +33,11 @@ h5 a {
 	color: #333333;
 }
 
+textarea:focus, input:focus, a:focus,
+textarea:active, input:active, a:active {
+    outline: none !important;
+}
+
 #sidebar-wrapper.my-sidebar {
 	background-color: #333333;
 	color: #FAFAFA;
@@ -139,4 +144,9 @@ h5 a {
 	width: 18px;
 	margin-right: 8px;
 	margin-top: -3px;
+}
+
+.btn-dark.disabled, .btn-dark:disabled {
+  background-color: #9c9c9c;
+  border-color: #9c9c9c;
 }
