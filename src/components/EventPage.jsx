@@ -101,7 +101,7 @@ class EventPage extends Component {
 
 		if (typeof this.props.contracts['OpenEvents'].getEvent[this.event] !== 'undefined') {
 			if (this.props.contracts['OpenEvents'].getEvent[this.event].error) {
-				body = <div className="text-center mt-5"><span role="img" aria-label="unicorn">🦄</span> Event not found</div>;
+				body = <div className="text-center mt-5"><span role="img" aria-label="unicorn">🦄</span> Hydro Event not found</div>;
 			} else {
 				let event_data = this.props.contracts['OpenEvents'].getEvent[this.event].value;
 

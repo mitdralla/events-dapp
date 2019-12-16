@@ -103,7 +103,7 @@ class Event extends Component {
 			let image = this.getImage();
 			let description = this.getDescription();
 
-			let symbol = event_data[3] ? 'H' : 'Ξ';
+			let symbol = event_data[3] ? 'hydro.png' : 'ethereum.png';
 
 			let price = this.context.drizzle.web3.utils.fromWei(event_data[2]);
 			let date = new Date(parseInt(event_data[1], 10) * 1000);
@@ -129,7 +129,7 @@ class Event extends Component {
 					<div className="card-header text-muted event-header">
 						<img className="float-left" src={makeBlockie(event_data[8])} alt={event_data[8]} />
 						<p className="small text-truncate mb-0">
-							Creator: <a href={"https://rinkeby.etherscan.io/address/" + event_data[8]} target="_blank">
+							Creator: <a href={"https://rinkeby.etherscan.io/address/" + event_data[8]} target="_blank" className="event_creator-link">
 								{event_data[8]}
 							</a>
 						</p>
@@ -141,7 +141,7 @@ class Event extends Component {
 						{description}
 					</div>
 					<ul className="list-group list-group-flush">
-						<li className="list-group-item"><strong>Price:</strong> {symbol}{price}</li>
+						<li className="list-group-item"><strong>Price:</strong> <img src={'/images/'+symbol} className="event_price-image" /> {price}</li>
 						<li className="list-group-item"><strong>Date:</strong> {date.toLocaleDateString()} at {date.toLocaleTimeString()}</li>
 						<li className="list-group-item"><strong>Tickets Sold:</strong> {event_data[6]}/{max_seats}</li>
 					</ul>
