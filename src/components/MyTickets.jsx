@@ -80,7 +80,7 @@ class MyTickets extends Component {
 
 		return (
 			<div>
-				<h2>My Tickets</h2>
+				<h2><i className="fa fa-ticket-alt"></i> My Tickets</h2>
 				<hr />
 				{body}
 			</div>

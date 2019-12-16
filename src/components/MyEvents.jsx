@@ -80,7 +80,7 @@ class MyEvents extends Component {
 
 		return (
 			<div>
-				<h2>My Events</h2>
+				<h2><i className="fa fa-calendar-alt"></i>  My Events</h2>
 				<hr />
 				{body}
 			</div>

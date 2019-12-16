@@ -71,7 +71,7 @@ class FindEvents extends Component {
 
 		return(
 			<div>
-				<h2>All Events</h2>
+				<h2><i className="fa fa-search"></i> All Events</h2>
 				<hr />
 				{body}
 			</div>

@@ -142,7 +142,7 @@ class CreateEvent extends Component {
 
 		return (
 			<div>
-				<h2>Create an Event</h2>
+				<h2><i className="fa fa-edit"></i> Create Event</h2>
 				<hr />
 				{body}
 			</div>
