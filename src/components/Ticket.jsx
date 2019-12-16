@@ -155,9 +155,15 @@ class Ticket extends Component {
 				card_body =
 					<div>
 						<div className="card-body">
-							<h5 className="text-center">Send Ticket:</h5>
+
+              <h5 className="text-center">Digital Ticket:</h5>
+              <div className="form-group">
+                <p className="text-center">---  QR CODE  ----</p>
+              </div>
+
+							<h5 className="text-center">Send or Transfer Ticket:</h5>
 							<div className="form-group">
-								<label htmlFor="address">Ethereum address</label>
+								<label htmlFor="address">Ethereum Address:</label>
 								<input type="text" className={"form-control " + warning} id="address" ref={(input) => this.address = input} />
 							</div>
 							<button className="btn btn-dark" onClick={this.sendTicket}><i className="fas fa-share-square"></i> Send Ticket</button>
