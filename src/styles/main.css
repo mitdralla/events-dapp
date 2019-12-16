@@ -93,13 +93,16 @@ h5 a {
 }
 
 .event-header img {
-	width: 40px;
-	height: 40px;
+	width: 65px;
+	height: 65px;
 	border-radius: 50%;
+	margin-top: -41px;
+	border: 5px solid #f7f7f7;
 }
 
 .event-header p {
 	padding: 10px 0 0 15px;
+	margin-top: -7px;
 }
 
 .footer-octicon, .octicon {
@@ -119,7 +122,7 @@ h5 a {
 }
 
 .card-footer {
-  padding: 1.75rem 1.25rem;
+  padding: 1rem 1.25rem;
 }
 
 .event_creator-link {

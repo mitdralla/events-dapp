@@ -43,7 +43,7 @@ class Sidebar extends Component {
 					<h5 className="mt-5">Manage Events</h5>
 					<ul className="nav flex-column">
 						<li className="nav-item">
-							<Link to="/createevent" className="nav-link">Create event</Link>
+							<Link to="/createevent" className="nav-link">Create Event</Link>
 						</li>
 						<li className="nav-item">
 							<Link to="/myevents/1" className="nav-link">My Events</Link>

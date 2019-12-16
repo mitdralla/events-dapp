@@ -125,7 +125,9 @@ class Event extends Component {
 
 			body =
 				<div className="card">
-					<img className="card-img-top event-image" src={image} alt={event_data[0]} />
+					<Link to={"/event/" + this.props.id}>
+            <img className="card-img-top event-image" src={image} alt={event_data[0]} />
+          </Link>
 					<div className="card-header text-muted event-header">
 						<img className="float-left" src={makeBlockie(event_data[8])} alt={event_data[8]} />
 						<p className="small text-truncate mb-0">
