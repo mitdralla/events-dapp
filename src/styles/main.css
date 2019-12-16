@@ -63,6 +63,12 @@ h5 a {
 	text-decoration: underline;
 }
 
+#sidebar-wrapper h5 {
+	font-weight: 300;
+	border-bottom: 1px solid #4a4a4a;
+	padding-bottom: 10px;
+}
+
 .notify {
 	font-size: 90%;
 }
@@ -110,4 +116,8 @@ h5 a {
 	width: 38px;
 	margin-right: 0;
 	margin-top: -3px;
+}
+
+.card-footer {
+  padding: 1.75rem 1.25rem;
 }

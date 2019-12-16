@@ -19,7 +19,8 @@ class Sidebar extends Component {
 					<div className="user-status-icon">
 						<img src={makeBlockie(this.props.account)} alt={this.props.account} />
 					</div>
-					<p className="mt-3 small text-truncate h-25">Hello, {this.props.account}</p>
+					<p className="mt-3 text-truncate h-25">Hello, Tim</p>
+					{/* {this.props.account} */}
 				</div>
 			;
 		}
