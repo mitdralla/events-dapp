@@ -34,19 +34,19 @@ class Sidebar extends Component {
 					<h5>Events & Tickets</h5>
 					<ul className="nav flex-column">
 						<li className="nav-item">
-							<Link to="/findevents/1" className="nav-link">Find Events</Link>
+							<Link to="/findevents/1" className="nav-link"><i className="fa fa-search"></i> Find Events</Link>
 						</li>
 						<li className="nav-item">
-							<Link to="/mytickets/1" className="nav-link">My Tickets</Link>
+							<Link to="/mytickets/1" className="nav-link"><i className="fa fa-ticket-alt"></i> My Tickets</Link>
 						</li>
 					</ul>
 					<h5 className="mt-5">Manage Events</h5>
 					<ul className="nav flex-column">
 						<li className="nav-item">
-							<Link to="/createevent" className="nav-link">Create Event</Link>
+							<Link to="/createevent" className="nav-link"><i className="fa fa-edit"></i> Create Event</Link>
 						</li>
 						<li className="nav-item">
-							<Link to="/myevents/1" className="nav-link">My Events</Link>
+							<Link to="/myevents/1" className="nav-link"><i className="fa fa-calendar-alt"></i> My Events</Link>
 						</li>
 					</ul>
 					<h5 className="mt-5">Tools</h5>
