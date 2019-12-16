@@ -115,12 +115,12 @@ class Event extends Component {
 
 			if (event_data[4] && (Number(event_data[6]) >= Number(event_data[5]))) {
 				disabled = true;
-				disabledStatus = <span><span role="img" aria-label="alert">⚠️</span> No more tickets</span>;
+				disabledStatus = <span><span role="img" aria-label="alert">⚠️</span> No tickets available.</span>;
 			}
 
 			if (date.getTime() < new Date().getTime()) {
 				disabled = true;
-				disabledStatus = <span><span role="img" aria-label="alert">⚠️</span> Has already ended</span>;
+				disabledStatus = <span><span role="img" aria-label="alert">⚠️</span> Event has ended.</span>;
 			}
 
       let badge = "";
