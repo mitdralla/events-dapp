@@ -123,6 +123,12 @@ class Event extends Component {
 				disabledStatus = <span><span role="img" aria-label="alert">⚠️</span> Has already ended</span>;
 			}
 
+      let badge = "";
+
+      if (event_data[6] >= 2) {
+        badge = <img src="/images/fire.png" className="event_badge-hot" />;
+      }
+
 			body =
 				<div className="card">
 					<Link to={"/event/" + this.props.id}>
@@ -138,7 +144,7 @@ class Event extends Component {
 					</div>
 					<div className="card-body">
 						<h5 className="card-title event-title">
-							<Link to={"/event/" + this.props.id}>{event_data[0]}</Link>
+							<Link to={"/event/" + this.props.id}>{badge}{event_data[0]}</Link>
 						</h5>
 						{description}
 					</div>

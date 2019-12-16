@@ -134,3 +134,9 @@ h5 a {
 	margin-right: 0;
 	margin-top: -3px;
 }
+
+.event_badge-hot {
+	width: 18px;
+	margin-right: 8px;
+	margin-top: -3px;
+}
