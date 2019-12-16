@@ -61,7 +61,7 @@ class FindEvents extends Component {
 				body =
 					<div>
 						<div className="row user-list mt-4">
-							{events_list.reverse()}
+							{events_list}
 						</div>
 						{pagination}
 					</div>

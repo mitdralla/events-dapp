@@ -5,3 +5,4 @@ build
 #files
 yarn-error.log
 .yarnrc
+.DS_Store
