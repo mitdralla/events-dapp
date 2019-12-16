@@ -81,8 +81,8 @@ h5 a {
 }
 
 .event-title {
-    white-space: nowrap; /* Отменяем перенос текста */
-    overflow: hidden; /* Обрезаем содержимое */
+    white-space: nowrap;
+    overflow: hidden;
     text-overflow: ellipsis;
 }
 
@@ -94,4 +94,8 @@ h5 a {
 
 .event-header p {
 	padding: 10px 0 0 15px;
+}
+
+.footer-octicon, .octicon {
+  color: #fff;
 }
