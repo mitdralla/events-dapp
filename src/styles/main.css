@@ -2,7 +2,7 @@
 
 body {
 	background-color: #FAFAFA;
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Nunito Sans', sans-serif;
 	color: #333;
 	font-weight: 300;
 }
@@ -98,4 +98,16 @@ h5 a {
 
 .footer-octicon, .octicon {
   color: #fff;
+}
+
+.sidebar_hydro-logo {
+	width: 18px;
+	margin-right: 2px;
+	margin-top: -3px;
+}
+
+.header_hydro-logo {
+	width: 38px;
+	margin-right: 0;
+	margin-top: -3px;
 }
