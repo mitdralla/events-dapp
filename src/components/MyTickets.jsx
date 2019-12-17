@@ -23,7 +23,7 @@ class MyTickets extends Component {
 			if (allTickets.length === 0) {
 				body =
 					<div>
-						You do not have any ticket. <Link to="/findevents/1">Find event and buy ticket</Link>.
+						You have not purchased any tickets. <Link to="/findevents/1">Find you new event today!</Link>.
 					</div>
 				;
 			} else {

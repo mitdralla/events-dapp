@@ -71,7 +71,15 @@ class FindEvents extends Component {
 
 		return(
 			<div>
-				<h2><i className="fa fa-search"></i> All Events</h2>
+
+      <div class="input-group input-group-lg">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-lg"><i className="fa fa-search"></i>&nbsp;Search </span>
+        </div>
+        <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
+      </div>
+        <br /><br />
+				<h2><i className="fa fa-calendar-alt"></i> All Events</h2>
 				<hr />
 				{body}
 			</div>
