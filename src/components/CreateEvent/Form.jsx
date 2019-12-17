@@ -13,7 +13,7 @@ class Form extends Component {
 			title: '',
 			title_length: 0,
 			time: 0,
-			currency: 'eth',
+			currency: 'hydro',
 			limited: false,
 			wrong_file: false,
 			file_name: null,
@@ -102,7 +102,7 @@ class Form extends Component {
 	}
 
 	render() {
-		let symbol = this.state.currency === 'eth' ? 'Ξ' : 'H';
+		let symbol = this.state.currency === 'eth' ? 'ethereum.png' : 'hydro.png';
 
 		let file_label = !this.state.wrong_file && this.state.file_name !== '' ? this.state.file_name : 'Select file';
 
@@ -160,7 +160,7 @@ class Form extends Component {
 						<label htmlFor="price">Ticket Price:</label>
 						<div className="input-group mb-3">
 							<div className="input-group-prepend">
-								<span className="input-group-text">{symbol}</span>
+								<span className="input-group-text"><img src={'/images/'+symbol} className="event_price-image" /></span>
 							</div>
 							<input type="number" min="0.00000001" className={"form-control " + warning.price} id="price" ref={(input) => this.form.price = input} />
 						</div>

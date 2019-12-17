@@ -102,6 +102,7 @@ class Event extends Component {
 
 			let image = this.getImage();
 			let description = this.getDescription();
+      let buttonText = "Buy Ticket";
 
 			let symbol = event_data[3] ? 'hydro.png' : 'ethereum.png';
 
@@ -120,7 +121,7 @@ class Event extends Component {
 
 			if (date.getTime() < new Date().getTime()) {
 				disabled = true;
-				disabledStatus = <span><span role="img" aria-label="alert">⚠️</span> Event has ended.</span>;
+        buttonText = "This event has ended.";
 			}
 
       let badge = "";
@@ -154,8 +155,7 @@ class Event extends Component {
 						<li className="list-group-item"><strong>Tickets Sold:</strong> {event_data[6]}/{max_seats}</li>
 					</ul>
 					<div className="card-footer text-muted text-center">
-						<button className="btn btn-dark" onClick={this.buyTicket} disabled={disabled}><i className="fas fa-ticket-alt"></i> Buy Ticket</button>
-						<label className="pl-2 small">{disabledStatus}</label>
+						<button className="btn btn-dark" onClick={this.buyTicket} disabled={disabled}><i className="fas fa-ticket-alt"></i> {buttonText}</button>
 					</div>
 				</div>
 			;
