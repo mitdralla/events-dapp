@@ -147,8 +147,18 @@ class Form extends Component {
 					<Datetime closeOnSelect={true} onChange={this.handleDate} inputProps={{className : "form-control " + warning.time}} autoComplete="off" />
 				</div>
 				<div className="form-group">
+					<label htmlFor="description">Event Type:</label>
+					<select className="form-control">
+					<option value="" selected="selected" disabled="disabled">Select the type of the event</option>
+					{eventTypes.map((Type, index) => (
+						<option value="{Type.slug}" key={Type.name}>{Type.name}</option>
+					))}
+					</select>
+				</div>
+				<div className="form-group">
 					<label htmlFor="description">Event Topic:</label>
 					<select className="form-control">
+					<option value="" selected="selected" disabled="disabled">Select the topic of the event</option>
 					{eventTopics.map((Topic, index) => (
 						<option value="{Topic.slug}" key={Topic.name}>{Topic.name}</option>
 					))}

@@ -1,78 +1,66 @@
 [
   {
-    "name": "Auto, Boat & Air",
+    "name": "Appearance or Signing",
     "slug": "",
     "icon": "",
     "description": ""
   },
   {
-    "name": "Business & Professional",
+    "name": "Attraction",
     "slug": "",
     "icon": "",
     "description": ""
   },
   {
-    "name": "Charity & Causes",
+    "name": "Camp, Trip, or Retreat",
     "slug": "",
     "icon": "",
     "description": ""
   },
   {
-    "name": "Community & Culture",
+    "name": "Class, Training, or Workshop",
     "slug": "",
     "icon": "",
     "description": ""
   },
   {
-    "name": "Family & Education",
+    "name": "Concert or Performance",
     "slug": "",
     "icon": "",
     "description": ""
   },
   {
-    "name": "Fashion & Beauty",
+    "name": "Conference",
     "slug": "",
     "icon": "",
     "description": ""
   },
   {
-    "name": "Film, Media & Entertainment",
+    "name": "Convention",
     "slug": "",
     "icon": "",
     "description": ""
   },
   {
-    "name": "Food & Drink",
+    "name": "Dinner or Gala",
     "slug": "",
     "icon": "",
     "description": ""
   },
   {
-    "name": "Government & Politics",
+    "name": "Festival or Fair",
     "slug": "",
     "icon": "",
     "description": ""
   },
   {
-    "name": "Health & Wellness",
+    "name": "Game or Competition",
     "slug": "",
     "icon": "",
     "description": ""
   },
   {
-    "name": "Hobbies & Special Interest",
-    "slug": "",
-    "icon": "",
-    "description": ""
-  },
-  {
-    "name": "Home & Lifestyle",
-    "slug": "",
-    "icon": "",
-    "description": ""
-  },
-  {
-    "name": "Music",
+    "name": "Meeting or Networking Event",
     "slug": "",
     "icon": "",
     "description": ""
@@ -84,43 +72,49 @@
     "description": ""
   },
   {
-    "name": "Performing & Visual Arts",
+    "name": "Party or Social Gathering",
     "slug": "",
     "icon": "",
     "description": ""
   },
   {
-    "name": "Religion & Spirituality",
+    "name": "Race or Endurance Event",
     "slug": "",
     "icon": "",
     "description": ""
   },
   {
-    "name": "School Activities",
+    "name": "Rally",
     "slug": "",
     "icon": "",
     "description": ""
   },
   {
-    "name": "Science & Technology",
+    "name": "Screening",
     "slug": "",
     "icon": "",
     "description": ""
   },
   {
-    "name": "Seasonal & Holiday",
+    "name": "Seminar or Talk",
     "slug": "",
     "icon": "",
     "description": ""
   },
   {
-    "name": "Sports & Fitness",
+    "name": "Tour",
     "slug": "",
     "icon": "",
     "description": ""
   },
   {
-    "name": "Travel & Outdoor",
+    "name": "Tournament",
+    "slug": "",
+    "icon": "",
+    "description": ""
+  },
+  {
+    "name": "Tradeshow, Consumer Show, or Expo",
     "slug": "",
     "icon": "",
     "description": ""
