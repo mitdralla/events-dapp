@@ -15,6 +15,7 @@ class Form extends Component {
 			title: '',
 			title_length: 0,
 			description_length: 0,
+			organizer_length: 0,
 			time: 0,
 			currency: 'hydro',
 			limited: false,
@@ -86,11 +87,23 @@ class Form extends Component {
 		});
 	}
 
+	organizerChange = (event) => {
+		let organizer = event.target.value;
+		if (organizer.length > 100) {
+			organizer = organizer.slice(0, 100);
+		}
+		this.setState({
+			organizer: organizer,
+			organizer_length: organizer.length
+		});
+	}
+
 	handleForm = (event) => {
 		event.preventDefault();
 
 		let form_validation = [];
 		if (this.state.title === '') form_validation.push('name');
+		if (this.state.organizer === '') form_validation.push('organizer');
 		if (this.form.description.value === '') form_validation.push('description');
 		if (this.state.wrong_file === true || this.state.file === null) form_validation.push('image');
 		if (this.state.time === 0) form_validation.push('time');
@@ -104,6 +117,7 @@ class Form extends Component {
 		if (form_validation.length === 0) {
 			this.props.createEvent(
 				this.state.title,
+				this.state.organizer,
 				this.form.description.value,
 				this.state.file,
 				this.state.time,
@@ -122,6 +136,7 @@ class Form extends Component {
 
 		let warning = {
 			name: this.state.form_validation.indexOf('name') === -1 ? '' : 'is-invalid',
+			organizer: this.state.form_validation.indexOf('organizer') === -1 ? '' : 'is-invalid',
 			description: this.state.form_validation.indexOf('description') === -1 ? '' : 'is-invalid',
 			image: this.state.form_validation.indexOf('image') === -1 && !this.state.wrong_file ? '' : 'is-invalid',
 			time: this.state.form_validation.indexOf('time') === -1 ? '' : 'is-invalid',
@@ -140,12 +155,12 @@ class Form extends Component {
 				<div className="form-group">
 					<label htmlFor="name">Event Name:</label>
 					<input type="text" className={"form-control " + warning.name} id="name" value={this.state.title} onChange={this.titleChange} autoComplete="off" />
-					<small className="form-text text-muted">{this.state.title_length}/160</small>
+					<small className="form-text text-muted">{this.state.title_length}/160 characters available.</small>
 				</div>
 				<div className="form-group">
 					<label htmlFor="description">Event Description:</label>
 					<textarea className={"form-control " + warning.description} id="description" rows="5" ref={(input) => this.form.description = input} onChange={this.descriptionChange} autoComplete="off"></textarea>
-					<small className="form-text text-muted">{this.state.description_length}/500</small>
+					<small className="form-text text-muted">{this.state.description_length}/500 characters available.</small>
 				</div>
 				<div className="form-group">
 					<p>Event Cover Image:</p>
@@ -160,9 +175,14 @@ class Form extends Component {
 					<Datetime closeOnSelect={true} onChange={this.handleDate} inputProps={{className : "form-control " + warning.time}} autoComplete="off" />
 				</div>
 				<div className="form-group">
+					<label htmlFor="organizer">Organizer Name:</label>
+					<input type="text" className={"form-control " + warning.organizer} id="organizer" value={this.state.organizer} onChange={this.organizerChange} autoComplete="off" />
+					<small className="form-text text-muted">{this.state.organizer_length}/100 characters available.</small>
+				</div>
+				<div className="form-group">
 					<label htmlFor="description">Event Type:</label>
 					<select className="form-control">
-					<option value="" selected="selected" disabled="disabled">Select the type of the event</option>
+					<option value="" defaultValue="selected" disabled="disabled">Select the type of the event</option>
 					{eventTypes.map((Type, index) => (
 						<option value="{Type.slug}" key={Type.name}>{Type.name}</option>
 					))}
@@ -171,7 +191,7 @@ class Form extends Component {
 				<div className="form-group">
 					<label htmlFor="description">Event Topic:</label>
 					<select className="form-control">
-					<option value="" selected="selected" disabled="disabled">Select the topic of the event</option>
+					<option value="" defaultValue="selected" disabled="disabled">Select the topic of the event</option>
 					{eventTopics.map((Topic, index) => (
 						<option value="{Topic.slug}" key={Topic.name}>{Topic.name}</option>
 					))}
