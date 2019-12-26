@@ -155,3 +155,12 @@ textarea:active, input:active, a:active {
 	font-size: 23px;
   margin-top: 100px;
 }
+
+.form-control:focus, .custom-file-input:focus, .custom-file-input:active, .custom-file-input:focus-within {
+    color: #495057;
+    background-color: #fff;
+    border-color: none;
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
