@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
-import ReactTooltip from 'react-tooltip'
+// import { Link } from 'react-router-dom';
+// import ReactTooltip from 'react-tooltip'
 import eventTypes from '../../config/types.json';
 import eventTopics from '../../config/topics.json';
 
@@ -159,7 +159,7 @@ class Form extends Component {
 		return (
 			<form>
 				<div className="form-group">
-					<label htmlFor="name">Event Name: <ReactTooltip data-tip="Give your event a name" /></label>
+					<label htmlFor="name">Event Name:</label>
 					<input type="text" className={"form-control " + warning.name} id="name" value={this.state.title} onChange={this.titleChange} autoComplete="off" />
 					<small className="form-text text-muted">{this.state.title_length}/160 characters available.</small>
 				</div>
@@ -169,8 +169,8 @@ class Form extends Component {
 					<small className="form-text text-muted">{this.state.description_length}/500 characters available.</small>
 				</div>
 				<div className="form-group">
-					<label htmlFor="organizer">Event Location:</label>
-					<input type="text" className={"form-control " + warning.location} id="location" value={this.state.location} autoComplete="off" />
+					<label htmlFor="location">Event Location:</label>
+					<input type="text" className={"form-control " + warning.location} id="location" autoComplete="off" />
 				</div>
 				<div className="form-group">
 					<label htmlFor="description">Event Date and Time:</label>
@@ -226,7 +226,7 @@ class Form extends Component {
 						<label htmlFor="price">Ticket Price:</label>
 						<div className="input-group mb-3">
 							<div className="input-group-prepend">
-								<span className="input-group-text"><img src={'/images/'+symbol} className="event_price-image" /></span>
+								<span className="input-group-text"><img src={'/images/'+symbol} className="event_price-image" alt="" /></span>
 							</div>
 							<input type="number" min="0.000001" className={"form-control " + warning.price} id="price" ref={(input) => this.form.price = input} autoComplete="off" />
 						</div>

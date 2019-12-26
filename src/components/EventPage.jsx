@@ -140,9 +140,9 @@ class EventPage extends Component {
 						</div>
 						<div className="col-6">
 							<div className="card">
-								<img className="card-img-top event-image" src={image} alt={event_data[0]} />
+								<img className="card-img-top event-image" src={image} alt="Event" />
 								<div className="card-header event-header">
-									<img className="float-left" src={makeBlockie(event_data[8])} alt={event_data[8]} />
+									<img className="float-left" src={makeBlockie(event_data[8])} alt="User Identicon" />
 									<p className="small text-truncate mb-0">
 										Creator: <a href={"https://rinkeby.etherscan.io/address/" + event_data[8]} target="_blank">
 											{event_data[8]}
@@ -150,7 +150,7 @@ class EventPage extends Component {
 									</p>
 								</div>
 								<ul className="list-group list-group-flush">
-									<li className="list-group-item">Price: <img src={'/images/'+symbol} className="event_price-image" /> {price}</li>
+									<li className="list-group-item">Price: <img src={'/images/'+symbol} className="event_price-image"  alt="Event Price" /> {price}</li>
 									<li className="list-group-item">{date.toLocaleDateString()} at {date.toLocaleTimeString()}</li>
 									<li className="list-group-item">Tickets: {event_data[6]}/{max_seats}</li>
 								</ul>

@@ -99,7 +99,7 @@ class App extends Component {
 					<div id="page-content-wrapper">
 						<div className="container-fluid">
 							<h1 className="text-center logo">
-								<Link to="/"><img src="/images/hydro.png" className="header_hydro-logo" /> Hydro Events Marketplace</Link>
+								<Link to="/"><img src="/images/hydro.png" className="header_hydro-logo" alt="Hydro Events Marketplace Logo"/> Hydro Events Marketplace</Link>
 							</h1>
 							<p className="text-center">What are you going to do?</p>
 							<div className="mt-4">
