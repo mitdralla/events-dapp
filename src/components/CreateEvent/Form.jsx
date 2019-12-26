@@ -180,7 +180,7 @@ class Form extends Component {
 					</div>
 				</div>
 				{alert}
-				<button type="submit" className="btn btn-outline-dark" onClick={this.handleForm}>Create Event</button>
+				<button type="submit" className="btn btn-outline-dark" onClick={this.handleForm}>Make Your Event Live</button>
 			</form>
 		);
 	}

@@ -176,15 +176,3 @@ textarea:active, input:active, a:active {
 	padding-left: 15px;
 	padding-bottom: 10px;
 }
-
-#sidebar-wrapper {
-	min-width: 300px;
-}
-
-#sidebar-wrapper .menu {
-	text-align: left;
-}
-
-#wrapper .toggled {
-	padding-left: 300px;
-}

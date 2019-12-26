@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import makeBlockie from 'ethereum-blockies-base64';
-import eventCategories from '../config/categories.json';
+import eventTypes from '../config/types.json';
+import eventTopics from '../config/topics.json';
 
 
 class Sidebar extends Component {
@@ -43,11 +44,11 @@ class Sidebar extends Component {
 						</li>
 					</ul>
 					<br /><br />
-					<h5>Event Categories</h5>
+					<h5>Event Types</h5>
 					<ul className="categories-list">
-					{eventCategories.map((Category, index) => (
-          	<li key={Category.name}>
-							<Link to="/category/{Category.slug}" className="">{Category.name}</Link>
+					{eventTopics.map((Topic, index) => (
+          	<li key={Topic.name}>
+							<Link to="/topic/{Topic.slug}" className="">{Topic.name}</Link>
 						</li>
           ))}
 					</ul>
