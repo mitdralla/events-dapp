@@ -162,7 +162,7 @@ class Form extends Component {
 							<div className="input-group-prepend">
 								<span className="input-group-text"><img src={'/images/'+symbol} className="event_price-image" /></span>
 							</div>
-							<input type="number" min="0.00000001" className={"form-control " + warning.price} id="price" ref={(input) => this.form.price = input} />
+							<input type="number" min="0.000001" className={"form-control " + warning.price} id="price" ref={(input) => this.form.price = input} />
 						</div>
 					</div>
 				</div>
