@@ -1,3 +1,5 @@
+pragma solidity ^0.4.23;
+
 const hydro = {
 	address: '0x4959c7f62051D6b2ed6EaeD3AAeE1F961B145F20',
   contractAddress: 'HydroToken',

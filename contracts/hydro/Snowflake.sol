@@ -1,3 +1,5 @@
+pragma solidity ^0.4.23;
+
 const snowflake = {
   address: '0xB0D5a36733886a4c5597849a05B315626aF5222E',
   contractName: 'Snowflake',

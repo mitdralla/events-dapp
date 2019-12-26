@@ -1,3 +1,5 @@
+pragma solidity ^0.4.23;
+
 const hydro = {
   contractAddress: '1484',
 	abi: [{
