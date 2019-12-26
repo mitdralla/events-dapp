@@ -167,14 +167,14 @@ class Form extends Component {
 					</div>
 				</div>
 				<div className="form-group">
-					<p>Seats Options:</p>
+					<p>Ticket Options:</p>
 					<div className="custom-control custom-checkbox">
 						<input type="checkbox" className="custom-control-input" id="limited" value="true" onChange={this.handleLimited} />
-						<label className="custom-control-label" htmlFor="limited">Limited seats</label>
+						<label className="custom-control-label" htmlFor="limited">Limited tickets</label>
 					</div>
 					<div className="row mt-3">
 						<div className="col-lg-3">
-							<label htmlFor="seats">Seats available:</label>
+							<label htmlFor="seats">Tickets available:</label>
 							<input type="number" className={"form-control " + warning.seats} id="seats" disabled={!this.state.limited}  ref={(input) => this.form.seats = input} />
 						</div>
 					</div>
