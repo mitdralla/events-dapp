@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
+import ReactTooltip from 'react-tooltip'
 import eventTypes from '../../config/types.json';
 import eventTopics from '../../config/topics.json';
 
@@ -15,7 +16,9 @@ class Form extends Component {
 			title: '',
 			title_length: 0,
 			description_length: 0,
+			organizer: '',
 			organizer_length: 0,
+			location: '',
 			time: 0,
 			currency: 'hydro',
 			limited: false,
@@ -103,6 +106,7 @@ class Form extends Component {
 
 		let form_validation = [];
 		if (this.state.title === '') form_validation.push('name');
+		if (this.state.location === '') form_validation.push('location');
 		if (this.state.organizer === '') form_validation.push('organizer');
 		if (this.form.description.value === '') form_validation.push('description');
 		if (this.state.wrong_file === true || this.state.file === null) form_validation.push('image');
@@ -117,6 +121,7 @@ class Form extends Component {
 		if (form_validation.length === 0) {
 			this.props.createEvent(
 				this.state.title,
+				this.state.location,
 				this.state.organizer,
 				this.form.description.value,
 				this.state.file,
@@ -136,6 +141,7 @@ class Form extends Component {
 
 		let warning = {
 			name: this.state.form_validation.indexOf('name') === -1 ? '' : 'is-invalid',
+			location: this.state.form_validation.indexOf('location') === -1 ? '' : 'is-invalid',
 			organizer: this.state.form_validation.indexOf('organizer') === -1 ? '' : 'is-invalid',
 			description: this.state.form_validation.indexOf('description') === -1 ? '' : 'is-invalid',
 			image: this.state.form_validation.indexOf('image') === -1 && !this.state.wrong_file ? '' : 'is-invalid',
@@ -153,7 +159,7 @@ class Form extends Component {
 		return (
 			<form>
 				<div className="form-group">
-					<label htmlFor="name">Event Name:</label>
+					<label htmlFor="name">Event Name: <ReactTooltip data-tip="Give your event a name" /></label>
 					<input type="text" className={"form-control " + warning.name} id="name" value={this.state.title} onChange={this.titleChange} autoComplete="off" />
 					<small className="form-text text-muted">{this.state.title_length}/160 characters available.</small>
 				</div>
@@ -161,6 +167,14 @@ class Form extends Component {
 					<label htmlFor="description">Event Description:</label>
 					<textarea className={"form-control " + warning.description} id="description" rows="5" ref={(input) => this.form.description = input} onChange={this.descriptionChange} autoComplete="off"></textarea>
 					<small className="form-text text-muted">{this.state.description_length}/500 characters available.</small>
+				</div>
+				<div className="form-group">
+					<label htmlFor="organizer">Event Location:</label>
+					<input type="text" className={"form-control " + warning.location} id="location" value={this.state.location} autoComplete="off" />
+				</div>
+				<div className="form-group">
+					<label htmlFor="description">Event Date and Time:</label>
+					<Datetime closeOnSelect={true} onChange={this.handleDate} inputProps={{className : "form-control " + warning.time}} autoComplete="off" />
 				</div>
 				<div className="form-group">
 					<p>Event Cover Image:</p>
@@ -171,10 +185,6 @@ class Form extends Component {
 					<small className="form-text text-muted">Image format: jpg, png. Max file size 1mb.</small>
 				</div>
 				<div className="form-group">
-					<label htmlFor="description">Event Date and Time:</label>
-					<Datetime closeOnSelect={true} onChange={this.handleDate} inputProps={{className : "form-control " + warning.time}} autoComplete="off" />
-				</div>
-				<div className="form-group">
 					<label htmlFor="organizer">Organizer Name:</label>
 					<input type="text" className={"form-control " + warning.organizer} id="organizer" value={this.state.organizer} onChange={this.organizerChange} autoComplete="off" />
 					<small className="form-text text-muted">{this.state.organizer_length}/100 characters available.</small>
@@ -182,7 +192,7 @@ class Form extends Component {
 				<div className="form-group">
 					<label htmlFor="description">Event Type:</label>
 					<select className="form-control">
-					<option value="" defaultValue="selected" disabled="disabled">Select the type of the event</option>
+					<option value="" disabled="disabled">Select the type of the event</option>
 					{eventTypes.map((Type, index) => (
 						<option value="{Type.slug}" key={Type.name}>{Type.name}</option>
 					))}
@@ -191,7 +201,7 @@ class Form extends Component {
 				<div className="form-group">
 					<label htmlFor="description">Event Topic:</label>
 					<select className="form-control">
-					<option value="" defaultValue="selected" disabled="disabled">Select the topic of the event</option>
+					<option value="" disabled="disabled">Select the topic of the event</option>
 					{eventTopics.map((Topic, index) => (
 						<option value="{Topic.slug}" key={Topic.name}>{Topic.name}</option>
 					))}
@@ -236,6 +246,7 @@ class Form extends Component {
 					</div>
 				</div>
 				{alert}
+				<br />
 				<button type="submit" className="btn btn-outline-dark" onClick={this.handleForm}>Make Your Event Live</button>
 			</form>
 		);
