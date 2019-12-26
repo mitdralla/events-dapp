@@ -125,33 +125,33 @@ class Form extends Component {
 			<form>
 				<div className="form-group">
 					<label htmlFor="name">Event name:</label>
-					<input type="text" className={"form-control " + warning.name} id="name" value={this.state.title} onChange={this.titleChange} />
+					<input type="text" className={"form-control " + warning.name} id="name" value={this.state.title} onChange={this.titleChange} autocomplete="off" />
 					<small className="form-text text-muted">{this.state.title_length}/160</small>
 				</div>
 				<div className="form-group">
 					<label htmlFor="description">Event description:</label>
-					<textarea className={"form-control " + warning.description} id="description" rows="3" ref={(input) => this.form.description = input}></textarea>
+					<textarea className={"form-control " + warning.description} id="description" rows="3" ref={(input) => this.form.description = input} autocomplete="off"></textarea>
 				</div>
 				<div className="form-group">
 					<p>Event cover image:</p>
 					<div className="custom-file">
-						<input type="file" className={"custom-file-input " + warning.image} id="customFile" onChange={this.handleFile} />
+						<input type="file" className={"custom-file-input " + warning.image} id="customFile" onChange={this.handleFile} autocomplete="off" />
 						<label className="custom-file-label" htmlFor="customFile">{file_label}</label>
 					</div>
 					<small className="form-text text-muted">Image format: jpg, png. Max file size 1mb.</small>
 				</div>
 				<div className="form-group">
 					<label htmlFor="description">Event date and time:</label>
-					<Datetime closeOnSelect={true} onChange={this.handleDate} inputProps={{className : "form-control " + warning.time}} />
+					<Datetime closeOnSelect={true} onChange={this.handleDate} inputProps={{className : "form-control " + warning.time}} autocomplete="off" />
 				</div>
 				<div className="form-group">
 					<p>Payment Options:</p>
 					<div className="custom-control custom-radio custom-control-inline">
-						<input type="radio" id="payment2" name="payment" className="custom-control-input" defaultChecked="true" value="hydro" onChange={this.handleCurrency} />
+						<input type="radio" id="payment2" name="payment" className="custom-control-input" defaultChecked="true" value="hydro" onChange={this.handleCurrency} autocomplete="off" />
 						<label className="custom-control-label" htmlFor="payment2">Hydro</label>
 					</div>
 					<div className="custom-control custom-radio custom-control-inline">
-						<input type="radio" id="payment1" name="payment" className="custom-control-input" value="eth" onChange={this.handleCurrency} />
+						<input type="radio" id="payment1" name="payment" className="custom-control-input" value="eth" onChange={this.handleCurrency} autocomplete="off" />
 						<label className="custom-control-label" htmlFor="payment1">Ethereum</label>
 					</div>
 				</div>
@@ -162,25 +162,25 @@ class Form extends Component {
 							<div className="input-group-prepend">
 								<span className="input-group-text"><img src={'/images/'+symbol} className="event_price-image" /></span>
 							</div>
-							<input type="number" min="0.000001" className={"form-control " + warning.price} id="price" ref={(input) => this.form.price = input} />
+							<input type="number" min="0.000001" className={"form-control " + warning.price} id="price" ref={(input) => this.form.price = input} autocomplete="off" />
 						</div>
 					</div>
 				</div>
 				<div className="form-group">
 					<p>Ticket Options:</p>
 					<div className="custom-control custom-checkbox">
-						<input type="checkbox" className="custom-control-input" id="limited" value="true" onChange={this.handleLimited} />
+						<input type="checkbox" className="custom-control-input" id="limited" value="true" onChange={this.handleLimited} autocomplete="off" />
 						<label className="custom-control-label" htmlFor="limited">Limited tickets</label>
 					</div>
 					<div className="row mt-3">
 						<div className="col-lg-3">
 							<label htmlFor="seats">Tickets available:</label>
-							<input type="number" className={"form-control " + warning.seats} id="seats" disabled={!this.state.limited}  ref={(input) => this.form.seats = input} />
+							<input type="number" className={"form-control " + warning.seats} id="seats" disabled={!this.state.limited}  ref={(input) => this.form.seats = input} autocomplete="off" />
 						</div>
 					</div>
 				</div>
 				{alert}
-				<button type="submit" className="btn btn-outline-dark" onClick={this.handleForm}>Create an Event</button>
+				<button type="submit" className="btn btn-outline-dark" onClick={this.handleForm}>Create Event</button>
 			</form>
 		);
 	}
