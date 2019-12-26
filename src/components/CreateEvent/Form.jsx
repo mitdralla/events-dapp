@@ -14,6 +14,7 @@ class Form extends Component {
 		this.state = {
 			title: '',
 			title_length: 0,
+			description_length: 0,
 			time: 0,
 			currency: 'hydro',
 			limited: false,
@@ -71,6 +72,17 @@ class Form extends Component {
 		this.setState({
 			title: title,
 			title_length: title.length
+		});
+	}
+
+	descriptionChange = (event) => {
+		let description = event.target.value;
+		if (description.length > 500) {
+			description = description.slice(0, 500);
+		}
+		this.setState({
+			description: description,
+			description_length: description.length
 		});
 	}
 
@@ -132,7 +144,8 @@ class Form extends Component {
 				</div>
 				<div className="form-group">
 					<label htmlFor="description">Event Description:</label>
-					<textarea className={"form-control " + warning.description} id="description" rows="3" ref={(input) => this.form.description = input} autoComplete="off"></textarea>
+					<textarea className={"form-control " + warning.description} id="description" rows="5" ref={(input) => this.form.description = input} onChange={this.descriptionChange} autoComplete="off"></textarea>
+					<small className="form-text text-muted">{this.state.description_length}/500</small>
 				</div>
 				<div className="form-group">
 					<p>Event Cover Image:</p>
