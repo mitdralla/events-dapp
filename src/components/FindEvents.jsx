@@ -20,7 +20,7 @@ class FindEvents extends Component {
 		if (typeof this.props.contracts['OpenEvents'].getEventsCount[this.eventCount] !== 'undefined') {
 			let count = Number(this.props.contracts['OpenEvents'].getEventsCount[this.eventCount].value);
 			if (count === 0) {
-				body = <p className="text-center"><span role="img" aria-label="thinking">🤔</span>No events found</p>;
+				body = <p className="text-center not-found"><span role="img" aria-label="thinking">🤔</span>&nbsp;No events found. <a href="/createevent">Try creating one.</a></p>;
 			} else {
 				let currentPage = Number(this.props.match.params.page);
 				if (isNaN(currentPage) || currentPage < 1) currentPage = 1;
@@ -72,11 +72,11 @@ class FindEvents extends Component {
 		return(
 			<div>
 
-      <div class="input-group input-group-lg">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroup-sizing-lg"><i className="fa fa-search"></i>&nbsp;Search </span>
+      <div className="input-group input-group-lg">
+        <div className="input-group-prepend">
+          <span className="input-group-text" id="inputGroup-sizing-lg"><i className="fa fa-search"></i>&nbsp;Search </span>
         </div>
-        <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
+        <input type="text" className="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
       </div>
         <br /><br />
 				<h2><i className="fa fa-calendar-alt"></i> All Events</h2>
