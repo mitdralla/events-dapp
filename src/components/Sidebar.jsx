@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import makeBlockie from 'ethereum-blockies-base64';
+import eventCategories from '../config/categories.json';
+
 
 class Sidebar extends Component {
 	render() {
@@ -39,6 +41,15 @@ class Sidebar extends Component {
 						<li className="nav-item">
 							<Link to="/mytickets/1" className="nav-link"><i className="fa fa-ticket-alt"></i> My Tickets</Link>
 						</li>
+					</ul>
+					<br /><br />
+					<h5>Event Categories</h5>
+					<ul className="categories-list">
+					{eventCategories.map((Category, index) => (
+          	<li key={Category.name}>
+							<Link to="/category/{Category.slug}" className="">{Category.name}</Link>
+						</li>
+          ))}
 					</ul>
 					<h5 className="mt-5">Manage Events</h5>
 					<ul className="nav flex-column">

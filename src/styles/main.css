@@ -164,3 +164,27 @@ textarea:active, input:active, a:active {
     -webkit-box-shadow: none;
     box-shadow: none;
 }
+
+.categories-list {
+	text-align: left;
+	padding-left: 0;
+}
+
+.categories-list li {
+	list-style-type: none;
+	text-decoration: none;
+	padding-left: 15px;
+	padding-bottom: 10px;
+}
+
+#sidebar-wrapper {
+	min-width: 300px;
+}
+
+#sidebar-wrapper .menu {
+	text-align: left;
+}
+
+#wrapper .toggled {
+	padding-left: 300px;
+}
