@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-
+import { Link } from 'react-router-dom';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
+import eventTypes from '../../config/types.json';
+import eventTopics from '../../config/topics.json';
 
 class Form extends Component {
 	constructor(props) {
@@ -124,16 +126,16 @@ class Form extends Component {
 		return (
 			<form>
 				<div className="form-group">
-					<label htmlFor="name">Event name:</label>
+					<label htmlFor="name">Event Name:</label>
 					<input type="text" className={"form-control " + warning.name} id="name" value={this.state.title} onChange={this.titleChange} autoComplete="off" />
 					<small className="form-text text-muted">{this.state.title_length}/160</small>
 				</div>
 				<div className="form-group">
-					<label htmlFor="description">Event description:</label>
+					<label htmlFor="description">Event Description:</label>
 					<textarea className={"form-control " + warning.description} id="description" rows="3" ref={(input) => this.form.description = input} autoComplete="off"></textarea>
 				</div>
 				<div className="form-group">
-					<p>Event cover image:</p>
+					<p>Event Cover Image:</p>
 					<div className="custom-file">
 						<input type="file" className={"custom-file-input " + warning.image} id="customFile" onChange={this.handleFile} autoComplete="off" />
 						<label className="custom-file-label" htmlFor="customFile">{file_label}</label>
@@ -141,9 +143,20 @@ class Form extends Component {
 					<small className="form-text text-muted">Image format: jpg, png. Max file size 1mb.</small>
 				</div>
 				<div className="form-group">
-					<label htmlFor="description">Event date and time:</label>
+					<label htmlFor="description">Event Date and Time:</label>
 					<Datetime closeOnSelect={true} onChange={this.handleDate} inputProps={{className : "form-control " + warning.time}} autoComplete="off" />
 				</div>
+				<div className="form-group">
+					<label htmlFor="description">Event Topic:</label>
+					<select className="form-control">
+					{eventTopics.map((Topic, index) => (
+						<option value="{Topic.slug}" key={Topic.name}>{Topic.name}</option>
+					))}
+					</select>
+				</div>
+				<br />
+				<hr />
+				<br />
 				<div className="form-group">
 					<p>Payment Options:</p>
 					<div className="custom-control custom-radio custom-control-inline">
