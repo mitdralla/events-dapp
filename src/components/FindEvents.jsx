@@ -76,7 +76,7 @@ class FindEvents extends Component {
           <Carousel.Item>
             <img className="d-block w-100" src="/images/slides/slide1.png" alt="First slide" />
             <Carousel.Caption>
-              <h3>Check out an Outdoor Concert</h3>
+              <h3>Check out a Concert</h3>
               <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
             </Carousel.Caption>
           </Carousel.Item>

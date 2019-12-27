@@ -218,7 +218,6 @@ textarea:active, input:active, a:active {
 }
 
 #bgImage {
-	background-image: url('/images/slides/slide1.png');
 	position:absolute;
   width: 110%;
   height: 800px !important;
