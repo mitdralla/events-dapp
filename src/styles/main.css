@@ -208,3 +208,24 @@ textarea:active, input:active, a:active {
 .carousel-caption h3 {
 	font-weight: 900;
 }
+
+#bgImage {
+	background-image: url('/images/slides/slide1.png');
+	position:absolute;
+  width: 110%;
+  height: 639px !important;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  -webkit-filter: blur(15px);
+  -moz-filter: blur(15px);
+  -o-filter: blur(15px);
+  -ms-filter: blur(15px);
+  filter: blur(15px);
+	margin-left: -22px;
+	margin-top: -22px;
+	top: 0;
+	left: 0;
+	right: 0;
+	padding-right:0px;
+}

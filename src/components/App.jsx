@@ -97,6 +97,7 @@ class App extends Component {
 				<div id="wrapper" className="toggled">
 					<Sidebar connection={!connecting} account={this.props.accounts[0]} />
 					<div id="page-content-wrapper">
+						<div id="bgImage" />
 						<div className="container-fluid">
 							<h1 className="text-center logo">
 								<Link to="/"><img src="/images/hydro.png" className="header_hydro-logo" alt="Hydro Events Marketplace Logo"/> Hydro Events Marketplace</Link>
