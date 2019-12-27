@@ -99,7 +99,7 @@ class App extends Component {
 					<div id="page-content-wrapper">
 						<div id="bgImage" />
 						<div className="branding">
-
+						<h1 className="text-center">Hydro Events Marketplace</h1>
 						<p className="text-center">What are you going to do?</p>
 						</div>
 						<div className="container-fluid">
