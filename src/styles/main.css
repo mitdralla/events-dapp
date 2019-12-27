@@ -42,6 +42,7 @@ textarea:active, input:active, a:active {
 	background-color: #333940;
 	color: #FAFAFA;
 	padding: 20px;
+	display:none;
 }
 
 #sidebar-wrapper.my-sidebar .user-status .user-status-icon {
@@ -228,4 +229,32 @@ textarea:active, input:active, a:active {
 	left: 0;
 	right: 0;
 	padding-right:0px;
+}
+
+.container-fluid {
+	background-color: #f7f7f7;
+	z-index: 99999999999999999999 !important;
+	position: inherit;
+	margin-top: 50px;
+	border-radius: 5px;
+	padding-top: 30px;
+	padding: 60px;
+	min-height:800px;
+}
+
+.branding {
+	z-index: 99999999999999999999999 !important;
+  position: inherit;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: relative;
+    margin-right: 0;
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
+#wrapper.toggled {
+    padding-left: 0px;
+    padding-right: 0px;
 }
