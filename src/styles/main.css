@@ -177,13 +177,20 @@ textarea:active, input:active, a:active {
 	padding-bottom: 10px;
 }
 
+.carousel {
+	position: relative;
+	margin-left: -60px;
+	margin-top: -55px !important;
+	margin-right: -60px;
+}
+
 .carousel-inner {
 	border-radius: 5px !important;
 }
 
 .carousel-caption {
 	box-shadow: 20px 0px 80px rgba(0,0,0,1);
-	box-shadow: inset 20px 0px 80px rgba(0,0,0,1);
+	box-shadow: inset 0px -112px 60px rgba(0,0,0,0.8)
 }
 
 .carousel-caption {
@@ -192,12 +199,12 @@ textarea:active, input:active, a:active {
     bottom: 0px;
     left: 0;
     z-index: 10;
-    padding-top: 20px;
+    padding-top: 45px;
     padding-bottom: 20px;
     color: #fff;
     text-align: center;
     width: 100%;
-    padding-bottom: 25px;
+    padding-bottom: 45px;
 }
 
 .carousel-control-next-icon, .carousel-control-prev-icon {
@@ -207,13 +214,14 @@ textarea:active, input:active, a:active {
 
 .carousel-caption h3 {
 	font-weight: 900;
+	font-size: 2.75rem;
 }
 
 #bgImage {
 	background-image: url('/images/slides/slide1.png');
 	position:absolute;
   width: 110%;
-  height: 639px !important;
+  height: 800px !important;
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100%;
@@ -239,6 +247,7 @@ textarea:active, input:active, a:active {
 	border-radius: 5px;
 	padding: 30px 60px 60px 60px;
 	min-height:800px;
+	max-width: 1600px;
 }
 
 .branding {
@@ -249,14 +258,18 @@ textarea:active, input:active, a:active {
 #wrapper.toggled #page-content-wrapper {
   position: relative;
   margin-right: 0;
-  padding-left: 80px;
   padding-right: 80px;
 	padding-left: 325px;
+	padding-top: 75px;
+
 }
 
 #wrapper.toggled {
   padding-left: 0px;
   padding-right: 0px;
+}
+
+#wrapper.toggled #page-content-wrapper {
 }
 
 .bg-light {

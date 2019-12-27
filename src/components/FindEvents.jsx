@@ -94,6 +94,13 @@ class FindEvents extends Component {
               <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
             </Carousel.Caption>
           </Carousel.Item>
+          <Carousel.Item>
+          <img className="d-block w-100" src="/images/slides/slide4.png" alt="First slide" />
+            <Carousel.Caption>
+              <h3>Play a New Sport</h3>
+              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+            </Carousel.Caption>
+          </Carousel.Item>
         </Carousel>
 
 			<div>
@@ -105,7 +112,7 @@ class FindEvents extends Component {
         <input type="text" className="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
       </div>
         <br /><br />
-				<h2><i className="fa fa-calendar-alt"></i> All Events</h2>
+				<h2><i className="fa fa-calendar-alt"></i> Find Events</h2>
 				<hr />
 				{body}
 			</div>
