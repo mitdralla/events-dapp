@@ -180,3 +180,8 @@ textarea:active, input:active, a:active {
 .carousel-inner {
 	border-radius: 5px !important;
 }
+
+.carousel-control-next-icon, .carousel-control-prev-icon {
+  width: 65px;
+  height: 65px;
+}
