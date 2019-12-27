@@ -181,7 +181,30 @@ textarea:active, input:active, a:active {
 	border-radius: 5px !important;
 }
 
+.carousel-caption {
+	box-shadow: 20px 0px 80px rgba(0,0,0,1);
+	box-shadow: inset 20px 0px 80px rgba(0,0,0,1);
+}
+
+.carousel-caption {
+    position: absolute;
+    right: 0;
+    bottom: 0px;
+    left: 0;
+    z-index: 10;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    padding-bottom: 25px;
+}
+
 .carousel-control-next-icon, .carousel-control-prev-icon {
   width: 65px;
   height: 65px;
+}
+
+.carousel-caption h3 {
+	font-weight: 900;
 }
