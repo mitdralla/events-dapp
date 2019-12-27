@@ -42,7 +42,6 @@ textarea:active, input:active, a:active {
 	background-color: #333940;
 	color: #FAFAFA;
 	padding: 20px;
-	display:none;
 }
 
 #sidebar-wrapper.my-sidebar .user-status .user-status-icon {
@@ -224,11 +223,12 @@ textarea:active, input:active, a:active {
   -ms-filter: blur(15px);
   filter: blur(15px);
 	margin-left: -22px;
-	margin-top: -22px;
+	margin-top: -100px;
 	top: 0;
 	left: 0;
 	right: 0;
 	padding-right:0px;
+	z-index:-999999;
 }
 
 .container-fluid {
@@ -237,8 +237,7 @@ textarea:active, input:active, a:active {
 	position: inherit;
 	margin-top: 50px;
 	border-radius: 5px;
-	padding-top: 30px;
-	padding: 60px;
+	padding: 30px 60px 60px 60px;
 	min-height:800px;
 }
 
@@ -248,13 +247,37 @@ textarea:active, input:active, a:active {
 }
 
 #wrapper.toggled #page-content-wrapper {
-    position: relative;
-    margin-right: 0;
-    padding-left: 80px;
-    padding-right: 80px;
+  position: relative;
+  margin-right: 0;
+  padding-left: 80px;
+  padding-right: 80px;
+	padding-left: 325px;
 }
 
 #wrapper.toggled {
-    padding-left: 0px;
-    padding-right: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.bg-light {
+  background-color: rgb(50, 56, 64) !important;
+}
+
+.navbar-brand h1 {
+	font-size: 1.5rem;
+	font-weight: 400;
+	color: #fff;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: rgb(255, 255, 255);
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+  color: rgb(222, 222, 222);
+}
+
+.navbar-light .navbar-nav .nav-link:active {
+  color: rgb(255, 255, 255);
+	font-weight: 400;
 }
