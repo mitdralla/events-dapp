@@ -106,8 +106,8 @@ class App extends Component {
   						backgroundImage: "url(/images/slides/"+ randomBG + ")",
 						}} />
 						<div className="branding">
-						<h1 className="text-center">Hydro Events Marketplace</h1>
-						<p className="text-center">What are you going to do?</p>
+						<h1>Hydro Events Marketplace</h1>
+						<p>What are you going to do?</p>
 						</div>
 						<div className="container-fluid">
 							<div className="mt-4">

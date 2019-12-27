@@ -184,6 +184,18 @@ textarea:active, input:active, a:active {
 	margin-right: -60px;
 }
 
+.carousel:before {
+  content: "";
+  position:absolute;
+  z-index: -1;
+  width:96%;
+  top: 0;
+  height: 10px;
+  left: 2%;
+  border-radius: 100px / 5px;
+  box-shadow:0 0 18px rgba(0,0,0,0.6);
+}
+
 .carousel-inner {
 	border-radius: 5px !important;
 }
@@ -252,6 +264,8 @@ textarea:active, input:active, a:active {
 .branding {
 	z-index: 99999999999999999999999 !important;
   position: inherit;
+	color: #fff;
+	text-shadow: 2px 2px 24px #000;
 }
 
 #wrapper.toggled #page-content-wrapper {
