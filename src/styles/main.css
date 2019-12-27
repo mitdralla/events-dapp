@@ -176,3 +176,7 @@ textarea:active, input:active, a:active {
 	padding-left: 15px;
 	padding-bottom: 10px;
 }
+
+.carousel-inner {
+	border-radius: 5px !important;
+}

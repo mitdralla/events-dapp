@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { drizzleConnect } from 'drizzle-react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import Carousel from 'react-bootstrap/Carousel'
 
 import Loading from './Loading';
 import Event from './Event';
@@ -70,8 +71,33 @@ class FindEvents extends Component {
 		}
 
 		return(
-			<div>
+      <React.Fragment>
+      <Carousel>
+          <Carousel.Item>
+            <img className="d-block w-100" src="/images/slides/slide1.png" alt="First slide" />
+            <Carousel.Caption>
+              <h3>Check out an Outdoor Concert</h3>
+              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            </Carousel.Caption>
+          </Carousel.Item>
+          <Carousel.Item>
+          <img className="d-block w-100" src="/images/slides/slide2.png" alt="First slide" />
+            <Carousel.Caption>
+              <h3>Support a Local Charity</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </Carousel.Caption>
+          </Carousel.Item>
+          <Carousel.Item>
+          <img className="d-block w-100" src="/images/slides/slide3.png" alt="First slide" />
+            <Carousel.Caption>
+              <h3>Attend an Exclusive Party</h3>
+              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+            </Carousel.Caption>
+          </Carousel.Item>
+        </Carousel>
 
+			<div>
+      <br /><br />
       <div className="input-group input-group-lg">
         <div className="input-group-prepend">
           <span className="input-group-text" id="inputGroup-sizing-lg"><i className="fa fa-search"></i>&nbsp;Search </span>
@@ -83,6 +109,7 @@ class FindEvents extends Component {
 				<hr />
 				{body}
 			</div>
+      </React.Fragment>
 		);
 	}
 }
