@@ -21,6 +21,8 @@ class Form extends Component {
 			location: '',
 			time: 0,
 			currency: 'hydro',
+			type: '',
+			topic: '',
 			limited: false,
 			wrong_file: false,
 			file_name: null,
@@ -101,6 +103,14 @@ class Form extends Component {
 		});
 	}
 
+	locationChange = (event) => {
+		let location = event.target.value;
+
+		this.setState({
+			location: location
+		});
+	}
+
 	handleForm = (event) => {
 		event.preventDefault();
 
@@ -121,11 +131,13 @@ class Form extends Component {
 		if (form_validation.length === 0) {
 			this.props.createEvent(
 				this.state.title,
-				this.state.location,
-				this.state.organizer,
 				this.form.description.value,
-				this.state.file,
+				this.state.location,
 				this.state.time,
+				this.state.file,
+				this.state.organizer,
+				this.state.type,
+				this.state.topic,
 				this.state.currency,
 				this.form.price.value,
 				this.state.limited,
@@ -143,6 +155,8 @@ class Form extends Component {
 			name: this.state.form_validation.indexOf('name') === -1 ? '' : 'is-invalid',
 			location: this.state.form_validation.indexOf('location') === -1 ? '' : 'is-invalid',
 			organizer: this.state.form_validation.indexOf('organizer') === -1 ? '' : 'is-invalid',
+			type: this.state.form_validation.indexOf('type') === -1 ? '' : 'is-invalid',
+			topic: this.state.form_validation.indexOf('topic') === -1 ? '' : 'is-invalid',
 			description: this.state.form_validation.indexOf('description') === -1 ? '' : 'is-invalid',
 			image: this.state.form_validation.indexOf('image') === -1 && !this.state.wrong_file ? '' : 'is-invalid',
 			time: this.state.form_validation.indexOf('time') === -1 ? '' : 'is-invalid',
@@ -170,7 +184,7 @@ class Form extends Component {
 				</div>
 				<div className="form-group">
 					<label htmlFor="location">Event Location:</label>
-					<input type="text" className={"form-control " + warning.location} id="location" autoComplete="off" />
+					<input type="text" className={"form-control " + warning.location} id="location"  onChange={this.locationChange} autoComplete="off" />
 				</div>
 				<div className="form-group">
 					<label htmlFor="description">Event Date and Time:</label>
@@ -191,19 +205,19 @@ class Form extends Component {
 				</div>
 				<div className="form-group">
 					<label htmlFor="description">Event Type:</label>
-					<select className="form-control">
+					<select className="form-control" id="type">
 					<option value="" disabled="disabled">Select the type of the event</option>
 					{eventTypes.map((Type, index) => (
-						<option value="{Type.slug}" key={Type.name}>{Type.name}</option>
+						<option value={Type.slug} key={Type.name}>{Type.name}</option>
 					))}
 					</select>
 				</div>
 				<div className="form-group">
 					<label htmlFor="description">Event Topic:</label>
-					<select className="form-control">
+					<select className="form-control" id="topic">
 					<option value="" disabled="disabled">Select the topic of the event</option>
 					{eventTopics.map((Topic, index) => (
-						<option value="{Topic.slug}" key={Topic.name}>{Topic.name}</option>
+						<option value={Topic.slug} key={Topic.name}>{Topic.name}</option>
 					))}
 					</select>
 				</div>
@@ -228,7 +242,7 @@ class Form extends Component {
 							<div className="input-group-prepend">
 								<span className="input-group-text"><img src={'/images/'+symbol} className="event_price-image" alt="" /></span>
 							</div>
-							<input type="number" min="0.000001" className={"form-control " + warning.price} id="price" ref={(input) => this.form.price = input} autoComplete="off" />
+							<input type="number" min="0.00000001" className={"form-control " + warning.price} id="price" ref={(input) => this.form.price = input} autoComplete="off" />
 						</div>
 					</div>
 				</div>

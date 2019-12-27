@@ -27,6 +27,7 @@ class CreateEvent extends Component {
 				time: 0,
 				currency: null,
 				price: 0,
+				organizer: null,
 				limited: false,
 				seats: 0
 			}
@@ -35,17 +36,19 @@ class CreateEvent extends Component {
 		this.contracts = context.drizzle.contracts;
 	}
 
-	createEvent = (name, description, file, time, currency, price, limited, seats) => {
+	createEvent = (name, description, location, time, file, organizer, type, topic, currency, price, limited, seats) => {
+
 		this.setState({
 			upload: true,
 			stage: 25,
-			title: 'Uploading data to ipfs...',
+			title: 'Uploading event image...',
 			data: {
 				name: name,
 				description: description,
 				time: time,
 				currency: currency,
 				price: this.context.drizzle.web3.utils.toWei(price),
+				organizer: organizer,
 				limited: limited,
 				seats: seats === '' ? 0 : parseInt(seats, 10)
 			}
@@ -57,6 +60,7 @@ class CreateEvent extends Component {
 
 	readFile = (file) => {
 		let reader = new window.FileReader();
+		console.log(file);
 		reader.readAsDataURL(file);
 		reader.onloadend = () => this.convertAndUpload(reader);
 	}
