@@ -105,6 +105,14 @@ class FindEvents extends Component {
               <button className="btn btn-dark"><i className="fas fa-ticket-alt"></i> Find Events</button>
             </Carousel.Caption>
           </Carousel.Item>
+          <Carousel.Item className="slide5">
+          <img className="d-block w-100" src="/images/slides/slide4.png" alt="First slide" />
+            <Carousel.Caption>
+              <h3>Create Your Own</h3>
+              <p>Create your own event, it takes only a minute.</p>
+              <button className="btn btn-dark"><i className="fas fa-ticket-alt"></i> Create Event</button>
+            </Carousel.Caption>
+          </Carousel.Item>
         </Carousel>
 
 			<div>

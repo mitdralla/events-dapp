@@ -301,6 +301,19 @@ textarea:active, input:active, a:active {
 	border-color: #bf9002;
 }
 
+.carousel .slide5 button  {
+	color: #343a40;
+	background-color: #fff;
+	border-color: #fff;
+}
+
+.carousel .slide5 button:hover  {
+	background-color: #dcdcdc;
+	border-color: #dcdcdc;
+}
+
+
+
 #bgImage {
 	position:absolute;
   width: 110%;
@@ -390,6 +403,11 @@ textarea:active, input:active, a:active {
     border-radius: 100px / 5px;
     -webkit-box-shadow: 0 0 18px rgba(0,0,0,0.6);
     box-shadow: 0 0 18px rgba(0,0,0,0.6);
+}
+
+.card-footer button {
+	padding: 5px 30px 5px 30px;
+  border-radius: 20px;
 }
 
 .container-fluid:before  {
