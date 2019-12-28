@@ -102,7 +102,7 @@ class App extends Component {
 				<div id="wrapper" className="toggled">
 					<Sidebar connection={!connecting} account={this.props.accounts[0]} />
 					<div id="page-content-wrapper">
-						<div id="bgImage" style={{
+						<div id="bgImage" ref="bgImage" style={{
   						backgroundImage: "url(/images/slides/"+ randomBG + ")",
 						}} />
 						<div className="branding">

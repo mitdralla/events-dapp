@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from "react-dom";
 import { drizzleConnect } from "drizzle-react";
 import PropTypes from 'prop-types';
 import makeBlockie from 'ethereum-blockies-base64';
@@ -9,20 +10,21 @@ import Loading from './Loading';
 import CheckUser from './CheckUser';
 
 class EventPage extends Component {
+
     constructor(props, context) {
-        super(props);
-		this.contracts = context.drizzle.contracts;
-		this.event = this.contracts['OpenEvents'].methods.getEvent.cacheCall(this.props.match.params.id);
-		this.state = {
-			loading: false,
-			loaded: false,
-			description: null,
-			image: null,
-			ipfs_problem: false,
-			approve_tx: null,
-			waiting_approve: false
-		};
-		this.isCancelled = false;
+      super(props);
+		  this.contracts = context.drizzle.contracts;
+		  this.event = this.contracts['OpenEvents'].methods.getEvent.cacheCall(this.props.match.params.id);
+		  this.state = {
+			  loading: false,
+			  loaded: false,
+			  description: null,
+			  image: null,
+			  ipfs_problem: false,
+			  approve_tx: null,
+			  waiting_approve: false
+		  };
+		  this.isCancelled = false;
 	}
 
 	updateIPFS = () => {

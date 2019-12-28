@@ -18,7 +18,7 @@ class Sidebar extends Component {
 			user =
 				<div>
 					<div className="user-status-icon">
-						<img src="/images/hydro.png" alt={this.props.account} />
+						<a href="/"><img src="/images/hydro.png" alt={this.props.account} /></a>
 					</div>
 					<p className="mt-3 text-truncate h-25">Hello, Tim</p>
 					{/* {this.props.account} */}

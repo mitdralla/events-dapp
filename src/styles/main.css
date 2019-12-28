@@ -42,7 +42,7 @@ textarea:active, input:active, a:active {
 	background-color: #333940;
 	color: #FAFAFA;
 	padding: 20px;
-	opacity: 0.8;
+	opacity: 0.7;
 }
 
 #sidebar-wrapper.my-sidebar .user-status .user-status-icon {
@@ -197,13 +197,28 @@ textarea:active, input:active, a:active {
   box-shadow:0 0 18px rgba(0,0,0,0.6);
 }
 
+.carousel:after {
+	content: "";
+  position: absolute;
+  z-index: 0;
+  width: 96%;
+  bottom: 1px;
+  height: 10px;
+  left: 2%;
+  border-radius: 100px / 5px;
+  -webkit-box-shadow: 0 0 18px rgba(0,0,0,0.6);
+  box-shadow: 0 0 18px rgba(0,0,0,0.6);
+}
+
 .carousel-inner {
 	border-radius: 5px !important;
 }
 
 .carousel-caption {
 	box-shadow: 20px 0px 80px rgba(0,0,0,1);
-	box-shadow: inset 0px -112px 60px rgba(0,0,0,0.8)
+	/* box-shadow: inset 0px -112px 60px rgba(0,0,0,0.8); */
+	box-shadow: inset 0px -181px 53px rgba(0,0,0,0.8);
+
 }
 
 .carousel-caption {
@@ -218,6 +233,7 @@ textarea:active, input:active, a:active {
     text-align: center;
     width: 100%;
     padding-bottom: 45px;
+		min-height: 300px;
 }
 
 .carousel-indicators {
@@ -232,6 +248,57 @@ textarea:active, input:active, a:active {
 .carousel-caption h3 {
 	font-weight: 900;
 	font-size: 2.75rem;
+	text-shadow: 2px 2px 24px #000;
+}
+
+.carousel-caption p {
+	text-shadow: 2px 2px 24px #000;
+}
+
+.carousel button {
+	padding: 15px 60px 15px 60px !important;
+  border-radius: 30px !important;
+	font-size: 20px;
+}
+
+.carousel .slide1 button {
+	background-color: #007bff;
+	border-color: #007bff;
+}
+
+.carousel .slide1 button:hover {
+	background-color: #005cbf;
+	border-color: #005cbf;
+}
+
+.carousel .slide2 button {
+	background-color: #cc00ff;
+	border-color: #cc00ff;
+}
+
+.carousel .slide2 button:hover {
+	background-color: #a600d0;
+	border-color: #a600d0;
+}
+
+.carousel .slide3 button {
+	background-color: #ff8100;
+	border-color: #ff8100;
+}
+
+.carousel .slide3 button:hover {
+	background-color: #d06a01;
+	border-color: #d06a01;
+}
+
+.carousel .slide4 button  {
+	background-color: #ffc107;
+	border-color: #ffc107;
+}
+
+.carousel .slide4 button:hover  {
+	background-color: #bf9002;
+	border-color: #bf9002;
 }
 
 #bgImage {
@@ -257,7 +324,6 @@ textarea:active, input:active, a:active {
 
 .container-fluid {
 	background-color: #f7f7f7;
-	z-index: 99999999999999999999 !important;
 	position: inherit;
 	margin-top: 50px;
 	border-radius: 5px;
@@ -311,4 +377,43 @@ textarea:active, input:active, a:active {
 .navbar-light .navbar-nav .nav-link:active {
   color: rgb(255, 255, 255);
 	font-weight: 400;
+}
+
+.card:before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    width: 96%;
+    top: 0;
+    height: 10px;
+    left: 2%;
+    border-radius: 100px / 5px;
+    -webkit-box-shadow: 0 0 18px rgba(0,0,0,0.6);
+    box-shadow: 0 0 18px rgba(0,0,0,0.6);
+}
+
+.container-fluid:before  {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 96%;
+    top: 0;
+    height: 10px;
+    left: 2%;
+    border-radius: 100px / 5px;
+    -webkit-box-shadow: 0 0 18px rgba(0,0,0,0.6);
+    box-shadow: 0 0 18px rgba(0,0,0,0.6);
+}
+
+.input-group:before {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	width: 96%;
+	top: 0;
+	height: 10px;
+	left: 2%;
+	border-radius: 100px / 5px;
+	-webkit-box-shadow: 0 0 18px rgba(0,0,0,0.6);
+	box-shadow: 0 0 18px rgba(0,0,0,0.6);
 }
