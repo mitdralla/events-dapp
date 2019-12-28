@@ -42,6 +42,7 @@ textarea:active, input:active, a:active {
 	background-color: #333940;
 	color: #FAFAFA;
 	padding: 20px;
+	opacity: 0.8;
 }
 
 #sidebar-wrapper.my-sidebar .user-status .user-status-icon {
