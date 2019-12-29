@@ -79,7 +79,7 @@ class MyEvents extends Component {
 		}
 
 		return (
-			<div className="page-wrapper-inner">
+			<div>
 				<h2><i className="fa fa-calendar-alt"></i>  My Events</h2>
 				<hr />
 				{body}

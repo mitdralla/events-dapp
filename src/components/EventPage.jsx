@@ -164,7 +164,7 @@ class EventPage extends Component {
 		}
 
 		return (
-			<div className="page-wrapper-inner">
+			<div>
 				<h2>Event</h2>
 				<hr />
 				{body}

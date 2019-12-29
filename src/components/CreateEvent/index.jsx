@@ -145,7 +145,7 @@ class CreateEvent extends Component {
 		;
 
 		return (
-			<div className="page-wrapper-inner">
+			<div>
 				<h2><i className="fa fa-edit"></i> Create Event</h2>
 				<hr />
 				{body}

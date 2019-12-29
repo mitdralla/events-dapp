@@ -22,14 +22,14 @@ class Token extends Component {
 			let balance = this.context.drizzle.web3.utils.fromWei(this.props.contracts['StableToken'].balanceOf[this.balance].value);
 			body =
 				<div className="text-center mt-5">
-					<h4>Your balance is: {balance} Hydro</h4>
-					<button className="btn btn-dark mt-5" onClick={this.mintToken}><i className="far fa-money-bill-alt"></i> Get Hydro Tokens</button>
+					<h4>Your balance is: <img src="/images/hydro.png" width="25" />&nbsp;{balance}</h4>
+					<button className="btn btn-dark mt-5" onClick={this.mintToken}>Get Hydro Tokens</button>
 				</div>
 			;
 		}
 
 		return (
-			<div className="page-wrapper-inner">
+			<div>
 				<h2>Hydro Tokens</h2>
 				<hr />
 				{body}

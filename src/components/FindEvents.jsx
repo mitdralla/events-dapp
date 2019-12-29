@@ -60,7 +60,7 @@ class FindEvents extends Component {
 				}
 
 				body =
-					<div>
+					<div >
 						<div className="row user-list mt-4">
 							{events_list}
 						</div>
@@ -72,7 +72,7 @@ class FindEvents extends Component {
 
 		return(
       <React.Fragment>
-      <Carousel>
+      <Carousel className="retract-page-inner-wrapper">
           <Carousel.Item className="slide1">
             <img className="d-block w-100" src="/images/slides/slide1.png" alt="First slide" />
             <Carousel.Caption>
@@ -115,7 +115,7 @@ class FindEvents extends Component {
           </Carousel.Item>
         </Carousel>
 
-			<div>
+			<div className="retract-page-inner-wrapper-alternative">
       <br /><br />
       <div className="input-group input-group-lg">
         <div className="input-group-prepend">
@@ -124,9 +124,11 @@ class FindEvents extends Component {
         <input type="text" className="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
       </div>
         <br /><br />
-				<h2><i className="fa fa-calendar-alt"></i> Find Events</h2>
-				<hr />
-				{body}
+        <div>
+				    <h2><i className="fa fa-calendar-alt"></i> Find Events</h2>
+				    <hr />
+				    {body}
+        </div>
 			</div>
       </React.Fragment>
 		);
