@@ -110,8 +110,10 @@ class App extends Component {
 						<p>What are you going to do?</p>
 						</div>
 						<div className="container-fluid">
-							<div className="mt-4">
-								{body}
+							<div className="page-wrapper-inner">
+								<div>
+									{body}
+								</div>
 							</div>
 						</div>
 					</div>
