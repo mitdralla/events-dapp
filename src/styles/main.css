@@ -158,12 +158,12 @@ textarea:active, input:active, a:active {
 }
 
 .form-control:focus, .custom-file-input:focus, .custom-file-input:active, .custom-file-input:focus-within {
-    color: #495057;
-    background-color: #fff;
-    border-color: none;
-    outline: 0;
-    -webkit-box-shadow: none;
-    box-shadow: none;
+  color: #495057;
+  background-color: #fff;
+  border-color: none;
+  outline: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 
 .categories-list {
@@ -180,9 +180,9 @@ textarea:active, input:active, a:active {
 
 .carousel {
 	position: relative;
-	margin-left: -60px;
-	margin-top: -55px !important;
-	margin-right: -60px;
+	/* margin-left: -60px; */
+	/* margin-top: -55px !important; */
+	/* margin-right: -60px; */
 }
 
 .carousel:before {
@@ -340,9 +340,15 @@ textarea:active, input:active, a:active {
 	position: inherit;
 	margin-top: 50px;
 	border-radius: 5px;
-	padding: 30px 60px 60px 60px;
-	min-height:800px;
+	/* padding: 30px 60px 60px 60px; */
+	min-height: 800px;
 	max-width: 1600px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.page-wrapper-inner {
+	padding: 60px 60px 60px 60px;
 }
 
 .branding {
