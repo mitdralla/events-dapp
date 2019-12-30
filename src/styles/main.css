@@ -43,6 +43,7 @@ textarea:active, input:active, a:active {
 	color: #FAFAFA;
 	padding: 20px;
 	opacity: 0.7;
+	box-shadow: 4px 8px 8px rgba(0,0,0,0.4);
 }
 
 #sidebar-wrapper.my-sidebar .user-status .user-status-icon {
@@ -59,6 +60,7 @@ textarea:active, input:active, a:active {
 	width: 100%;
 	height: 100%;
 	vertical-align: top;
+	box-shadow: 0 0 17px rgba(0,0,0,0.5);
 }
 
 #sidebar-wrapper.my-sidebar a {
@@ -104,6 +106,7 @@ textarea:active, input:active, a:active {
 	border-radius: 50%;
 	margin-top: -41px;
 	border: 5px solid #f7f7f7;
+	box-shadow: 0 0 17px rgba(0,0,0,0.5);
 }
 
 .event-header p {
@@ -312,8 +315,6 @@ textarea:active, input:active, a:active {
 	border-color: #dcdcdc;
 }
 
-
-
 #bgImage {
 	position:absolute;
   width: 110%;
@@ -321,11 +322,11 @@ textarea:active, input:active, a:active {
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100%;
-  -webkit-filter: blur(15px);
-  -moz-filter: blur(15px);
-  -o-filter: blur(15px);
-  -ms-filter: blur(15px);
-  filter: blur(15px);
+  -webkit-filter: blur(25px);
+  -moz-filter: blur(25px);
+  -o-filter: blur(25px);
+  -ms-filter: blur(25px);
+  filter: blur(25px);
 	margin-left: -22px;
 	margin-top: -100px;
 	top: 0;
@@ -407,8 +408,8 @@ textarea:active, input:active, a:active {
     height: 10px;
     left: 2%;
     border-radius: 100px / 5px;
-    -webkit-box-shadow: 0 0 18px rgba(0,0,0,0.6);
-    box-shadow: 0 0 18px rgba(0,0,0,0.6);
+    -webkit-box-shadow: 0 0 18px rgba(0,0,0,1);
+    box-shadow: 0 0 18px rgba(0,0,0,1);
 }
 
 .card-footer button {
