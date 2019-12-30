@@ -140,10 +140,10 @@ class Ticket extends Component {
 							{description}
 						</div>
 						<div className="card-footer text-muted event-header">
-							<img className="float-left" src={makeBlockie(event_data[8])} alt={event_data[8]} />
+							<img className="float-left" src={makeBlockie(event_data[9])} alt={event_data[9]} />
 							<p className="small text-truncate mb-2">
-								Creator: <a href={"https://rinkeby.etherscan.io/address/" + event_data[8]} target="_blank">
-									{event_data[8]}
+								Creator: <a href={"https://rinkeby.etherscan.io/address/" + event_data[9]} target="_blank">
+									{event_data[9]}
 								</a>
 							</p>
 						</div>

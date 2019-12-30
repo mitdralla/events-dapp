@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import makeBlockie from 'ethereum-blockies-base64';
 
+
 import ipfs from '../utils/ipfs';
 
 import Loading from './Loading';
@@ -20,7 +21,7 @@ class Event extends Component {
 			image: null,
 			ipfs_problem: false,
 			approve_tx: null,
-			waiting_approve: false
+			waiting_approve: false,
 		};
 		this.isCancelled = false;
 	}
@@ -94,6 +95,8 @@ class Event extends Component {
 		}
 	}
 
+
+
 	render() {
 		let body = <div className="card"><div className="card-body"><Loading /></div></div>;
 
@@ -136,10 +139,10 @@ class Event extends Component {
             <img className="card-img-top event-image" src={image} alt={event_data[0]} />
           </Link>
 					<div className="card-header text-muted event-header">
-						<img className="float-left" src={makeBlockie(event_data[8])} alt={event_data[8]} />
+						<img className="float-left" src={makeBlockie(event_data[9])} alt={event_data[9]} />
 						<p className="small text-truncate mb-0">
-							Creator: <a href={"https://rinkeby.etherscan.io/address/" + event_data[8]} target="_blank" className="event_creator-link">
-								{event_data[8]}
+							Creator: <a href={"https://rinkeby.etherscan.io/address/" + event_data[9]} target="_blank" className="event_creator-link">
+								{event_data[9]}
 							</a>
 						</p>
 					</div>
@@ -150,6 +153,7 @@ class Event extends Component {
 						{description}
 					</div>
 					<ul className="list-group list-group-flush">
+						<li className="list-group-item"><strong>Category:</strong> {event_data[8]}</li>
 						<li className="list-group-item"><strong>Price:</strong> <img src={'/images/'+symbol} className="event_price-image" alt="Event Price Icon" /> {price}</li>
 						<li className="list-group-item"><strong>Date:</strong> {date.toLocaleDateString()} at {date.toLocaleTimeString()}</li>
 						<li className="list-group-item"><strong>Tickets Sold:</strong> {event_data[6]}/{max_seats}</li>

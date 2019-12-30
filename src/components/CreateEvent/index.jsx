@@ -8,6 +8,7 @@ import Form from './Form';
 import Loader from './Loader';
 import Error from './Error';
 import Done from './Done';
+import { Redirect } from 'react-router-dom';
 
 class CreateEvent extends Component {
 	constructor(props, context) {
@@ -29,13 +30,16 @@ class CreateEvent extends Component {
 				price: 0,
 				organizer: null,
 				limited: false,
-				seats: 0
+				seats: 0,
+				type:null,
+				
 			}
 		};
 
 		this.contracts = context.drizzle.contracts;
 	}
 
+	
 	createEvent = (name, description, location, time, file, organizer, type, topic, currency, price, limited, seats) => {
 
 		this.setState({
@@ -50,7 +54,8 @@ class CreateEvent extends Component {
 				price: this.context.drizzle.web3.utils.toWei(price),
 				organizer: organizer,
 				limited: limited,
-				seats: seats === '' ? 0 : parseInt(seats, 10)
+				seats: seats === '' ? 0 : parseInt(seats, 10),
+				type: type
 			}
 		}, () => {
 			this.stageUpdater(90);
@@ -98,10 +103,12 @@ class CreateEvent extends Component {
 			this.state.data.currency === 'eth' ? false : true,
 			this.state.data.limited,
 			this.state.data.seats,
-			this.state.ipfs
+			this.state.ipfs,
+			this.state.data.type
 		);
 
-		this.transactionChecker(id);
+		this.transactionChecker(id)
+		this.setRedirect();
 	}
 
 	transactionChecker = (id) => {
@@ -129,13 +136,15 @@ class CreateEvent extends Component {
 		}, 500);
 	}
 
+
 	render() {
 		if (this.state.error) {
 			return <Error message={this.state.error_text} />;
 		}
 
 		if (this.state.done) {
-			return <Done />;
+			return <Done />
+			;
 		}
 
 		let body =
@@ -146,6 +155,7 @@ class CreateEvent extends Component {
 
 		return (
 			<div>
+				
 				<h2><i className="fa fa-edit"></i> Create Event</h2>
 				<hr />
 				{body}

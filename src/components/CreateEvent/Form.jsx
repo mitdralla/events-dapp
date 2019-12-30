@@ -111,6 +111,14 @@ class Form extends Component {
 		});
 	}
 
+	categoryChange = (event) => {
+		let type = event.target.value;
+
+		this.setState({
+			type: type
+		},()=>(console.log("check",this.state.type)));
+	}
+
 	handleForm = (event) => {
 		event.preventDefault();
 
@@ -123,6 +131,7 @@ class Form extends Component {
 		if (this.state.time === 0) form_validation.push('time');
 		if (this.form.price.value === '') form_validation.push('price');
 		if (this.state.limited === true && this.form.seats.value < 1) form_validation.push('seats');
+		if (this.state.type === '') form_validation.push('type');
 
 		this.setState({
 			form_validation: form_validation
@@ -214,7 +223,7 @@ class Form extends Component {
 				</div>
 				<div className="form-group">
 					<label htmlFor="description">Event Topic:</label>
-					<select className="form-control" id="topic">
+					<select className="form-control" id="topic" onChange={this.categoryChange}>
 					<option value="" disabled="disabled">Select the topic of the event</option>
 					{eventTopics.map((Topic, index) => (
 						<option value={Topic.slug} key={Topic.name}>{Topic.name}</option>
