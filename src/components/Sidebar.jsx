@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import makeBlockie from 'ethereum-blockies-base64';
 
+
 class Sidebar extends Component {
 	render() {
 		let user =
@@ -17,7 +18,7 @@ class Sidebar extends Component {
 			user =
 				<div>
 					<div className="user-status-icon">
-						<img src={makeBlockie(this.props.account)} alt={this.props.account} />
+						<a href="/"><img src="/images/hydro.png" alt={this.props.account} /></a>
 					</div>
 					<p className="mt-3 text-truncate h-25">Hello, Tim</p>
 					{/* {this.props.account} */}
@@ -27,6 +28,9 @@ class Sidebar extends Component {
 
 		return (
 			<div id="sidebar-wrapper" className="my-sidebar text-center">
+				<div className="hamburgerNav">
+					<a href=""><i className="fa fa-bars"></i></a>
+				</div>
 				<div className="user-status mt-5">
 					{user}
 				</div>
@@ -52,7 +56,7 @@ class Sidebar extends Component {
 					<h5 className="mt-5">Tools</h5>
 					<ul className="nav flex-column">
 						<li className="nav-item">
-							<Link to="/token" className="nav-link"><img src="/images/hydro.png" className="sidebar_hydro-logo"/> Get Hydro Tokens</Link>
+							<Link to="/token" className="nav-link"><img src="/images/hydro.png" className="sidebar_hydro-logo" alt="Hydro Token Logo"/> Get Hydro Tokens</Link>
 						</li>
 					</ul>
 					<br />

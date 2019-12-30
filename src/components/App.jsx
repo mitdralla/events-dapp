@@ -54,6 +54,11 @@ class App extends Component {
 		let body;
 		let connecting = false;
 
+		var items = ['slide1.png', 'slide2.png', 'slide3.png', 'slide4.png'];
+    var randomBG = items[Math.floor(Math.random()*items.length)];
+
+		console.log(randomBG);
+
 		if (!this.props.drizzleStatus.initialized) {
 			body =
 				<div>
@@ -97,13 +102,18 @@ class App extends Component {
 				<div id="wrapper" className="toggled">
 					<Sidebar connection={!connecting} account={this.props.accounts[0]} />
 					<div id="page-content-wrapper">
+						<div id="bgImage" ref="bgImage" style={{
+  						backgroundImage: "url(/images/slides/"+ randomBG + ")",
+						}} />
+						<div className="branding">
+						<h1>Hydro Events Marketplace</h1>
+						<p>What are you going to do?</p>
+						</div>
 						<div className="container-fluid">
-							<h1 className="text-center logo">
-								<Link to="/"><img src="/images/hydro.png" className="header_hydro-logo" /> Hydro Events Marketplace</Link>
-							</h1>
-							<p className="text-center">What are you going to do?</p>
-							<div className="mt-4">
-								{body}
+							<div className="page-wrapper-inner">
+								<div>
+									{body}
+								</div>
 							</div>
 						</div>
 					</div>

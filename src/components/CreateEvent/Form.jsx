@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
+// import { Link } from 'react-router-dom';
+// import ReactTooltip from 'react-tooltip'
+import eventTypes from '../../config/types.json';
+import eventTopics from '../../config/topics.json';
 
 class Form extends Component {
 	constructor(props) {
@@ -12,8 +15,14 @@ class Form extends Component {
 		this.state = {
 			title: '',
 			title_length: 0,
+			description_length: 0,
+			organizer: '',
+			organizer_length: 0,
+			location: '',
 			time: 0,
 			currency: 'hydro',
+			type: '',
+			topic: '',
 			limited: false,
 			wrong_file: false,
 			file_name: null,
@@ -72,11 +81,43 @@ class Form extends Component {
 		});
 	}
 
+	descriptionChange = (event) => {
+		let description = event.target.value;
+		if (description.length > 500) {
+			description = description.slice(0, 500);
+		}
+		this.setState({
+			description: description,
+			description_length: description.length
+		});
+	}
+
+	organizerChange = (event) => {
+		let organizer = event.target.value;
+		if (organizer.length > 100) {
+			organizer = organizer.slice(0, 100);
+		}
+		this.setState({
+			organizer: organizer,
+			organizer_length: organizer.length
+		});
+	}
+
+	locationChange = (event) => {
+		let location = event.target.value;
+
+		this.setState({
+			location: location
+		});
+	}
+
 	handleForm = (event) => {
 		event.preventDefault();
 
 		let form_validation = [];
 		if (this.state.title === '') form_validation.push('name');
+		if (this.state.location === '') form_validation.push('location');
+		if (this.state.organizer === '') form_validation.push('organizer');
 		if (this.form.description.value === '') form_validation.push('description');
 		if (this.state.wrong_file === true || this.state.file === null) form_validation.push('image');
 		if (this.state.time === 0) form_validation.push('time');
@@ -91,8 +132,12 @@ class Form extends Component {
 			this.props.createEvent(
 				this.state.title,
 				this.form.description.value,
-				this.state.file,
+				this.state.location,
 				this.state.time,
+				this.state.file,
+				this.state.organizer,
+				this.state.type,
+				this.state.topic,
 				this.state.currency,
 				this.form.price.value,
 				this.state.limited,
@@ -108,6 +153,10 @@ class Form extends Component {
 
 		let warning = {
 			name: this.state.form_validation.indexOf('name') === -1 ? '' : 'is-invalid',
+			location: this.state.form_validation.indexOf('location') === -1 ? '' : 'is-invalid',
+			organizer: this.state.form_validation.indexOf('organizer') === -1 ? '' : 'is-invalid',
+			type: this.state.form_validation.indexOf('type') === -1 ? '' : 'is-invalid',
+			topic: this.state.form_validation.indexOf('topic') === -1 ? '' : 'is-invalid',
 			description: this.state.form_validation.indexOf('description') === -1 ? '' : 'is-invalid',
 			image: this.state.form_validation.indexOf('image') === -1 && !this.state.wrong_file ? '' : 'is-invalid',
 			time: this.state.form_validation.indexOf('time') === -1 ? '' : 'is-invalid',
@@ -124,34 +173,65 @@ class Form extends Component {
 		return (
 			<form>
 				<div className="form-group">
-					<label htmlFor="name">Event name:</label>
-					<input type="text" className={"form-control " + warning.name} id="name" value={this.state.title} onChange={this.titleChange} />
-					<small className="form-text text-muted">{this.state.title_length}/160</small>
+					<label htmlFor="name">Event Name:</label>
+					<input type="text" className={"form-control " + warning.name} id="name" value={this.state.title} onChange={this.titleChange} autoComplete="off" />
+					<small className="form-text text-muted">{this.state.title_length}/160 characters available.</small>
 				</div>
 				<div className="form-group">
-					<label htmlFor="description">Event description:</label>
-					<textarea className={"form-control " + warning.description} id="description" rows="3" ref={(input) => this.form.description = input}></textarea>
+					<label htmlFor="description">Event Description:</label>
+					<textarea className={"form-control " + warning.description} id="description" rows="5" ref={(input) => this.form.description = input} onChange={this.descriptionChange} autoComplete="off"></textarea>
+					<small className="form-text text-muted">{this.state.description_length}/500 characters available.</small>
 				</div>
 				<div className="form-group">
-					<p>Event cover image:</p>
+					<label htmlFor="location">Event Location:</label>
+					<input type="text" className={"form-control " + warning.location} id="location"  onChange={this.locationChange} autoComplete="off" />
+				</div>
+				<div className="form-group">
+					<label htmlFor="description">Event Date and Time:</label>
+					<Datetime closeOnSelect={true} onChange={this.handleDate} inputProps={{className : "form-control " + warning.time}} autoComplete="off" />
+				</div>
+				<div className="form-group">
+					<p>Event Cover Image:</p>
 					<div className="custom-file">
-						<input type="file" className={"custom-file-input " + warning.image} id="customFile" onChange={this.handleFile} />
+						<input type="file" className={"custom-file-input " + warning.image} id="customFile" onChange={this.handleFile} autoComplete="off" />
 						<label className="custom-file-label" htmlFor="customFile">{file_label}</label>
 					</div>
 					<small className="form-text text-muted">Image format: jpg, png. Max file size 1mb.</small>
 				</div>
 				<div className="form-group">
-					<label htmlFor="description">Event date and time:</label>
-					<Datetime closeOnSelect={true} onChange={this.handleDate} inputProps={{className : "form-control " + warning.time}} />
+					<label htmlFor="organizer">Organizer Name:</label>
+					<input type="text" className={"form-control " + warning.organizer} id="organizer" value={this.state.organizer} onChange={this.organizerChange} autoComplete="off" />
+					<small className="form-text text-muted">{this.state.organizer_length}/100 characters available.</small>
 				</div>
+				<div className="form-group">
+					<label htmlFor="description">Event Type:</label>
+					<select className="form-control" id="type">
+					<option value="" disabled="disabled">Select the type of the event</option>
+					{eventTypes.map((Type, index) => (
+						<option value={Type.slug} key={Type.name}>{Type.name}</option>
+					))}
+					</select>
+				</div>
+				<div className="form-group">
+					<label htmlFor="description">Event Topic:</label>
+					<select className="form-control" id="topic">
+					<option value="" disabled="disabled">Select the topic of the event</option>
+					{eventTopics.map((Topic, index) => (
+						<option value={Topic.slug} key={Topic.name}>{Topic.name}</option>
+					))}
+					</select>
+				</div>
+				<br />
+				<hr />
+				<br />
 				<div className="form-group">
 					<p>Payment Options:</p>
 					<div className="custom-control custom-radio custom-control-inline">
-						<input type="radio" id="payment2" name="payment" className="custom-control-input" defaultChecked="true" value="hydro" onChange={this.handleCurrency} />
+						<input type="radio" id="payment2" name="payment" className="custom-control-input" defaultChecked="true" value="hydro" onChange={this.handleCurrency} autoComplete="off" />
 						<label className="custom-control-label" htmlFor="payment2">Hydro</label>
 					</div>
 					<div className="custom-control custom-radio custom-control-inline">
-						<input type="radio" id="payment1" name="payment" className="custom-control-input" value="eth" onChange={this.handleCurrency} />
+						<input type="radio" id="payment1" name="payment" className="custom-control-input" value="eth" onChange={this.handleCurrency} autoComplete="off" />
 						<label className="custom-control-label" htmlFor="payment1">Ethereum</label>
 					</div>
 				</div>
@@ -160,27 +240,28 @@ class Form extends Component {
 						<label htmlFor="price">Ticket Price:</label>
 						<div className="input-group mb-3">
 							<div className="input-group-prepend">
-								<span className="input-group-text"><img src={'/images/'+symbol} className="event_price-image" /></span>
+								<span className="input-group-text"><img src={'/images/'+symbol} className="event_price-image" alt="" /></span>
 							</div>
-							<input type="number" min="0.00000001" className={"form-control " + warning.price} id="price" ref={(input) => this.form.price = input} />
+							<input type="number" min="0.00000001" className={"form-control " + warning.price} id="price" ref={(input) => this.form.price = input} autoComplete="off" />
 						</div>
 					</div>
 				</div>
 				<div className="form-group">
-					<p>Seats Options:</p>
+					<p>Ticket Options:</p>
 					<div className="custom-control custom-checkbox">
-						<input type="checkbox" className="custom-control-input" id="limited" value="true" onChange={this.handleLimited} />
-						<label className="custom-control-label" htmlFor="limited">Limited seats</label>
+						<input type="checkbox" className="custom-control-input" id="limited" value="true" onChange={this.handleLimited} autoComplete="off" />
+						<label className="custom-control-label" htmlFor="limited">Limited tickets</label>
 					</div>
 					<div className="row mt-3">
 						<div className="col-lg-3">
-							<label htmlFor="seats">Seats available:</label>
-							<input type="number" className={"form-control " + warning.seats} id="seats" disabled={!this.state.limited}  ref={(input) => this.form.seats = input} />
+							<label htmlFor="seats">Tickets available:</label>
+							<input type="number" className={"form-control " + warning.seats} id="seats" disabled={!this.state.limited}  ref={(input) => this.form.seats = input} autoComplete="off" />
 						</div>
 					</div>
 				</div>
 				{alert}
-				<button type="submit" className="btn btn-outline-dark" onClick={this.handleForm}>Create an Event</button>
+				<br />
+				<button type="submit" className="btn btn-outline-dark" onClick={this.handleForm}>Make Your Event Live</button>
 			</form>
 		);
 	}
