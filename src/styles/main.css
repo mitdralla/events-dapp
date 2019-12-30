@@ -474,19 +474,11 @@ textarea:active, input:active, a:active {
 }
 
 .topics-wrapper button {
-	margin-right: 30px;
-	padding-top: 15px 60px 15px 60px !important;
-	margin-bottom: 30px;
-}
-
-.topics-wrapper button {
-  padding-top: 15px;
-  padding-bottom: 15px;
-  padding-left: 40px;
-  padding-right: 40px;
-  border-radius: 40px;
+  padding: 15px 40px;
+	border-radius: 40px;
   background-color: transparent;
   color: #333;
+
 }
 
 .topic {
@@ -507,4 +499,37 @@ textarea:active, input:active, a:active {
 	transform: scale(1.1);
 	z-index: 999;
 	cursor: pointer;
+}
+
+.topic-caption {
+  position: absolute;
+  right: 0;
+  bottom: 0px;
+  left: 0;
+  z-index: 10;
+  padding-top: 45px;
+  padding-bottom: 20px;
+  color: #fff;
+  text-align: center;
+  width: 100%;
+  padding-bottom: 45px;
+  min-height: 100px;
+	box-shadow: inset 0px -181px 53px rgba(0,0,0,0.8);
+	display: none;
+}
+
+.topic:hover > .topic-caption {
+	display: block;
+}
+
+.topic-caption button {
+	padding: 10px 25px;
+  margin-right: 0px;
+	background-color: #e91e63 !important;
+	border: 1px solid #e91e63 !important;
+	color: #fff !important;
+}
+
+.topic-caption h3 {
+	text-shadow: 2px 2px 24px #000;
 }
