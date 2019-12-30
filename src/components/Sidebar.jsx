@@ -57,6 +57,9 @@ class Sidebar extends Component {
 					<h5 className="mt-5">Tools</h5>
 					<ul className="nav flex-column">
 						<li className="nav-item">
+							<Link to="/how-it-works" className="nav-link"><i className="fa fa-question-circle"></i> How It Works</Link>
+						</li>
+						<li className="nav-item">
 							<Link to="/token" className="nav-link"><img src="/images/hydro.png" className="sidebar_hydro-logo" alt="Hydro Token Logo"/> Get Hydro Tokens</Link>
 						</li>
 					</ul>
