@@ -9,9 +9,6 @@ import ipfs from '../utils/ipfs';
 import Loading from './Loading';
 import CheckUser from './CheckUser';
 
-let confirmationNumber = ''
-let txreceipt = ''
-let txconfirmed = ''
 
 class EventPage extends Component {
 
@@ -26,8 +23,8 @@ class EventPage extends Component {
 			  image: null,
 			  ipfs_problem: false,
 			  approve_tx: null,
-			  waiting_approve: false,
-			  redirect:false,
+			  waiting_approve: false
+			  
 		  };
 		  this.isCancelled = false;
 	}
@@ -93,8 +90,6 @@ class EventPage extends Component {
 
 	 buyTicket = () => {
 
-		
-
 		if (this.props.contracts['OpenEvents'].getEvent[this.event].value[3]) {
 			let tx = this.contracts['StableToken'].methods.approve.cacheSend(this.contracts['OpenEvents'].address, this.props.contracts['OpenEvents'].getEvent[this.event].value[2]);
 			this.setState({
@@ -104,7 +99,7 @@ class EventPage extends Component {
 		}
 		
 		 else {
-			 this.contracts['OpenEvents'].methods.buyTicket.cacheSend(this.props.match.params.id, {value: this.props.contracts['OpenEvents'].getEvent[this.event].value[2]})	
+			 this.contracts['OpenEvents'].methods.buyTicket.cacheSend(this.props.match.params.id, {value: this.props.contracts['OpenEvents'].getEvent[this.event].value[2]});
 			
 		}
 		
@@ -169,7 +164,6 @@ class EventPage extends Component {
 									<li className="list-group-item">{date.toLocaleDateString()} at {date.toLocaleTimeString()}</li>
 									<li className="list-group-item">Tickets: {event_data[6]}/{max_seats}</li>
 								</ul>
-								<button onClick={this.renderRedirect}>check</button>
 							</div>
 						</div>
 					</div>
