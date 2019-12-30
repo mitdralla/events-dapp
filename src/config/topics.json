@@ -18,21 +18,21 @@
     "slug": "charity-and-causes",
     "icon": "",
     "description": "",
-    "image": "/topics/placeholder.png"
+    "image": "charity.png"
   },
   {
     "name": "Community & Culture",
     "slug": "community-and-culture",
     "icon": "",
     "description": "",
-    "image": "/topics/placeholder.png"
+    "image": "community.png"
   },
   {
     "name": "Family & Education",
     "slug": "family-and-education",
     "icon": "",
     "description": "",
-    "image": "/topics/placeholder.png"
+    "image": "education.png"
   },
   {
     "name": "Fashion & Beauty",

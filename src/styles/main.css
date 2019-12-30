@@ -188,6 +188,10 @@ textarea:active, input:active, a:active {
 	/* margin-right: -60px; */
 }
 
+.carousel:hover {
+	transform: scale(1.05);
+}
+
 .carousel:before {
   content: "";
   position:absolute;
