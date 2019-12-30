@@ -418,16 +418,16 @@ textarea:active, input:active, a:active {
 }
 
 .container-fluid:before  {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    width: 96%;
-    top: 0;
-    height: 10px;
-    left: 2%;
-    border-radius: 100px / 5px;
-    -webkit-box-shadow: 0 0 18px rgba(0,0,0,0.6);
-    box-shadow: 0 0 18px rgba(0,0,0,0.6);
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 96%;
+  top: 0;
+  height: 10px;
+  left: 2%;
+  border-radius: 100px / 5px;
+  -webkit-box-shadow: 0 0 18px rgba(0,0,0,0.6);
+  box-shadow: 0 0 18px rgba(0,0,0,0.6);
 }
 
 .input-group:before {
@@ -461,4 +461,16 @@ textarea:active, input:active, a:active {
 	position: absolute;
 	right: 15px;
 	top: 15px;
+	cursor: pointer;
+}
+
+.topics-wrapper {
+	display: inline-block;
+	text-align: left;
+}
+
+.topics-wrapper button {
+	margin-right: 30px;
+	padding-top: 15px 60px 15px 60px !important;
+	margin-bottom: 30px;
 }

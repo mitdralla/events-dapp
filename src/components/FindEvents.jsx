@@ -7,6 +7,10 @@ import Carousel from 'react-bootstrap/Carousel'
 import Loading from './Loading';
 import Event from './Event';
 
+import slidesJson from '../config/slides.json';
+import topicsJson from '../config/topics.json';
+
+
 class FindEvents extends Component {
     constructor(props, context) {
         super(props);
@@ -106,9 +110,9 @@ class FindEvents extends Component {
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item className="slide5">
-          <img className="d-block w-100" src="/images/slides/slide4.png" alt="First slide" />
+          <img className="d-block w-100" src="/images/slides/slide5.png" alt="First slide" />
             <Carousel.Caption>
-              <h3>Create Your Own</h3>
+              <h3>Create Your Own and Sell Tickets</h3>
               <p>Create your own event, it takes only a minute.</p>
               <button className="btn btn-dark"><i className="fas fa-ticket-alt"></i> Create Event</button>
             </Carousel.Caption>
@@ -123,13 +127,24 @@ class FindEvents extends Component {
         </div>
         <input type="text" className="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
       </div>
-        <br /><br />
+      <br /><br />
+
+      {/*
+      TODO: Looks and feel of buttons
+      <div className="topics-wrapper">
+        {topicsJson.map(topic => (
+          <button className="btn btn-dark" key={topic.link} onClick={() =>{window.open(topic.link)}}>{topic.name}</button>
+        ))}
+      </div>
+      {*/}
+
         <div>
 				    <h2><i className="fa fa-calendar-alt"></i> Find Events</h2>
 				    <hr />
 				    {body}
         </div>
 			</div>
+
       </React.Fragment>
 		);
 	}
