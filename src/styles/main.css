@@ -363,6 +363,10 @@ textarea:active, input:active, a:active {
 	text-shadow: 2px 2px 24px #000;
 }
 
+.branding p {
+	font-size: 1.2rem;
+}
+
 #wrapper.toggled #page-content-wrapper {
   position: relative;
   margin-right: 0;
@@ -499,6 +503,11 @@ textarea:active, input:active, a:active {
 	transform: scale(1.1);
 	z-index: 999;
 	cursor: pointer;
+}
+
+.card:hover {
+	transform: scale(1.1);
+	z-index: 999 !important;
 }
 
 .topic-caption {
