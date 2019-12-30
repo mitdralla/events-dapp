@@ -127,7 +127,7 @@ class Event extends Component {
       let badge = "";
 
       if (event_data[6] >= 2) {
-        badge = <img src="/images/fire.png" className="event_badge-hot" />;
+        badge = <img src="/images/fire.png" className="event_badge-hot" alt="Hot Icon" />;
       }
 
 			body =
@@ -150,7 +150,7 @@ class Event extends Component {
 						{description}
 					</div>
 					<ul className="list-group list-group-flush">
-						<li className="list-group-item"><strong>Price:</strong> <img src={'/images/'+symbol} className="event_price-image" /> {price}</li>
+						<li className="list-group-item"><strong>Price:</strong> <img src={'/images/'+symbol} className="event_price-image" alt="Event Price Icon" /> {price}</li>
 						<li className="list-group-item"><strong>Date:</strong> {date.toLocaleDateString()} at {date.toLocaleTimeString()}</li>
 						<li className="list-group-item"><strong>Tickets Sold:</strong> {event_data[6]}/{max_seats}</li>
 					</ul>

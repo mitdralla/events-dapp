@@ -23,7 +23,7 @@ class MyEvents extends Component {
 			if (events.length === 0) {
 				body =
 					<div>
-						You do not have any event.
+						You are not managing any events.&nbsp;
 						<Link to="/createevent">Create new event</Link>.
 					</div>
 				;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from "react-dom";
 import { drizzleConnect } from "drizzle-react";
 import PropTypes from 'prop-types';
 import makeBlockie from 'ethereum-blockies-base64';
@@ -9,20 +10,21 @@ import Loading from './Loading';
 import CheckUser from './CheckUser';
 
 class EventPage extends Component {
+
     constructor(props, context) {
-        super(props);
-		this.contracts = context.drizzle.contracts;
-		this.event = this.contracts['OpenEvents'].methods.getEvent.cacheCall(this.props.match.params.id);
-		this.state = {
-			loading: false,
-			loaded: false,
-			description: null,
-			image: null,
-			ipfs_problem: false,
-			approve_tx: null,
-			waiting_approve: false
-		};
-		this.isCancelled = false;
+      super(props);
+		  this.contracts = context.drizzle.contracts;
+		  this.event = this.contracts['OpenEvents'].methods.getEvent.cacheCall(this.props.match.params.id);
+		  this.state = {
+			  loading: false,
+			  loaded: false,
+			  description: null,
+			  image: null,
+			  ipfs_problem: false,
+			  approve_tx: null,
+			  waiting_approve: false
+		  };
+		  this.isCancelled = false;
 	}
 
 	updateIPFS = () => {
@@ -140,9 +142,9 @@ class EventPage extends Component {
 						</div>
 						<div className="col-6">
 							<div className="card">
-								<img className="card-img-top event-image" src={image} alt={event_data[0]} />
+								<img className="card-img-top event-image" src={image} alt="Event" />
 								<div className="card-header event-header">
-									<img className="float-left" src={makeBlockie(event_data[8])} alt={event_data[8]} />
+									<img className="float-left" src={makeBlockie(event_data[8])} alt="User Identicon" />
 									<p className="small text-truncate mb-0">
 										Creator: <a href={"https://rinkeby.etherscan.io/address/" + event_data[8]} target="_blank">
 											{event_data[8]}
@@ -150,7 +152,7 @@ class EventPage extends Component {
 									</p>
 								</div>
 								<ul className="list-group list-group-flush">
-									<li className="list-group-item">Price: <img src={'/images/'+symbol} className="event_price-image" /> {price}</li>
+									<li className="list-group-item">Price: <img src={'/images/'+symbol} className="event_price-image"  alt="Event Price" /> {price}</li>
 									<li className="list-group-item">{date.toLocaleDateString()} at {date.toLocaleTimeString()}</li>
 									<li className="list-group-item">Tickets: {event_data[6]}/{max_seats}</li>
 								</ul>
