@@ -463,3 +463,14 @@ textarea:active, input:active, a:active {
 	top: 15px;
 	cursor: pointer;
 }
+
+.topics-wrapper {
+	display: inline-block;
+	text-align: left;
+}
+
+.topics-wrapper button {
+	margin-right: 30px;
+	padding-top: 15px 60px 15px 60px !important;
+	margin-bottom: 30px;
+}
