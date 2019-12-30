@@ -21,11 +21,14 @@ import Notify from './Notify';
 import NetworkError from './NetworkError';
 import LoadingApp from './LoadingApp';
 
-class App extends Component {
+class App extends Component
+{
+
 	constructor(props) {
 		super(props);
 		this.state = {
-			sent_tx: []
+			sent_tx: [],
+			showSidebar: true
 		};
 	}
 
@@ -48,6 +51,10 @@ class App extends Component {
 				sent_tx: sent_tx
 			});
 		}
+	}
+
+	toggleSidebar() {
+			this.state.showSidebar = !this.state.showSidebar
 	}
 
 	render() {

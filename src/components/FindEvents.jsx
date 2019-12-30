@@ -129,23 +129,26 @@ class FindEvents extends Component {
       </div>
       <br /><br />
 
-      {/*
-      TODO: Looks and feel of buttons
       <div className="topics-wrapper">
-        {topicsJson.map(topic => (
-          <button className="btn btn-dark" key={topic.link} onClick={() =>{window.open(topic.link)}}>{topic.name}</button>
-        ))}
-      </div>
-      {*/}
-
-        <div>
-				    <h2><i className="fa fa-calendar-alt"></i> Find Events</h2>
-				    <hr />
-				    {body}
+      <h2><i className="fa fa-calendar-alt"></i> Browse Topics</h2>
+      <hr />
+        <div className="row user-list mt-4">
+          {topicsJson.map(topic => (
+            <div className="col-lg-4 pb-4 d-flex align-items-stretch">
+              <div className="topic" style={{ backgroundImage: "url(/images/topics/" + topic.image +")"}}></div>
+            </div>
+            ))}
         </div>
-			</div>
+      </div>
 
-      </React.Fragment>
+      <div>
+          <h2><i className="fa fa-calendar-alt"></i> Find Events</h2>
+          <hr />
+          {body}
+      </div>
+    </div>
+
+    </React.Fragment>
 		);
 	}
 }
