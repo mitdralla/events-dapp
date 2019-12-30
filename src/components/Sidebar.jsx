@@ -28,6 +28,9 @@ class Sidebar extends Component {
 
 		return (
 			<div id="sidebar-wrapper" className="my-sidebar text-center">
+				<div className="hamburgerNav">
+					<a href=""><i className="fa fa-bars"></i></a>
+				</div>
 				<div className="user-status mt-5">
 					{user}
 				</div>

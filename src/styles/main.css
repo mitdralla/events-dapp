@@ -454,3 +454,11 @@ textarea:active, input:active, a:active {
 .events-wrapper {
 	margin-bottom:60px !important;
 }
+
+.hamburgerNav i {
+	font-size: 30px;
+	color: #fff;
+	position: absolute;
+	right: 15px;
+	top: 15px;
+}
