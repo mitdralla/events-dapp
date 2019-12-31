@@ -4,7 +4,7 @@
     "slug": "auto-boat-and-air",
     "icon": "",
     "description": "",
-    "image": "auto-boat-and-air.png"
+    "image": "auto-boat-and-air.jpg"
   },
   {
     "name": "Business & Professional",
@@ -74,21 +74,21 @@
     "slug": "hobbies-and-special-interest",
     "icon": "",
     "description": "",
-    "image": "placeholder.png"
+    "image": "hobbies-and-special-interest.jpg"
   },
   {
     "name": "Home & Lifestyle",
     "slug": "home-and-lifestyle",
     "icon": "",
     "description": "",
-    "image": "placeholder.png"
+    "image": "home-and-lifestyle.jpg"
   },
   {
     "name": "Music",
     "slug": "music",
     "icon": "",
     "description": "",
-    "image": "placeholder.png"
+    "image": "music.jpg"
   },
   {
     "name": "Other",
@@ -109,7 +109,7 @@
     "slug": "religion-and-spirituality",
     "icon": "",
     "description": "",
-    "image": "placeholder.png"
+    "image": "religion-and-spirituality.jpg"
   },
   {
     "name": "School Activities",
@@ -123,14 +123,14 @@
     "slug": "science-and-technology",
     "icon": "",
     "description": "",
-    "image": "placeholder.png"
+    "image": "science-and-technology.jpg"
   },
   {
     "name": "Seasonal & Holiday",
     "slug": "seasonal-and-holiday",
     "icon": "",
     "description": "",
-    "image": "placeholder.png"
+    "image": "seasonal-and-holiday.jpg"
   },
   {
     "name": "Sports & Fitness",
@@ -144,6 +144,6 @@
     "slug": "travel-and-outdoor",
     "icon": "",
     "description": "",
-    "image": "placeholder.png"
+    "image": "travel-and-outdoor.jpg"
   }
 ]
