@@ -16,6 +16,8 @@ import MyTickets from './MyTickets';
 import CreateEvent from './CreateEvent/';
 import MyEvents from './MyEvents';
 import EventPage from './EventPage';
+import TopicLandingPage from './TopicLandingPage';
+import TopicsLandingPage from './TopicsLandingPage';
 import Token from './Token';
 import Notify from './Notify';
 import NetworkError from './NetworkError';
@@ -100,6 +102,8 @@ class App extends Component
 					<Route path="/myevents/:page" component={MyEvents} />
 					<Route path="/event/:id" component={EventPage} />
 					<Route path="/token" component={Token} />
+					<Route path="/topics" component={TopicsLandingPage} />
+					<Route path="/topics/:page" component={TopicLandingPage} />
 				</div>
 			;
 		}
