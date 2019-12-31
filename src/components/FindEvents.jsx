@@ -134,9 +134,9 @@ class FindEvents extends Component {
       <hr />
         <div className="row user-list mt-4">
           {topicsJson.map(topic => (
-            <div className="col-lg-4 pb-4 d-flex align-items-stretch">
+            <div className="col-lg-4 pb-4 d-flex align-items-stretch" key={topic.slug}>
               <div className="topic" style={{ backgroundImage: "url(/images/topics/" + topic.image +")"}}>
-              <div class="topic-caption"><h3>{topic.name}</h3><button className="btn">View Topic</button></div>
+              <div className="topic-caption"><h3>{topic.name}</h3><button className="btn">View Topic</button></div>
               </div>
             </div>
             ))}
