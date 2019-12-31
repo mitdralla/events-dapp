@@ -12,12 +12,17 @@ import topicsJson from '../config/topics.json';
 
 
 class TopicsLandingPage extends Component {
-    constructor(props, context) {
-        super(props);
-		this.contracts = context.drizzle.contracts;
-		this.eventCount = this.contracts['OpenEvents'].methods.getEventsCount.cacheCall();
-		this.perPage = 6;
+  constructor(props, context) {
+      super(props);
+	    this.contracts = context.drizzle.contracts;
+	    this.eventCount = this.contracts['OpenEvents'].methods.getEventsCount.cacheCall();
+	    this.perPage = 6;
+      this.topicClick = this.topicClick.bind(this);
 	}
+
+  topicClick(slug) {
+    this.props.history.push("/topics/"+slug);
+  }
 
 	render() {
 		let body = <Loading />;
@@ -135,7 +140,7 @@ class TopicsLandingPage extends Component {
         <div className="row user-list mt-4">
           {topicsJson.map(topic => (
             <div className="col-lg-4 pb-4 d-flex align-items-stretch" key={topic.slug}>
-              <div className="topic" style={{ backgroundImage: "url(/images/topics/" + topic.image +")"}}>
+              <div className="topic" style={{ backgroundImage: "url(/images/topics/" + topic.image +")"}} onClick={() => {{this.topicClick(topic.slug)}}}>
               <div className="topic-caption"><h3>{topic.name}</h3><button className="btn">View Topic</button></div>
               </div>
             </div>
