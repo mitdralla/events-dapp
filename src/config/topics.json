@@ -11,49 +11,49 @@
     "slug": "business-and-professional",
     "icon": "",
     "description": "",
-    "image": "business-and-professional.png"
+    "image": "business-and-professional.jpg"
   },
   {
     "name": "Charity & Causes",
     "slug": "charity-and-causes",
     "icon": "",
     "description": "",
-    "image": "charity-and-causes.png"
+    "image": "charity-and-causes.jpg"
   },
   {
     "name": "Community & Culture",
     "slug": "community-and-culture",
     "icon": "",
     "description": "",
-    "image": "community-and-culture.png"
+    "image": "community-and-culture.jpg"
   },
   {
     "name": "Family & Education",
     "slug": "family-and-education",
     "icon": "",
     "description": "",
-    "image": "family-and-education.png"
+    "image": "family-and-education.jpg"
   },
   {
     "name": "Fashion & Beauty",
     "slug": "fashion-and-beauty",
     "icon": "",
     "description": "",
-    "image": "fashion-and-beauty.png"
+    "image": "fashion-and-beauty.jpg"
   },
   {
     "name": "Film, Media & Entertainment",
     "slug": "film-media-and-entertainment",
     "icon": "",
     "description": "",
-    "image": "film-media-and-entertainment.png"
+    "image": "film-media-and-entertainment.jpg"
   },
   {
     "name": "Food & Drink",
     "slug": "food-and-drink",
     "icon": "",
     "description": "",
-    "image": "food-and-drink.png"
+    "image": "food-and-drink.jpg"
   },
   {
     "name": "Government & Politics",
@@ -95,14 +95,14 @@
     "slug": "other",
     "icon": "",
     "description": "",
-    "image": "placeholder.png"
+    "image": "other.jpg"
   },
   {
     "name": "Performing & Visual Arts",
     "slug": "performing-and-visual-arts",
     "icon": "",
     "description": "",
-    "image": "placeholder.png"
+    "image": "performing-and-visual-arts.jpg"
   },
   {
     "name": "Religion & Spirituality",
@@ -116,7 +116,7 @@
     "slug": "school-activities",
     "icon": "",
     "description": "",
-    "image": "placeholder.png"
+    "image": "school-activities.jpg"
   },
   {
     "name": "Science & Technology",
@@ -137,7 +137,7 @@
     "slug": "sporta-and-fitness",
     "icon": "",
     "description": "",
-    "image": "placeholder.png"
+    "image": "sports-and-fitness.jpg"
   },
   {
     "name": "Travel & Outdoor",
