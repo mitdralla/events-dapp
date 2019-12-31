@@ -521,14 +521,14 @@ textarea:active, input:active, a:active {
   color: #fff;
   text-align: center;
   width: 100%;
-  padding-bottom: 45px;
+  padding-bottom: 25px;
   min-height: 100px;
-	box-shadow: inset 0px -181px 53px rgba(0,0,0,0.8);
-	display: none;
+	box-shadow: inset 0px -181px 53px rgba(0,0,0,0.2);
+	/* display: none; */
 }
 
 .topic:hover > .topic-caption {
-	display: block;
+	/* display: block; */
 }
 
 .topic-caption button {
@@ -537,8 +537,12 @@ textarea:active, input:active, a:active {
 	background-color: #e91e63 !important;
 	border: 1px solid #e91e63 !important;
 	color: #fff !important;
+
+	background-color: #fff !important;
+	border: 1px solid #fff !important;
+	color: #333 !important;
 }
 
 .topic-caption h3 {
-	text-shadow: 2px 2px 24px #000;
+	text-shadow: 2px 2px 24px #000 !important;
 }

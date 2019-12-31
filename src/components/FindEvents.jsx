@@ -136,7 +136,7 @@ class FindEvents extends Component {
           {topicsJson.map(topic => (
             <div className="col-lg-4 pb-4 d-flex align-items-stretch">
               <div className="topic" style={{ backgroundImage: "url(/images/topics/" + topic.image +")"}}>
-              <div class="topic-caption"><h3>{topic.name}</h3><button className="btn"><i class="fas fa-ticket-alt"></i> Browse Events</button></div>
+              <div class="topic-caption"><h3>{topic.name}</h3><button className="btn">View Topic</button></div>
               </div>
             </div>
             ))}
