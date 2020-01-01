@@ -491,7 +491,7 @@ textarea:active, input:active, a:active {
 
 .topic {
 	width: 100%;
-	height: 250px;
+	height: 152px;
 	background-position: center center;
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -550,4 +550,5 @@ textarea:active, input:active, a:active {
 .topic-caption h3 {
 	text-shadow: 2px 2px 24px #000 !important;
 	font-weight: 400;
+	font-size:1.5rem !important;
 }

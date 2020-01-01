@@ -95,7 +95,7 @@ class App extends Component
 		} else {
 			body =
 				<div>
-					<Route exact path="/" component={Home} />
+					<Route exact path="/" component={FindEvents} />
 					<Route path="/findevents/:page" component={FindEvents} />
 					<Route path="/mytickets/:page" component={MyTickets} />
 					<Route path="/createevent" component={CreateEvent} />
@@ -103,7 +103,7 @@ class App extends Component
 					<Route path="/event/:id" component={EventPage} />
 					<Route path="/token" component={Token} />
 					<Route path="/topics" component={TopicsLandingPage} />
-					<Route path="/topics/:page" component={TopicLandingPage} />
+					<Route path="/topic/:page" component={TopicLandingPage} />
 				</div>
 			;
 		}
