@@ -104,6 +104,7 @@ class App extends Component
 					<Route path="/token" component={Token} />
 					<Route path="/topics" component={TopicsLandingPage} />
 					<Route path="/topic/:page" component={TopicLandingPage} />
+					<Route path="/how-it-works" component={Home} />
 				</div>
 			;
 		}

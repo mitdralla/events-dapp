@@ -21,7 +21,7 @@ class FindEvents extends Component {
 	}
 
   topicClick(slug) {
-    this.props.history.push("/topics/"+slug);
+    this.props.history.push("/topic/"+slug);
   }
 
 	render() {
@@ -125,13 +125,15 @@ class FindEvents extends Component {
         </Carousel>
 
 			<div className="retract-page-inner-wrapper-alternative">
+
       <br /><br />
-      <div className="input-group input-group-lg">
-        <div className="input-group-prepend">
-          <span className="input-group-text" id="inputGroup-sizing-lg"><i className="fa fa-search"></i>&nbsp;Search </span>
-        </div>
-        <input type="text" className="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
+
+      <div>
+          <h2><i className="fa fa-calendar-alt"></i> Recent Events</h2>
+          <hr />
+          {body}
       </div>
+
       <br /><br />
 
       <div className="topics-wrapper">
@@ -146,12 +148,6 @@ class FindEvents extends Component {
             </div>
             ))}
         </div>
-      </div>
-
-      <div>
-          <h2><i className="fa fa-calendar-alt"></i> Find Events</h2>
-          <hr />
-          {body}
       </div>
     </div>
 

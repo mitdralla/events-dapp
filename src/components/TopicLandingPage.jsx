@@ -21,7 +21,7 @@ class TopicLandingPage extends Component {
 	}
 
   topicClick(slug) {
-    this.props.history.push("/topics/"+slug);
+    this.props.history.push("/topic/"+slug);
   }
 
 	render() {
@@ -125,17 +125,19 @@ class TopicLandingPage extends Component {
         </Carousel>
 
 			<div className="retract-page-inner-wrapper-alternative">
+
       <br /><br />
-      <div className="input-group input-group-lg">
-        <div className="input-group-prepend">
-          <span className="input-group-text" id="inputGroup-sizing-lg"><i className="fa fa-search"></i>&nbsp;Search </span>
-        </div>
-        <input type="text" className="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
+
+      <div>
+          <h2><i className="fa fa-calendar-alt"></i> Events With Topic</h2>
+          <hr />
+          {body}
       </div>
+
       <br /><br />
 
       <div className="topics-wrapper">
-      <h2><i className="fa fa-calendar-alt"></i> Browse Topics</h2>
+      <h2><i className="fa fa-calendar-alt"></i> More Topics</h2>
       <hr />
         <div className="row user-list mt-4">
           {topicsJson.map(topic => (
@@ -148,11 +150,7 @@ class TopicLandingPage extends Component {
         </div>
       </div>
 
-      <div>
-          <h2><i className="fa fa-calendar-alt"></i> Find Events</h2>
-          <hr />
-          {body}
-      </div>
+
     </div>
 
     </React.Fragment>
