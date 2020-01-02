@@ -44,6 +44,9 @@ class Sidebar extends Component
 							<Link to="/topics" className="nav-link"><i className="fa fa-book"></i> Browse Topics</Link>
 						</li>
 						<li className="nav-item">
+							<Link to="/topics" className="nav-link"><i className="fa fa-map-marker-alt"></i> Browse Locations</Link>
+						</li>
+						<li className="nav-item">
 							<Link to="/mytickets/1" className="nav-link"><i className="fa fa-ticket-alt"></i> My Tickets</Link>
 						</li>
 					</ul>
