@@ -18,16 +18,17 @@ class TopicLandingPage extends Component
 	    this.eventCount = this.contracts['OpenEvents'].methods.getEventsCount.cacheCall();
 	    this.perPage = 6;
       this.topicClick = this.topicClick.bind(this);
+      this.theTopic = this.getTopicData();
 	}
 
   componentDidUpdate()
   {
-
+    //this.theTopic = this.getTopicData();
 	}
 
 	componentDidMount()
   {
-		this.getLastURLSegment();
+    //this.theTopic = this.getTopicData();
 	}
 
 	componentWillUnmount()
@@ -35,23 +36,37 @@ class TopicLandingPage extends Component
 
 	}
 
-
   topicClick(slug)
   {
     this.props.history.push("/topic/"+slug);
+    this.theTopic = this.getTopicData();
+
+    window.scrollTo(0, 0);
   }
 
   getLastURLSegment()
   {
-    let currentRoute= this.props.location.pathname;
+    console.log(this.props.history.location.pathname);
+    let currentRoute = this.props.history.location.pathname;
     let lastSegment = currentRoute.substr(currentRoute.lastIndexOf('/') + 1);
-    console.log(lastSegment);
+
     return lastSegment;
+  }
+
+  getTopicData() {
+    let topicSlug = this.getLastURLSegment();
+
+    let theTopic = topicsJson.filter(function (topic) {
+      return topic.slug == topicSlug;
+    });
+
+    return theTopic[0];
   }
 
 	render()
   {
 		let body = <Loading />;
+    const topic = this.theTopic;
 
 		if (typeof this.props.contracts['OpenEvents'].getEventsCount[this.eventCount] !== 'undefined') {
 			let count = Number(this.props.contracts['OpenEvents'].getEventsCount[this.eventCount].value);
@@ -109,7 +124,7 @@ class TopicLandingPage extends Component
       <React.Fragment>
       <div className="retract-page-inner-wrapper">
         <div className="topic-hero-wrapper">
-          <img src={'/images/topics/'+topicsJson[0]["image"]} alt={topicsJson[0]["slug"]} />
+          <img src={'/images/topics/'+this.theTopic['image']} alt={topic.name} />
         </div>
       </div>
 
@@ -118,7 +133,7 @@ class TopicLandingPage extends Component
       <br /><br />
 
       <div>
-          <h2><i className="fa fa-calendar-alt"></i> Events With Topic</h2>
+          <h2><i className="fa fa-calendar-alt"></i> Events In The <strong>{topic.name}</strong> Topic</h2>
           <hr />
           {body}
       </div>

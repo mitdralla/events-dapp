@@ -231,7 +231,7 @@ textarea:active, input:active, a:active {
 .carousel-caption {
     position: absolute;
     right: 0;
-    bottom: 0px;
+    bottom: 0;
     left: 0;
     z-index: 10;
     padding-top: 45px;
