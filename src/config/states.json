@@ -10,30 +10,40 @@
     "name": "Alaska",
     "abbreviation": "AK",
     "slug": "alaska",
+    "image": "alaska.jpg",
+    "image-source": "https://www.adn.com/alaska-visitors-guide/2018/05/02/a-primer-on-alaska-wildlife/",
     "active": "yes"
   },
   {
     "name": "Arizona",
     "abbreviation": "AZ",
     "slug": "arizona",
+    "image": "arizona.jpg",
+    "image-source": "https://autismtravel.com/directory/arizona-office-of-tourism/",
     "active": "yes"
   },
   {
     "name": "Arkansas",
     "abbreviation": "AR",
     "slug": "arkansas",
+    "image": "arkansas.jpg",
+    "image-source": "https://autismtravel.com/directory/arizona-office-of-tourism/",
     "active": "yes"
   },
   {
     "name": "California",
     "abbreviation": "CA",
     "slug": "california",
+    "image": "california.jpg",
+    "image-source": "https://www.appnovation.com/our-work/visit-california-online-tourism-experience",
     "active": "yes"
   },
   {
     "name": "Colorado",
     "abbreviation": "CO",
     "slug": "colorado",
+    "image": "colorado.jpg",
+    "image-source": "https://www.clickstay.com/blog/top-5-ski-properties-that-wont-break-the-bankso",
     "active": "yes"
   },
   {

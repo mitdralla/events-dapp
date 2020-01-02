@@ -85,15 +85,15 @@ class LocationsLandingPage extends Component {
           <Carousel.Item className="slide1">
             <img className="d-block w-100" src="/images/slides/slide1.png" alt="First slide" />
             <Carousel.Caption>
-              <h3>Events on Clematis St.</h3>
+              <h3>Discover Clematis St.</h3>
               <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
               <button className="btn btn-dark"><i className="fas fa-ticket-alt"></i> Find Events</button>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item className="slide2">
-          <img className="d-block w-100" src="/images/slides/slide2.png" alt="First slide" />
+          <img className="d-block w-100" src="/images/slides/states/belmar-colorado.jpg" alt="First slide" />
             <Carousel.Caption>
-              <h3>Support a Local Charity</h3>
+              <h3>Discover Belmar, CO</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
               <button className="btn btn-dark"><i className="fas fa-ticket-alt"></i> Find Events</button>
             </Carousel.Caption>
