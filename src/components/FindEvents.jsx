@@ -26,6 +26,7 @@ class FindEvents extends Component
   topicClick(slug)
   {
     this.props.history.push("/topic/"+slug);
+    window.scrollTo(0, 0);
   }
 
 	render()

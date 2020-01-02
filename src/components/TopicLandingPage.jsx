@@ -19,6 +19,7 @@ class TopicLandingPage extends Component
 	    this.perPage = 6;
       this.topicClick = this.topicClick.bind(this);
       this.theTopic = this.getTopicData();
+      this.topicBackground = this.theTopic['image'];
 	}
 
   componentDidUpdate()

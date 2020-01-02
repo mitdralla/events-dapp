@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400');
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
 	background-color: #FAFAFA;
 	font-family: 'Nunito Sans', sans-serif;
