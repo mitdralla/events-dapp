@@ -345,7 +345,7 @@ textarea:active, input:active, a:active {
 }
 
 .container-fluid {
-	background-color: #f7f7f7;
+	background-color: #fafafa;
 	position: inherit;
 	margin-top: 50px;
 	border-radius: 5px;
@@ -525,8 +525,8 @@ textarea:active, input:active, a:active {
   color: #fff;
   text-align: center;
   width: 100%;
+	height: inherit;
   padding-bottom: 25px;
-  min-height: 100px;
 	box-shadow: inset 0px -181px 53px rgba(0,0,0,0.2);
 	/* display: none; */
 }
@@ -536,7 +536,7 @@ textarea:active, input:active, a:active {
 }
 
 .topic-caption button {
-	padding: 10px 25px;
+	padding: 5px 25px;
   margin-right: 0px;
 	background-color: #e91e63 !important;
 	border: 1px solid #e91e63 !important;
@@ -560,7 +560,7 @@ textarea:active, input:active, a:active {
 .topic-hero-wrapper img {
 	width: 100%;
 	border-radius: 5px;
-	z-index: inherit;
+	z-index: 1;
 }
 
 .topic-hero-wrapper:before {

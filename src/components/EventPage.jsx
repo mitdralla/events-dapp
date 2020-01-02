@@ -125,7 +125,7 @@ class EventPage extends Component {
 
 				if (date.getTime() < new Date().getTime()) {
 					disabled = true;
-					disabledStatus = <span><span role="img" aria-label="alert">⚠️</span> Has already ended</span>;
+					disabledStatus = <span><span role="img" aria-label="alert">⚠️</span> This event has already ended.</span>;
 				}
 
 				body =
@@ -164,7 +164,7 @@ class EventPage extends Component {
 
 		return (
 			<div>
-				<h2>Event</h2>
+				<h2><i className="fa fa-calendar-alt"></i> Event</h2>
 				<hr />
 				{body}
 			</div>
