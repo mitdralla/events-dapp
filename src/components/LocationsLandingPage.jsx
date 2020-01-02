@@ -7,7 +7,7 @@ import Carousel from 'react-bootstrap/Carousel'
 import Loading from './Loading';
 import Event from './Event';
 
-import topicsJson from '../config/topics.json';
+import statesJson from '../config/states.json';
 
 
 class LocationsLandingPage extends Component {
@@ -20,7 +20,7 @@ class LocationsLandingPage extends Component {
 	}
 
   topicClick(slug) {
-    this.props.history.push("/topic/"+slug);
+    this.props.history.push("/location/state/"+slug);
     window.scrollTo(0, 0);
   }
 
@@ -85,7 +85,7 @@ class LocationsLandingPage extends Component {
           <Carousel.Item className="slide1">
             <img className="d-block w-100" src="/images/slides/slide1.png" alt="First slide" />
             <Carousel.Caption>
-              <h3>Check out a Concert</h3>
+              <h3>Events on Clematis St.</h3>
               <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
               <button className="btn btn-dark"><i className="fas fa-ticket-alt"></i> Find Events</button>
             </Carousel.Caption>
@@ -132,10 +132,10 @@ class LocationsLandingPage extends Component {
       <h2><i className="fa fa-calendar-alt"></i> Browse Locations</h2>
       <hr />
         <div className="row user-list mt-4">
-          {topicsJson.map(topic => (
-            <div className="col-lg-4 pb-4 d-flex align-items-stretch" key={topic.slug}>
-              <div className="topic" style={{ backgroundImage: "url(/images/topics/" + topic.image +")"}} onClick={() => {this.topicClick(topic.slug)}}>
-              <div className="topic-caption"><h3>{topic.name}</h3><button className="btn">View Topic</button></div>
+          {statesJson.map(state => (
+            <div className="col-lg-4 pb-4 d-flex align-items-stretch" key={state.slug}>
+              <div className="topic" style={{ backgroundImage: "url(/images/states/" + state.image +")"}} onClick={() => {this.topicClick(state.slug)}}>
+              <div className="topic-caption"><h3>{state.name}</h3><button className="btn">View State</button></div>
               </div>
             </div>
             ))}

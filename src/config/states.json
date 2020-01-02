@@ -2,6 +2,7 @@
   {
     "name": "Alabama",
     "abbreviation": "AL",
+    "image": "alabama.jpg",
     "slug": "alabama",
     "active": "yes"
   },
