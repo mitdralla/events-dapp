@@ -4,15 +4,18 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Carousel from 'react-bootstrap/Carousel'
 
+// Import dApp Components
 import Loading from './Loading';
 import Event from './Event';
 
-import slidesJson from '../config/slides.json';
+// TODO: Make slides dynamic: import slidesJson from '../config/slides.json';
 import topicsJson from '../config/topics.json';
 
 
-class FindEvents extends Component {
-  constructor(props, context) {
+class FindEvents extends Component
+{
+  constructor(props, context)
+  {
       super(props);
 	    this.contracts = context.drizzle.contracts;
 	    this.eventCount = this.contracts['OpenEvents'].methods.getEventsCount.cacheCall();
@@ -20,11 +23,13 @@ class FindEvents extends Component {
       this.topicClick = this.topicClick.bind(this);
 	}
 
-  topicClick(slug) {
+  topicClick(slug)
+  {
     this.props.history.push("/topic/"+slug);
   }
 
-	render() {
+	render()
+  {
 		let body = <Loading />;
 
 		if (typeof this.props.contracts['OpenEvents'].getEventsCount[this.eventCount] !== 'undefined') {
@@ -142,7 +147,7 @@ class FindEvents extends Component {
         <div className="row user-list mt-4">
           {topicsJson.map(topic => (
             <div className="col-lg-4 pb-4 d-flex align-items-stretch" key={topic.slug}>
-              <div className="topic" style={{ backgroundImage: "url(/images/topics/" + topic.image +")"}} onClick={() => {{this.topicClick(topic.slug)}}}>
+              <div className="topic" style={{ backgroundImage: "url(/images/topics/" + topic.image +")"}} onClick={() => {this.topicClick(topic.slug)}}>
               <div className="topic-caption"><h3>{topic.name}</h3><button className="btn">View Topic</button></div>
               </div>
             </div>
@@ -156,11 +161,13 @@ class FindEvents extends Component {
 	}
 }
 
-FindEvents.contextTypes = {
+FindEvents.contextTypes =
+{
     drizzle: PropTypes.object
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = state =>
+{
     return {
 		contracts: state.contracts,
 		accounts: state.accounts

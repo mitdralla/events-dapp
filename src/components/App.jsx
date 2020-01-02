@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { drizzleConnect } from 'drizzle-react';
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -55,10 +55,6 @@ class App extends Component
 		}
 	}
 
-	toggleSidebar() {
-			this.state.showSidebar = !this.state.showSidebar
-	}
-
 	render() {
 		let body;
 		let connecting = false;
@@ -66,7 +62,7 @@ class App extends Component
 		var items = ['slide1.png', 'slide2.png', 'slide3.png', 'slide4.png'];
     var randomBG = items[Math.floor(Math.random()*items.length)];
 
-		console.log(randomBG);
+		// console.log(randomBG);
 
 		if (!this.props.drizzleStatus.initialized) {
 			body =

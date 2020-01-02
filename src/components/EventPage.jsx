@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from "react-dom";
 import { drizzleConnect } from "drizzle-react";
 import PropTypes from 'prop-types';
 import makeBlockie from 'ethereum-blockies-base64';

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import makeBlockie from 'ethereum-blockies-base64';
 
-
-class Sidebar extends Component {
+class Sidebar extends Component
+{
 
 	render() {
 		let user =

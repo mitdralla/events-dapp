@@ -552,3 +552,41 @@ textarea:active, input:active, a:active {
 	font-weight: 400;
 	font-size:1.5rem !important;
 }
+
+.topic-hero-wrapper {
+
+}
+
+.topic-hero-wrapper img {
+	width: 100%;
+	border-radius: 5px;
+	z-index: inherit;
+}
+
+.topic-hero-wrapper:before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    width: 96%;
+    top: 0;
+    height: 10px;
+    left: 2%;
+    border-radius: 100px / 5px;
+    -webkit-box-shadow: 0 0 18px rgba(0,0,0,1);
+    box-shadow: 0 0 18px rgba(0,0,0,1);
+		z-index: -1;
+}
+
+.topic-hero-wrapper:after {
+	content: "";
+  position: absolute;
+  z-index: 0;
+  width: 96%;
+  bottom: 1px;
+  height: 10px;
+  left: 2%;
+  border-radius: 100px / 5px;
+  -webkit-box-shadow: 0 0 18px rgba(0,0,0,0.6);
+  box-shadow: 0 0 18px rgba(0,0,0,0.6);
+	z-index: -1;
+}

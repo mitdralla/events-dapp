@@ -7,7 +7,6 @@ import Carousel from 'react-bootstrap/Carousel'
 import Loading from './Loading';
 import Event from './Event';
 
-import slidesJson from '../config/slides.json';
 import topicsJson from '../config/topics.json';
 
 
@@ -125,7 +124,7 @@ class TopicsLandingPage extends Component {
         </Carousel>
 
 			<div className="retract-page-inner-wrapper-alternative">
-      
+
       <br /><br />
 
       <div className="topics-wrapper">
@@ -134,7 +133,7 @@ class TopicsLandingPage extends Component {
         <div className="row user-list mt-4">
           {topicsJson.map(topic => (
             <div className="col-lg-4 pb-4 d-flex align-items-stretch" key={topic.slug}>
-              <div className="topic" style={{ backgroundImage: "url(/images/topics/" + topic.image +")"}} onClick={() => {{this.topicClick(topic.slug)}}}>
+              <div className="topic" style={{ backgroundImage: "url(/images/topics/" + topic.image +")"}} onClick={() => {this.topicClick(topic.slug)}}>
               <div className="topic-caption"><h3>{topic.name}</h3><button className="btn">View Topic</button></div>
               </div>
             </div>

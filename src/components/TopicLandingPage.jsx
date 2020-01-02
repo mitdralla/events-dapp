@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 import { drizzleConnect } from 'drizzle-react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Carousel from 'react-bootstrap/Carousel'
 
 import Loading from './Loading';
 import Event from './Event';
 
-import slidesJson from '../config/slides.json';
 import topicsJson from '../config/topics.json';
 
 
-class TopicLandingPage extends Component {
-  constructor(props, context) {
+class TopicLandingPage extends Component
+{
+  constructor(props, context)
+  {
       super(props);
 	    this.contracts = context.drizzle.contracts;
 	    this.eventCount = this.contracts['OpenEvents'].methods.getEventsCount.cacheCall();
@@ -20,11 +20,37 @@ class TopicLandingPage extends Component {
       this.topicClick = this.topicClick.bind(this);
 	}
 
-  topicClick(slug) {
+  componentDidUpdate()
+  {
+
+	}
+
+	componentDidMount()
+  {
+		this.getLastURLSegment();
+	}
+
+	componentWillUnmount()
+  {
+
+	}
+
+
+  topicClick(slug)
+  {
     this.props.history.push("/topic/"+slug);
   }
 
-	render() {
+  getLastURLSegment()
+  {
+    let currentRoute= this.props.location.pathname;
+    let lastSegment = currentRoute.substr(currentRoute.lastIndexOf('/') + 1);
+    console.log(lastSegment);
+    return lastSegment;
+  }
+
+	render()
+  {
 		let body = <Loading />;
 
 		if (typeof this.props.contracts['OpenEvents'].getEventsCount[this.eventCount] !== 'undefined') {
@@ -81,48 +107,11 @@ class TopicLandingPage extends Component {
 
 		return(
       <React.Fragment>
-      <Carousel className="retract-page-inner-wrapper">
-          <Carousel.Item className="slide1">
-            <img className="d-block w-100" src="/images/slides/slide1.png" alt="First slide" />
-            <Carousel.Caption>
-              <h3>Check out a Concert</h3>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-              <button className="btn btn-dark"><i className="fas fa-ticket-alt"></i> Find Events</button>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item className="slide2">
-          <img className="d-block w-100" src="/images/slides/slide2.png" alt="First slide" />
-            <Carousel.Caption>
-              <h3>Support a Local Charity</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <button className="btn btn-dark"><i className="fas fa-ticket-alt"></i> Find Events</button>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item className="slide3">
-          <img className="d-block w-100" src="/images/slides/slide3.png" alt="First slide" />
-            <Carousel.Caption>
-              <h3>Attend an Exclusive Party</h3>
-              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-              <button className="btn btn-dark"><i className="fas fa-ticket-alt"></i> Find Events</button>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item className="slide4">
-          <img className="d-block w-100" src="/images/slides/slide4.png" alt="First slide" />
-            <Carousel.Caption>
-              <h3>Play a New Sport</h3>
-              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-              <button className="btn btn-dark"><i className="fas fa-ticket-alt"></i> Find Events</button>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item className="slide5">
-          <img className="d-block w-100" src="/images/slides/slide5.png" alt="First slide" />
-            <Carousel.Caption>
-              <h3>Create Your Own and Sell Tickets</h3>
-              <p>Create your own event, it takes only a minute.</p>
-              <button className="btn btn-dark"><i className="fas fa-ticket-alt"></i> Create Event</button>
-            </Carousel.Caption>
-          </Carousel.Item>
-        </Carousel>
+      <div className="retract-page-inner-wrapper">
+        <div className="topic-hero-wrapper">
+          <img src={'/images/topics/'+topicsJson[0]["image"]} alt={topicsJson[0]["slug"]} />
+        </div>
+      </div>
 
 			<div className="retract-page-inner-wrapper-alternative">
 
@@ -142,7 +131,7 @@ class TopicLandingPage extends Component {
         <div className="row user-list mt-4">
           {topicsJson.map(topic => (
             <div className="col-lg-4 pb-4 d-flex align-items-stretch" key={topic.slug}>
-              <div className="topic" style={{ backgroundImage: "url(/images/topics/" + topic.image +")"}} onClick={() => {{this.topicClick(topic.slug)}}}>
+              <div className="topic" style={{ backgroundImage: "url(/images/topics/" + topic.image +")"}} onClick={() => {this.topicClick(topic.slug)}}>
               <div className="topic-caption"><h3>{topic.name}</h3><button className="btn">View Topic</button></div>
               </div>
             </div>
@@ -158,11 +147,13 @@ class TopicLandingPage extends Component {
 	}
 }
 
-TopicLandingPage.contextTypes = {
+TopicLandingPage.contextTypes =
+{
     drizzle: PropTypes.object
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = state =>
+{
     return {
 		contracts: state.contracts,
 		accounts: state.accounts

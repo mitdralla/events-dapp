@@ -112,9 +112,9 @@ class Event extends Component {
 			let max_seats = event_data[4] ? event_data[5] : '∞';
 
 			let disabled = false;
-			let disabledStatus;
 
 			if (event_data[4] && (Number(event_data[6]) >= Number(event_data[5]))) {
+        let disabledStatus = '';
 				disabled = true;
 				disabledStatus = <span><span role="img" aria-label="alert">⚠️</span> No tickets available.</span>;
 			}
