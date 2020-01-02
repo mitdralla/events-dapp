@@ -27,7 +27,7 @@ class Sidebar extends Component
 		}
 
 		return (
-			<div id="sidebar-wrapper" className="my-sidebar text-center">
+			<div id="sidebar-wrapper" className="my-sidebar">
 				<div className="hamburgerNav">
 					<i className="fa fa-bars"></i>
 				</div>
@@ -53,7 +53,7 @@ class Sidebar extends Component
 							<Link to="/createevent" className="nav-link"><i className="fa fa-edit"></i> Create Event</Link>
 						</li>
 						<li className="nav-item">
-							<Link to="/myevents/1" className="nav-link"><i className="fa fa-calendar-alt"></i> My Events</Link>
+							<Link to="/myevents/1" className="nav-link"><i className="fa fa-calendar-alt"></i> My Owned Events</Link>
 						</li>
 					</ul>
 					<h5 className="mt-5">Tools</h5>
