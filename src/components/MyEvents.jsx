@@ -45,6 +45,8 @@ class MyEvents extends Component {
 					events.push(<Event key={event} id={event} />);
 				}
 
+        events.reverse();
+
 				let pagination;
 
 				if (pages > 1) {

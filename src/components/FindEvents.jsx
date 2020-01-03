@@ -59,6 +59,8 @@ class FindEvents extends Component
 					events_list.push(<Event key={i} id={i} />);
 				}
 
+        events_list.reverse();
+
 				let pagination = '';
 				if (pages > 1) {
 					let links = [];
