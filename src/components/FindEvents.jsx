@@ -10,6 +10,7 @@ import Event from './Event';
 
 // TODO: Make slides dynamic: import slidesJson from '../config/slides.json';
 import topicsJson from '../config/topics.json';
+import eventCTAsJson from '../config/event_ctas.json';
 
 
 class FindEvents extends Component
@@ -26,6 +27,12 @@ class FindEvents extends Component
   topicClick(slug)
   {
     this.props.history.push("/topic/"+slug);
+    window.scrollTo(0, 0);
+  }
+
+  ctasClick(slug)
+  {
+    this.props.history.push("/"+slug);
     window.scrollTo(0, 0);
   }
 
@@ -143,8 +150,23 @@ class FindEvents extends Component
       <br /><br />
 
       <div className="topics-wrapper">
-      <h2><i className="fa fa-calendar-alt"></i> Browse Topics</h2>
+      <h2><i className="fa fa-calendar-alt"></i> Browse Events By</h2>
       <hr />
+
+        <div className="row user-list mt-4">
+          {eventCTAsJson.map(eventCTA => (
+            <div className="col-lg-4 pb-4 d-flex align-items-stretch" key={eventCTA.slug}>
+              <div className="topic" style={{ backgroundImage: "url(/images/ctas/" + eventCTA.image +")"}} onClick={() => {this.ctasClick(eventCTA.slug)}}>
+              <div className="topic-caption"><h3>{eventCTA.name}</h3><button className="btn">View Events</button></div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <br /><br />
+
+        <h2><i className="fa fa-calendar-alt"></i> Browse Topics</h2>
+        <hr />
+
         <div className="row user-list mt-4">
           {topicsJson.map(topic => (
             <div className="col-lg-4 pb-4 d-flex align-items-stretch" key={topic.slug}>
@@ -152,7 +174,7 @@ class FindEvents extends Component
               <div className="topic-caption"><h3>{topic.name}</h3><button className="btn">View Topic</button></div>
               </div>
             </div>
-            ))}
+          ))}
         </div>
       </div>
     </div>

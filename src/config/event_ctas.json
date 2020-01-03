@@ -1,29 +1,43 @@
 [
   {
     "name": "Online Only",
-    "slug": "online-only",
-    "image": "alabama.jpg",
+    "slug": "locations/online",
+    "image": "online.jpg",
     "image-source": "",
     "active": "yes"
   },
   {
     "name": "By Topic",
-    "slug": "by-topic",
+    "slug": "topics",
     "image": "by-topic.jpg",
     "image-source": "",
     "active": "yes"
   },
   {
     "name": "By Country",
-    "slug": "by-country",
+    "slug": "locations/countries",
     "image": "by-country.jpg",
+    "image-source": "",
+    "active": "yes"
+  },
+  {
+    "name": "Trending",
+    "image": "trending.jpg",
+    "slug": "trending",
+    "image-source": "",
+    "active": "yes"
+  },
+  {
+    "name": "Donations",
+    "image": "donations.jpg",
+    "slug": "events/donations",
     "image-source": "",
     "active": "yes"
   },
   {
     "name": "All Events",
     "image": "all-events.jpg",
-    "slug": "all-events",
+    "slug": "events",
     "image-source": "",
     "active": "yes"
   }

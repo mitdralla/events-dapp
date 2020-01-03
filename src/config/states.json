@@ -1,12 +1,5 @@
 [
   {
-    "name": "Online Only",
-    "abbreviation": "OL",
-    "slug": "online",
-    "image-source": "https://askleo.com/whats-the-difference-between-the-web-and-the-internet/",
-    "active": "yes"
-  },
-  {
     "name": "Alabama",
     "abbreviation": "AL",
     "slug": "alabama",
