@@ -154,8 +154,6 @@ class LocationLandingPage extends Component
             ))}
         </div>
       </div>
-
-
     </div>
 
     </React.Fragment>

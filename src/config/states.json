@@ -1,4 +1,11 @@
-[
+[ {
+    "name": "Online Only",
+    "abbreviation": "OL",
+    "image": "online.jpg",
+    "slug": "online",
+    "image-source": "https://askleo.com/whats-the-difference-between-the-web-and-the-internet/",
+    "active": "yes"
+  },
   {
     "name": "Alabama",
     "abbreviation": "AL",
@@ -11,7 +18,7 @@
     "abbreviation": "AK",
     "slug": "alaska",
     "image": "alaska.jpg",
-    "image-source": "https://www.adn.com/alaska-visitors-guide/2018/05/02/a-primer-on-alaska-wildlife/",
+    "image-source": "https://www.traveljuneau.com/discover-juneau/about-our-town/",
     "active": "yes"
   },
   {
@@ -27,7 +34,7 @@
     "abbreviation": "AR",
     "slug": "arkansas",
     "image": "arkansas.jpg",
-    "image-source": "https://autismtravel.com/directory/arizona-office-of-tourism/",
+    "image-source": "http://www.decaturmagazine.com/here-there-little-rock-arkansas/",
     "active": "yes"
   },
   {
@@ -35,7 +42,7 @@
     "abbreviation": "CA",
     "slug": "california",
     "image": "california.jpg",
-    "image-source": "https://www.appnovation.com/our-work/visit-california-online-tourism-experience",
+    "image-source": "https://www.visitcalifornia.com/destination/spotlight-sacramento",
     "active": "yes"
   },
   {
@@ -43,49 +50,63 @@
     "abbreviation": "CO",
     "slug": "colorado",
     "image": "colorado.jpg",
-    "image-source": "https://www.clickstay.com/blog/top-5-ski-properties-that-wont-break-the-bankso",
+    "image-source": "https://www.langan.com/locations/denver-colorado",
     "active": "yes"
   },
   {
     "name": "Connecticut",
     "abbreviation": "CT",
     "slug": "connectitut",
+    "image": "connecticut.jpg",
+    "image-source": "https://www.ramjackopportunity.com/hartford",
     "active": "yes"
   },
   {
     "name": "Delaware",
     "abbreviation": "DE",
     "slug": "deleware",
+    "image": "deleware.jpg",
+    "image-source": "",
     "active": "yes"
   },
   {
     "name": "Florida",
     "abbreviation": "FL",
     "slug": "florida",
+    "image": "florida.jpg",
+    "image-source": "https://www.triphobo.com/places/miami-united-states",
     "active": "yes"
   },
   {
     "name": "Georgia",
     "abbreviation": "GA",
     "slug": "georgia",
+    "image": "georgia.jpg",
+    "image-source": "https://www.cincinnatimagazine.com/daytripperblog/long-weekend-atlanta-georgia/",
     "active": "yes"
   },
   {
     "name": "Hawaii",
     "abbreviation": "HI",
     "slug": "hawaii",
+    "image": "hawaii.jpg",
+    "image-source": "https://www.hawaiimagazine.com/content/honolulu-ranked-best-small-city-second-year-row",
     "active": "yes"
   },
   {
     "name": "Idaho",
     "abbreviation": "ID",
     "slug": "idaho",
+    "image": "idaho.jpg",
+    "image-source": "https://www.flickr.com/photos/theknowlesgallery/8384643501",
     "active": "yes"
   },
   {
     "name": "Illinois",
     "abbreviation": "IL",
     "slug": "illinois",
+    "image": "illinois.jpg",
+    "image-source": "https://worldstrides.com/itineraries/springfield/",
     "active": "yes"
   },
   {

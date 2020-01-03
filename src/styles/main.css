@@ -594,3 +594,7 @@ textarea:active, input:active, a:active {
   box-shadow: 0 0 18px rgba(0,0,0,0.6);
 	z-index: -1;
 }
+
+.my-tickets-page .card:before {
+  display: none;
+}

@@ -156,9 +156,10 @@ class Ticket extends Component {
 					<div>
 						<div className="card-body">
 
-              <h5 className="text-center">Digital Ticket:</h5>
+              <h5 className="text-center">Download Digital Ticket:</h5>
               <div className="form-group">
-                <p className="text-center">---  QR CODE  ----</p>
+                <p className="text-center"><img src="/images/qr.jpg" width="150" /></p>
+                <p className="text-center"><a href=""><img src="/images/add-to-apple-wallet-logo.png" width="140px" /></a></p>
               </div>
 
 							<h5 className="text-center">Send or Transfer Ticket:</h5>

@@ -98,30 +98,6 @@ class LocationsLandingPage extends Component {
               <button className="btn btn-dark"><i className="fas fa-ticket-alt"></i> Find Events</button>
             </Carousel.Caption>
           </Carousel.Item>
-          <Carousel.Item className="slide3">
-          <img className="d-block w-100" src="/images/slides/slide3.png" alt="First slide" />
-            <Carousel.Caption>
-              <h3>Attend an Exclusive Party</h3>
-              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-              <button className="btn btn-dark"><i className="fas fa-ticket-alt"></i> Find Events</button>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item className="slide4">
-          <img className="d-block w-100" src="/images/slides/slide4.png" alt="First slide" />
-            <Carousel.Caption>
-              <h3>Play a New Sport</h3>
-              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-              <button className="btn btn-dark"><i className="fas fa-ticket-alt"></i> Find Events</button>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item className="slide5">
-          <img className="d-block w-100" src="/images/slides/slide5.png" alt="First slide" />
-            <Carousel.Caption>
-              <h3>Create Your Own and Sell Tickets</h3>
-              <p>Create your own event, it takes only a minute.</p>
-              <button className="btn btn-dark"><i className="fas fa-ticket-alt"></i> Create Event</button>
-            </Carousel.Caption>
-          </Carousel.Item>
         </Carousel>
 
 			<div className="retract-page-inner-wrapper-alternative">
@@ -135,7 +111,7 @@ class LocationsLandingPage extends Component {
           {statesJson.map(state => (
             <div className="col-lg-4 pb-4 d-flex align-items-stretch" key={state.slug}>
               <div className="topic" style={{ backgroundImage: "url(/images/states/" + state.image +")"}} onClick={() => {this.topicClick(state.slug)}}>
-              <div className="topic-caption"><h3>{state.name}</h3><button className="btn">View State</button></div>
+              <div className="topic-caption"><h3>{state.name}</h3><button className="btn">View Location</button></div>
               </div>
             </div>
             ))}

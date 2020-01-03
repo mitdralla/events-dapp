@@ -79,7 +79,7 @@ class MyTickets extends Component {
 		}
 
 		return (
-			<div>
+			<div className="my-tickets-page">
 				<h2><i className="fa fa-ticket-alt"></i> My Tickets</h2>
 				<hr />
 				{body}
