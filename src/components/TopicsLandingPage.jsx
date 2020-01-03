@@ -8,7 +8,7 @@ import Loading from './Loading';
 import Event from './Event';
 
 import topicsJson from '../config/topics.json';
-
+import topicsPopularJson from '../config/topics_popular.json';
 
 class TopicsLandingPage extends Component {
   constructor(props, context) {
@@ -129,7 +129,20 @@ class TopicsLandingPage extends Component {
       <br /><br />
 
       <div className="topics-wrapper">
-      <h2><i className="fa fa-calendar-alt"></i> Browse Topics</h2>
+      <h2><i className="fa fa-calendar-alt"></i> Popular Topics</h2>
+      <hr />
+        <div className="row user-list mt-4">
+          {topicsPopularJson.map(topic => (
+            <div className="col-lg-4 pb-4 d-flex align-items-stretch" key={topic.slug}>
+              <div className="topic" style={{ backgroundImage: "url(/images/topics/" + topic.image +")"}} onClick={() => {this.topicClick(topic.slug)}}>
+              <div className="topic-caption"><h3>{topic.name}</h3><button className="btn">View Topic</button></div>
+              </div>
+            </div>
+            ))}
+        </div>
+        <br /><br />
+
+      <h2><i className="fa fa-calendar-alt"></i> All Topics</h2>
       <hr />
         <div className="row user-list mt-4">
           {topicsJson.map(topic => (

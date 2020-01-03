@@ -1,0 +1,26 @@
+[
+  {
+    "name": "DJ Events",
+    "slug": "dj",
+    "icon": "",
+    "description": "",
+    "image-source": "https://www.sandiegoeventdj.com/",
+    "image": "dj.jpg"
+  },
+  {
+    "name": "Bar Crawls",
+    "slug": "bar-crawls",
+    "icon": "",
+    "description": "",
+    "image-source": "https://www.inyourpocket.com/st-petersburg-en/city-pub-crawl-st-petersburg_154875v",
+    "image": "bar-crawl.jpg"
+  },
+  {
+    "name": "Farmers Markets",
+    "slug": "farmers-markets",
+    "icon": "",
+    "description": "",
+    "image-source": "https://southsoundmag.com/the-ultimate-guide-to-farmers-markets/",
+    "image": "farmers-market.jpg"
+  }
+]

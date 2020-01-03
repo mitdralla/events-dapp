@@ -4,7 +4,7 @@
     "slug": "locations/online",
     "image": "online.jpg",
     "image-source": "",
-    "color": "#01658b",
+    "color": "#a6aab1",
     "active": "yes"
   },
   {
@@ -12,7 +12,7 @@
     "slug": "topics",
     "image": "by-topic.jpg",
     "image-source": "",
-    "color": "#01658b",
+    "color": "#a6aab1",
     "active": "yes"
   },
   {
@@ -20,7 +20,7 @@
     "slug": "locations/countries",
     "image": "countries.jpg",
     "image-source": "",
-    "color": "#01658b",
+    "color": "#a6aab1",
     "active": "yes"
   },
   {
@@ -28,7 +28,7 @@
     "image": "trending.jpg",
     "slug": "trending",
     "image-source": "",
-    "color": "#01658b",
+    "color": "#a6aab1",
     "active": "yes"
   },
   {
@@ -36,7 +36,7 @@
     "image": "donations.jpg",
     "slug": "events/donations",
     "image-source": "",
-    "color": "#01658b",
+    "color": "#a6aab1",
     "active": "yes"
   },
   {
@@ -44,7 +44,7 @@
     "image": "all-events.jpg",
     "slug": "events",
     "image-source": "",
-    "color": "#01658b",
+    "color": "#a6aab1",
     "active": "yes"
   }
 ]
