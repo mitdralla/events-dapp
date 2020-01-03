@@ -4,146 +4,194 @@
     "slug": "auto-boat-and-air",
     "icon": "",
     "description": "",
-    "image": "auto-boat-and-air.jpg"
+    "image": "auto-boat-and-air.jpg",
+    "popular": "false"
   },
   {
     "name": "Business & Professional",
     "slug": "business-and-professional",
     "icon": "",
     "description": "",
-    "image": "business-and-professional.jpg"
+    "image": "business-and-professional.jpg",
+    "popular": "false"
   },
   {
     "name": "Charity & Causes",
     "slug": "charity-and-causes",
     "icon": "",
     "description": "",
-    "image": "charity-and-causes.jpg"
+    "image": "charity-and-causes.jpg",
+    "popular": "false"
   },
   {
     "name": "Community & Culture",
     "slug": "community-and-culture",
     "icon": "",
     "description": "",
-    "image": "community-and-culture.jpg"
+    "image": "community-and-culture.jpg",
+    "popular": "false"
   },
   {
     "name": "Family & Education",
     "slug": "family-and-education",
     "icon": "",
     "description": "",
-    "image": "family-and-education.jpg"
+    "image": "family-and-education.jpg",
+    "popular": "false"
   },
   {
     "name": "Fashion & Beauty",
     "slug": "fashion-and-beauty",
     "icon": "",
     "description": "",
-    "image": "fashion-and-beauty.jpg"
+    "image": "fashion-and-beauty.jpg",
+    "popular": "false"
   },
   {
     "name": "Film, Media & Entertainment",
     "slug": "film-media-and-entertainment",
     "icon": "",
     "description": "",
-    "image": "film-media-and-entertainment.jpg"
+    "image": "film-media-and-entertainment.jpg",
+    "popular": "false"
   },
   {
     "name": "Food & Drink",
     "slug": "food-and-drink",
     "icon": "",
     "description": "",
-    "image": "food-and-drink.jpg"
+    "image": "food-and-drink.jpg",
+    "popular": "false"
   },
   {
     "name": "Government & Politics",
     "slug": "government-and-politics",
     "icon": "",
     "description": "",
-    "image": "government-and-politics.jpg"
+    "image": "government-and-politics.jpg",
+    "popular": "false"
   },
   {
     "name": "Health & Wellness",
     "slug": "health-and-wellness",
     "icon": "",
     "description": "",
-    "image": "health-and-wellness.jpg"
+    "image": "health-and-wellness.jpg",
+    "popular": "false"
   },
   {
     "name": "Hobbies & Special Interest",
     "slug": "hobbies-and-special-interest",
     "icon": "",
     "description": "",
-    "image": "hobbies-and-special-interest.jpg"
+    "image": "hobbies-and-special-interest.jpg",
+    "popular": "false"
   },
   {
     "name": "Home & Lifestyle",
     "slug": "home-and-lifestyle",
     "icon": "",
     "description": "",
-    "image": "home-and-lifestyle.jpg"
+    "image": "home-and-lifestyle.jpg",
+    "popular": "false"
   },
   {
     "name": "Music",
     "slug": "music",
     "icon": "",
     "description": "",
-    "image": "music.jpg"
+    "image": "music.jpg",
+    "popular": "false"
   },
   {
     "name": "Other",
     "slug": "other",
     "icon": "",
     "description": "",
-    "image": "other.jpg"
+    "image": "other.jpg",
+    "popular": "false"
   },
   {
     "name": "Performing & Visual Arts",
     "slug": "performing-and-visual-arts",
     "icon": "",
     "description": "",
-    "image": "performing-and-visual-arts.jpg"
+    "image": "performing-and-visual-arts.jpg",
+    "popular": "false"
   },
   {
     "name": "Religion & Spirituality",
     "slug": "religion-and-spirituality",
     "icon": "",
     "description": "",
-    "image": "religion-and-spirituality.jpg"
+    "image": "religion-and-spirituality.jpg",
+    "popular": "false"
   },
   {
     "name": "School Activities",
     "slug": "school-activities",
     "icon": "",
     "description": "",
-    "image": "school-activities.jpg"
+    "image": "school-activities.jpg",
+    "popular": "false"
   },
   {
     "name": "Science & Technology",
     "slug": "science-and-technology",
     "icon": "",
     "description": "",
-    "image": "science-and-technology.jpg"
+    "image": "science-and-technology.jpg",
+    "popular": "false"
   },
   {
     "name": "Seasonal & Holiday",
     "slug": "seasonal-and-holiday",
     "icon": "",
     "description": "",
-    "image": "seasonal-and-holiday.jpg"
+    "image": "seasonal-and-holiday.jpg",
+    "popular": "false"
   },
   {
     "name": "Sports & Fitness",
     "slug": "sports-and-fitness",
     "icon": "",
     "description": "",
-    "image": "sports-and-fitness.jpg"
+    "image": "sports-and-fitness.jpg",
+    "popular": "false"
   },
   {
     "name": "Travel & Outdoor",
     "slug": "travel-and-outdoor",
     "icon": "",
     "description": "",
-    "image": "travel-and-outdoor.jpg"
+    "image": "travel-and-outdoor.jpg",
+    "popular": "false"
+  },
+  {
+    "name": "DJ Events",
+    "slug": "dj",
+    "icon": "",
+    "description": "",
+    "image-source": "https://www.sandiegoeventdj.com/",
+    "image": "dj.jpg",
+    "popular": "true"
+  },
+  {
+    "name": "Bar Crawls",
+    "slug": "bar-crawls",
+    "icon": "",
+    "description": "",
+    "image-source": "https://www.inyourpocket.com/st-petersburg-en/city-pub-crawl-st-petersburg_154875v",
+    "image": "bar-crawl.jpg",
+    "popular": "true"
+  },
+  {
+    "name": "Farmers Markets",
+    "slug": "farmers-markets",
+    "icon": "",
+    "description": "",
+    "image-source": "https://southsoundmag.com/the-ultimate-guide-to-farmers-markets/",
+    "image": "farmers-market.jpg",
+    "popular": "true"
   }
 ]
