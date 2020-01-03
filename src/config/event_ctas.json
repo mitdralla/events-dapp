@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Online Only",
+    "slug": "online-only",
+    "image": "alabama.jpg",
+    "image-source": "",
+    "active": "yes"
+  },
+  {
+    "name": "By Topic",
+    "slug": "by-topic",
+    "image": "by-topic.jpg",
+    "image-source": "",
+    "active": "yes"
+  },
+  {
+    "name": "By Country",
+    "slug": "by-country",
+    "image": "by-country.jpg",
+    "image-source": "",
+    "active": "yes"
+  },
+  {
+    "name": "All Events",
+    "image": "all-events.jpg",
+    "slug": "all-events",
+    "image-source": "",
+    "active": "yes"
+  }
+]

@@ -1,7 +1,7 @@
-[ {
+[
+  {
     "name": "Online Only",
     "abbreviation": "OL",
-    "image": "online.jpg",
     "slug": "online",
     "image-source": "https://askleo.com/whats-the-difference-between-the-web-and-the-internet/",
     "active": "yes"
@@ -9,8 +9,9 @@
   {
     "name": "Alabama",
     "abbreviation": "AL",
-    "image": "alabama.jpg",
     "slug": "alabama",
+    "image": "alabama.jpg",
+    "image-source": "https://livability.com/topics/careers-opportunities/beyond-silicon-valley-5-up-and-coming-tech-hotspots",
     "active": "yes"
   },
   {
