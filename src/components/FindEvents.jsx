@@ -156,7 +156,7 @@ class FindEvents extends Component
         <div className="row user-list mt-4">
           {eventCTAsJson.map(eventCTA => (
             <div className="col-lg-4 pb-4 d-flex align-items-stretch" key={eventCTA.slug}>
-              <div className="topic" style={{ backgroundImage: "url(/images/ctas/" + eventCTA.image +")"}} onClick={() => {this.ctasClick(eventCTA.slug)}}>
+              <div className="topic" style={{ backgroundColor: eventCTA.color}} onClick={() => {this.ctasClick(eventCTA.slug)}}>
               <div className="topic-caption"><h3>{eventCTA.name}</h3><button className="btn">View Events</button></div>
               </div>
             </div>

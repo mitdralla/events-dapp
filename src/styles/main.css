@@ -532,7 +532,7 @@ textarea:active, input:active, a:active {
 	height: inherit;
   padding-bottom: 25px;
 	box-shadow: inset 0px -181px 53px rgba(0,0,0,0.2);
-	/* display: none; */
+	border-radius: 5px;
 }
 
 .topic:hover > .topic-caption {
