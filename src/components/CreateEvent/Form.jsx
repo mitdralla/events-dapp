@@ -236,7 +236,7 @@ class Form extends Component {
 					</div>
 				</div>
 				<div className="form-group row">
-					<div className="col-lg-3">
+					<div className="col-lg-6">
 						<label htmlFor="price">Ticket Price:</label>
 						<div className="input-group mb-3">
 							<div className="input-group-prepend">
@@ -253,7 +253,7 @@ class Form extends Component {
 						<label className="custom-control-label" htmlFor="limited">Limited tickets</label>
 					</div>
 					<div className="row mt-3">
-						<div className="col-lg-3">
+						<div className="col-lg-6">
 							<label htmlFor="seats">Tickets available:</label>
 							<input type="number" className={"form-control " + warning.seats} id="seats" disabled={!this.state.limited}  ref={(input) => this.form.seats = input} autoComplete="off" />
 						</div>
