@@ -21,7 +21,7 @@
     "icon": "",
     "description": "",
     "image": "charity-and-causes.jpg",
-    "popular": "false"
+    "popular": "true"
   },
   {
     "name": "Community & Culture",
@@ -157,7 +157,7 @@
     "icon": "",
     "description": "",
     "image": "sports-and-fitness.jpg",
-    "popular": "false"
+    "popular": "true"
   },
   {
     "name": "Travel & Outdoor",
@@ -168,7 +168,7 @@
     "popular": "false"
   },
   {
-    "name": "DJ Events",
+    "name": "DJ",
     "slug": "dj",
     "icon": "",
     "description": "",
@@ -192,6 +192,24 @@
     "description": "",
     "image-source": "https://southsoundmag.com/the-ultimate-guide-to-farmers-markets/",
     "image": "farmers-market.jpg",
+    "popular": "false"
+  },
+  {
+    "name": "Hackathons",
+    "slug": "hackathons",
+    "icon": "",
+    "description": "",
+    "image-source": "https://southsoundmag.com/the-ultimate-guide-to-farmers-markets/",
+    "image": "hackathons.jpg",
+    "popular": "true"
+  },
+  {
+    "name": "Parties",
+    "slug": "parties",
+    "icon": "",
+    "description": "",
+    "image-source": "https://southsoundmag.com/the-ultimate-guide-to-farmers-markets/",
+    "image": "parties.jpg",
     "popular": "true"
   }
 ]

@@ -30,6 +30,12 @@ class FindEvents extends Component
     window.scrollTo(0, 0);
   }
 
+  readMoreClick(location)
+  {
+    this.props.history.push("/topics");
+    window.scrollTo(0, 0);
+  }
+
   ctasClick(slug)
   {
     this.props.history.push("/"+slug);
@@ -166,19 +172,30 @@ class FindEvents extends Component
         </div>
         <br /><br />
 
-        <h2><i className="fa fa-calendar-alt"></i> Browse Topics</h2>
-        <hr />
 
-        <div className="row user-list mt-4">
-          {topicsJson.map(topic => (
-            <div className="col-lg-4 pb-4 d-flex align-items-stretch" key={topic.slug}>
-              <div className="topic" style={{ backgroundImage: "url(/images/topics/" + topic.image +")"}} onClick={() => {this.topicClick(topic.slug)}}>
-              <div className="topic-caption"><h3>{topic.name}</h3><button className="btn">View Topic</button></div>
-              </div>
-            </div>
-          ))}
+        <h2><i className="fa fa-calendar-alt"></i> Popular Topics</h2>
+        <hr />
+          <div className="row user-list mt-4">
+          {
+            topicsJson && topicsJson
+              .filter(topic => topic.popular === "true")
+              .map((topic, index) => {
+                return (
+                  <div className="col-lg-4 pb-4 d-flex align-items-stretch" key={topic.slug}>
+                    <div className="topic" style={{ backgroundImage: "url(/images/topics/" + topic.image +")"}} onClick={() => {this.topicClick(topic.slug)}}>
+                    <div className="topic-caption"><h3>{topic.name}</h3><button className="btn">View Topic</button></div>
+                    </div>
+                  </div>
+                );
+              })
+          }
+          
+          <button className="btn read-more" onClick={() => {this.readMoreClick("/topics")}}>All Topics</button>
+          </div>
         </div>
-      </div>
+
+
+
     </div>
 
     </React.Fragment>

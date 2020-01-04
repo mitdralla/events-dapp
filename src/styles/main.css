@@ -42,6 +42,10 @@ textarea:active, input:active, a:active {
     outline: none !important;
 }
 
+button {
+  cursor: pointer !important;
+}
+
 #sidebar-wrapper.my-sidebar {
 	background-color: #333940;
 	color: #FAFAFA;
@@ -601,4 +605,20 @@ textarea:active, input:active, a:active {
 
 .my-tickets-page .card:before {
   display: none;
+}
+
+button.read-more {
+  padding: 15px 75px;
+  border-radius: 40px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+button.read-more:hover {
+  color: #fff !important;
+  background-color: #212020;
+  cursor: pointer;
 }
