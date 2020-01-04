@@ -198,6 +198,7 @@ class Form extends Component {
 		}
 
 		let seatsForHumans = '';
+		let organizerForHumans = '';
 
 		if (this.state.limited === true) {
 			if (this.state.seats === undefined) {
@@ -207,6 +208,13 @@ class Form extends Component {
 			}
 		} else {
 			seatsForHumans = "0";
+		}
+
+		if (this.state.organizer === '') {
+			organizerForHumans = "";
+		} else {
+			organizerForHumans = "Organizer: " + this.state.organizer;
+
 		}
 
 		return (
@@ -314,7 +322,7 @@ class Form extends Component {
 					</Link>
 					<div className="card-header text-muted event-header">
 						<img className="float-left" src={this.state.blockie} alt="" />
-						<p className="small text-truncate mb-0">Organizer: {this.state.organizer}</p>
+						<p className="small text-truncate mb-0">{organizerForHumans}</p>
 					</div>
 					<div className="card-body">
 						<h5 className="card-title event-title">
