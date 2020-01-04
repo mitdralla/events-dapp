@@ -32,7 +32,7 @@ class FindEvents extends Component
 
   readMoreClick(location)
   {
-    this.props.history.push("/topics");
+    this.props.history.push(location);
     window.scrollTo(0, 0);
   }
 
@@ -169,6 +169,8 @@ class FindEvents extends Component
               </div>
             </div>
           ))}
+
+          <button className="btn read-more" onClick={() => {this.readMoreClick("/findevents/1")}}>All Events</button>
         </div>
         <br /><br />
 
@@ -189,7 +191,7 @@ class FindEvents extends Component
                 );
               })
           }
-          
+
           <button className="btn read-more" onClick={() => {this.readMoreClick("/topics")}}>All Topics</button>
           </div>
         </div>
