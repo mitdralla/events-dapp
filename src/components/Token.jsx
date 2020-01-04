@@ -30,7 +30,7 @@ class Token extends Component {
 
 		return (
 			<div>
-				<h2>Hydro Tokens</h2>
+				<h2>Get Hydro Tokens</h2>
 				<hr />
 				{body}
 			</div>

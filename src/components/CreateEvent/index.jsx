@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { drizzleConnect } from 'drizzle-react';
 import PropTypes from 'prop-types';
+import makeBlockie from 'ethereum-blockies-base64';
 
 import ipfs from '../../utils/ipfs';
 
@@ -22,6 +23,7 @@ class CreateEvent extends Component {
 			error: false,
 			error_text: null,
 			ipfs: null,
+			fileImg: null,
 			data: {
 				name: null,
 				description: null,
@@ -130,6 +132,7 @@ class CreateEvent extends Component {
 		}, 500);
 	}
 
+
 	render() {
 		if (this.state.error) {
 			return <Error message={this.state.error_text} />;
@@ -144,40 +147,7 @@ class CreateEvent extends Component {
 				<Loader progress={this.state.stage} text={this.state.title} /> :
 				<React.Fragment>
 					<div className="row">
-						<div className="col col-xl-8 col-lg-8 col-md-12 col-sm-12">
 							<Form createEvent={this.createEvent} />
-						</div>
-
-						<div className="col col-xl-4 col-lg-4 col-md-12 col-sm-12">
-							<label>Event Preview:</label>
-							<div className="card">
-								<Link to={"/event/"}>
-									<img className="card-img-top event-image" src="/images/topics/parties.jpg" alt="Placeholder Event" />
-								</Link>
-								<div className="card-header text-muted event-header">
-									<img className="float-left" src="" alt="" />
-									<p className="small text-truncate mb-0">
-										Creator: <a href={"https://rinkeby.etherscan.io/address/"} target="_blank" className="event_creator-link">
-
-										</a>
-									</p>
-								</div>
-								<div className="card-body">
-									<h5 className="card-title event-title">
-									Hydro Party Event
-									</h5>
-									Description goes here.
-								</div>
-								<ul className="list-group list-group-flush">
-									<li className="list-group-item"><strong>Price:</strong> 100 Hydro</li>
-									<li className="list-group-item"><strong>Date:</strong> 01/01/2020</li>
-									<li className="list-group-item"><strong>Tickets Sold:</strong> 0/50</li>
-								</ul>
-								<div className="card-footer text-muted text-center">
-									<button className="btn btn-dark" disabled=""><i className="fas fa-ticket-alt"></i> Buy Now</button>
-								</div>
-							</div>
-						</div>
 					</div>
 				</React.Fragment>
 		;

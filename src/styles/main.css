@@ -56,11 +56,16 @@ button {
 }
 
 #sidebar-wrapper.my-sidebar .user-status .user-status-icon {
-	font-size: 50px;
+	font-size: 23px;
 	border: 3px solid #FAFAFA;
 	border-radius: 50%;
-	width: 75px;
-	height: 75px;
+  width: 35px;
+  height: 35px;
+  margin-top: -53px;
+}
+
+#sidebar-wrapper.my-sidebar .user-status .user-status-icon i {
+	padding-left: 6px;
 }
 
 #sidebar-wrapper.my-sidebar .user-status .user-status-icon img {
@@ -603,7 +608,7 @@ button {
 	z-index: -1;
 }
 
-.my-tickets-page .card:before {
+.my-tickets-page .card:before, .create-event .card:before {
   display: none;
 }
 
