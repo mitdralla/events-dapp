@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
-import makeBlockie from 'ethereum-blockies-base64';
 
 // import { Link } from 'react-router-dom';
 // import ReactTooltip from 'react-tooltip'
@@ -200,8 +199,8 @@ class Form extends Component {
 
 		let seatsForHumans = '';
 
-		if (this.state.limited == true) {
-			if (this.state.seats == undefined) {
+		if (this.state.limited === true) {
+			if (this.state.seats === undefined) {
 				seatsForHumans = "0";
 			} else {
 				seatsForHumans = "0/"+ this.state.seats;

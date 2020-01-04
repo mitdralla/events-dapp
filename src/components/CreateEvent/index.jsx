@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { drizzleConnect } from 'drizzle-react';
 import PropTypes from 'prop-types';
-import makeBlockie from 'ethereum-blockies-base64';
 
 import ipfs from '../../utils/ipfs';
 

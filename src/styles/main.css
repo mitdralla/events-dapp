@@ -78,6 +78,7 @@ button {
 
 #sidebar-wrapper.my-sidebar a {
 	color: #FAFAFA;
+  cursor: pointer;
 }
 
 #sidebar-wrapper.my-sidebar a:hover {
