@@ -7,12 +7,18 @@ import Loading from './Loading';
 import Ticket from './Ticket';
 
 class MyTickets extends Component {
-    constructor(props, context) {
-        super(props);
+  constructor(props, context) {
+    super(props);
 		this.contracts = context.drizzle.contracts;
 		this.tickets = this.contracts['OpenEvents'].methods.ticketsOf.cacheCall(this.props.accounts[0]);
 		this.perPage = 6;
 	}
+
+  readMoreClick(location)
+  {
+    this.props.history.push(location);
+    window.scrollTo(0, 0);
+  }
 
 	render() {
 		let body = <Loading />;
@@ -22,8 +28,9 @@ class MyTickets extends Component {
 
 			if (allTickets.length === 0) {
 				body =
-					<div>
-						You have not purchased any tickets. <Link to="/findevents/1">Find an event</Link>.
+					<div className="no-tickets text-center mt-5">
+						<h3>You have not purchased any tickets yet.</h3>
+            <button  className="btn btn-drk read-more" onClick={() => {this.readMoreClick("/findevents/1")}}>Find an Event</button>.
 					</div>
 				;
 			} else {
