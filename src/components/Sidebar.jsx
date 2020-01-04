@@ -56,7 +56,7 @@ class Sidebar extends Component
 							<Link to="/createevent" className="nav-link"><i className="fa fa-edit"></i> Create Event</Link>
 						</li>
 						<li className="nav-item">
-							<Link to="/myevents/1" className="nav-link"><i className="fa fa-calendar-alt"></i> My Owned Events</Link>
+							<Link to="/myevents/1" className="nav-link"><i className="fa fa-calendar-alt"></i> My Created Events</Link>
 						</li>
 					</ul>
 					<h5 className="mt-5">Tools</h5>
