@@ -83,8 +83,8 @@ class Form extends Component {
 
 	titleChange = (event) => {
 		let title = event.target.value;
-		if (title.length > 160) {
-			title = title.slice(0, 160);
+		if (title.length > 80) {
+			title = title.slice(0, 80);
 		}
 		this.setState({
 			title: title,
@@ -202,12 +202,12 @@ class Form extends Component {
 
 		if (this.state.limited === true) {
 			if (this.state.seats === undefined) {
-				seatsForHumans = "0";
+				seatsForHumans = "0/∞";
 			} else {
 				seatsForHumans = "0/"+ this.state.seats;
 			}
 		} else {
-			seatsForHumans = "0";
+			seatsForHumans = "0/∞";
 		}
 
 		if (this.state.organizer === '') {
@@ -224,7 +224,7 @@ class Form extends Component {
 					<div className="form-group">
 						<label htmlFor="name">Event Name:</label>
 						<input type="text" className={"form-control " + warning.name} id="name" value={this.state.title} onChange={this.titleChange} autoComplete="off" />
-						<small className="form-text text-muted">{this.state.title_length}/160 characters available.</small>
+						<small className="form-text text-muted">{this.state.title_length}/80 characters available.</small>
 					</div>
 					<div className="form-group">
 						<label htmlFor="description">Event Description:</label>
