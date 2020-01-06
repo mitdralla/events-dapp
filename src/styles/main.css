@@ -274,6 +274,7 @@ button {
 
 .carousel-caption p {
 	text-shadow: 2px 2px 24px #000;
+  font-weight: 500;
 }
 
 .carousel button {
