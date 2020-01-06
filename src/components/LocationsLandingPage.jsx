@@ -8,6 +8,7 @@ import Loading from './Loading';
 import Event from './Event';
 
 import statesJson from '../config/states.json';
+import locationsJson from '../config/location_ctas.json';
 
 
 class LocationsLandingPage extends Component {
@@ -20,7 +21,7 @@ class LocationsLandingPage extends Component {
 	}
 
   topicClick(slug) {
-    this.props.history.push("/location/state/"+slug);
+    this.props.history.push(slug);
     window.scrollTo(0, 0);
   }
 
@@ -108,9 +109,21 @@ class LocationsLandingPage extends Component {
       <h2><i className="fa fa-calendar-alt"></i> Browse Locations</h2>
       <hr />
         <div className="row user-list mt-4">
+          {locationsJson.map(location => (
+            <div className="col-lg-4 pb-4 d-flex align-items-stretch" key={location.slug}>
+              <div className="topic" style={{ backgroundImage: "url(/images/ctas/" + location.image +")"}} onClick={() => {this.topicClick(location.slug)}}>
+              <div className="topic-caption"><h3>{location.name}</h3><button className="btn">View Location</button></div>
+              </div>
+            </div>
+            ))}
+        </div>
+        <br /><br />
+      <h2><i className="fa fa-calendar-alt"></i> Browse States</h2>
+      <hr />
+        <div className="row user-list mt-4">
           {statesJson.map(state => (
             <div className="col-lg-4 pb-4 d-flex align-items-stretch" key={state.slug}>
-              <div className="topic" style={{ backgroundImage: "url(/images/states/" + state.image +")"}} onClick={() => {this.topicClick(state.slug)}}>
+              <div className="topic" style={{ backgroundImage: "url(/images/states/" + state.image +")"}} onClick={() => {this.topicClick("/locations/state/"+state.slug)}}>
               <div className="topic-caption"><h3>{state.name}</h3><button className="btn">View Location</button></div>
               </div>
             </div>

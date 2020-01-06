@@ -629,3 +629,10 @@ button.read-more:hover {
   background-color: #212020;
   cursor: pointer;
 }
+
+.branding-logo {
+  float: left;
+  width: 38px;
+  margin-top: 5px;
+  margin-right: 10px;
+}

@@ -118,6 +118,7 @@ class App extends Component
   						backgroundImage: "url(/images/slides/"+ randomBG + ")",
 						}} />
 						<div className="branding">
+						<img src="/images/hydro.png" className="branding-logo" alt="hydro logo" /> 
 						<h1>Hydro Events Marketplace</h1>
 						<p>What are you going to do?</p>
 						</div>

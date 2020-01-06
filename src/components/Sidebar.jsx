@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import makeBlockie from 'ethereum-blockies-base64';
 
 class Sidebar extends Component
 {
@@ -18,7 +19,7 @@ class Sidebar extends Component
 			user =
 				<div>
 					<div className="user-status-icon">
-						<a href="/"><img src="/images/hydro.png" alt={this.props.account} /></a>
+						<a href="/"><img src={makeBlockie(this.props.account)} alt={this.props.account} /></a>
 					</div>
 					{/* {this.props.account} */}
 				</div>
