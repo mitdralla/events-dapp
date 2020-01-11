@@ -160,7 +160,7 @@ class Event extends Component {
 		let description = <Loading />;
 		if (this.state.ipfs_problem) description = <p className="text-center mb-0 event-description"><span role="img" aria-label="monkey">🙊</span>We can not load description</p>;
 		if (this.state.description !== null) {
-			let text = this.state.description.length > 140 ? this.state.description.slice(0, 65) + '...' : this.state.description;
+			let text = this.state.description.length > 140 ? this.state.description.slice(0, 60) + '...' : this.state.description;
 			description = <p className="card-text event-description">{text}</p>;
 		}
 		return description;
@@ -170,8 +170,8 @@ class Event extends Component {
 		let locations = []
 		if (this.state.ipfs_problem) locations = <p className="text-center mb-0 event-description"><span role="img" aria-label="monkey">🙊</span>We can not load location</p>;
 		if (this.state.locations !== null) {
-			let place= this.state.locations
-			locations = <p className="card-text event-description">{place}</p>;
+			let place= this.state.locations.length > 140 ? this.state.locations.slice(0, 60) + '...' : this.state.locations;
+			locations = <strong>Location: {place}</strong>;
 		}
 		return locations;
 	}
@@ -203,7 +203,7 @@ class Event extends Component {
 
 
 	//Testing Buying with Hydro/OMG
-	/*afterApprove2 = () => {
+	afterApprove2 = () => {
 		if (this.state.waiting_approve) {
 			if (typeof this.props.transactionStack[this.state.approve_tx] !== 'undefined') {
 				this.setState({
@@ -229,7 +229,7 @@ class Event extends Component {
 		} else {
 			this.contracts['OpenEvents'].methods.buyTicket.cacheSend(this.props.id, {value: this.props.contracts['OpenEvents'].getEvent[this.event].value[2]});
 		}
-	}*/
+	}
 
 	 render() {
 		let body = <div className="card"><div className="card-body"><Loading /></div></div>;
@@ -295,7 +295,7 @@ class Event extends Component {
 					</div>
 					
 					<ul className="list-group list-group-flush">
-						<li className="list-group-item "><strong>Location:</strong> {locations}</li>
+						<li className="list-group-item ">{locations}</li>
 						<li className="list-group-item"><strong>Category:</strong> {event_data[8]}</li>
 						<li className="list-group-item"><strong>Price:</strong> <img src={'/images/'+symbol} className="event_price-image" alt="Event Price Icon" /> {price}</li>
 						<li className="list-group-item"><strong>Date:</strong> {date.toLocaleDateString()} at {date.toLocaleTimeString()}</li>

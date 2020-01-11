@@ -22,7 +22,7 @@ class FindEvents extends Component
       super(props);
       this.state = {
         openEvents : '',
-        blocks : [],
+        blocks : 5000000,
         latestblocks : [],
         loading : false,
         Events_Blockchain : [],

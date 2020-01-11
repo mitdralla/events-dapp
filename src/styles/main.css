@@ -376,6 +376,8 @@ button {
 
 .page-wrapper-inner {
 	padding: 60px 60px 60px 60px;
+	
+	
 }
 
 .branding {
@@ -395,6 +397,7 @@ button {
   padding-right: 80px;
   padding-left: 325px;
   padding-top: 75px;
+
 
 }
 
@@ -479,10 +482,12 @@ button {
 
 .retract-page-inner-wrapper {
 	margin: -60px -60px 0 -60px !important;
+	
 }
 
 .retract-page-inner-wrapper-alternative {
 	margin: 0px -60px 0 -60px !important;
+
 
 
 }
@@ -695,6 +700,10 @@ button {
     color: rgb(241, 203, 34);
     background-color: #b700ff;
     border-color: #c31ec9;
+}
+
+.page-link:hover{
+	color: rgb(219, 206, 164)!important;
 }
 
 .search-icon{
