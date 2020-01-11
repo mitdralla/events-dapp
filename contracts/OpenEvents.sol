@@ -33,7 +33,7 @@ contract OpenEvents is OpenTicket, Pausable, Destructible {
 	// Mapping from owner to list of owned events IDs.
 	mapping(address => uint256[]) private ownedEvents;
 
-	event CreatedEvent(address indexed owner, uint eventId);
+	event CreatedEvent(address indexed owner, uint eventId, string name ,uint time, uint price, bool token, bool limited, uint seats, uint sold, string ipfs, string category);
 	event SoldTicket(address indexed buyer, uint indexed eventId, uint ticketId);
 
 	/**
@@ -112,7 +112,7 @@ contract OpenEvents is OpenTicket, Pausable, Destructible {
 		});
 		uint _eventId = openEvents.push(_event).sub(1);
 		ownedEvents[msg.sender].push(_eventId);
-		emit CreatedEvent(msg.sender, _eventId);
+		emit CreatedEvent(msg.sender, _eventId,_name,_time,_price,_token,_limited,_seats,0,_ipfs,_category);
 	}
 
 	/**

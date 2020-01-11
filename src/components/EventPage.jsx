@@ -5,9 +5,14 @@ import PropTypes from 'prop-types';
 import makeBlockie from 'ethereum-blockies-base64';
 
 import ipfs from '../utils/ipfs';
+import Web3 from 'web3';
 
 import Loading from './Loading';
 import CheckUser from './CheckUser';
+import {Open_events_ABI, Open_events_Address} from '../config/OpenEvents';
+
+
+import {Hydro_Testnet_Token_ABI, Hydro_Testnet_Token_Address} from '../config/hydrocontract_testnet';
 
 
 class EventPage extends Component {
@@ -23,11 +28,63 @@ class EventPage extends Component {
 			  image: null,
 			  ipfs_problem: false,
 			  approve_tx: null,
-			  waiting_approve: false
+			  waiting_approve: false,
+			  account:[],
+			  soldTicket:[]
 			  
 		  };
 		  this.isCancelled = false;
 	}
+
+	//Get SoldTicket Data
+	async loadblockhain(){
+
+	const web3 = new Web3(new Web3.providers.WebsocketProvider('wss://rinkeby.infura.io/ws/v3/72e114745bbf4822b987489c119f858b'));
+	const openEvents =  new web3.eth.Contract(Open_events_ABI, Open_events_Address);
+
+    if (this._isMounted){
+    this.setState({openEvents});
+    this.setState({hydroTransfer:[]});}
+  
+    const blockNumber = await web3.eth.getBlockNumber();
+    if (this._isMounted){
+    this.setState({blocks:blockNumber - 50000});
+    this.setState({latestblocks:blockNumber});
+    this.setState({soldTicket:[]});}
+  
+    openEvents.getPastEvents("SoldTicket",{filter:{eventId:this.props.match.params.id},fromBlock: this.state.blocks, toBlock:'latest'})
+    .then(events=>{
+
+    this.setState({loading:true})
+    var newest = events;
+    var newsort= newest.concat().sort((a,b)=> b.blockNumber- a.blockNumber);
+    if (this._isMounted){
+    this.setState({soldTicket:newsort,check:newsort});
+    this.setState({loading:false})
+    this.setState({active_length:this.state.soldTicket.length},()=>console.log(this.state.active_length));
+    
+  	}  
+    }).catch((err)=>console.error(err))
+
+    openEvents.events.SoldTicket({filter:{eventId:this.props.match.params.id},fromBlock: this.state.latestblocks, toBlock:'latest'})
+  	.on('data', (log) =>setTimeout(()=> {
+    this.setState({loading:true});
+    
+    this.setState({soldTicket:[...this.state.soldTicket,log]});
+    var newest = this.state.soldTicket
+    var newsort= newest.concat().sort((a,b)=> b.blockNumber- a.blockNumber);
+    if (this._isMounted){
+    
+    
+    //this.setState({incoming:false});
+    this.setState({soldTicket:newsort});
+    this.setState({active_length:this.state.soldTicket.length})}
+    this.setState({loading:false});
+    }),5000)
+  }
+
+
+	
 
 	updateIPFS = () => {
 		if (
@@ -105,6 +162,8 @@ class EventPage extends Component {
 		
 	}
 
+	
+
 	render() {
 		let body = <Loading />;
 
@@ -112,7 +171,7 @@ class EventPage extends Component {
 			if (this.props.contracts['OpenEvents'].getEvent[this.event].error) {
 				body = <div className="text-center mt-5"><span role="img" aria-label="unicorn">🦄</span> Hydro Event not found</div>;
 			} else {
-				let event_data = this.props.contracts['OpenEvents'].getEvent[this.event].value;
+				let event_data = this.props.contracts['OpenEvents'].getEvent[this.event].value;	
 
 				let image = this.getImage();
 				let description = this.getDescription();
@@ -125,16 +184,24 @@ class EventPage extends Component {
 
 				let disabled = false;
 				let disabledStatus;
+				let sold = true;
 
 				if (event_data[4] && (Number(event_data[6]) >= Number(event_data[5]))) {
 					disabled = true;
 					disabledStatus = <span><span role="img" aria-label="alert">⚠️</span> No more tickets</span>;
 				}
+				
 
 				if (date.getTime() < new Date().getTime()) {
 					disabled = true;
 					disabledStatus = <span><span role="img" aria-label="alert">⚠️</span> Has already ended</span>;
 				}
+
+				if(this.state.active_length <= 0){
+					sold=false;
+					
+				}
+				
 
 				body =
 					<div className="row">
@@ -166,22 +233,40 @@ class EventPage extends Component {
 								</ul>
 							</div>
 						</div>
+						<hr/>
+						
+						<div className="underline2 col-12"><h4 className="transactions">Transactions</h4>
+						
+						{this.state.soldTicket.map((sold)=>(<p className="sold_text col-md-12" >{sold.returnValues.buyer} has bought 1 ticket for {event_data[0]}</p>))}
+						{!sold &&  <p className="sold_text col-md-12" >No one has bought a ticket so far,</p>}
+      
+						
+						</div>
+						
+						
 					</div>
+					
 				;
 			}
 		}
+
+		
 
 		return (
 			<div>
 				<h2>Event</h2>
 				<hr />
 				{body}
+				<hr/>
+		 			
 			</div>
 		);
 	}
 
 	componentDidMount() {
+		this._isMounted = true;
 		this.updateIPFS();
+		this.loadblockhain();
 	}
 
 	componentDidUpdate() {

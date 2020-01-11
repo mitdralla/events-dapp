@@ -4,26 +4,156 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Carousel from 'react-bootstrap/Carousel'
 
+// Import dApp Components
 import Loading from './Loading';
 import Event from './Event';
+import Web3 from 'web3';
+import {Open_events_ABI, Open_events_Address} from '../config/OpenEvents';
 
-import slidesJson from '../config/slides.json';
+// TODO: Make slides dynamic: import slidesJson from '../config/slides.json';
 import topicsJson from '../config/topics.json';
 
 
-class FindEvents extends Component {
-    constructor(props, context) {
-        super(props);
-		this.contracts = context.drizzle.contracts;
-		this.eventCount = this.contracts['OpenEvents'].methods.getEventsCount.cacheCall();
-		this.perPage = 6;
+
+class FindEvents extends Component
+{
+  constructor(props, context)
+  {
+      super(props);
+      this.state = {
+        openEvents : '',
+        blocks : [],
+        latestblocks : [],
+        loading : false,
+        Events_Blockchain : [],
+        active_length : '',
+        isOldestFirst:false,
+
+      };
+      
+	    this.contracts = context.drizzle.contracts;
+	    this.eventCount = this.contracts['OpenEvents'].methods.getEventsCount.cacheCall();
+	    this.perPage = 6;
+      this.topicClick = this.topicClick.bind(this);
+      this.toggleSortDate = this.toggleSortDate.bind(this); 
 	}
 
-	render() {
+  topicClick(slug)
+  {
+    this.props.history.push("/topic/"+slug);
+    window.scrollTo(0, 0);
+  }
+
+  readMoreClick(location)
+  {
+    this.props.history.push(location);
+    window.scrollTo(0, 0);
+  }
+
+  ctasClick(slug)
+  {
+    this.props.history.push("/"+slug);
+    window.scrollTo(0, 0);
+  }
+
+  //Loads The Blockhain Data,
+  async loadBlockchain(){
+    
+    const web3 = new Web3(new Web3.providers.WebsocketProvider('wss://rinkeby.infura.io/ws/v3/72e114745bbf4822b987489c119f858b'));
+    const openEvents =  new web3.eth.Contract(Open_events_ABI, Open_events_Address);
+    
+    if (this._isMounted){
+    this.setState({openEvents});
+    this.setState({Events_Blockchain:[]});}
+    const dateTime = Date.now();
+    const dateNow = Math.floor(dateTime / 1000);
+    
+    const blockNumber = await web3.eth.getBlockNumber();
+    if (this._isMounted){
+    this.setState({blocks:blockNumber - 50000});
+    this.setState({latestblocks:blockNumber});
+    this.setState({Events_Blockchain:[]});}
+  
+    openEvents.getPastEvents("CreatedEvent",{fromBlock: this.state.blocks, toBlock:'latest'})
+    .then(events=>{
+    this.setState({loading:true})
+    var newest = events.filter((activeEvents)=>activeEvents.returnValues.time >=(dateNow));
+    var newsort= newest.concat().sort((a,b)=> b.blockNumber- a.blockNumber);
+    if (this._isMounted){
+    this.setState({Events_Blockchain:newsort,check:newsort});
+    this.setState({loading:false})
+    this.setState({active_length:this.state.Events_Blockchain.length});   
+  
+  }
+     
+    }).catch((err)=>console.error(err))
+
+    openEvents.events.CreatedEvent({fromBlock: this.state.latestblocks, toBlock:'latest'})
+    .on('data', (log) => {
+    this.setState({loading:true});
+   
+    this.setState({Events_Blockchain:[...this.state.Events_Blockchain,log]});
+    var newest = this.state.Events_Blockchain
+    var newsort= newest.concat().sort((a,b)=> b.blockNumber- a.blockNumber);
+    if (this._isMounted){
+    
+    
+    //this.setState({incoming:false});
+    this.setState({Events_Blockchain:newsort});
+    this.setState({active_length:this.state.Events_Blockchain.length})}
+    this.setState({loading:false});
+    console.log('state',this.state.loading)
+    console.log('state',this.state.Events_Blockchain)
+    console.log('state',this.state.active_length)
+    })
+  }
+
+  //Sort By Name
+  updateSearch=(e)=>{
+    let {value} = e.target
+    this.setState({value},()=>{
+    if(this.state.value !== ""){  
+    var filteredEvents = this.state.check;
+    filteredEvents = filteredEvents.filter((events)=>{
+    return events.returnValues.name.toLowerCase().search(this.state.value.toLowerCase()) !==-1;
+    
+    
+    })}else{ filteredEvents = this.state.check}
+
+  this.setState({Events_Blockchain:filteredEvents,
+    active_length:filteredEvents.length},()=>console.log("chcking page",this.state.active_length));
+
+  })}
+
+  //Sort By Date(Newest/Oldest)
+  toggleSortDate=(e)=>{
+    let {value} = e.target
+    this.setState({value},()=>{
+    const{Events_Blockchain}=this.state
+    const{ended}=Events_Blockchain
+    var newPolls = ended
+   
+     if(this.state.isOldestFirst){
+        newPolls = Events_Blockchain.concat().sort((a,b)=> b.returnValues.eventId - a.returnValues.eventId)
+        } 
+    else {
+        newPolls = Events_Blockchain.concat().sort((a,b)=> a.returnValues.eventId - b.returnValues.eventId)
+      }
+    
+      this.setState({
+      isOldestFirst: !this.state.isOldestFirst,
+      Events_Blockchain:newPolls  
+      });
+    })}
+  
+
+	render()
+  {
 		let body = <Loading />;
 
-		if (typeof this.props.contracts['OpenEvents'].getEventsCount[this.eventCount] !== 'undefined') {
-			let count = Number(this.props.contracts['OpenEvents'].getEventsCount[this.eventCount].value);
+		if (typeof this.props.contracts['OpenEvents'].getEventsCount[this.eventCount] !== 'undefined' && this.state.active_length !== 'undefined') {
+      //let count = Number(this.props.contracts['OpenEvents'].getEventsCount[this.eventCount].value);
+      let count = this.state.active_length
 			if (count === 0) {
 				body = <p className="text-center not-found"><span role="img" aria-label="thinking">🤔</span>&nbsp;No events found. <a href="/createevent">Try creating one.</a></p>;
 			} else {
@@ -35,12 +165,17 @@ class FindEvents extends Component {
 				if (end > count) end = count;
 				let pages = Math.ceil(count / this.perPage);
 
-				let events_list = [];
+        let events_list = [];
+        let events = [];
 
-				for (let i = start; i < end; i++) {
-					events_list.push(<Event key={i} id={i} />);
-				}
+        this.state.Events_Blockchain.map((value)=>events_list.push(<Event key={value.returnValues.eventId} id={value.returnValues.eventId} ipfs={value.returnValues.ipfs}/>))
+          
+        for (let i = start; i < end; i++) {
+        events.push(events_list[i])
+        }
 
+        events_list.reverse();
+        
 				let pagination = '';
 				if (pages > 1) {
 					let links = [];
@@ -66,7 +201,7 @@ class FindEvents extends Component {
 				body =
 					<div >
 						<div className="row user-list mt-4">
-							{events_list}
+							{events}
 						</div>
 						{pagination}
 					</div>
@@ -120,41 +255,92 @@ class FindEvents extends Component {
         </Carousel>
 
 			<div className="retract-page-inner-wrapper-alternative">
-      <br /><br />
+
+      <br/><br />
+
       <div className="input-group input-group-lg">
         <div className="input-group-prepend">
-          <span className="input-group-text" id="inputGroup-sizing-lg"><i className="fa fa-search"></i>&nbsp;Search </span>
-        </div>
-        <input type="text" className="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
+          <span className="input-group-text search-icon" id="inputGroup-sizing-lg"><i className="fa fa-search"></i>&nbsp;Search </span>
+        </div> 
+        <input type="text" value={this.state.value} onChange={this.updateSearch.bind(this)} className="form-control2" aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
       </div>
       <br /><br />
+      
+      <div>
+        <div className="row">
+         <h2 className="col-md-10"><i className="fa fa-calendar-alt"></i> Recent Events</h2> <button className="btn sort_button col-md-2" value={this.state.value} onClick={this.toggleSortDate} onChange={this.toggleSortDate.bind(this)}>{this.state.isOldestFirst ?'Sort:Oldest':'Sort:Newest'}</button>
+        </div>
+
+        <hr/>
+          {body}
+      </div>
+
+      <br /><br />
+
+  
+     
 
       {/*
-      TODO: Looks and feel of buttons
-      <div className="topics-wrapper">
-        {topicsJson.map(topic => (
-          <button className="btn btn-dark" key={topic.link} onClick={() =>{window.open(topic.link)}}>{topic.name}</button>
-        ))}
-      </div>
-      {*/}
-
-        <div>
-				    <h2><i className="fa fa-calendar-alt"></i> Find Events</h2>
-				    <hr />
-				    {body}
+      <h2><i className="fa fa-calendar-alt"></i> Browse Events By</h2>
+      <hr />
+        <div className="row user-list mt-4">
+          {eventCTAsJson.map(eventCTA => (
+            <div className="col-lg-4 pb-4 d-flex align-items-stretch" key={eventCTA.slug}>
+              <div className="topic" style={{ backgroundImage: "url(/images/cta"+eventCTA.image+")"}} onClick={() => {this.ctasClick(eventCTA.slug)}}>
+              <div className="topic-caption"><h3>{eventCTA.name}</h3><button className="btn">View Events</button></div>
+              </div>
+            </div>
+          ))}
+          <button className="btn read-more" onClick={() => {this.readMoreClick("/findevents/1")}}>All Events</button>
         </div>
-			</div>
+        <br /><br />
+        */}
 
-      </React.Fragment>
+      <h2><i className="fa fa-calendar-alt"></i> Popular Topics</h2>
+        <hr/>
+          <div className="row user-list mt-4">
+          {
+            topicsJson && topicsJson
+              .filter(topic => topic.popular === "true")
+              .map((topic, index) => {
+                return (
+                  <div className="col-lg-4 pb-4 d-flex align-items-stretch" key={topic.slug}>
+                    <div className="topic" style={{ backgroundImage: "url(/images/topics/" + topic.image +")"}} onClick={() => {this.topicClick(topic.slug)}}>
+                    <div className="topic-caption"><h3>{topic.name}</h3><button className="sort_button">View Topic</button></div>
+                    </div>
+                  </div>
+                );
+              })
+          }
+
+          <button className="btn read-more" onClick={() => {this.readMoreClick("/topics")}}>All Topics</button>
+          </div>
+        
+
+
+
+
+
+
+    </div>
+
+    </React.Fragment>
 		);
+  }
+  
+  componentDidMount() {
+    this._isMounted = true;
+		this.loadBlockchain();
 	}
 }
 
-FindEvents.contextTypes = {
+FindEvents.contextTypes =
+{
     drizzle: PropTypes.object
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = state =>
+{
     return {
 		contracts: state.contracts,
 		accounts: state.accounts

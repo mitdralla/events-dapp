@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400');
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
 	background-color: #FAFAFA;
 	font-family: 'Nunito Sans', sans-serif;
@@ -38,21 +42,30 @@ textarea:active, input:active, a:active {
     outline: none !important;
 }
 
+button {
+	cursor: pointer !important;
+  }
+
 #sidebar-wrapper.my-sidebar {
 	background-color: #333940;
 	color: #FAFAFA;
 	padding: 20px;
-	opacity: 0.7;
+	opadcity: 0.7;
 	box-shadow: 4px 8px 8px rgba(0,0,0,0.4);
+	background:linear-gradient(to bottom,black,rgb(156, 34, 160),black);
+	text-align: left;
 }
 
 #sidebar-wrapper.my-sidebar .user-status .user-status-icon {
-	font-size: 50px;
+	font-size: 23px;
 	border: 3px solid #FAFAFA;
 	border-radius: 50%;
-	width: 75px;
-	height: 75px;
-	margin: 0 auto;
+	width: 35px;
+	height: 35px;
+	margin-top: -53px;
+}
+#sidebar-wrapper.my-sidebar .user-status .user-status-icon i {
+	padding-left: 6px;
 }
 
 #sidebar-wrapper.my-sidebar .user-status .user-status-icon img {
@@ -134,6 +147,7 @@ textarea:active, input:active, a:active {
   padding: 1rem 1.25rem;
 }
 
+
 .event_creator-link {
 	color: #636363;
 }
@@ -182,10 +196,14 @@ textarea:active, input:active, a:active {
 }
 
 .carousel {
+	transition: all .7s;
 	position: relative;
 	/* margin-left: -60px; */
 	/* margin-top: -55px !important; */
 	/* margin-right: -60px; */
+}
+.carousel:hover {
+	transform: scale(1.05);
 }
 
 .carousel:before {
@@ -256,12 +274,17 @@ textarea:active, input:active, a:active {
 
 .carousel-caption p {
 	text-shadow: 2px 2px 24px #000;
+	font-weight: 500;
 }
 
 .carousel button {
 	padding: 15px 60px 15px 60px !important;
-  border-radius: 30px !important;
+  	border-radius: 30px !important;
 	font-size: 20px;
+}
+
+.carousel-control-next, .carousel-control-prev {
+    z-index: 9999999999999999 !important;
 }
 
 .carousel .slide1 button {
@@ -359,12 +382,16 @@ textarea:active, input:active, a:active {
 	text-shadow: 2px 2px 24px #000;
 }
 
+.branding p {
+	font-size: 1.2rem;
+}
+
 #wrapper.toggled #page-content-wrapper {
   position: relative;
   margin-right: 0;
   padding-right: 80px;
-	padding-left: 325px;
-	padding-top: 75px;
+  padding-left: 325px;
+  padding-top: 75px;
 
 }
 
@@ -414,7 +441,9 @@ textarea:active, input:active, a:active {
 
 .card-footer button {
 	padding: 5px 30px 5px 30px;
-  border-radius: 20px;
+	border-radius: 20px;
+
+	background:linear-gradient(160deg,black,black,rgb(35, 1, 36),rgb(86, 8, 88),rgb(156, 34, 160));
 }
 
 .container-fluid:before  {
@@ -441,6 +470,7 @@ textarea:active, input:active, a:active {
 	border-radius: 100px / 5px;
 	-webkit-box-shadow: 0 0 18px rgba(0,0,0,0.6);
 	box-shadow: 0 0 18px rgba(0,0,0,0.6);
+	
 }
 
 .retract-page-inner-wrapper {
@@ -449,10 +479,29 @@ textarea:active, input:active, a:active {
 
 .retract-page-inner-wrapper-alternative {
 	margin: 0px -60px 0 -60px !important;
+
+
 }
 
 .events-wrapper {
 	margin-bottom:60px !important;
+}
+
+.cadrd {
+	position: relative;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	min-width: 0;
+    word-wrap: break-word;
+	background-color: rgb(24, 21, 21);
+	background: linear-gradient(to left,rgb(24, 21, 21),rgb(83, 22, 22) );
+	background: linear-gradient(to left,rgb(21, 21, 24),rgb(173, 24, 141) );
+    background-clip: border-box;
+	border: 1px solid rgba(0,0,0,.125);
+	color:rgb(49, 44, 44);
+	border-radius: .25rem;
 }
 
 .hamburgerNav i {
@@ -473,4 +522,257 @@ textarea:active, input:active, a:active {
 	margin-right: 30px;
 	padding-top: 15px 60px 15px 60px !important;
 	margin-bottom: 30px;
+	
 }
+
+
+.topic {
+	width: 100%;
+	height: 152px;
+	background-position: center center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	list-style-type: none;
+	border-radius: 5px;
+	box-shadow: 0 0 18px rgba(0,0,0,0.6);
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	transition: all .3s;
+	
+}
+
+.topic:hover {
+	transform: scale(1.1);
+	z-index: 999;
+	cursor: pointer;
+}
+
+
+.card:hover {
+	transform: scale(1.04);
+	z-index: 999 !important;
+}
+
+.card{
+	transition: all .4s;
+}
+
+.topic-caption {
+  position: absolute;
+  right: 0;
+  bottom: 0px;
+  left: 0;
+  z-index: 10;
+  padding-top: 45px;
+  padding-bottom: 20px;
+  color: #fff;
+  text-align: center;
+  width: 100%;
+  height: inherit;
+  padding-bottom: 25px;
+  box-shadow: inset 0px -181px 53px rgba(0,0,0,0.2);
+  border-radius: 5px;
+
+			  
+ 
+}
+
+.topic:hover > .topic-caption {
+	/* display: block; */
+}
+
+.topic-caption button {
+	padding: 5px 25px;
+ 	margin-right: 0px;
+	background-color: #e91e63 !important;
+	border: 1px solid #e91e63 !important;
+	color: #fff !important;
+	background-color: #fff !important;
+	border: 1px solid #fff !important;
+	 opacity: 1;
+	 transition: all 1s;
+}
+
+.topic-caption button:hover {
+  opacity: 1;
+}
+
+.topic-caption h3 {
+	text-shadow: 2px 2px 24px #000 !important;
+	font-weight: 400;
+	font-size:1.5rem !important;
+}
+
+.topic-hero-wrapper {
+
+}
+
+.topic-hero-wrapper img {
+	width: 100%;
+	border-radius: 5px;
+	z-index: 1;
+}
+
+.topic-hero-wrapper:before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    width: 96%;
+    top: 0;
+    height: 10px;
+    left: 2%;
+    border-radius: 100px / 5px;
+    -webkit-box-shadow: 0 0 18px rgba(0,0,0,1);
+    box-shadow: 0 0 18px rgba(0,0,0,1);
+		z-index: -1;
+}
+
+.topic-hero-wrapper:after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  width: 96%;
+  bottom: 1px;
+  height: 10px;
+  left: 2%;
+  border-radius: 100px / 5px;
+  -webkit-box-shadow: 0 0 18px rgba(0,0,0,0.6);
+  box-shadow: 0 0 18px rgba(0,0,0,0.6);
+	z-index: -1;
+}
+
+.my-tickets-page .card:before, .create-event .card:before {
+	display: none;
+  }
+  
+  button.read-more {
+	padding: 15px 75px;
+	border-radius: 40px;
+	background-color: #343a40;
+	color: #fff;
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 30px;
+  }
+  
+  button.read-more:hover {
+	color: #fff !important;
+	background-color: #212020;
+	cursor: pointer;
+  }
+  
+  .branding-logo {
+	float: left;
+	width: 38px;
+	margin-top: 5px;
+	margin-right: 10px;
+  }
+
+
+
+
+/* TheMartian CSS */
+
+.momo{
+	color:rgb(219, 206, 164)!important;
+	background:linear-gradient(320deg,black,black,rgb(35, 1, 36),rgb(86, 8, 88),rgb(156, 34, 160));
+}
+
+.page-link{
+	
+	background:linear-gradient(160deg,black,black,rgb(35, 1, 36),rgb(86, 8, 88),rgb(156, 34, 160));
+	color:white;
+}
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: rgb(241, 203, 34);
+    background-color: #b700ff;
+    border-color: #c31ec9;
+}
+
+.search-icon{
+	background:linear-gradient(160deg,black,black,rgb(35, 1, 36),rgb(86, 8, 88),rgb(156, 34, 160));
+	color:rgb(241, 236, 187);
+	border-top-left-radius: 25px!important;
+	border-bottom-left-radius: 25px!important;	
+	border:1px solid rgb(35, 1, 36);	
+	margin-left:20px;
+}
+
+.form-control2 {
+	border-top-right-radius: 25px!important;
+	border-bottom-right-radius: 25px!important;
+	background:rgb(241, 236, 187);
+	background:white;
+	border:1px solid rgb(35, 1, 36)!important;	
+	
+	width: 82%;
+	font-size:20px;
+      
+}
+
+
+
+.underline2{
+	margin-top:30px;
+	border-bottom:1px solid rgb(219, 206, 164);
+	justify-content:center;
+	margin-left:15px;
+	background:linear-gradient(160deg,black,black,rgb(35, 1, 36),rgb(86, 8, 88),rgb(156, 34, 160));
+	max-width:822px;
+	border-top:1px solid rgb(219, 206, 164);
+	color:rgb(236, 193, 73);
+	color:rgb(241, 241, 241);
+	text-align:center;
+	border:1px solid black;
+	border-radius: 10px;
+	overflow:hidden;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+	
+  }
+
+  .transactions{
+	text-align:center; 
+	padding:5px;
+	
+  }
+
+  .sold_lines{
+	
+	background:linear-gradient(160deg,black,black,rgb(35, 1, 36),rgb(86, 8, 88),rgb(156, 34, 160));
+	border-top:1px solid rgb(66, 2, 68);
+	color:rgb(236, 193, 73);
+	color:rgb(241, 236, 187);
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: 13px;
+	overflow:hidden;
+	
+	
+  }
+
+  .sold_text{
+	padding:8px;
+	padding-bottom:0px;
+	text-align: center;
+	border-top:1px solid rgb(66, 2, 68);
+	font-size: 14px;
+	overflow:hidden;
+	
+  }
+  .sort_button {
+	background:linear-gradient(160deg,black,black,rgb(35, 1, 36),rgb(86, 8, 88),rgb(156, 34, 160));
+	max-width:140px;
+	max-height:40px;
+	color:rgb(248, 247, 240);
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	border-radius:25px;
+	font-size:0.9rem;
+	transition: all 0.3s;
+  }
+
+  .sort_button:hover{
+	color:rgb(241, 227, 187); 
+  }

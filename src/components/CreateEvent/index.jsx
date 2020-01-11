@@ -44,6 +44,7 @@ class CreateEvent extends Component {
 
 		this.setState({
 			upload: true,
+			redirect:false,
 			stage: 25,
 			title: 'Uploading event image...',
 			data: {
@@ -55,7 +56,8 @@ class CreateEvent extends Component {
 				organizer: organizer,
 				limited: limited,
 				seats: seats === '' ? 0 : parseInt(seats, 10),
-				type: type
+				type: type,
+				location:location
 			}
 		}, () => {
 			this.stageUpdater(90);
@@ -75,7 +77,8 @@ class CreateEvent extends Component {
 
 		let data = JSON.stringify({
 			image: reader.result,
-			text: this.state.data.description
+			text: this.state.data.description,
+			location:this.state.data.location
 		});
 
 		let buffer = Buffer.from(data);
@@ -111,6 +114,15 @@ class CreateEvent extends Component {
 		this.setRedirect();
 	}
 
+	setRedirect=()=>{
+		this.setState({
+			redirect: true
+		  })
+		if(this.state.redirect){
+			return <Redirect to='/'/>
+		}
+	}
+
 	transactionChecker = (id) => {
 		let tx_checker = setInterval(() => {
 			let tx = this.props.transactionStack[id];
@@ -138,12 +150,13 @@ class CreateEvent extends Component {
 
 
 	render() {
+		
 		if (this.state.error) {
 			return <Error message={this.state.error_text} />;
 		}
 
 		if (this.state.done) {
-			return <Done />
+			return <Redirect to='/'/>
 			;
 		}
 

@@ -19,7 +19,7 @@ class MyEvents extends Component {
 
 		if (typeof this.props.contracts['OpenEvents'].eventsOf[this.events] !== 'undefined') {
 			let events = this.props.contracts['OpenEvents'].eventsOf[this.events].value;
-
+			
 			if (events.length === 0) {
 				body =
 					<div>
@@ -29,7 +29,7 @@ class MyEvents extends Component {
 				;
 			} else {
 				let count = this.props.contracts['OpenEvents'].eventsOf[this.events].value.length;
-
+			
 				let currentPage = Number(this.props.match.params.page);
 				if (isNaN(currentPage) || currentPage < 1) currentPage = 1;
 
@@ -39,10 +39,15 @@ class MyEvents extends Component {
 				let pages = Math.ceil(count / this.perPage);
 
 				let events = [];
+				let myEvents = [];
 
-				for (let i = start; i < end; i++) {
-					let event = parseInt(this.props.contracts['OpenEvents'].eventsOf[this.events].value[i], 10);
-					events.push(<Event key={event} id={event} />);
+				for (let i = count - 1; i >= 0; i--) {
+					 //let event = parseInt(this.props.contracts['OpenEvents'].eventsOf[this.events].value[i], 10);					
+					events.push(parseInt(this.props.contracts['OpenEvents'].eventsOf[this.events].value[i], 10))
+				}
+
+				for(let x = start;x < end; x++){
+					myEvents.push(<Event key={events[x]} id={events[x]} />)
 				}
 
 				let pagination;
@@ -70,7 +75,7 @@ class MyEvents extends Component {
 				body =
 					<div>
 						<div className="row user-list mt-4">
-							{events}
+						{myEvents}
 						</div>
 						{pagination}
 					</div>

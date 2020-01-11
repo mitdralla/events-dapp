@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 // import { Link } from 'react-router-dom';
@@ -20,13 +21,17 @@ class Form extends Component {
 			organizer_length: 0,
 			location: '',
 			time: 0,
+			timeForHumans: null,
 			currency: 'hydro',
 			type: '',
 			topic: '',
 			limited: false,
+			seatsForHumans: 0,
 			wrong_file: false,
 			file_name: null,
 			file: null,
+			blockie: "/images/hydro.png",
+			fileImg: "/images/event-placeholder.jpg",
 			form_validation: []
 		}
 	}
@@ -34,6 +39,7 @@ class Form extends Component {
 	handleDate = (date) => {
 		if (typeof date === 'object' && date.isValid()) {
 			this.setState({
+				timeForHumans: date.time,
 				time: date.unix()
 			});
 		}
@@ -65,7 +71,8 @@ class Form extends Component {
 			this.setState({
 				wrong_file: false,
 				file_name: file.name,
-				file: file
+				file: file,
+				fileImg: URL.createObjectURL(event.target.files[0])
 			});
 		}
 	}
@@ -117,6 +124,22 @@ class Form extends Component {
 		this.setState({
 			type: type
 		},()=>(console.log("check",this.state.type)));
+	}
+
+	priceChange = (event) => {
+		let price = this.form.price.value;
+
+		this.setState({
+			price: price
+		});
+	}
+
+	ticketsChange = (event) => {
+		let seats = this.form.seats.value;
+
+		this.setState({
+			seats: seats
+		});
 	}
 
 	handleForm = (event) => {
@@ -178,13 +201,36 @@ class Form extends Component {
 		if (this.state.form_validation.length > 0) {
 			alert = <div className="alert alert-dark mt-2" role="alert">Required fields are missed.</div>
 		}
+		let seatsForHumans = '';
+		let organizerForHumans = '';
+
+		if (this.state.limited === true) {
+			if (this.state.seats === undefined) {
+				seatsForHumans = "0/∞";
+			} else {
+				seatsForHumans = "0/"+ this.state.seats;
+			}
+		} else {
+			seatsForHumans = "0/∞";
+		}
+
+		if (this.state.organizer === '') {
+			organizerForHumans = "";
+		} else {
+			organizerForHumans = "Organizer: " + this.state.organizer;
+
+		}
 
 		return (
+			<React.Fragment>
+			<div className="row">
+			<div className="col col-xl-8 col-lg-8 col-md-12 col-sm-12">
 			<form>
+				
 				<div className="form-group">
 					<label htmlFor="name">Event Name:</label>
 					<input type="text" className={"form-control " + warning.name} id="name" value={this.state.title} onChange={this.titleChange} autoComplete="off" />
-					<small className="form-text text-muted">{this.state.title_length}/160 characters available.</small>
+					<small className="form-text text-muted">{this.state.title_length}/80 characters available.</small>
 				</div>
 				<div className="form-group">
 					<label htmlFor="description">Event Description:</label>
@@ -245,7 +291,7 @@ class Form extends Component {
 					</div>
 				</div>
 				<div className="form-group row">
-					<div className="col-lg-3">
+					<div className="col-lg-6">
 						<label htmlFor="price">Ticket Price:</label>
 						<div className="input-group mb-3">
 							<div className="input-group-prepend">
@@ -262,7 +308,7 @@ class Form extends Component {
 						<label className="custom-control-label" htmlFor="limited">Limited tickets</label>
 					</div>
 					<div className="row mt-3">
-						<div className="col-lg-3">
+						<div className="col-lg-6">
 							<label htmlFor="seats">Tickets available:</label>
 							<input type="number" className={"form-control " + warning.seats} id="seats" disabled={!this.state.limited}  ref={(input) => this.form.seats = input} autoComplete="off" />
 						</div>
@@ -272,6 +318,38 @@ class Form extends Component {
 				<br />
 				<button type="submit" className="btn btn-outline-dark" onClick={this.handleForm}>Make Your Event Live</button>
 			</form>
+			</div>
+
+<div className="col col-xl-4 col-lg-4 col-md-12 col-sm-12 create-event">
+<label>Event Preview:</label>
+<div className="card">
+	<Link to={"/event/"}>
+		<img className="card-img-top event-image" src={this.state.fileImg} alt="Placeholder Event" />
+	</Link>
+	<div className="card-header text-muted event-header">
+		<img className="float-left" src={this.state.blockie} alt="" />
+		<p className="small text-truncate mb-0">{organizerForHumans}</p>
+	</div>
+	<div className="card-body">
+		<h5 className="card-title event-title">
+		{this.state.title}
+		</h5>
+		{this.state.description}
+	</div>
+	<ul className="list-group list-group-flush">
+		<li className="list-group-item"><strong>Price:</strong> <img src={'/images/'+symbol} className="event_price-image" alt="" /> {this.state.price}</li>
+		<li className="list-group-item"><strong>Date:</strong>  </li>
+		<li className="list-group-item"><strong>Location:</strong> {this.state.location} </li>
+		<li className="list-group-item"><strong>Tickets Sold:</strong> {seatsForHumans}</li>
+		
+	</ul>
+	<div className="card-footer text-muted text-center">
+		<button className="btn btn-dark" disabled=""><i className="fas fa-ticket-alt"></i> Buy Now</button>
+	</div>
+</div>
+</div>
+</div>
+</React.Fragment>
 		);
 	}
 }

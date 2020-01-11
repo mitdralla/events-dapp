@@ -10,7 +10,7 @@ module.exports = {
 		},
 		rinkeby: {
 			provider: function () {
-				return new HDWalletProvider(config.wallet, "https://rinkeby.infura.io/" + config.infura)
+				return new HDWalletProvider(config.wallet, "https://rinkeby.infura.io/v3/" + config.infura)
 			},
 			network_id: 4,
 			gas: 7000000,
