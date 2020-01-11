@@ -1,8 +1,7 @@
-{
+{	"homepage": ".",
 	"name": "open-ticket",
 	"version": "1.0.0",
 	"private": true,
-	"homepage": "https://monosux.github.io/open-ticket-dapp/",
 	"dependencies": {
 		"@fortawesome/fontawesome-free": "^5.2.0",
 		"bootstrap": "^4.1.3",
@@ -35,7 +34,8 @@
 	},
 	"scripts": {
 		"start": "react-app-rewired start --config-overrides settings/start.js",
-		"build": "webpack --config settings/build.js --progress",
+		"build": "react-scripts",
+		"predeploy": "npm run build",
 		"deploy": "gh-pages -d build/app"
 	}
 }
