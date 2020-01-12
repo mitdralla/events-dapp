@@ -259,10 +259,10 @@ class FindEvents extends Component
       <br/><br />
 
       <div className="input-group input-group-lg">
-        <div className="input-group-prepend">
+        <div className="input-group-prepend ">
           <span className="input-group-text search-icon" id="inputGroup-sizing-lg"><i className="fa fa-search"></i>&nbsp;Search </span>
         </div> 
-        <input type="text" value={this.state.value} onChange={this.updateSearch.bind(this)} className="form-control2" aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
+        <input type="text" value={this.state.value} onChange={this.updateSearch.bind(this)} className="form-control2 col-md-10" aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
       </div>
       <br /><br />
       
