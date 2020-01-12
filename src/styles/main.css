@@ -52,7 +52,8 @@ button {
 	padding: 20px;
 	opadcity: 0.7;
 	box-shadow: 4px 8px 8px rgba(0,0,0,0.4);
-	background:linear-gradient(to bottom,black,rgb(156, 34, 160),black);
+	background: linear-gradient(to bottom, rgb(1, 1, 5), rgb(26, 68, 158),black);
+	background:linear-gradient(to bottom,black,rgb(147, 26, 151),black);
 	text-align: left;
 }
 
@@ -685,9 +686,14 @@ button {
 /* TheMartian CSS */
 
 .momo{
-	color:rgb(219, 206, 164)!important;
-	background:linear-gradient(320deg,black,black,rgb(35, 1, 36),rgb(86, 8, 88),rgb(156, 34, 160));
+	border:1px solid black!important;
+	background:linear-gradient(320deg,rgb(30, 1, 31),rgb(25, 1, 26),rgb(65, 4, 66),rgb(86, 8, 88),rgb(156, 34, 160));
+	border:10px;
 }
+.cardtext{
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 
 .page-link{
 	
@@ -708,6 +714,7 @@ button {
 
 .search-icon{
 	background:linear-gradient(160deg,black,black,rgb(35, 1, 36),rgb(86, 8, 88),rgb(156, 34, 160));
+	
 	color:rgb(241, 236, 187);
 	border-top-left-radius: 25px!important;
 	border-bottom-left-radius: 25px!important;	
@@ -757,6 +764,7 @@ button {
   .sold_lines{
 	
 	background:linear-gradient(160deg,black,black,rgb(35, 1, 36),rgb(86, 8, 88),rgb(156, 34, 160));
+	
 	border-top:1px solid rgb(66, 2, 68);
 	color:rgb(236, 193, 73);
 	color:rgb(241, 236, 187);
@@ -777,6 +785,7 @@ button {
 	
   }
   .sort_button {
+	background: linear-gradient(160deg, black,black,rgb(1, 12, 36),rgb(8, 45, 88),rgb(34, 135, 160));
 	background:linear-gradient(160deg,black,black,rgb(35, 1, 36),rgb(86, 8, 88),rgb(156, 34, 160));
 	max-width:140px;
 	max-height:40px;

@@ -174,7 +174,7 @@ class FindEvents extends Component
         events.push(events_list[i])
         }
 
-        events_list.reverse();
+        //events_list.reverse();
         
 				let pagination = '';
 				if (pages > 1) {

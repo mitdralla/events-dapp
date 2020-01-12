@@ -34,7 +34,7 @@
 	},
 	"scripts": {
 		"start": "react-app-rewired start --config-overrides settings/start.js",
-		"build": "react-scripts build",
+		"build": "webpack --config settings/build.js --progress",
 		"predeploy": "npm run build",
 		"deploy": "gh-pages -d build/app"
 	}

@@ -7,7 +7,11 @@ import OpenEvents from '../build/contracts/OpenEvents.json';
 import StableToken from '../build/contracts/StableToken.json';
 import Moon from './config/Moon.json';
 
+
+
 const options = {
+
+	
 	contracts: [OpenEvents, StableToken],
 	
 	events: {

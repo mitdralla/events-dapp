@@ -117,7 +117,7 @@ class Event extends Component {
 
 	updateIPFS = () => {
 
-		if (this.state.loaded === false && this.state.loading === false && typeof this.props.contracts['OpenEvents'].getEvent[this.event] !== 'undefined' && this.props.ipfs !== 'undefined') {
+		if (this.state.loaded === false && this.state.loading === false && typeof this.props.contracts['OpenEvents'].getEvent[this.event] !== 'undefined') {
 			this.setState({
 				loading: true
 			}, () => {
@@ -143,12 +143,11 @@ class Event extends Component {
 				});
 			});
 			
-		}
-		
+		}	
 		
 	}
 
-
+	
 	getImage = () => {
 		let image = '/images/loading_ipfs.png';
 		if (this.state.ipfs_problem) image = '/images/problem_ipfs.png';
@@ -170,7 +169,7 @@ class Event extends Component {
 		let locations = []
 		if (this.state.ipfs_problem) locations = <p className="text-center mb-0 event-description"><span role="img" aria-label="monkey">🙊</span>We can not load location</p>;
 		if (this.state.locations !== null) {
-			let place= this.state.locations.length > 140 ? this.state.locations.slice(0, 60) + '...' : this.state.locations;
+			let place= this.state.locations
 			locations = <strong>Location: {place}</strong>;
 		}
 		return locations;
@@ -278,7 +277,7 @@ class Event extends Component {
 					<Link to={"/event/" + this.props.id}>
             <img className="card-img-top event-image" src={image} alt={event_data[0]} />
           </Link>
-					<div className="card-header text-muted event-header">
+					<div className="card-header text-muted event-header ">
 						<img className="float-left" src={makeBlockie(event_data[9])} alt={event_data[9]} />
 						<p className="small text-truncate mb-0">
 							Creator: <a href={"https://rinkeby.etherscan.io/address/" + event_data[9]} target="_blank" className="event_creator-link">
@@ -289,10 +288,11 @@ class Event extends Component {
 					
 					<div className="card-body">
 						<h5 className="card-title event-title">
-							<Link to={"/event/" + this.props.id}>{badge}{event_data[0]}</Link>
+							<Link to={"/event/" + this.props.id} >{badge}{event_data[0]}</Link>
 						</h5>
 						{description}
-					</div>
+						</div>
+					
 					
 					<ul className="list-group list-group-flush">
 						<li className="list-group-item ">{locations}</li>
@@ -317,12 +317,13 @@ class Event extends Component {
 	}
 
 	componentDidMount() {
+		
 		this.updateIPFS()
 		//this.loadbloackchain();
 	}
 
 	componentDidUpdate() {
-		this.updateIPFS();
+		this.updateIPFS()
 		this.afterApprove();
 	}
 
