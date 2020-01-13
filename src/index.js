@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import { DrizzleProvider } from "drizzle-react";
 import App from './components/App';
 
-import OpenEvents from '../build/contracts/OpenEvents.json';
-import StableToken from '../build/contracts/StableToken.json';
+import OpenEvents from './config/OpenEvents.json';
+import StableToken from './config/StableToken.json';
 import Moon from './config/Moon.json';
 
 
