@@ -5,9 +5,6 @@ import App from './components/App';
 
 import OpenEvents from './config/OpenEvents.json';
 import StableToken from './config/StableToken.json';
-import Moon from './config/Moon.json';
-
-
 
 const options = {
 

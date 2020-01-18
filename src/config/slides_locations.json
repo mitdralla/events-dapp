@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Events on Clematis, WPB Florida",
+    "subhead": "Nulla vitae elit libero, a pharetra augue mollis interdum.",
+    "button-text": "Find Events",
+    "icon": "fa fa-ticket-alt",
+    "link": "/find-events",
+    "image": "/slides/slide1.png"
+  },
+  {
+    "title": "Support a Local Charity",
+    "subhead": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "button-text": "Find Events",
+    "icon": "fa fa-ticket-alt",
+    "link": "/find-events",
+    "image": "/slides/slide2.png"
+  },
+  {
+    "title": "Attend an Exclusive Party",
+    "subhead": "Praesent commodo cursus magna, vel scelerisque nisl consectetur.",
+    "button-text": "Find Events",
+    "icon": "fa fa-ticket-alt",
+    "link": "/find-events",
+    "image": "/slides/slide3.png"
+  },
+  {
+    "title": "Play a New Sport",
+    "subhead": "Praesent commodo cursus magna, vel scelerisque nisl consectetur.",
+    "button-text": "Find Events",
+    "icon": "fa fa-ticket-alt",
+    "link": "/find-events",
+    "image": "/slides/slide4.png"
+  },
+  {
+    "title": "Create Your Own Event and Sell Tickets",
+    "subhead": "Create your own event, it takes only a minute.",
+    "button-text": "Find Events",
+    "icon": "fa fa-ticket-alt",
+    "link": "/find-events",
+    "image": "/slides/slide5.png"
+  }
+]

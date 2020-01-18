@@ -19,11 +19,12 @@ import MyEvents from './MyEvents';
 import EventPage from './EventPage';
 import TopicLandingPage from './TopicLandingPage';
 import TopicsLandingPage from './TopicsLandingPage';
+import LocationLandingPage from './LocationLandingPage';
+import LocationsLandingPage from './LocationsLandingPage';
 import Token from './Token';
 import Notify from './Notify';
 import NetworkError from './NetworkError';
 import LoadingApp from './LoadingApp';
-import Test from './Test';
 
 class App extends Component {
 	constructor(props) {
@@ -53,18 +54,6 @@ class App extends Component {
 			});
 		}
 	}
-
-	/*sendTransaction = () =>{
-			let state = drizzle.store.getState()
-		const stackId = this.contracts['OpenEvents'].methods.buyTicket.cacheSend(this.props.id, {value: this.props.contracts['OpenEvents'].getEvent[this.event].value[2]})
-			
-			if(state.transactionStack[stackId]){
-				const txHash = state.transactionStacl[stackId];
-				return this.state.transactions[txHash].status
-	
-			}
-		}*/
-	
 
 	render() {
 		
@@ -103,7 +92,7 @@ class App extends Component {
 		} else {
 			body =
 				<div>
-					<Route exact path="/" component={Home} />
+					<Route exact path="/" component={FindEvents} />
 					<Route path="/findevents/:page" component={FindEvents} />
 					<Route path="/pastevents/:page" component={PastEvents} />
 					<Route path="/mytickets/:page" component={MyTickets} />
@@ -112,8 +101,10 @@ class App extends Component {
 					<Route path="/event/:id" component={EventPage} />
 					<Route path="/token" component={Token} />
 					<Route path="/topics" component={TopicsLandingPage} />
-					<Route path="/topic/:page" component={TopicLandingPage} />
-					<Route path="/test" component={Test} />
+					<Route path="/topic/:page/:id" component={TopicLandingPage} />
+					<Route path="/locations" component={LocationsLandingPage} />
+					<Route path="/location/:page" component={LocationLandingPage} />
+					<Route path="/how-it-works" component={Home} />
 				</div>
 			;
 		}

@@ -8,7 +8,7 @@ import Form from './Form';
 import Loader from './Loader';
 import Error from './Error';
 import Done from './Done';
-import { Redirect } from 'react-router-dom';
+//import { Redirect } from 'react-router-dom';
 
 class CreateEvent extends Component {
 	constructor(props, context) {
@@ -111,17 +111,17 @@ class CreateEvent extends Component {
 		);
 
 		this.transactionChecker(id)
-		this.setRedirect();
+		//this.setRedirect();
 	}
 
-	setRedirect=()=>{
+	/*setRedirect=()=>{
 		this.setState({
 			redirect: true
 		  })
 		if(this.state.redirect){
 			return <Redirect to='/'/>
 		}
-	}
+	}*/
 
 	transactionChecker = (id) => {
 		let tx_checker = setInterval(() => {
@@ -156,7 +156,7 @@ class CreateEvent extends Component {
 		}
 
 		if (this.state.done) {
-			return <Redirect to='/'/>
+			return <Done/>
 			;
 		}
 

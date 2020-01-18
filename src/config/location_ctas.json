@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Online Only",
+    "slug": "/locations/online",
+    "image": "online.jpg",
+    "image-source": "",
+    "color": "#a6aab1",
+    "active": "yes"
+  },
+  {
+    "name": "By Country",
+    "slug": "/locations/countries",
+    "image": "countries.jpg",
+    "image-source": "",
+    "color": "#a6aab1",
+    "active": "yes"
+  },
+  {
+    "name": "By State",
+    "image": "states.jpg",
+    "slug": "/locations/states",
+    "image-source": "",
+    "color": "#a6aab1",
+    "active": "yes"
+  }
+]

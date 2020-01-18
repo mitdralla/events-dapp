@@ -43,28 +43,27 @@ textarea:active, input:active, a:active {
 }
 
 button {
-	cursor: pointer !important;
-  }
+  cursor: pointer !important;
+}
 
 #sidebar-wrapper.my-sidebar {
 	background-color: #333940;
 	color: #FAFAFA;
 	padding: 20px;
-	opadcity: 0.7;
+	opacity: 0.7;
 	box-shadow: 4px 8px 8px rgba(0,0,0,0.4);
-	background: linear-gradient(to bottom, rgb(1, 1, 5), rgb(26, 68, 158),black);
-	background:linear-gradient(to bottom,black,rgb(147, 26, 151),black);
-	text-align: left;
+  	text-align: left!important;
 }
 
 #sidebar-wrapper.my-sidebar .user-status .user-status-icon {
 	font-size: 23px;
 	border: 3px solid #FAFAFA;
 	border-radius: 50%;
-	width: 35px;
-	height: 35px;
-	margin-top: -53px;
+  	width: 35px;
+  	height: 35px;
+  	margin-top: -53px;
 }
+
 #sidebar-wrapper.my-sidebar .user-status .user-status-icon i {
 	padding-left: 6px;
 }
@@ -79,6 +78,7 @@ button {
 
 #sidebar-wrapper.my-sidebar a {
 	color: #FAFAFA;
+  cursor: pointer;
 }
 
 #sidebar-wrapper.my-sidebar a:hover {
@@ -105,10 +105,7 @@ button {
 .event-image {
     width: 100%;
     height: 15vw;
-	object-fit: cover;
-	border-radius:10px;
-	border-bottom-left-radius: 0px;
-	border-bottom-right-radius: 0px;
+    object-fit: cover;
 }
 
 .event-title {
@@ -150,7 +147,6 @@ button {
 .card-footer {
   padding: 1rem 1.25rem;
 }
-
 
 .event_creator-link {
 	color: #636363;
@@ -200,12 +196,12 @@ button {
 }
 
 .carousel {
-	transition: all .7s;
 	position: relative;
 	/* margin-left: -60px; */
 	/* margin-top: -55px !important; */
 	/* margin-right: -60px; */
 }
+
 .carousel:hover {
 	transform: scale(1.05);
 }
@@ -249,7 +245,7 @@ button {
 .carousel-caption {
     position: absolute;
     right: 0;
-    bottom: 0px;
+    bottom: 0;
     left: 0;
     z-index: 10;
     padding-top: 45px;
@@ -258,7 +254,7 @@ button {
     text-align: center;
     width: 100%;
     padding-bottom: 45px;
-		min-height: 300px;
+		min-height: 330px;
 }
 
 .carousel-indicators {
@@ -272,18 +268,18 @@ button {
 
 .carousel-caption h3 {
 	font-weight: 900;
-	font-size: 2.75rem;
+	font-size: 3.75rem;
 	text-shadow: 2px 2px 24px #000;
 }
 
 .carousel-caption p {
 	text-shadow: 2px 2px 24px #000;
-	font-weight: 500;
+  font-weight: 500;
 }
 
 .carousel button {
 	padding: 15px 60px 15px 60px !important;
-  	border-radius: 30px !important;
+  border-radius: 30px !important;
 	font-size: 20px;
 }
 
@@ -364,7 +360,7 @@ button {
 }
 
 .container-fluid {
-	background-color: #f7f7f7;
+	background-color: #fafafa;
 	position: inherit;
 	margin-top: 50px;
 	border-radius: 5px;
@@ -377,8 +373,6 @@ button {
 
 .page-wrapper-inner {
 	padding: 60px 60px 60px 60px;
-	
-	
 }
 
 .branding {
@@ -396,9 +390,8 @@ button {
   position: relative;
   margin-right: 0;
   padding-right: 80px;
-  padding-left: 325px;
-  padding-top: 75px;
-
+	padding-left: 325px;
+	padding-top: 75px;
 
 }
 
@@ -443,15 +436,12 @@ button {
     left: 2%;
     border-radius: 100px / 5px;
     -webkit-box-shadow: 0 0 18px rgba(0,0,0,1);
-	box-shadow: 0 0 18px rgba(0,0,0,1);
-	
+    box-shadow: 0 0 18px rgba(0,0,0,1);
 }
 
 .card-footer button {
 	padding: 5px 30px 5px 30px;
-	border-radius: 20px;
-
-	background:linear-gradient(160deg,black,black,rgb(35, 1, 36),rgb(86, 8, 88),rgb(156, 34, 160));
+  border-radius: 20px;
 }
 
 .container-fluid:before  {
@@ -478,40 +468,18 @@ button {
 	border-radius: 100px / 5px;
 	-webkit-box-shadow: 0 0 18px rgba(0,0,0,0.6);
 	box-shadow: 0 0 18px rgba(0,0,0,0.6);
-	
 }
 
 .retract-page-inner-wrapper {
 	margin: -60px -60px 0 -60px !important;
-	
 }
 
 .retract-page-inner-wrapper-alternative {
 	margin: 0px -60px 0 -60px !important;
-
-
-
 }
 
 .events-wrapper {
 	margin-bottom:60px !important;
-}
-
-.cadrd {
-	position: relative;
-	display: -ms-flexbox;
-	display: flex;
-	-ms-flex-direction: column;
-	flex-direction: column;
-	min-width: 0;
-    word-wrap: break-word;
-	background-color: rgb(24, 21, 21);
-	background: linear-gradient(to left,rgb(24, 21, 21),rgb(83, 22, 22) );
-	background: linear-gradient(to left,rgb(21, 21, 24),rgb(173, 24, 141) );
-    background-clip: border-box;
-	border: 1px solid rgba(0,0,0,.125);
-	color:rgb(49, 44, 44);
-	border-radius: .25rem;
 }
 
 .hamburgerNav i {
@@ -524,17 +492,17 @@ button {
 }
 
 .topics-wrapper {
-	display: inline-block;
 	text-align: left;
+	margin-bottom: 50px;
 }
 
 .topics-wrapper button {
-	margin-right: 30px;
-	padding-top: 15px 60px 15px 60px !important;
-	margin-bottom: 30px;
-	
-}
+  padding: 15px 40px;
+	border-radius: 40px;
+  background-color: transparent;
+  color: #333;
 
+}
 
 .topic {
 	width: 100%;
@@ -548,8 +516,6 @@ button {
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	transition: all .3s;
-	
 }
 
 .topic:hover {
@@ -558,15 +524,9 @@ button {
 	cursor: pointer;
 }
 
-
 .card:hover {
-	transform: scale(1.04);
+	transform: scale(1.1);
 	z-index: 999 !important;
-}
-
-.card{
-	transition: all .4s;
-	border-radius:10px;
 }
 
 .topic-caption {
@@ -580,13 +540,10 @@ button {
   color: #fff;
   text-align: center;
   width: 100%;
-  height: inherit;
+	height: inherit;
   padding-bottom: 25px;
-  box-shadow: inset 0px -181px 53px rgba(0,0,0,0.2);
-  border-radius: 5px;
-
-			  
- 
+	box-shadow: inset 0px -181px 53px rgba(0,0,0,0.2);
+	border-radius: 5px;
 }
 
 .topic:hover > .topic-caption {
@@ -595,14 +552,14 @@ button {
 
 .topic-caption button {
 	padding: 5px 25px;
- 	margin-right: 0px;
+  margin-right: 0px;
 	background-color: #e91e63 !important;
 	border: 1px solid #e91e63 !important;
 	color: #fff !important;
 	background-color: #fff !important;
 	border: 1px solid #fff !important;
-	 opacity: 1;
-	 transition: all 1s;
+	color: #333 !important;
+  opacity: 0.9;
 }
 
 .topic-caption button:hover {
@@ -654,105 +611,48 @@ button {
 }
 
 .my-tickets-page .card:before, .create-event .card:before {
-	display: none;
-  }
-  
-  button.read-more {
-	padding: 15px 75px;
-	border-radius: 40px;
-	background-color: #343a40;
+  display: none;
+}
+
+button.read-more {
+  padding: 15px 75px;
+  border-radius: 40px;
+  background-color: #343a40;
+  color: #fff;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+button.read-more:hover {
+  color: #fff !important;
+  background-color: #212020;
+  cursor: pointer;
+}
+
+.branding-logo {
+  float: left;
+  width: 38px;
+  margin-top: 5px;
+  margin-right: 10px;
+}
+
+
+.sort_button {
 	color: #fff;
-	text-align: center;
-	margin: 0 auto;
-	margin-top: 30px;
-  }
-  
-  button.read-more:hover {
-	color: #fff !important;
-	background-color: #212020;
-	cursor: pointer;
-  }
-  
-  .branding-logo {
-	float: left;
-	width: 38px;
-	margin-top: 5px;
-	margin-right: 10px;
-  }
-
-
-
-
-/* TheMartian CSS */
-
-.momo{
-	border:1px solid black!important;
-	background:linear-gradient(320deg,rgb(30, 1, 31),rgb(25, 1, 26),rgb(65, 4, 66),rgb(86, 8, 88),rgb(156, 34, 160));
-	border:10px;
-}
-.cardtext{
-	font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-
-.page-link{
-	
-	background:linear-gradient(160deg,black,black,rgb(35, 1, 36),rgb(86, 8, 88),rgb(156, 34, 160));
-	color:white;
-}
-
-.page-item.active .page-link {
-    z-index: 3;
-    color: rgb(241, 203, 34);
-    background-color: #b700ff;
-    border-color: #c31ec9;
-}
-
-.page-link:hover{
-	color: rgb(219, 206, 164)!important;
-}
-
-.search-icon{
-	background:linear-gradient(160deg,black,black,rgb(35, 1, 36),rgb(86, 8, 88),rgb(156, 34, 160));
-	
-	color:rgb(241, 236, 187);
-	border-top-left-radius: 25px!important;
-	border-bottom-left-radius: 25px!important;	
-	border:1px solid rgb(35, 1, 36);	
-	margin-left:20px;
-}
-
-.form-control2 {
-	border-top-right-radius: 25px!important;
-	border-bottom-right-radius: 25px!important;
-	background:rgb(241, 236, 187);
-	background:white;
-	border:1px solid rgb(35, 1, 36)!important;	
-	
-	width: 82%;
-	font-size:20px;
-      
-}
-
-
-
-.underline2{
-	margin-top:30px;
-	border-bottom:1px solid rgb(219, 206, 164);
-	justify-content:center;
-	margin-left:15px;
-	background:linear-gradient(160deg,black,black,rgb(35, 1, 36),rgb(86, 8, 88),rgb(156, 34, 160));
-	max-width:822px;
-	border-top:1px solid rgb(219, 206, 164);
-	color:rgb(236, 193, 73);
-	color:rgb(241, 241, 241);
-	text-align:center;
-	border:1px solid black;
-	border-radius: 10px;
+    background-color: #343a40;
+    border-color: #343a40;
+	max-width:140px;
+	max-height:40px;
+	border-radius:25px;
+	font-size:0.9rem;
+	transition: all 0.3s;
 	overflow:hidden;
-	font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
 
-	
+  .sort_button:hover{
+	color:rgb(250, 250, 250); 
+	border-color: #4f6e8d;
   }
 
   .transactions{
@@ -761,41 +661,29 @@ button {
 	
   }
 
-  .sold_lines{
-	
-	background:linear-gradient(160deg,black,black,rgb(35, 1, 36),rgb(86, 8, 88),rgb(156, 34, 160));
-	
-	border-top:1px solid rgb(66, 2, 68);
-	color:rgb(236, 193, 73);
-	color:rgb(241, 236, 187);
-	font-family: Verdana, Geneva, Tahoma, sans-serif;
-	font-size: 13px;
-	overflow:hidden;
-	
-	
-  }
 
   .sold_text{
 	padding:8px;
 	padding-bottom:0px;
 	text-align: center;
-	border-top:1px solid rgb(66, 2, 68);
+	border-top:1px solid rgb(197, 195, 197);
 	font-size: 14px;
 	overflow:hidden;
 	
   }
-  .sort_button {
-	background: linear-gradient(160deg, black,black,rgb(1, 12, 36),rgb(8, 45, 88),rgb(34, 135, 160));
-	background:linear-gradient(160deg,black,black,rgb(35, 1, 36),rgb(86, 8, 88),rgb(156, 34, 160));
-	max-width:140px;
-	max-height:40px;
-	color:rgb(248, 247, 240);
-	font-family: Verdana, Geneva, Tahoma, sans-serif;
-	border-radius:25px;
-	font-size:0.9rem;
-	transition: all 0.3s;
+
+  .transaction-wrapper{
+	margin-top:30px;
+	justify-content:center;
+	margin-left:15px;
+	background:#343a40;
+	max-width:822px;
+	color:rgb(241, 241, 241);
+	text-align:center;
+	border:1px solid black;
+	border-radius: 10px;
+	overflow:hidden;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;	
+	opacity: 0.9;
   }
 
-  .sort_button:hover{
-	color:rgb(241, 227, 187); 
-  }

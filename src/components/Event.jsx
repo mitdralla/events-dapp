@@ -3,9 +3,7 @@ import { drizzleConnect } from 'drizzle-react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import makeBlockie from 'ethereum-blockies-base64';
-import {OMG_ABI, OMG_Address} from '../config/OMG.js';
-import {Open_events_ABI, Open_events_Address} from '../config/OpenEvents.js';
-import Web3 from 'web3';
+import {Hydro_Testnet_Token_ABI, Hydro_Testnet_Token_Address} from '../config/hydrocontract_testnet.js';
 
 import ipfs from '../utils/ipfs';
 
@@ -13,32 +11,31 @@ import Loading from './Loading';
 
 class Event extends Component {
     constructor(props, context) {
-
-		/*try {
+		try {
 			var contractConfig = {
-			  contractName: 'OMG',
+			  contractName: 'Hydro',
 			  web3Contract: new context.drizzle.web3.eth.Contract(
-				OMG_ABI,
-				OMG_Address,
-				
-				
+				Hydro_Testnet_Token_ABI,
+				Hydro_Testnet_Token_Address,	
 			  ),
 			  
 			};
 			context.drizzle.addContract(contractConfig);
-			//Importing Hydro/OMG contracts
+			//Importing Hydro contracts
 			// **** ENDS UP HERE, SO THIS WORKS
-			console.log(
+			/*console.log(
 			  "SUCCESS",
-			  OMG_Address,
+			  Hydro_Testnet_Token_Address,
 			  context.drizzle.contracts
-			);
+			);*/
 		  } catch (e) {
 			//console.log("ERROR", Hydro_Testnet_Token_Address, e);
-		  }*/
+		  }
+
         super(props);
 		this.contracts = context.drizzle.contracts;
 		this.event = this.contracts['OpenEvents'].methods.getEvent.cacheCall(this.props.id);
+		this.account = this.props.accounts[0];
 		this.state = {
 			loading: false,
 			loaded: false,
@@ -59,61 +56,6 @@ class Event extends Component {
 		this.isCancelled = false;
 	}
 	
-
-
-	/*async loadbloackchain(){
-
-		let ethereum= window.ethereum;
-		let web3=window.web3;
-	
-	 
-		if(typeof ethereum !=='undefined'){
-			 console.log("metamask")
-		 await ethereum.enable();
-		 web3 = new Web3(ethereum);
-		
-	 }
-	 
-	 else if (typeof web3 !== 'undefined'){
-		 console.log('Web3 Detected!')
-	 window.web3 = new Web3(web3.currentProvider);
-		 }
-		 
-	 else{console.log('No Web3 Detected')
-	 window.web3 = new Web3(new Web3.providers.HttpProvider('https://rinkeby.infura.io/v3/72e114745bbf4822b987489c119f858b'));
-	
-   }
-
-   window.ethereum.on('accountsChanged', function (accounts) {
-	 window.location.reload();
-   })
-   
-   window.ethereum.on('networkChanged', function (netId) {
-	 window.location.reload();
-   }) 
-
- 
- 	const accounts = await web3.eth.getAccounts();
- 
- 	this.setState({account: accounts[0]},()=>(console.log(this.state.account)))
- 	; 
- 	const network = await web3.eth.net.getNetworkType();
- 
- 	this.setState({net:network},()=>console.log(this.state.net));
-
-	const openEvents =  new web3.eth.Contract(Open_events_ABI, Open_events_Address);
-	const OMG =  new web3.eth.Contract(OMG_ABI, OMG_Address);
-    
-    
-    this.setState({openEvents});
-	this.setState({OMG})
-	this.setState({contract:Open_events_Address},()=>console.log(this.state.contract));
-  
-    const blockNumber = await web3.eth.getBlockNumber();
-    
-    this.setState({blocks:blockNumber - 50000});
-    
-	}*/
 
 	updateIPFS = () => {
 
@@ -159,12 +101,12 @@ class Event extends Component {
 		let description = <Loading />;
 		if (this.state.ipfs_problem) description = <p className="text-center mb-0 event-description"><span role="img" aria-label="monkey">🙊</span>We can not load description</p>;
 		if (this.state.description !== null) {
-			let text = this.state.description.length > 140 ? this.state.description.slice(0, 60) + '...' : this.state.description;
+			let text = this.state.description.length > 30 ? this.state.description.slice(0, 60) + '...' : this.state.description;
 			description = <p className="card-text event-description">{text}</p>;
 		}
 		return description;
 	}
-
+	//get the location of Events on IPFS
 	getLocation = () => {
 		let locations = []
 		if (this.state.ipfs_problem) locations = <p className="text-center mb-0 event-description"><span role="img" aria-label="monkey">🙊</span>We can not load location</p>;
@@ -175,7 +117,7 @@ class Event extends Component {
 		return locations;
 	}
 
-	afterApprove = () => {
+	afterApprove = () => setTimeout(()=>{
 		if (this.state.waiting_approve) {
 			if (typeof this.props.transactionStack[this.state.approve_tx] !== 'undefined') {
 				this.setState({
@@ -185,50 +127,21 @@ class Event extends Component {
 				});
 			}
 		}
-	}
+	},3000)
 
 	buyTicket = () => {
 		if (this.props.contracts['OpenEvents'].getEvent[this.event].value[3]) {
-			//let tx = this.contracts['OMG'].methods.approve.cacheSend(this.contracts['OpenEvents'].address, this.props.contracts['OpenEvents'].getEvent[this.event].value[2],{from:'0x59f0fff5896e4A1C3FB4C681F5c8C36F3f5A4e45'});
-			let tx = this.contracts['StableToken'].methods.approve.cacheSend(this.contracts['OpenEvents'].address, this.props.contracts['OpenEvents'].getEvent[this.event].value[2]);
+			let tx = this.contracts['Hydro'].methods.approve.cacheSend(this.contracts['OpenEvents'].address, this.props.contracts['OpenEvents'].getEvent[this.event].value[2],{from:this.account});
+			//let tx = this.contracts['StableToken'].methods.approve.cacheSend(this.contracts['OpenEvents'].address, this.props.contracts['OpenEvents'].getEvent[this.event].value[2]);
 			this.setState({
 				approve_tx: tx,
 				waiting_approve: true
-			});
+			},()=>this.afterApprove());
 		} else {
 			this.contracts['OpenEvents'].methods.buyTicket.cacheSend(this.props.id, {value: this.props.contracts['OpenEvents'].getEvent[this.event].value[2]});
 		}
 	}
 
-
-	//Testing Buying with Hydro/OMG
-	afterApprove2 = () => {
-		if (this.state.waiting_approve) {
-			if (typeof this.props.transactionStack[this.state.approve_tx] !== 'undefined') {
-				this.setState({
-					waiting_approve: false
-				}, () => {
-					this.contracts['OpenEvents'].methods.buyTicket.cacheSend(this.props.id);
-				});
-			}
-		}
-	}
-	
-	buyTicket2 = async() => {
-		if (this.props.contracts['OpenEvents'].getEvent[this.event].value[3]) {
-			let tx = await this.state.OMG.methods.approve(this.state.contract, this.props.contracts['OpenEvents'].getEvent[this.event].value[2]).send({ from: this.state.account, gas: 400000})			//let tx = this.contracts['StableToken'].methods.approve.cacheSend(this.contracts['OpenEvents'].address, this.props.contracts['OpenEvents'].getEvent[this.event].value[2]);
-			let tm = await this.state.OMG.methods.transferFrom(this.state.account,this.state.account, this.props.contracts['OpenEvents'].getEvent[this.event].value[2]).send({from:this.state.account});
-
-			this.setState({
-				approve_tx: tx,
-				
-				waiting_approve: true
-			})
-			;
-		} else {
-			this.contracts['OpenEvents'].methods.buyTicket.cacheSend(this.props.id, {value: this.props.contracts['OpenEvents'].getEvent[this.event].value[2]});
-		}
-	}
 
 	 render() {
 		let body = <div className="card"><div className="card-body"><Loading /></div></div>;
@@ -317,14 +230,13 @@ class Event extends Component {
 	}
 
 	componentDidMount() {
-		
 		this.updateIPFS()
-		//this.loadbloackchain();
+	
 	}
 
 	componentDidUpdate() {
 		this.updateIPFS()
-		this.afterApprove();
+		//this.afterApprove();
 	}
 
 	componentWillUnmount() {

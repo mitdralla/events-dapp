@@ -10,17 +10,36 @@ import Web3 from 'web3';
 import Loading from './Loading';
 import CheckUser from './CheckUser';
 import {Open_events_ABI, Open_events_Address} from '../config/OpenEvents';
-
-
 import {Hydro_Testnet_Token_ABI, Hydro_Testnet_Token_Address} from '../config/hydrocontract_testnet';
 
 
 class EventPage extends Component {
 
     constructor(props, context) {
+		try {
+			var contractConfig = {
+			  contractName: 'Hydro',
+			  web3Contract: new context.drizzle.web3.eth.Contract(
+				Hydro_Testnet_Token_ABI,
+				Hydro_Testnet_Token_Address,	
+			  ),
+			  
+			};
+			context.drizzle.addContract(contractConfig);
+			//Importing Hydro/OMG contracts
+			// **** ENDS UP HERE, SO THIS WORKS
+			/*console.log(
+			  "SUCCESS",
+			  Hydro_Testnet_Token_Address,
+			  context.drizzle.contracts
+			);*/
+		  } catch (e) {
+			//console.log("ERROR", Hydro_Testnet_Token_Address, e);
+		  }
       super(props);
 		  this.contracts = context.drizzle.contracts;
 		  this.event = this.contracts['OpenEvents'].methods.getEvent.cacheCall(this.props.match.params.id);
+		  this.account = this.props.accounts[0];
 		  this.state = {
 			  loading: false,
 			  loaded: false,
@@ -61,11 +80,12 @@ class EventPage extends Component {
     if (this._isMounted){
     this.setState({soldTicket:newsort,check:newsort});
     this.setState({loading:false})
-    this.setState({active_length:this.state.soldTicket.length},()=>console.log(this.state.active_length));
+    this.setState({active_length:this.state.soldTicket.length});
     
   	}  
     }).catch((err)=>console.error(err))
 
+	//Listen for Incoming Sold Tickets
     openEvents.events.SoldTicket({filter:{eventId:this.props.match.params.id},fromBlock: this.state.latestblocks, toBlock:'latest'})
   	.on('data', (log) =>setTimeout(()=> {
     this.setState({loading:true});
@@ -74,17 +94,12 @@ class EventPage extends Component {
     var newest = this.state.soldTicket
     var newsort= newest.concat().sort((a,b)=> b.blockNumber- a.blockNumber);
     if (this._isMounted){
-    
-    
-    //this.setState({incoming:false});
+
     this.setState({soldTicket:newsort});
     this.setState({active_length:this.state.soldTicket.length})}
     this.setState({loading:false});
     }),5000)
   }
-
-
-	
 
 	updateIPFS = () => {
 		if (
@@ -133,7 +148,7 @@ class EventPage extends Component {
 		return description;
 	}
 
-	afterApprove = () => {
+	afterApprove = () => setTimeout(()=> {
 		if (this.state.waiting_approve) {
 			if (typeof this.props.transactionStack[this.state.approve_tx] !== 'undefined') {
 				this.setState({
@@ -143,16 +158,16 @@ class EventPage extends Component {
 				});
 			}
 		}
-	}
+	},3000)
 
-	 buyTicket = () => {
+	buyTicket = () => {
 
 		if (this.props.contracts['OpenEvents'].getEvent[this.event].value[3]) {
-			let tx = this.contracts['StableToken'].methods.approve.cacheSend(this.contracts['OpenEvents'].address, this.props.contracts['OpenEvents'].getEvent[this.event].value[2]);
+			let tx = this.contracts['Hydro'].methods.approve.cacheSend(this.contracts['OpenEvents'].address, this.props.contracts['OpenEvents'].getEvent[this.event].value[2],{from:this.account});
 			this.setState({
 				approve_tx: tx,
 				waiting_approve: true
-			});
+			},()=>this.afterApprove());
 		}
 		
 		 else {
@@ -171,6 +186,7 @@ class EventPage extends Component {
 			if (this.props.contracts['OpenEvents'].getEvent[this.event].error) {
 				body = <div className="text-center mt-5"><span role="img" aria-label="unicorn">🦄</span> Hydro Event not found</div>;
 			} else {
+
 				let event_data = this.props.contracts['OpenEvents'].getEvent[this.event].value;	
 
 				let image = this.getImage();
@@ -235,9 +251,9 @@ class EventPage extends Component {
 						</div>
 						<hr/>
 						
-						<div className="underline2 col-12"><h4 className="transactions">Transactions</h4>
+						<div className="transaction-wrapper col-12"><h4 className="transactions">Transactions</h4>
 						
-						{this.state.soldTicket.map((sold)=>(<p className="sold_text col-md-12" >{sold.returnValues.buyer} has bought 1 ticket for {event_data[0]}</p>))}
+						{this.state.soldTicket.map((sold,index)=>(<p className="sold_text col-md-12" key={index}>{sold.returnValues.buyer} has bought 1 ticket for {event_data[0]}</p>))}
 						{!sold &&  <p className="sold_text col-md-12" >No one has bought a ticket so far,</p>}
       
 						
@@ -271,7 +287,7 @@ class EventPage extends Component {
 
 	componentDidUpdate() {
 		this.updateIPFS();
-		this.afterApprove();
+		//this.afterApprove();
 	}
 
 	componentWillUnmount() {
