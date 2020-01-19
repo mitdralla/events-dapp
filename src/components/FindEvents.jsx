@@ -12,6 +12,7 @@ import {Open_events_ABI, Open_events_Address} from '../config/OpenEvents';
 
 // TODO: Make slides dynamic: import slidesJson from '../config/slides.json';
 import topicsJson from '../config/topics.json';
+import eventCTAsJson from '../config/event_ctas.json';
 
 
 
@@ -20,6 +21,7 @@ class FindEvents extends Component
   constructor(props, context)
   {
       super(props);
+
       this.state = {
         openEvents : '',
         blocks : 5000000,
@@ -36,11 +38,13 @@ class FindEvents extends Component
 	    this.eventCount = this.contracts['OpenEvents'].methods.getEventsCount.cacheCall();
 	    this.perPage = 6;
       this.topicClick = this.topicClick.bind(this);
+
       this.toggleSortDate = this.toggleSortDate.bind(this); 
 	}
 
   topicClick(slug)
   {
+
     this.props.history.push("/topic/"+slug+"/"+1);
     window.scrollTo(0, 0);
   }
@@ -56,6 +60,7 @@ class FindEvents extends Component
     this.props.history.push("/"+slug);
     window.scrollTo(0, 0);
   }
+
 
   //Loads Blockhain Data,
   async loadBlockchain(){
@@ -146,6 +151,7 @@ class FindEvents extends Component
       });
     })}
   
+
 
 	render()
   {
@@ -255,6 +261,7 @@ class FindEvents extends Component
 
 			<div className="retract-page-inner-wrapper-alternative">
 
+
       <br/><br />
 
       <div className="input-group input-group-lg">
@@ -274,16 +281,17 @@ class FindEvents extends Component
 
         <hr/>
         {body}
+
       </div>
 
       <br /><br />
 
       <div className="topics-wrapper">
-     
 
       {/*
       <h2><i className="fa fa-calendar-alt"></i> Browse Events By</h2>
       <hr />
+
         <div className="row user-list mt-4">
           {eventCTAsJson.map(eventCTA => (
             <div className="col-lg-4 pb-4 d-flex align-items-stretch" key={eventCTA.slug}>
@@ -292,6 +300,7 @@ class FindEvents extends Component
               </div>
             </div>
           ))}
+
           <button className="btn read-more" onClick={() => {this.readMoreClick("/findevents/1")}}>All Events</button>
         </div>
         <br /><br />
@@ -318,8 +327,6 @@ class FindEvents extends Component
           </div>      
       </div>
 
-
-
     </div>
 
     </React.Fragment>
@@ -335,8 +342,6 @@ class FindEvents extends Component
     this._isMounted = false;
   }
 }
-
-
 
 FindEvents.contextTypes =
 {

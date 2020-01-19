@@ -5,8 +5,10 @@ import { Link } from 'react-router-dom';
 
 import Loading from './Loading';
 import Event from './Event';
+
 import Web3 from 'web3';
 import {Open_events_ABI, Open_events_Address} from '../config/OpenEvents';
+
 
 import topicsJson from '../config/topics.json';
 
@@ -16,6 +18,7 @@ class TopicLandingPage extends Component
   constructor(props, context)
   {
       super(props);
+
       this.state = {
         openEvents : '',
         blocks : 5000000,
@@ -28,8 +31,8 @@ class TopicLandingPage extends Component
         isActive:true,
         dateNow:''
 
-      };
-      
+      };   
+
 	    this.contracts = context.drizzle.contracts;
 	    this.eventCount = this.contracts['OpenEvents'].methods.getEventsCount.cacheCall();
 	    this.perPage = 6;
@@ -41,11 +44,11 @@ class TopicLandingPage extends Component
 	  	this.PastEvent = this.PastEvent.bind(this);
       this.toggleSortDate = this.toggleSortDate.bind(this); 
 
+
 	}
 
   componentDidUpdate()
   {
-    
     //this.theTopic = this.getTopicData();
 	}
 
@@ -66,7 +69,7 @@ class TopicLandingPage extends Component
     this.props.history.push("/topic/"+slug+"/"+1);
     this.theTopic = this.getTopicData();
     this.loadBlockchain();
-    window.scrollTo(0, 180);
+    window.scrollTo(0, 180);   
   }
 
   getLastURLSegment()
@@ -75,8 +78,7 @@ class TopicLandingPage extends Component
     let currentRoute = this.props.history.location.pathname;
     let middleSegment = currentRoute.split('/')
     //let lastSegment = currentRoute.substr(currentRoute.lastIndexOf('/') + 1);
-    return middleSegment[middleSegment.length - 2];
-    
+    return middleSegment[middleSegment.length - 2]; 
   }
 
   getTopicData() {
@@ -251,11 +253,11 @@ class TopicLandingPage extends Component
       });
     })}
   
-
 	render()
   {
 		let body = <Loading />;
     const topic = this.theTopic;
+
 
 		if (typeof this.props.contracts['OpenEvents'].getEventsCount[this.eventCount] !== 'undefined' ) {
       let count = this.state.active_length;
@@ -276,6 +278,7 @@ class TopicLandingPage extends Component
 				let events_list = [];
 
 				for (let i = start; i < end; i++) {
+          
           events_list.push(<Event 
             key={this.state.Topic_Events[i].returnValues.eventId} 
             id={this.state.Topic_Events[i].returnValues.eventId} 
@@ -289,8 +292,8 @@ class TopicLandingPage extends Component
 					for (let i = 1; i <= pages; i++) {
 						let active = i === currentPage ? 'active' : '';
 						links.push(
-							<li className={"page-item " + active} key={i}>
-								<Link to={"/topic/" + this.props.match.params.page + "/" + i } onClick={window.scrollTo(0, 700)} className="page-link">{i}</Link>
+							<li className={"page-item " + active} key={i}>						
+                <Link to={"/topic/" + this.props.match.params.page + "/" + i } onClick={window.scrollTo(0, 700)} className="page-link">{i}</Link>
 							</li>
 						);
 					}
@@ -327,6 +330,7 @@ class TopicLandingPage extends Component
 
       <br /><br />
 
+
       <div className="input-group input-group-lg">
         <div className="input-group-prepend ">
           <span className="input-group-text search-icon" id="inputGroup-sizing-lg"><i className="fa fa-search"></i>&nbsp;Search </span>
@@ -359,11 +363,13 @@ class TopicLandingPage extends Component
             <div className="col-lg-4 pb-4 d-flex align-items-stretch" key={topic.slug}>
               <div className="topic" style={{ backgroundImage: "url(/images/topics/" + topic.image +")"}} onClick={() => {this.topicClick(topic.slug)}}>
               <div className="topic-caption"><h3>{topic.name}</h3><button className="btn sort_button col-md-2">View Topic</button></div>
+
               </div>
             </div>
             ))}
         </div>
       </div> 
+
 
 
     </div>

@@ -22,6 +22,7 @@ class CreateEvent extends Component {
 			error: false,
 			error_text: null,
 			ipfs: null,
+			fileImg: null,
 			data: {
 				name: null,
 				description: null,
@@ -163,7 +164,11 @@ class CreateEvent extends Component {
 		let body =
 			this.state.upload ?
 				<Loader progress={this.state.stage} text={this.state.title} /> :
-					<Form createEvent={this.createEvent} />
+				<React.Fragment>
+					<div className="row">
+							<Form createEvent={this.createEvent} />
+					</div>
+				</React.Fragment>
 		;
 
 		return (

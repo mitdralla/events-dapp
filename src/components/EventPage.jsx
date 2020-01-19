@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from "react-dom";
 import { drizzleConnect } from "drizzle-react";
 import PropTypes from 'prop-types';
 import makeBlockie from 'ethereum-blockies-base64';
@@ -210,7 +209,7 @@ class EventPage extends Component {
 
 				if (date.getTime() < new Date().getTime()) {
 					disabled = true;
-					disabledStatus = <span><span role="img" aria-label="alert">⚠️</span> Has already ended</span>;
+					disabledStatus = <span><span role="img" aria-label="alert">⚠️</span> This event has already ended.</span>;
 				}
 
 				if(this.state.active_length <= 0){
@@ -270,7 +269,7 @@ class EventPage extends Component {
 
 		return (
 			<div>
-				<h2>Event</h2>
+				<h2><i className="fa fa-calendar-alt"></i> Event</h2>
 				<hr />
 				{body}
 				<hr/>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { drizzleConnect } from 'drizzle-react';
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -26,11 +26,14 @@ import Notify from './Notify';
 import NetworkError from './NetworkError';
 import LoadingApp from './LoadingApp';
 
-class App extends Component {
+class App extends Component
+{
+
 	constructor(props) {
 		super(props);
 		this.state = {
-			sent_tx: []
+			sent_tx: [],
+			showSidebar: true
 		};
 	}
 
@@ -63,7 +66,7 @@ class App extends Component {
 		var items = ['slide1.png', 'slide2.png', 'slide3.png', 'slide4.png'];
     var randomBG = items[Math.floor(Math.random()*items.length)];
 
-		console.log(randomBG);
+		// console.log(randomBG);
 
 		if (!this.props.drizzleStatus.initialized) {
 			body =
@@ -118,6 +121,7 @@ class App extends Component {
   						backgroundImage: "url(/images/slides/"+ randomBG + ")",
 						}} />
 						<div className="branding">
+						<img src="/images/hydro.png" className="branding-logo" alt="hydro logo" /> 
 						<h1>Hydro Events Marketplace</h1>
 						<p>What are you going to do?</p>
 						</div>

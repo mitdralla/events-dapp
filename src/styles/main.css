@@ -52,16 +52,17 @@ button {
 	padding: 20px;
 	opacity: 0.7;
 	box-shadow: 4px 8px 8px rgba(0,0,0,0.4);
-  	text-align: left!important;
+  text-align: left!important;
+
 }
 
 #sidebar-wrapper.my-sidebar .user-status .user-status-icon {
 	font-size: 23px;
 	border: 3px solid #FAFAFA;
 	border-radius: 50%;
-  	width: 35px;
-  	height: 35px;
-  	margin-top: -53px;
+  width: 35px;
+  height: 35px;
+  margin-top: -53px;
 }
 
 #sidebar-wrapper.my-sidebar .user-status .user-status-icon i {
@@ -573,7 +574,7 @@ button {
 }
 
 .topic-hero-wrapper {
-
+  
 }
 
 .topic-hero-wrapper img {

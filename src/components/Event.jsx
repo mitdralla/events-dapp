@@ -169,7 +169,8 @@ class Event extends Component {
 			let disabled = false;
 
 			if (event_data[4] && (Number(event_data[6]) >= Number(event_data[5]))) {
-            let disabledStatus = '';
+
+        let disabledStatus = '';
 				disabled = true;
 				disabledStatus = <span><span role="img" aria-label="alert">⚠️</span> No tickets available.</span>;
 			}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
+
 // import { Link } from 'react-router-dom';
 // import ReactTooltip from 'react-tooltip'
 import eventTypes from '../../config/types.json';
@@ -42,6 +43,8 @@ class Form extends Component {
 				timeForHumans: date.time,
 				time: date.unix()
 			});
+
+			console.log(date)
 		}
 	}
 
@@ -59,6 +62,7 @@ class Form extends Component {
 
 	handleFile = (event) => {
 		let file = event.target.files[0];
+
 		if (
 			file.size > 1024 * 1024 ||
 			(file.type !== 'image/jpeg' && file.type !== 'image/png')
@@ -79,8 +83,8 @@ class Form extends Component {
 
 	titleChange = (event) => {
 		let title = event.target.value;
-		if (title.length > 160) {
-			title = title.slice(0, 160);
+		if (title.length > 80) {
+			title = title.slice(0, 80);
 		}
 		this.setState({
 			title: title,
@@ -201,6 +205,26 @@ class Form extends Component {
 		if (this.state.form_validation.length > 0) {
 			alert = <div className="alert alert-dark mt-2" role="alert">Required fields are missed.</div>
 		}
+		let seatsForHumans = '';
+		let organizerForHumans = '';
+
+		if (this.state.limited === true) {
+			if (this.state.seats === undefined) {
+				seatsForHumans = "0/∞";
+			} else {
+				seatsForHumans = "0/"+ this.state.seats;
+			}
+		} else {
+			seatsForHumans = "0/∞";
+		}
+
+		if (this.state.organizer === '') {
+			organizerForHumans = "";
+		} else {
+			organizerForHumans = "Organizer: " + this.state.organizer;
+
+		}
+
 		let seatsForHumans = '';
 		let organizerForHumans = '';
 
@@ -355,3 +379,4 @@ class Form extends Component {
 }
 
 export default Form;
+

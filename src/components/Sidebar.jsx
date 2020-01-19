@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import makeBlockie from 'ethereum-blockies-base64';
 
+class Sidebar extends Component
+{
 
-class Sidebar extends Component {
 	render() {
 		let user =
 			<div>
@@ -26,7 +27,7 @@ class Sidebar extends Component {
 		}
 
 		return (
-			<div id="sidebar-wrapper" className="my-sidebar text-center">
+			<div id="sidebar-wrapper" className="my-sidebar">
 				<div className="hamburgerNav">
 					<i className="fa fa-bars"></i>
 				</div>
@@ -37,7 +38,13 @@ class Sidebar extends Component {
 					<h5>Events & Tickets</h5>
 					<ul className="nav flex-column">
 						<li className="nav-item">
-							<Link to="/findevents/1" className="nav-link"><i className="fa fa-search"></i> Find Events</Link>
+							<Link to="/findevents/1" className="nav-link"><i className="fa fa-search"></i> Events</Link>
+						</li>
+						<li className="nav-item">
+							<Link to="/topics" className="nav-link"><i className="fa fa-book"></i> Topics</Link>
+						</li>
+						<li className="nav-item">
+							<Link to="/locations" className="nav-link"><i className="fa fa-map-marker-alt"></i> Locations</Link>
 						</li>
 						<li className="nav-item">
 							<Link to="/pastevents/1" className="nav-link"><i className="fa fa-search"></i> Past Events</Link>
