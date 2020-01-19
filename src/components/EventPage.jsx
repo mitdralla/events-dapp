@@ -177,7 +177,6 @@ class EventPage extends Component {
 	}
 
 	
-
 	render() {
 		let body = <Loading />;
 

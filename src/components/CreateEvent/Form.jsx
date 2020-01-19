@@ -225,26 +225,6 @@ class Form extends Component {
 
 		}
 
-		let seatsForHumans = '';
-		let organizerForHumans = '';
-
-		if (this.state.limited === true) {
-			if (this.state.seats === undefined) {
-				seatsForHumans = "0/∞";
-			} else {
-				seatsForHumans = "0/"+ this.state.seats;
-			}
-		} else {
-			seatsForHumans = "0/∞";
-		}
-
-		if (this.state.organizer === '') {
-			organizerForHumans = "";
-		} else {
-			organizerForHumans = "Organizer: " + this.state.organizer;
-
-		}
-
 		return (
 			<React.Fragment>
 			<div className="row">
