@@ -1,6 +1,6 @@
-# 🎫 OpenTicket DApp
+# 🎫 Hydro Events DApp
 
-Demo running on the Rinkeby network: [OpenTicket DApp](https://monosux.github.io/open-ticket-dapp/)
+Demo running on the Rinkeby network: [Hydro Events DApp](https://rinkeby.hydroevents.io/)
 
 ## What is it?
 OpenTicket it is a dApp based on Ethereum Blockchain that provides an ability to create events and sell tickets for events as ERC721 tokens.
@@ -13,8 +13,8 @@ A user can create an event: set up a title, description, image, date, price (The
 ### Ticket buyer
 A user can see the list of events and can choose and buy a ticket for it. The user can pay by Ethereum or USD tokens depends on event's settings. The user can see the list of all its tickets. The user can send its ticket to another user. All tickets are ERC721 tokens that means that users can do any action available for these type of tokens.
 
-## USD Token
-DApp uses test tokens which user can receive on a special page.
+## Hydro Token
+This dApp uses test tokens which user can receive on a special page.
 
 ## Setup
 
