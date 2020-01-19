@@ -173,7 +173,7 @@ class MyEvents extends Component {
             	ipfs={this.state.MyEvents[i].returnValues.ipfs} />);
 				}
 
-        events.reverse();
+        //events.reverse();
 
 				let pagination;
 

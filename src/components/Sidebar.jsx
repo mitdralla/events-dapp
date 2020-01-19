@@ -40,12 +40,7 @@ class Sidebar extends Component
 						<li className="nav-item">
 							<Link to="/findevents/1" className="nav-link"><i className="fa fa-search"></i> Events</Link>
 						</li>
-						<li className="nav-item">
-							<Link to="/topics" className="nav-link"><i className="fa fa-book"></i> Topics</Link>
-						</li>
-						<li className="nav-item">
-							<Link to="/locations" className="nav-link"><i className="fa fa-map-marker-alt"></i> Locations</Link>
-						</li>
+						
 						<li className="nav-item">
 							<Link to="/pastevents/1" className="nav-link"><i className="fa fa-search"></i> Past Events</Link>
 						</li>
