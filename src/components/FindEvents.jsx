@@ -104,8 +104,6 @@ class FindEvents extends Component
     var newest = this.state.Events_Blockchain
     var newsort= newest.concat().sort((a,b)=> b.blockNumber- a.blockNumber);
     
-    
-    
     //this.setState({incoming:false});
     this.setState({Events_Blockchain:newsort,event_copy:newsort});
     this.setState({active_length:this.state.Events_Blockchain.length})}
