@@ -52,7 +52,8 @@ button {
 	padding: 20px;
 	opacity: 0.7;
 	box-shadow: 4px 8px 8px rgba(0,0,0,0.4);
-  text-align: left;
+  text-align: left!important;
+
 }
 
 #sidebar-wrapper.my-sidebar .user-status .user-status-icon {
@@ -573,7 +574,7 @@ button {
 }
 
 .topic-hero-wrapper {
-
+  
 }
 
 .topic-hero-wrapper img {
@@ -597,7 +598,7 @@ button {
 }
 
 .topic-hero-wrapper:after {
-	content: "";
+  content: "";
   position: absolute;
   z-index: 0;
   width: 96%;
@@ -636,3 +637,54 @@ button.read-more:hover {
   margin-top: 5px;
   margin-right: 10px;
 }
+
+
+.sort_button {
+	color: #fff;
+    background-color: #343a40;
+    border-color: #343a40;
+	max-width:140px;
+	max-height:40px;
+	border-radius:25px;
+	font-size:0.9rem;
+	transition: all 0.3s;
+	overflow:hidden;
+  }
+
+  .sort_button:hover{
+	color:rgb(250, 250, 250); 
+	border-color: #4f6e8d;
+  }
+
+  .transactions{
+	text-align:center; 
+	padding:5px;
+	
+  }
+
+
+  .sold_text{
+	padding:8px;
+	padding-bottom:0px;
+	text-align: center;
+	border-top:1px solid rgb(197, 195, 197);
+	font-size: 14px;
+	overflow:hidden;
+	
+  }
+
+  .transaction-wrapper{
+	margin-top:30px;
+	justify-content:center;
+	margin-left:15px;
+	background:#343a40;
+	max-width:822px;
+	color:rgb(241, 241, 241);
+	text-align:center;
+	border:1px solid black;
+	border-radius: 10px;
+	overflow:hidden;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;	
+	opacity: 0.9;
+  }
+

@@ -49,8 +49,9 @@ class MyTickets extends Component {
 
 				for (let i = start; i < end; i++) {
 					let ticket = parseInt(allTickets[i], 10);
-					tickets.push(<Ticket key={ticket} id={ticket} />);
+					tickets.push(<Ticket key={tickets} id={ticket} />);
 				}
+				tickets.reverse();
 
 				let pagination;
 				if (pages > 1) {

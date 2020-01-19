@@ -12,6 +12,7 @@ import '../styles/main.css';
 import Sidebar from './Sidebar';
 import Home from './Home';
 import FindEvents from './FindEvents';
+import PastEvents from './PastEvents';
 import MyTickets from './MyTickets';
 import CreateEvent from './CreateEvent/';
 import MyEvents from './MyEvents';
@@ -58,6 +59,7 @@ class App extends Component
 	}
 
 	render() {
+		
 		let body;
 		let connecting = false;
 
@@ -95,13 +97,14 @@ class App extends Component
 				<div>
 					<Route exact path="/" component={FindEvents} />
 					<Route path="/findevents/:page" component={FindEvents} />
+					<Route path="/pastevents/:page" component={PastEvents} />
 					<Route path="/mytickets/:page" component={MyTickets} />
 					<Route path="/createevent" component={CreateEvent} />
 					<Route path="/myevents/:page" component={MyEvents} />
 					<Route path="/event/:id" component={EventPage} />
 					<Route path="/token" component={Token} />
 					<Route path="/topics" component={TopicsLandingPage} />
-					<Route path="/topic/:page" component={TopicLandingPage} />
+					<Route path="/topic/:page/:id" component={TopicLandingPage} />
 					<Route path="/locations" component={LocationsLandingPage} />
 					<Route path="/location/:page" component={LocationLandingPage} />
 					<Route path="/how-it-works" component={Home} />
@@ -142,7 +145,8 @@ const mapStateToProps = state => {
 		drizzleStatus: state.drizzleStatus,
 		web3: state.web3,
 		accounts: state.accounts,
-		transactionStack: state.transactionStack
+		transactionStack: state.transactionStack,
+		transactions: state.transactions
     };
 };
 

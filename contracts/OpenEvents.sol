@@ -25,6 +25,7 @@ contract OpenEvents is OpenTicket, Pausable, Destructible {
 		uint seats;
 		uint sold;
 		string ipfs;
+		string category;
 	}
 
 	OpenEvent[] private openEvents;
@@ -32,7 +33,7 @@ contract OpenEvents is OpenTicket, Pausable, Destructible {
 	// Mapping from owner to list of owned events IDs.
 	mapping(address => uint256[]) private ownedEvents;
 
-	event CreatedEvent(address indexed owner, uint eventId);
+	event CreatedEvent(address indexed owner, uint eventId, string name ,uint time, uint price, bool token, bool limited, uint seats, uint sold, string ipfs, string category);
 	event SoldTicket(address indexed buyer, uint indexed eventId, uint ticketId);
 
 	/**
@@ -79,6 +80,7 @@ contract OpenEvents is OpenTicket, Pausable, Destructible {
 	* @param _limited bool - If true event has limited seats.
 	* @param _seats uint - If event has limited seats, says how much tickets can be sold.
 	* @param _ipfs string - The IPFS hash containing additional information about the event.
+	* @param _category string - The category of the event.
 	* @notice Requires that the events time is in the future.
 	* @notice Requires that the contract is not paused.
 	*/
@@ -89,7 +91,8 @@ contract OpenEvents is OpenTicket, Pausable, Destructible {
 		bool _token,
 		bool _limited,
 		uint _seats,
-		string _ipfs
+		string _ipfs,
+		string _category
 	)
 		goodTime(_time)
 		whenNotPaused()
@@ -104,11 +107,12 @@ contract OpenEvents is OpenTicket, Pausable, Destructible {
 			limited: _limited,
 			seats: _seats,
 			sold: 0,
-			ipfs: _ipfs
+			ipfs: _ipfs,
+			category: _category
 		});
 		uint _eventId = openEvents.push(_event).sub(1);
 		ownedEvents[msg.sender].push(_eventId);
-		emit CreatedEvent(msg.sender, _eventId);
+		emit CreatedEvent(msg.sender, _eventId,_name,_time,_price,_token,_limited,_seats,0,_ipfs,_category);
 	}
 
 	/**
@@ -131,6 +135,7 @@ contract OpenEvents is OpenTicket, Pausable, Destructible {
 	* @return seats uint - If event has limited seats, show how much tickets can be sold.
 	* @return sold uint - Number of sold tickets.
 	* @return ipfs string - The IPFS hash containing additional information about event.
+	* @return category string - The category of the event.
 	* @return owner address - The owner of the event.
 	* @notice Requires that the events exist.
 	*/
@@ -147,6 +152,7 @@ contract OpenEvents is OpenTicket, Pausable, Destructible {
 		uint seats,
 		uint sold,
 		string ipfs,
+		string category,
 		address owner
 	) {
 		OpenEvent memory _event = openEvents[_id];
@@ -159,6 +165,7 @@ contract OpenEvents is OpenTicket, Pausable, Destructible {
 			_event.seats,
 			_event.sold,
 			_event.ipfs,
+			_event.category,
 			_event.owner
 		);
 	}

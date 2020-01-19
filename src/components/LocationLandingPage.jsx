@@ -148,7 +148,9 @@ class LocationLandingPage extends Component
           {locationsJson.map(location => (
             <div className="col-lg-4 pb-4 d-flex align-items-stretch" key={location.slug}>
               <div className="topic" style={{ backgroundImage: "url(/images/states/" + location.image +")"}} onClick={() => {this.locationClick(location.slug)}}>
-              <div className="topic-caption"><h3>{location.name}</h3><button className="btn">View Location</button></div>
+
+              <div className="topic-caption"><h3>{location.name}</h3><button className="btn sort_button">View Location</button></div>
+
               </div>
             </div>
             ))}

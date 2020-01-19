@@ -19,7 +19,7 @@ class TopicsLandingPage extends Component {
 	}
 
   topicClick(slug) {
-    this.props.history.push("/topic/"+slug);
+    this.props.history.push("/topic/"+slug+"/"+1);
     window.scrollTo(0, 0);
   }
 
@@ -27,10 +27,12 @@ class TopicsLandingPage extends Component {
 		let body = <Loading />;
 
 		if (typeof this.props.contracts['OpenEvents'].getEventsCount[this.eventCount] !== 'undefined') {
+
 			let count = Number(this.props.contracts['OpenEvents'].getEventsCount[this.eventCount].value);
 			if (count === 0) {
 				body = <p className="text-center not-found"><span role="img" aria-label="thinking">🤔</span>&nbsp;No events found. <a href="/createevent">Try creating one.</a></p>;
 			} else {
+
 				let currentPage = Number(this.props.match.params.page);
 				if (isNaN(currentPage) || currentPage < 1) currentPage = 1;
 
@@ -138,7 +140,8 @@ class TopicsLandingPage extends Component {
             return (
               <div className="col-lg-4 pb-4 d-flex align-items-stretch" key={topic.slug}>
                 <div className="topic" style={{ backgroundImage: "url(/images/topics/" + topic.image +")"}} onClick={() => {this.topicClick(topic.slug)}}>
-                <div className="topic-caption"><h3>{topic.name}</h3><button className="btn">View Topic</button></div>
+                <div className="topic-caption"><h3>{topic.name}</h3><button className="btn sort_button">View Topic</button></div>
+
                 </div>
               </div>
             );
@@ -147,9 +150,10 @@ class TopicsLandingPage extends Component {
       </div>
       <br /><br />
 
-      <h2><i className="fa fa-calendar-alt"></i> All Topics</h2>
+      <h2><i className="fa fa-calendar-alt"></i> Alls Topics</h2>
       <hr />
-        <div className="row user-list mt-4">
+      <div className="row user-list mt-4">
+
         {
           topicsJson && topicsJson
             .filter(topic => topic.popular === "false")
@@ -157,7 +161,8 @@ class TopicsLandingPage extends Component {
               return (
                 <div className="col-lg-4 pb-4 d-flex align-items-stretch" key={topic.slug}>
                   <div className="topic" style={{ backgroundImage: "url(/images/topics/" + topic.image +")"}} onClick={() => {this.topicClick(topic.slug)}}>
-                  <div className="topic-caption"><h3>{topic.name}</h3><button className="btn">View Topic</button></div>
+                  <div className="topic-caption"><h3>{topic.name}</h3><button className="btn sort_button">View Topic</button></div>
+
                   </div>
                 </div>
               );
