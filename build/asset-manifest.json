@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/events-dapp/static/css/main.d289f3a1.chunk.css",
+    "main.js": "/events-dapp/static/js/main.ad642836.chunk.js",
+    "main.js.map": "/events-dapp/static/js/main.ad642836.chunk.js.map",
+    "runtime-main.js": "/events-dapp/static/js/runtime-main.6ea58195.js",
+    "runtime-main.js.map": "/events-dapp/static/js/runtime-main.6ea58195.js.map",
+    "static/css/2.f502e26c.chunk.css": "/events-dapp/static/css/2.f502e26c.chunk.css",
+    "static/js/2.bc15f880.chunk.js": "/events-dapp/static/js/2.bc15f880.chunk.js",
+    "static/js/2.bc15f880.chunk.js.map": "/events-dapp/static/js/2.bc15f880.chunk.js.map",
+    "index.html": "/events-dapp/index.html",
+    "precache-manifest.73711b2528ca12668d58eace0fb5dfe6.js": "/events-dapp/precache-manifest.73711b2528ca12668d58eace0fb5dfe6.js",
+    "service-worker.js": "/events-dapp/service-worker.js",
+    "static/css/2.f502e26c.chunk.css.map": "/events-dapp/static/css/2.f502e26c.chunk.css.map",
+    "static/css/main.d289f3a1.chunk.css.map": "/events-dapp/static/css/main.d289f3a1.chunk.css.map",
+    "static/js/2.bc15f880.chunk.js.LICENSE": "/events-dapp/static/js/2.bc15f880.chunk.js.LICENSE",
+    "static/media/all.min.css": "/events-dapp/static/media/fa-solid-900.f6121be5.woff2"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6ea58195.js",
+    "static/css/2.f502e26c.chunk.css",
+    "static/js/2.bc15f880.chunk.js",
+    "static/css/main.d289f3a1.chunk.css",
+    "static/js/main.ad642836.chunk.js"
+  ]
+}

@@ -32,14 +32,14 @@
     "absolutePath": "openzeppelin-solidity/contracts/introspection/ERC165.sol",
     "exportedSymbols": {
       "ERC165": [
-        574
+        610
       ]
     },
-    "id": 575,
+    "id": 611,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 566,
+        "id": 602,
         "literals": [
           "solidity",
           "^",
@@ -55,9 +55,9 @@
         "contractKind": "interface",
         "documentation": "@title ERC165\n@dev https://github.com/ethereum/EIPs/blob/master/EIPS/eip-165.md",
         "fullyImplemented": false,
-        "id": 574,
+        "id": 610,
         "linearizedBaseContracts": [
-          574
+          610
         ],
         "name": "ERC165",
         "nodeType": "ContractDefinition",
@@ -65,7 +65,7 @@
           {
             "body": null,
             "documentation": "@notice Query if a contract implements an interface\n@param _interfaceId The interface identifier, as specified in ERC-165\n@dev Interface identification is specified in ERC-165. This function\nuses less than 30,000 gas.",
-            "id": 573,
+            "id": 609,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -73,15 +73,15 @@
             "name": "supportsInterface",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 569,
+              "id": 605,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 568,
+                  "id": 604,
                   "name": "_interfaceId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 573,
+                  "scope": 609,
                   "src": "420:19:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -90,7 +90,7 @@
                     "typeString": "bytes4"
                   },
                   "typeName": {
-                    "id": 567,
+                    "id": 603,
                     "name": "bytes4",
                     "nodeType": "ElementaryTypeName",
                     "src": "420:6:5",
@@ -107,15 +107,15 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 572,
+              "id": 608,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 571,
+                  "id": 607,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 573,
+                  "scope": 609,
                   "src": "476:4:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -124,7 +124,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 570,
+                    "id": 606,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "476:4:5",
@@ -139,14 +139,14 @@
               ],
               "src": "475:6:5"
             },
-            "scope": 574,
+            "scope": 610,
             "src": "393:89:5",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 575,
+        "scope": 611,
         "src": "121:363:5"
       }
     ],
@@ -156,14 +156,14 @@
     "absolutePath": "openzeppelin-solidity/contracts/introspection/ERC165.sol",
     "exportedSymbols": {
       "ERC165": [
-        574
+        610
       ]
     },
-    "id": 575,
+    "id": 611,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 566,
+        "id": 602,
         "literals": [
           "solidity",
           "^",
@@ -179,9 +179,9 @@
         "contractKind": "interface",
         "documentation": "@title ERC165\n@dev https://github.com/ethereum/EIPs/blob/master/EIPS/eip-165.md",
         "fullyImplemented": false,
-        "id": 574,
+        "id": 610,
         "linearizedBaseContracts": [
-          574
+          610
         ],
         "name": "ERC165",
         "nodeType": "ContractDefinition",
@@ -189,7 +189,7 @@
           {
             "body": null,
             "documentation": "@notice Query if a contract implements an interface\n@param _interfaceId The interface identifier, as specified in ERC-165\n@dev Interface identification is specified in ERC-165. This function\nuses less than 30,000 gas.",
-            "id": 573,
+            "id": 609,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -197,15 +197,15 @@
             "name": "supportsInterface",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 569,
+              "id": 605,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 568,
+                  "id": 604,
                   "name": "_interfaceId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 573,
+                  "scope": 609,
                   "src": "420:19:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -214,7 +214,7 @@
                     "typeString": "bytes4"
                   },
                   "typeName": {
-                    "id": 567,
+                    "id": 603,
                     "name": "bytes4",
                     "nodeType": "ElementaryTypeName",
                     "src": "420:6:5",
@@ -231,15 +231,15 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 572,
+              "id": 608,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 571,
+                  "id": 607,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 573,
+                  "scope": 609,
                   "src": "476:4:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -248,7 +248,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 570,
+                    "id": 606,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "476:4:5",
@@ -263,14 +263,14 @@
               ],
               "src": "475:6:5"
             },
-            "scope": 574,
+            "scope": 610,
             "src": "393:89:5",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 575,
+        "scope": 611,
         "src": "121:363:5"
       }
     ],
@@ -281,8 +281,8 @@
     "version": "0.4.24+commit.e67f0147.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.20",
-  "updatedAt": "2020-01-13T20:04:35.503Z",
+  "schemaVersion": "3.0.19",
+  "updatedAt": "2020-01-27T05:57:10.859Z",
   "devdoc": {
     "methods": {
       "supportsInterface(bytes4)": {
