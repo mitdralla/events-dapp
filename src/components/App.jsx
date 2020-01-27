@@ -69,6 +69,10 @@ class App extends Component
 		// console.log(randomBG);
 
 		if (!this.props.drizzleStatus.initialized) {
+			console.log("process",process.env.NODE_ENV)
+			console.log("netowork id",this.props.web3.networkId)
+			console.log("account",this.props.accounts)
+			console.log("web3 status",this.props.web3.status)
 			body =
 				<div>
 					<Switch>
@@ -83,6 +87,10 @@ class App extends Component
 			(this.props.web3.status === 'initialized' && Object.keys(this.props.accounts).length === 0) ||
 			(process.env.NODE_ENV === 'production' && this.props.web3.networkId !== 4)
 		) {
+			console.log("process",process.env.NODE_ENV)
+			console.log("netowork id",this.props.web3.networkId)
+			console.log("account",this.props.accounts)
+			console.log("web3 status",this.props.web3.status)
 			body =
 				<div>
 					<Switch>
