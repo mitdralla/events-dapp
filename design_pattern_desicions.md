@@ -27,5 +27,5 @@ function createEvent(...) whenNotPaused() public {
 Functions in the project check the condition required for execution as early as possible in the function body and throw an exception if the condition is not met. It gives the ability to reduce unnecessary code execution in the event that an exception will be thrown.
 
 
-
-
+## Test
+Clear
