@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { drizzleConnect } from 'drizzle-react';
 import { ToastContainer, toast } from 'react-toastify';
+import Web3 from 'web3';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'startbootstrap-simple-sidebar/css/simple-sidebar.css';
@@ -33,8 +34,14 @@ class App extends Component
 		super(props);
 		this.state = {
 			sent_tx: [],
-			showSidebar: true
+			showSidebar: true,
+			account:[]
 		};
+	}
+
+	componentDidMount(){
+		this.loadBlockchainData();
+
 	}
 
 	componentWillUpdate() {
@@ -58,6 +65,44 @@ class App extends Component
 		}
 	}
 
+	
+async loadBlockchainData() { 
+
+	let ethereum= window.ethereum;
+	let web3=window.web3;
+
+ 
+	if(typeof ethereum !=='undefined'){
+		// console.log("metamask")
+	 await ethereum.enable();
+	 web3 = new Web3(ethereum);
+	
+ 	}
+ 
+ 	else if (typeof web3 !== 'undefined'){
+	console.log('Web3 Detected!')
+ 	window.web3 = new Web3(web3.currentProvider);
+	 }
+	 
+ 	else{console.log('No Web3 Detected')
+ 	window.web3 = new Web3(new Web3.providers.HttpProvider('https://rinkeby.infura.io/v3/72e114745bbf4822b987489c119f858b'));
+
+	}
+
+	window.ethereum.on('accountsChanged', function (accounts) {
+ 	window.location.reload();
+	})
+
+	window.ethereum.on('networkChanged', function (netId) {
+ 	window.location.reload();
+	}) 
+
+ 	const accounts = await web3.eth.getAccounts();
+ 
+	 this.setState({account: accounts[0]}); 
+	 console.log("console.log",this.state.account)
+	}
+
 	render() {
 		
 		let body;
@@ -73,6 +118,7 @@ class App extends Component
 			console.log("netowork id",this.props.web3.networkId)
 			console.log("account",this.props.accounts)
 			console.log("web3 status",this.props.web3.status)
+			console.log("web3 metamask",this.state.account)
 			body =
 				<div>
 					<Switch>
@@ -91,6 +137,7 @@ class App extends Component
 			console.log("netowork id",this.props.web3.networkId)
 			console.log("account",this.props.accounts)
 			console.log("web3 status",this.props.web3.status)
+			console.log("web3 metamask",this.state.account)
 			body =
 				<div>
 					<Switch>
