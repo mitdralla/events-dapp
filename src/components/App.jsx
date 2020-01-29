@@ -96,11 +96,6 @@ async loadBlockchainData() {
 	window.ethereum.on('networkChanged', function (netId) {
  	window.location.reload();
 	}) 
-
- 	const accounts = await web3.eth.getAccounts();
- 
-	 this.setState({account: accounts[0]}); 
-	 console.log("console.log",this.state.account)
 	}
 
 	render() {
@@ -118,7 +113,7 @@ async loadBlockchainData() {
 			console.log("netowork id",this.props.web3.networkId)
 			console.log("account",this.props.accounts)
 			console.log("web3 status",this.props.web3.status)
-			console.log("web3 metamask",this.state.account)
+		
 			body =
 				<div>
 					<Switch>
@@ -137,7 +132,7 @@ async loadBlockchainData() {
 			console.log("netowork id",this.props.web3.networkId)
 			console.log("account",this.props.accounts)
 			console.log("web3 status",this.props.web3.status)
-			console.log("web3 metamask",this.state.account)
+		
 			body =
 				<div>
 					<Switch>
