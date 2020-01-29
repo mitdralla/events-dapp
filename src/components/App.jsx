@@ -73,7 +73,7 @@ async loadBlockchainData() {
 
  
 	if(typeof ethereum !=='undefined'){
-		// console.log("metamask")
+	// console.log("metamask")
 	 await ethereum.enable();
 	 web3 = new Web3(ethereum);
 	
@@ -104,15 +104,13 @@ async loadBlockchainData() {
 		let connecting = false;
 
 		var items = ['slide1.png', 'slide2.png', 'slide3.png', 'slide4.png'];
-    var randomBG = items[Math.floor(Math.random()*items.length)];
+    	var randomBG = items[Math.floor(Math.random()*items.length)];
 
 		// console.log(randomBG);
 
 		if (!this.props.drizzleStatus.initialized) {
-			console.log("process",process.env.NODE_ENV)
-			console.log("netowork id",this.props.web3.networkId)
+
 			console.log("account",this.props.accounts)
-			console.log("web3 status",this.props.web3.status)
 		
 			body =
 				<div>
@@ -128,11 +126,9 @@ async loadBlockchainData() {
 			(this.props.web3.status === 'initialized' && Object.keys(this.props.accounts).length === 0) ||
 			(process.env.NODE_ENV === 'production' && this.props.web3.networkId !== 4)
 		) {
-			console.log("process",process.env.NODE_ENV)
-			console.log("netowork id",this.props.web3.networkId)
+			
 			console.log("account",this.props.accounts)
-			console.log("web3 status",this.props.web3.status)
-		
+
 			body =
 				<div>
 					<Switch>
