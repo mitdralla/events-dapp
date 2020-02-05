@@ -4,6 +4,8 @@ import { drizzleConnect } from 'drizzle-react';
 import PropTypes from 'prop-types';
 
 import Loading from './Loading';
+import HydroLoader from './HydroLoader';
+
 import Event from './Event';
 import Web3 from 'web3';
 import {Open_events_ABI, Open_events_Address} from '../config/OpenEvents';
@@ -16,7 +18,7 @@ class MyEvents extends Component {
 			openEvents : '',
 			blocks : 5000000,
 			latestblocks : 6000000,
-			loading : false,
+			loading : true,
 			MyEvents : [],
 			active_length : '',
 			isOldestFirst:false,
@@ -49,24 +51,25 @@ class MyEvents extends Component {
 		const blockNumber = await web3.eth.getBlockNumber();
 		this.setState({dateNow})
 		this.setState({blocks:blockNumber - 50000});
-		this.setState({latestblocks:blockNumber});
+		this.setState({latestblocks:blockNumber - 1});
 		this.loadActiveEvents()
 		
 		//Listen For My Newly Created Events
-		this.state.openEvents.events.CreatedEvent({filter:{owner:this.account},fromBlock: this.state.latestblocks, toBlock:'latest'})
+		this.state.openEvents.events.CreatedEvent({filter:{owner:this.account},fromBlock: blockNumber, toBlock:'latest'})
 		.on('data', (log) => setTimeout(()=> {
 		if(this.state.isActive){
-		this.setState({loading:true});
 		
 		this.setState({MyEvents :[...this.state.MyEvents ,log]});
 		var newest = this.state.MyEvents 
 		var newsort= newest.concat().sort((a,b)=> b.blockNumber- a.blockNumber);
 	
-		this.setState({MyEvents :newsort});
-		this.setState({active_length:this.state.MyEvents.length})
-		this.setState({loading:false})};
+		this.setState({
+			MyEvents:newsort,
+			active_length:this.state.MyEvents.length
+			});
+		 };
 		
-		},8000))
+		},10000))
 		}
 	}
 
@@ -74,18 +77,18 @@ class MyEvents extends Component {
 	async loadActiveEvents(){
 		
 		if (this._isMounted){
-		this.setState({MyEvents:[],active_length:0}); }
+		this.setState({MyEvents:[],active_length:0,loading:true}); }
 	  
-		this.state.openEvents.getPastEvents("CreatedEvent",{filter:{owner:this.account},fromBlock: 5000000, toBlock:'latest'})
+		this.state.openEvents.getPastEvents("CreatedEvent",{filter:{owner:this.account},fromBlock: 5000000, toBlock:this.state.latestblocks})
 		.then(events=>{
-		this.setState({loading:true})
 		var newest = events.filter((activeEvents)=>activeEvents.returnValues.time >=(this.state.dateNow));
 		var newsort= newest.concat().sort((a,b)=> b.blockNumber- a.blockNumber);
 		
 		if (this._isMounted){
 		this.setState({MyEvents:newsort,check:newsort});
-		this.setState({loading:false})
-		this.setState({active_length:this.state.MyEvents.length}); }
+		this.setState({active_length:this.state.MyEvents.length});
+		setTimeout(()=>this.setState({loading:false}),1000);
+			 }
 		 
 		}).catch((err)=>console.error(err))
 		
@@ -95,8 +98,8 @@ class MyEvents extends Component {
 	async loadPastEvents(){
     
 		if (this._isMounted){
-		this.setState({MyEvents :[],active_length:0});}
-		this.state.openEvents.getPastEvents("CreatedEvent",{filter:{owner:this.account},fromBlock: 5000000, toBlock:'latest'})
+		this.setState({MyEvents :[],active_length:0,loading:true});}
+		this.state.openEvents.getPastEvents("CreatedEvent",{filter:{owner:this.account},fromBlock: 5000000, toBlock:this.state.latestblocks})
 		.then(events=>{
 		this.setState({loading:true})
 		var newest = events.filter((activeEvents)=>activeEvents.returnValues.time <=(this.state.dateNow));
@@ -104,8 +107,9 @@ class MyEvents extends Component {
 		
 		if (this._isMounted){
 		this.setState({MyEvents:newsort,check:newsort});
-		this.setState({loading:false})
-		this.setState({active_length:this.state.MyEvents.length}); }
+		this.setState({active_length:this.state.MyEvents.length});
+		setTimeout(()=>this.setState({loading:false}),1000);
+			}
 		 
 		}).catch((err)=>console.error(err))
 	  }
@@ -146,15 +150,17 @@ class MyEvents extends Component {
 	  })}
 
 	render() {
-		let body = <Loading />;
+		let body = <HydroLoader />;
 
 		if (typeof this.props.contracts['OpenEvents'].eventsOf[this.events] !== 'undefined') {
-			let events = this.state.active_length;
-			
-			if (events === 0) {
+			let events = this.state.MyEvents.length;
+			if(this.state.loading){
+				body = <HydroLoader/>
+			}
+			else if (events === 0) {
 				body = <p className="text-center not-found"><span role="img" aria-label="thinking">🤔</span>&nbsp;No events found. <a href="/createevent">Try creating one.</a></p>;
 			} else {
-				let count = this.state.active_length
+				let count = this.state.MyEvents.length
 			
 				let currentPage = Number(this.props.match.params.page);
 				if (isNaN(currentPage) || currentPage < 1) currentPage = 1;
@@ -167,10 +173,11 @@ class MyEvents extends Component {
 				let myEvents = [];
 
         		for (let i = start; i < end; i++) {
-         		myEvents.push(<Event 
-            	key={this.state.MyEvents[i].returnValues.eventId} 
-            	id={this.state.MyEvents[i].returnValues.eventId} 
-            	ipfs={this.state.MyEvents[i].returnValues.ipfs} />);
+				 myEvents.push(<Event 
+					inquire={this.props.inquire}
+            		key={this.state.MyEvents[i].returnValues.eventId} 
+            		id={this.state.MyEvents[i].returnValues.eventId} 
+            		ipfs={this.state.MyEvents[i].returnValues.ipfs} />);
 				}
 
         //events.reverse();
@@ -230,8 +237,10 @@ class MyEvents extends Component {
 	componentDidMount() {
 		this._isMounted = true;	
 		this.loadBlockchain();
-		
-		
+		}
+
+	componentWillUnmount() {
+		this._isMounted = false;
 		}
 
 		

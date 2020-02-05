@@ -12,6 +12,7 @@ import {Open_events_ABI, Open_events_Address} from '../config/OpenEvents';
 import {Hydro_Testnet_Token_ABI, Hydro_Testnet_Token_Address} from '../config/hydrocontract_testnet';
 
 
+
 class EventPage extends Component {
 
     constructor(props, context) {
@@ -40,15 +41,22 @@ class EventPage extends Component {
 		  this.event = this.contracts['OpenEvents'].methods.getEvent.cacheCall(this.props.match.params.id);
 		  this.account = this.props.accounts[0];
 		  this.state = {
+			  load:true,
 			  loading: false,
 			  loaded: false,
 			  description: null,
 			  image: null,
 			  ipfs_problem: false,
-			  approve_tx: null,
-			  waiting_approve: false,
-			  account:[],
-			  soldTicket:[]
+			  
+			  soldTicket:[],
+			  latestblocks:5000000,
+			  hydro_market:[],
+
+			  fee:'',
+			  token:'',
+			  openEvents_address:'',
+			  buyticket:'',
+			  approve:'',
 			  
 		  };
 		  this.isCancelled = false;
@@ -66,28 +74,31 @@ class EventPage extends Component {
   
     const blockNumber = await web3.eth.getBlockNumber();
     if (this._isMounted){
-    this.setState({blocks:blockNumber - 50000});
-    this.setState({latestblocks:blockNumber});
-    this.setState({soldTicket:[]});}
+    this.setState({
+		blocks:blockNumber - 50000,
+	    latestblocks:blockNumber - 1,
+		soldTicket:[]
+		});
+	}
   
-    openEvents.getPastEvents("SoldTicket",{filter:{eventId:this.props.match.params.id},fromBlock: this.state.blocks, toBlock:'latest'})
+    openEvents.getPastEvents("SoldTicket",{filter:{eventId:this.props.match.params.id},fromBlock: 5000000, toBlock:this.state.latestblocks})
     .then(events=>{
 
-    this.setState({loading:true})
+    this.setState({load:true})
     var newest = events;
     var newsort= newest.concat().sort((a,b)=> b.blockNumber- a.blockNumber);
     if (this._isMounted){
     this.setState({soldTicket:newsort,check:newsort});
-    this.setState({loading:false})
+    this.setState({load:false})
     this.setState({active_length:this.state.soldTicket.length});
     
   	}  
     }).catch((err)=>console.error(err))
 
 	//Listen for Incoming Sold Tickets
-    openEvents.events.SoldTicket({filter:{eventId:this.props.match.params.id},fromBlock: this.state.latestblocks, toBlock:'latest'})
+    openEvents.events.SoldTicket({filter:{eventId:this.props.match.params.id},fromBlock: blockNumber, toBlock:'latest'})
   	.on('data', (log) =>setTimeout(()=> {
-    this.setState({loading:true});
+    this.setState({load:true});
     
     this.setState({soldTicket:[...this.state.soldTicket,log]});
     var newest = this.state.soldTicket
@@ -96,8 +107,20 @@ class EventPage extends Component {
 
     this.setState({soldTicket:newsort});
     this.setState({active_length:this.state.soldTicket.length})}
-    this.setState({loading:false});
-    }),5000)
+    this.setState({load:false});
+    }),15000)
+  }
+
+  //get market cap & dollar value of hydro
+  async getHydroMarketValue(){
+
+	fetch('https://api.coingecko.com/api/v3/simple/price?ids=Hydro&vs_currencies=usd&include_market_cap=true&include_24hr_change=ture&include_last_updated_at=ture')
+		  .then(res => res.json())
+		  .then((data) => {
+			if (this._isMounted){
+			this.setState({hydro_market: data.hydro })}
+		  })
+		  .catch(console.log)
   }
 
 	updateIPFS = () => {
@@ -147,34 +170,24 @@ class EventPage extends Component {
 		return description;
 	}
 
-	afterApprove = () => setTimeout(()=> {
-		if (this.state.waiting_approve) {
-			//if (typeof this.props.transactionStack[this.state.approve_tx] !== 'undefined') {
-				this.setState({
-					waiting_approve: false
-				}, () => {
-					this.contracts['OpenEvents'].methods.buyTicket.cacheSend(this.props.match.params.id);
-				});
-			//}
-		}
-	},3000)
 
-	buyTicket = () => {
-
-		if (this.props.contracts['OpenEvents'].getEvent[this.event].value[3]) {
-			let tx = this.contracts['Hydro'].methods.approve.cacheSend(this.contracts['OpenEvents'].address, this.props.contracts['OpenEvents'].getEvent[this.event].value[2],{from:this.account});
-			this.setState({
-				approve_tx: tx,
-				waiting_approve: true
-			},()=>this.afterApprove());
-		}
-		
-		 else {
-			 this.contracts['OpenEvents'].methods.buyTicket.cacheSend(this.props.match.params.id, {value: this.props.contracts['OpenEvents'].getEvent[this.event].value[2]});
-			
-		}
-		
-	}
+	inquire = () =>{
+		this.setState({
+			fee:this.props.contracts['OpenEvents'].getEvent[this.event].value[2],
+			token:this.props.contracts['OpenEvents'].getEvent[this.event].value[3],
+			openEvents_address:this.contracts['OpenEvents'].address,
+			buyticket:this.contracts['OpenEvents'].methods.buyTicket(this.props.match.params.id),
+			approve:this.contracts['Hydro'].methods.approve(this.contracts['OpenEvents'].address, this.props.contracts['OpenEvents'].getEvent[this.event].value[2])
+			},()=>{
+				  this.props.inquire(
+					  this.props.id,
+					  this.state.fee,
+					  this.state.token,
+					  this.state.openEvents_address,
+					  this.state.buyticket,
+					  this.state.approve)
+				})
+			}
 
 	
 	render() {
@@ -223,7 +236,7 @@ class EventPage extends Component {
 							<h3>{event_data[0]}</h3>
 							{description}
 							<div className="mt-5">
-								<button className="btn btn-dark" onClick={this.buyTicket} disabled={disabled}><i className="fas fa-ticket-alt"></i> Buy Ticket</button>
+								<button className="btn btn-dark" onClick={this.inquire} disabled={disabled}><i className="fas fa-ticket-alt"></i> Buy Ticket</button>
 								<label className="pl-2 small">{disabledStatus}</label>
 							</div>
 							<CheckUser event_id={this.props.match.params.id} />
@@ -250,7 +263,7 @@ class EventPage extends Component {
 						<hr/>
 						
 						<div className="transaction-wrapper col-12"><h4 className="transactions">Transactions</h4>
-						
+						{this.state.load &&<Loading/>}
 						{this.state.soldTicket.map((sold,index)=>(<p className="sold_text col-md-12" key={index}>{sold.returnValues.buyer} has bought 1 ticket for {event_data[0]}</p>))}
 						{!sold &&  <p className="sold_text col-md-12" >No one has bought a ticket so far,</p>}
       
@@ -281,6 +294,7 @@ class EventPage extends Component {
 		this._isMounted = true;
 		this.updateIPFS();
 		this.loadblockhain();
+		this.getHydroMarketValue();
 	}
 
 	componentDidUpdate() {
@@ -290,6 +304,7 @@ class EventPage extends Component {
 
 	componentWillUnmount() {
 		this.isCancelled = true;
+		this._isMounted = false;
 	}
 }
 

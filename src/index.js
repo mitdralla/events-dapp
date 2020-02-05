@@ -6,6 +6,7 @@ import App from './components/App';
 import OpenEvents from './config/OpenEvents.json';
 import StableToken from './config/StableToken.json';
 
+
 const options = {
 
 	
@@ -20,7 +21,9 @@ const options = {
 		}
 	}
 };
-
+//debugger;
+//const rootElement = document.getElementById("root")
+//ReactDOM.render(<App/>,rootElement);
 ReactDOM.render(
     <DrizzleProvider options={options}>
 		<App />

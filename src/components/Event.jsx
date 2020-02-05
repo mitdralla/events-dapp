@@ -42,16 +42,13 @@ class Event extends Component {
 			description: null,
 			image: null,
 			ipfs_problem: false,
-			approve_tx: null,
-			waiting_approve: false,
-			openEvents:'',
-			OMG:'',
-			account:[],
-			contract:'',
-			blocks:'',
-			net:'',
-			approvetm:'',
 			locations:'',
+			
+			fee:'',
+			token:'',
+			openEvents_address:'',
+			buyticket:'',
+			approve:'',
 		};
 		this.isCancelled = false;
 	}
@@ -117,30 +114,24 @@ class Event extends Component {
 		return locations;
 	}
 
-	afterApprove = () => setTimeout(()=>{
-		if (this.state.waiting_approve) {
-			//if (typeof this.props.transactionStack[this.state.approve_tx] !== 'undefined') {
-				this.setState({
-					waiting_approve: false
-				}, () => {
-					this.contracts['OpenEvents'].methods.buyTicket.cacheSend(this.props.id);
-				});
-			//}
-		}
-	},3000)
 
-	buyTicket = () => {
-		if (this.props.contracts['OpenEvents'].getEvent[this.event].value[3]) {
-			let tx = this.contracts['Hydro'].methods.approve.cacheSend(this.contracts['OpenEvents'].address, this.props.contracts['OpenEvents'].getEvent[this.event].value[2],{from:this.account});
-			//let tx = this.contracts['StableToken'].methods.approve.cacheSend(this.contracts['OpenEvents'].address, this.props.contracts['OpenEvents'].getEvent[this.event].value[2]);
-			this.setState({
-				approve_tx: tx,
-				waiting_approve: true
-			},()=>this.afterApprove());
-		} else {
-			this.contracts['OpenEvents'].methods.buyTicket.cacheSend(this.props.id, {value: this.props.contracts['OpenEvents'].getEvent[this.event].value[2]});
-		}
-	}
+	inquire = () =>{
+		this.setState({
+			fee:this.props.contracts['OpenEvents'].getEvent[this.event].value[2],
+			token:this.props.contracts['OpenEvents'].getEvent[this.event].value[3],
+			openEvents_address:this.contracts['OpenEvents'].address,
+			buyticket:this.contracts['OpenEvents'].methods.buyTicket(this.props.id),
+			approve:this.contracts['Hydro'].methods.approve(this.contracts['OpenEvents'].address, this.props.contracts['OpenEvents'].getEvent[this.event].value[2])
+			},()=>{
+				  this.props.inquire(
+					  this.props.id,
+					  this.state.fee,
+					  this.state.token,
+					  this.state.openEvents_address,
+					  this.state.buyticket,
+					  this.state.approve)
+				})
+			}
 
 
 	 render() {
@@ -217,7 +208,7 @@ class Event extends Component {
 					</ul>
 				
 					<div className="card-footer text-muted text-center">
-						<button className="btn btn-dark" onClick={this.buyTicket} disabled={disabled}><i className="fas fa-ticket-alt"></i> {buttonText}</button>
+						<button className="btn btn-dark" onClick={this.inquire} disabled={disabled}><i className="fas fa-ticket-alt"></i> {buttonText}</button>
 					</div>
 				</div>
 			;

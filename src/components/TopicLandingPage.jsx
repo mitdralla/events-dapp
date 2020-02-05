@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import Loading from './Loading';
+import HydroLoader from './HydroLoader';
 import Event from './Event';
 
 import Web3 from 'web3';
@@ -23,7 +24,8 @@ class TopicLandingPage extends Component
         openEvents : '',
         blocks : 5000000,
         latestblocks :6000000,
-        loading : false,
+        blocks:0,
+        loading : true,
         Topic_Events : [],
         topic_copy:[],
         active_length : '',
@@ -110,8 +112,8 @@ class TopicLandingPage extends Component
     const blockNumber = await web3.eth.getBlockNumber();
     
     this.setState({dateNow})
-    this.setState({blocks:blockNumber - 50000});
-    this.setState({latestblocks:blockNumber});
+    this.setState({blocks:blockNumber});
+    this.setState({latestblocks:blockNumber - 1});
     this.setState({Topic_Events:[]});
     
     if(this.state.isActive){
@@ -122,10 +124,9 @@ class TopicLandingPage extends Component
       }
     }
 
-    openEvents.events.CreatedEvent({fromBlock: this.state.latestblocks, toBlock:'latest'})
+    openEvents.events.CreatedEvent({fromBlock: this.state.blocks, toBlock:'latest'})
     .on('data', (log) => setTimeout(()=> {
     if(this.state.isActive && log.returnValues.category === this.props.match.params.page){
-    this.setState({loading:true});
     
     this.setState({Topic_Events:[...this.state.Topic_Events,log]});
     var newest = this.state.Topic_Events
@@ -136,22 +137,9 @@ class TopicLandingPage extends Component
     //this.setState({incoming:false});
     this.setState({Topic_Events:newsort,topic_copy:newsort});
     this.setState({active_length:this.state.Topic_Events.length})
-    this.setState({loading:false})};
-    }
-    },8000))
-    
-   /* openEvents.getPastEvents("CreatedEvent",{fromBlock: this.state.blocks, toBlock:'latest'})
-    .then(events=>{
-    this.setState({loading:true})
-    var newest = events.filter((activeEvents)=>activeEvents.returnValues.time >=(dateNow) && activeEvents.returnValues.category === this.props.match.params.page);
-    var newsort= newest.concat().sort((a,b)=> b.blockNumber- a.blockNumber);
-    if (this._isMounted){
-    this.setState({Topic_Events:newsort,topic_copy:newsort});
-    this.setState({loading:false})
-    this.setState({active_length:this.state.Topic_Events.length}); 
-  }
-     
-    }).catch((err)=>console.error(err))*/
+       };
+      }
+    },10000))
     
   }
 
@@ -162,7 +150,7 @@ class TopicLandingPage extends Component
 		if (this._isMounted){
 		this.setState({Topic_Events:[],active_length:0}); }
 	  
-		this.state.openEvents.getPastEvents("CreatedEvent",{fromBlock: 5000000, toBlock:'latest'})
+		this.state.openEvents.getPastEvents("CreatedEvent",{fromBlock: 5000000, toBlock:this.state.latestblocks})
 		.then(events=>{
 		this.setState({loading:true})
 		var newest = events.filter((activeEvents)=>activeEvents.returnValues.time >=(this.state.dateNow) && activeEvents.returnValues.category === this.props.match.params.page);
@@ -170,8 +158,8 @@ class TopicLandingPage extends Component
 		
 		if (this._isMounted){
       this.setState({Topic_Events:newsort,topic_copy:newsort});
-		this.setState({loading:false})
-		this.setState({active_length:this.state.Topic_Events.length}); }
+      this.setState({active_length:this.state.Topic_Events.length}); 
+      setTimeout(()=>this.setState({loading:false}),1000);}
 		 
 		}).catch((err)=>console.error(err))
 		
@@ -183,7 +171,7 @@ class TopicLandingPage extends Component
 		if (this._isMounted){
 		this.setState({Topic_Events:[],active_length:0}); }
 	  
-		this.state.openEvents.getPastEvents("CreatedEvent",{fromBlock: 5000000, toBlock:'latest'})
+		this.state.openEvents.getPastEvents("CreatedEvent",{fromBlock: 5000000, toBlock:this.state.latestblocks})
 		.then(events=>{
 		this.setState({loading:true})
 		var newest = events.filter((activeEvents)=>activeEvents.returnValues.time <=(this.state.dateNow) && activeEvents.returnValues.category === this.props.match.params.page);
@@ -191,8 +179,8 @@ class TopicLandingPage extends Component
 		
 		if (this._isMounted){
       this.setState({Topic_Events:newsort,topic_copy:newsort});
-		this.setState({loading:false})
-		this.setState({active_length:this.state.Topic_Events.length}); }
+      this.setState({active_length:this.state.Topic_Events.length});
+      setTimeout(()=>this.setState({loading:false}),1000); }
 		 
 		}).catch((err)=>console.error(err))
 		
@@ -202,7 +190,8 @@ class TopicLandingPage extends Component
   //Display My Close Events
 	PastEvent=(e)=>{
 		this.setState({
-			isActive: false,
+      isActive: false,
+      loading:true,
 		},()=>{if(!this.state.isActive){
 		this.loadPastEvents()}})	
 	  }
@@ -210,7 +199,8 @@ class TopicLandingPage extends Component
   //Display My Active Events
 	ActiveEvent=(e)=>{
 		this.setState({
-			isActive: true,
+      isActive: true,
+      loading:true
 		},()=>{if(this.state.isActive){
 			this.loadActiveEvents()}})
 	  }
@@ -260,9 +250,11 @@ class TopicLandingPage extends Component
 
 
 		if (typeof this.props.contracts['OpenEvents'].getEventsCount[this.eventCount] !== 'undefined' ) {
-      let count = this.state.active_length;
-    
-			if (count === 0) {
+      let count = this.state.Topic_Events.length;
+      if(this.state.loading){
+        body = <HydroLoader/>
+      }
+			  else if (count === 0 && !this.state.loading) {
 				body = <p className="text-center not-found"><span role="img" aria-label="thinking">🤔</span>&nbsp;No events found. <a href="/createevent">Try creating one.</a></p>;
 			} else {
         
@@ -280,6 +272,7 @@ class TopicLandingPage extends Component
 				for (let i = start; i < end; i++) {
           
           events_list.push(<Event 
+            inquire={this.props.inquire}
             key={this.state.Topic_Events[i].returnValues.eventId} 
             id={this.state.Topic_Events[i].returnValues.eventId} 
             ipfs={this.state.Topic_Events[i].returnValues.ipfs} />);
@@ -379,8 +372,7 @@ class TopicLandingPage extends Component
 	}
 }
 
-TopicLandingPage.contextTypes =
-{
+TopicLandingPage.contextTypes = {
     drizzle: PropTypes.object
 }
 

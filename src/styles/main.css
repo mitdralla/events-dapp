@@ -32,6 +32,11 @@ p.emoji {
 	font-size: 300%;
 }
 
+
+p.emoji2 {
+	font-size: 200%;
+}
+
 h5 a {
 	font-weight: 900;
 	color: #333333;
@@ -93,7 +98,18 @@ button {
 }
 
 .notify {
-	font-size: 90%;
+  font-size: 90%;
+}
+.Toastify__toast--default {
+  background:rgb(243, 243, 243);
+  border:1px solid rgb(10, 53, 88);
+  border-radius:10px;
+}
+
+.notify p {
+	color: black;
+	text-align:center;
+
 }
 
 .notify img {
@@ -197,7 +213,8 @@ button {
 }
 
 .carousel {
-	position: relative;
+  position: relative;
+  transition:all 0.3s;
 	/* margin-left: -60px; */
 	/* margin-top: -55px !important; */
 	/* margin-right: -60px; */
@@ -516,7 +533,8 @@ button {
 	box-shadow: 0 0 18px rgba(0,0,0,0.6);
 	position: relative;
 	display: flex;
-	flex-direction: column;
+  flex-direction: column;
+  transition: all 0.4s;
 }
 
 .topic:hover {
@@ -525,8 +543,13 @@ button {
 	cursor: pointer;
 }
 
+.card{
+	transition: all 0.3s;
+}
+
+
 .card:hover {
-	transform: scale(1.1);
+	transform: scale(1.05);
 	z-index: 999 !important;
 }
 
@@ -688,3 +711,141 @@ button.read-more:hover {
 	opacity: 0.9;
   }
 
+/*water*/
+
+.wrap {
+  position: relative;
+  width: 100px;
+  height: 200px;
+  left: 50%;
+  margin-left: -50px;
+  top: 50%;
+  margin-top:50px;
+}
+
+.drop {
+  width: 40px;
+  height: 40px;
+  left: 50%;
+  margin-left: -18px;
+  position: absolute;
+  animation: drop 1.3s cubic-bezier(0.55, 0.085, 0.68, 0.53) 0s infinite;
+  
+}
+
+.drop path {
+  fill: #429ee9;
+}
+
+.drop-outer {
+  position: absolute;
+  box-sizing: border-box;
+ /*border: 1px solid #333; */
+  width: 100px;
+  height: 180px;
+  overflow: hidden;
+  border-bottom-right-radius: 50px;
+  border-bottom-left-radius: 50px;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  background-clip: padding-box;
+  -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
+}
+
+.ripple {
+  position: absolute;
+  box-sizing: border-box;
+  width: 240px;
+  height: 240px;
+  top: 50px;
+  left: -70px;
+  perspective: 100;
+  transform: rotateX(65deg);
+}
+
+.ripple .ripple-svg {
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  opacity: 0;
+}
+
+.ripple .ripple-svg circle {
+   fill: none;
+   stroke: #169deb;
+   stroke-width: 10px;
+   stroke-alignment: inner;
+}
+
+.ripple-1 {
+  animation: ripple 1.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s infinite;
+}
+
+.ripple-1 .ripple-svg {
+  animation: fade-in-out 1.3s linear 0s infinite;
+}
+
+.ripple-1 .ripple-svg circle {
+  animation: border 1.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s infinite;
+}
+
+.ripple-2 {
+  animation: ripple 1.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s infinite;
+}
+
+.ripple-2 .ripple-svg {
+  animation: fade-in-out 1.3s linear 0.2s infinite;
+}
+
+.ripple-2 .ripple-svg circle {
+  animation: border 1.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s infinite;
+}
+
+.ripple-3 {
+  animation: ripple 1.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.35s infinite;
+}
+
+.ripple-3 .ripple-svg {
+  animation: fade-in-out 1.3s linear 0.35s infinite;
+}
+
+.ripple-3 .ripple-svg circle {
+  animation: border 1.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.35s infinite;
+}
+
+
+
+@keyframes drop {
+  0% {
+    transform: scale3d(0.01,0.01,0.01) translateY(0)
+  }
+  10% {
+    transform: scale3d(1,1,1) 
+  }
+  44% {
+    transform: scale3d(1,1,1) translateY(180px)
+  }
+  100% {
+    transform: scale3d(1,1,1) translateY(180px)
+  }
+}
+
+@keyframes fade-in-out {
+  0% {opacity: 0}
+  42% {opacity: 0}
+  52% {opacity: 1}
+  65% {opacity: 1}
+  100% {opacity: 0}
+}
+
+@keyframes ripple {
+  0% { transform: rotateX(65deg) scale3d(0.2, 0.2, 0.2) }
+  42% { transform: rotateX(65deg) scale3d(0.2, 0.2, 0.2) }
+  100% { transform: rotateX(65deg) scale3d(0.9, 0.9, 0.9) }
+}
+
+@keyframes border {
+  0% { stroke-width: 4px }
+  42% { stroke-width: 4px }
+  100% {stroke-width: 2px }
+}

@@ -90,7 +90,17 @@ class CreateEvent extends Component {
 				title: 'Creating transaction...',
 				ipfs: hash[0].hash
 			});
-			this.uploadTransaction();
+			//this.uploadTransaction();
+			this.props.passtransaction(this.contracts['OpenEvents'].methods.createEvent(
+				this.state.data.name,
+				this.state.data.time,
+				this.state.data.price,
+				this.state.data.currency === 'eth' ? false : true,
+				this.state.data.limited,
+				this.state.data.seats,
+				this.state.ipfs,
+				this.state.data.type
+			))
 		}).catch((error) => {
 			this.setState({
 				error: true,
@@ -127,6 +137,8 @@ class CreateEvent extends Component {
 	transactionChecker = (id) => {
 		let tx_checker = setInterval(() => {
 			let tx = this.props.transactionStack[id];
+			console.log(tx)
+			console.log(tx_checker)
 			if (typeof tx !== 'undefined') {
 				this.setState({
 					upload: false,
@@ -152,17 +164,17 @@ class CreateEvent extends Component {
 
 	render() {
 		
-		if (this.state.error) {
+		if (this.state.error || this.props.error) {
 			return <Error message={this.state.error_text} />;
 		}
 
-		if (this.state.done) {
+		if (this.props.done) {
 			return <Done/>
 			;
 		}
 
 		let body =
-			this.state.upload ?
+			this.state.upload || this.props.upload ?
 				<Loader progress={this.state.stage} text={this.state.title} /> :
 				<React.Fragment>
 					<div className="row">

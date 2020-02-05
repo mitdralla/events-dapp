@@ -4,14 +4,22 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import Loading from './Loading';
+import HydroLoader from './HydroLoader';
+
 import Ticket from './Ticket';
 
 class MyTickets extends Component {
   constructor(props, context) {
-    super(props);
+
+	super(props);
+	this.state = {
+		myTicket: [],
+		loading:true,
+	}
 		this.contracts = context.drizzle.contracts;
 		this.tickets = this.contracts['OpenEvents'].methods.ticketsOf.cacheCall(this.props.accounts[0]);
 		this.perPage = 6;
+		
 	}
 
   readMoreClick(location)
@@ -20,13 +28,33 @@ class MyTickets extends Component {
     window.scrollTo(0, 0);
   }
 
+  async loadBlockchainData(){
+	if (typeof this.props.contracts['OpenEvents'].ticketsOf[this.tickets] !== 'undefined') {
+	const myTicket = await this.props.contracts['OpenEvents'].ticketsOf[this.tickets].value;
+	var newsort= myTicket.concat().sort((a,b)=> b - a);
+	
+	if(this._isMounted){
+	this.setState({
+		myTicket:newsort,
+		loading:false});
+		}
+	}
+  }
+
 	render() {
-		let body = <Loading />;
+		let body = <HydroLoader />;
 
 		if (typeof this.props.contracts['OpenEvents'].ticketsOf[this.tickets] !== 'undefined') {
-			let allTickets = this.props.contracts['OpenEvents'].ticketsOf[this.tickets].value;
-
-			if (allTickets.length === 0) {
+			//let allTickets = this.props.contracts['OpenEvents'].ticketsOf[this.tickets].value;
+			let allTickets = this.state.myTicket;
+			if(this.state.loading){
+				body = 
+				<div>
+				<HydroLoader/>
+				<hr/>
+				</div>
+			  }
+			else if (allTickets.length === 0) {
 				body =
 					<div className="no-tickets text-center mt-5">
 						<h3>You have not purchased any tickets yet.</h3>
@@ -49,9 +77,9 @@ class MyTickets extends Component {
 
 				for (let i = start; i < end; i++) {
 					let ticket = parseInt(allTickets[i], 10);
-					tickets.push(<Ticket key={tickets} id={ticket} />);
+					tickets.push(<Ticket key={ticket} id={ticket} />);
 				}
-				tickets.reverse();
+				//tickets.reverse();
 
 				let pagination;
 				if (pages > 1) {
@@ -94,7 +122,16 @@ class MyTickets extends Component {
 			</div>
 		);
 	}
+	componentDidMount(){
+		this._isMounted = true;
+		setTimeout(()=>this.loadBlockchainData(),2000);
+	}
+
+	componentWillUnmount(){
+		this._isMounted = false;
+	}
 }
+
 
 MyTickets.contextTypes = {
     drizzle: PropTypes.object

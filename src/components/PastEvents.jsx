@@ -6,6 +6,8 @@ import Carousel from 'react-bootstrap/Carousel'
 
 // Import dApp Components
 import Loading from './Loading';
+import HydroLoader from './HydroLoader';
+
 import Event from './Event';
 import Web3 from 'web3';
 import {Open_events_ABI, Open_events_Address} from '../config/OpenEvents';
@@ -23,7 +25,7 @@ class PastEvents extends Component
         openEvents : '',
         blocks : 5000000,
         latestblocks : '',
-        loading : false,
+        loading : true,
         past_length : '',
         isOldestFirst : false,
         past_events : [],
@@ -82,8 +84,8 @@ class PastEvents extends Component
     var newsort= newest.concat().sort((a,b)=> b.blockNumber- a.blockNumber);
     
     this.setState({past_events:newsort,past_events_copy:newsort});
-    this.setState({loading:false})
-    this.setState({past_length:this.state.past_events.length});
+    this.setState({past_length:this.state.past_events.length})
+    this.setState({loading:false});
     }
      
     }).catch((err)=>console.error(err))
@@ -135,13 +137,15 @@ class PastEvents extends Component
 
 	render()
   {
-		let body = <Loading />;
+		let body = <HydroLoader />;
 
 		if (typeof this.props.contracts['OpenEvents'].getEventsCount[this.eventCount] !== 'undefined' && this.state.active_length !== 'undefined' && this.state.loading !==true) {
       //let count = Number(this.props.contracts['OpenEvents'].getEventsCount[this.eventCount].value);
       let count = this.state.past_length
-      
-			if (count === 0) {
+      if(this.state.loading){
+        body = <HydroLoader/>
+      }
+			else if (count === 0 && !this.state.loading) {
 				body = <p className="text-center not-found"><span role="img" aria-label="thinking">🤔</span>&nbsp;No events found. <a href="/createevent">Try creating one.</a></p>;
 			} else {
 				let currentPage = Number(this.props.match.params.page);
@@ -313,7 +317,7 @@ class PastEvents extends Component
   
   componentDidMount() {
     this._isMounted = true;
-		this.loadBlockchain();
+		setTimeout(()=>this.loadBlockchain(),1000);
   }
   
   componentWillUnmount() {

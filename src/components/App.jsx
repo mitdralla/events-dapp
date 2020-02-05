@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import '../styles/main.css';
 
 import Sidebar from './Sidebar';
+import Event from './Event';
 import Home from './Home';
 import FindEvents from './FindEvents';
 import PastEvents from './PastEvents';
@@ -23,9 +24,20 @@ import TopicsLandingPage from './TopicsLandingPage';
 import LocationLandingPage from './LocationLandingPage';
 import LocationsLandingPage from './LocationsLandingPage';
 import Token from './Token';
+
 import Notify from './Notify';
+import NotifySuccess from './NotifySuccess';
+import NotifyEventSuccess from './NotifyEventSuccess';
+import NotifyApproveSuccess from './NotifyApproveSuccess';
+import NotifySuccessFaucet from './NotifySuccessFaucet';
+import NotifyError from './NotifyError';
+
+
 import NetworkError from './NetworkError';
 import LoadingApp from './LoadingApp';
+
+let ethereum= window.ethereum;
+let web3=window.web3;
 
 class App extends Component
 {
@@ -35,26 +47,44 @@ class App extends Component
 		this.state = {
 			sent_tx: [],
 			showSidebar: true,
-			account:[]
+			account:[],
+			
+			
+			id:'',
+			fee:'',
+			token:'',
+			openEvents_Address:'',
+			buyticket:'',
+			approve:'',
+
+			createEvent:'',
+			upload:false,
+			done:false,
+			error:false,
+
+			getHydro:'',
 		};
 	}
 
 	componentDidMount(){
 		this.loadBlockchainData();
+		
 
 	}
 
 	componentWillUpdate() {
 		let sent_tx = this.state.sent_tx;
-
+		
 		for (let i = 0; i < this.props.transactionStack.length; i++) {
 			if (sent_tx.indexOf(this.props.transactionStack[i]) === -1) {
 				sent_tx.push(this.props.transactionStack[i]);
+			
 				toast(<Notify hash={this.props.transactionStack[i]} />, {
 					position: "bottom-right",
-					autoClose: 10000,
+					autoClose: false,
 					pauseOnHover: true
-				});
+					
+				});	
 			}
 		}
 
@@ -64,14 +94,12 @@ class App extends Component
 			});
 		}
 	}
-
 	
+	
+
+//Get Account	
 async loadBlockchainData() { 
 
-	let ethereum= window.ethereum;
-	let web3=window.web3;
-
- 
 	if(typeof ethereum !=='undefined'){
 	// console.log("metamask")
 	 await ethereum.enable();
@@ -96,6 +124,266 @@ async loadBlockchainData() {
 	window.ethereum.on('networkChanged', function (netId) {
  	window.location.reload();
 	}) 
+
+	const accounts = await web3.eth.getAccounts();
+    this.setState({account: accounts[0]});
+	
+	}
+	
+	//get value from buyer/from child components
+	inquireBuy = (id,fee,token,openEvents_address,buyticket,approve)=>{
+		this.setState({
+			fee:fee,
+			token:token,
+			buyticket:buyticket,
+			approve:approve
+		},()=>this.buy())	 
+	}
+
+	//TransferFrom when buying with Hydro
+	//After Approval
+	afterApprove = () => setTimeout(()=>{
+		let txreceiptApproved='';
+		let txconfirmedApproved = '';
+		let txerror = '';
+
+		this.state.buyticket.send({from:this.state.account})
+		.on('transactionHash',(hash)=>{
+			if(hash !==null){
+				toast(<Notify hash={hash} />, {
+					position: "bottom-right",
+					autoClose: false,
+					pauseOnHover: true
+					
+				})
+			}
+		})
+		.on('confirmation',(confirmationNumber, receipt)=>{
+			if(confirmationNumber !== null){
+			 txreceiptApproved = receipt
+			 txconfirmedApproved = confirmationNumber
+			if (txconfirmedApproved == 0 && txreceiptApproved.status == true){
+				toast(<NotifySuccess hash={txreceiptApproved.transactionHash} />, {
+						position: "bottom-right",
+						autoClose: false,
+						pauseOnHover: true	
+					})
+				}
+			 	
+			} 
+	   	})
+	   .on('error',(error)=>{
+		if(error !== null){
+			txerror = error
+		   		toast(<NotifyError message={txerror.message} />, {
+					position: "bottom-right",
+					autoClose: false,
+					pauseOnHover: true	
+					})
+			   	} 
+	  	  	})
+		},3000)
+	
+	//Buy Function, Notify listen for transaction status.
+	buy = () =>{
+		let txreceipt='';
+		let txconfirmed = '';
+		let txerror = '';
+	
+		if(this.state.token){
+		this.state.approve.send({from:this.state.account})
+
+		.on('transactionHash',(hash)=>{
+			if(hash !==null){
+				toast(<Notify hash={hash} />, {
+					position: "bottom-right",
+					autoClose: false,
+					pauseOnHover: true
+					
+				})
+			}
+		})
+		.on('confirmation',(confirmationNumber, receipt)=>{
+			if(confirmationNumber !== null){
+			 txreceipt = receipt
+			 txconfirmed = confirmationNumber
+			if (txconfirmed == 0 && txreceipt.status == true){
+				toast(<NotifyApproveSuccess hash={txreceipt.transactionHash} />, 
+					{
+					position: "bottom-right",
+					autoClose: false,
+					pauseOnHover: true	
+					})
+				}
+			 	
+			} 
+	   	})
+	   .on('error',(error)=>{
+		if(error !== null){
+			txerror = error
+		   		toast(<NotifyError message={txerror.message} />, 
+				{
+				position: "bottom-right",
+				autoClose: false,
+				pauseOnHover: true	
+				})
+			   } 
+	  	  	})
+		this.afterApprove()
+	}
+		
+		else{
+		this.state.buyticket.send({value:this.state.fee, from:this.state.account})
+
+		.on('transactionHash',(hash)=>{
+			if(hash !==null){
+				toast(<Notify hash={hash} />, {
+					position: "bottom-right",
+					autoClose: false,
+					pauseOnHover: true
+					
+				})
+			}
+		})
+		.on('confirmation',(confirmationNumber, receipt)=>{
+			if(confirmationNumber !== null){
+			txreceipt = receipt
+			txconfirmed = confirmationNumber
+			if (txconfirmed == 0 && txreceipt.status == true){
+				toast(<NotifySuccess hash={txreceipt.transactionHash} />, 
+					{
+					position: "bottom-right",
+					autoClose: false,
+					pauseOnHover: true	
+					})
+				}
+			 	
+			} 
+	   	})
+	   	.on('error',(error)=>{
+		 	if(error !== null){
+			txerror = error
+		   		toast(<NotifyError message={txerror.message} />, 
+				{
+					position: "bottom-right",
+					autoClose: false,
+					pauseOnHover: true	
+					})
+			   	} 
+	  	  	})
+	    }
+	}
+
+	//Get Value form Event Creator from child component
+	//Notify,listen for transaction status.
+	passtransaction=(transaction)=>{
+		let txreceipt='';
+		let txconfirmed = '';
+		let txerror = '';
+
+		this.setState({upload:true,createEvent:transaction},()=>
+		this.state.createEvent.send({from:this.state.account})
+	
+		.on('transactionHash',(hash)=>{
+			if(hash !==null){
+				this.setState({
+					upload:false,
+					done:true
+				});
+				toast(<Notify hash={hash} />, {
+					position: "bottom-right",
+					autoClose: false,
+					pauseOnHover: true
+					
+				})
+				
+			}
+		})
+		.on('confirmation',(confirmationNumber, receipt)=>{
+			if(confirmationNumber !== null){
+			 txreceipt = receipt
+			 txconfirmed = confirmationNumber
+			 if (txconfirmed == 0 && txreceipt.status == true ){
+				toast(<NotifyEventSuccess hash={txreceipt.transactionHash} 
+					createdEvent = {txreceipt.events.CreatedEvent.returnValues} />, 
+					{
+					position: "bottom-right",
+					autoClose: false,
+					pauseOnHover: true	
+					})
+				}	
+			} 
+		})
+		.on('error',(error)=>{
+			if(error !== null){
+			   txerror = error
+			   this.setState({error:true})
+				toast(<NotifyError message={txerror.message} />, 
+				   {
+				   position: "bottom-right",
+				   autoClose: false,
+				   pauseOnHover: true	
+				   })
+				} 
+			})	
+		)	
+		
+	}
+
+
+	getHydro=(getHydro)=>{
+		let txreceipt='';
+		let txconfirmed = '';
+		let txerror = '';
+
+		this.setState({getHydro:getHydro},()=>
+		this.state.getHydro.send({from:this.state.account})
+	
+		.on('transactionHash',(hash)=>{
+			if(hash !==null){
+				this.setState({
+					upload:false,
+					done:true
+				});
+				toast(<Notify hash={hash} />, {
+					position: "bottom-right",
+					autoClose: false,
+					pauseOnHover: true
+					
+				})
+				
+			}
+		})
+		.on('confirmation',(confirmationNumber, receipt)=>{
+			if(confirmationNumber !== null){
+
+			 txreceipt = receipt
+			 txconfirmed = confirmationNumber
+			 
+			 if (txconfirmed == 0 && txreceipt.status == true ){
+				toast(<NotifySuccessFaucet hash={txreceipt.transactionHash}/>, 
+					{
+					position: "bottom-right",
+					autoClose: false,
+					pauseOnHover: true	
+					})
+				}	
+			} 
+		})
+		.on('error',(error)=>{
+			if(error !== null){
+			   txerror = error
+			   this.setState({error:true})
+				toast(<NotifyError message={txerror.message} />, 
+				   {
+				   position: "bottom-right",
+				   autoClose: false,
+				   pauseOnHover: true	
+				   })
+				} 
+			})	
+		)	
+		
 	}
 
 	render() {
@@ -110,8 +398,6 @@ async loadBlockchainData() {
 
 		if (!this.props.drizzleStatus.initialized) {
 
-			console.log("account",this.props.accounts)
-		
 			body =
 				<div>
 					<Switch>
@@ -141,16 +427,22 @@ async loadBlockchainData() {
 		} else {
 			body =
 				<div>
-					<Route exact path="/" component={FindEvents} />
-					<Route path="/findevents/:page" component={FindEvents} />
+					<Route exact path="/" render={props => <FindEvents  {...props} inquire = {this.inquireBuy}/>} />
+					<Route path="/findevents/:page"  render={props => <FindEvents  {...props} inquire = {this.inquireBuy}/>}  />
 					<Route path="/pastevents/:page" component={PastEvents} />
 					<Route path="/mytickets/:page" component={MyTickets} />
-					<Route path="/createevent" component={CreateEvent} />
-					<Route path="/myevents/:page" component={MyEvents} />
-					<Route path="/event/:id" component={EventPage} />
-					<Route path="/token" component={Token} />
+
+					<Route path="/createevent" render={props=><CreateEvent  {...props} 
+					passtransaction = {this.passtransaction}
+					upload={this.state.upload} 
+					done = {this.state.done}
+					error = {this.state.error}/>}/> 
+
+					<Route path="/myevents/:page"  render={props => <MyEvents {...props} inquire = {this.inquireBuy}/>}/>
+					<Route path="/event/:id"  render={props => <EventPage {...props} inquire = {this.inquireBuy}/>}/>
+					<Route path="/token" render={props => <Token {...props} getHydro = {this.getHydro}/>}/>
 					<Route path="/topics" component={TopicsLandingPage} />
-					<Route path="/topic/:page/:id" component={TopicLandingPage} />
+					<Route path="/topic/:page/:id" render={props => <TopicLandingPage {...props} inquire = {this.inquireBuy}/>}/> 
 					<Route path="/locations" component={LocationsLandingPage} />
 					<Route path="/location/:page" component={LocationLandingPage} />
 					<Route path="/how-it-works" component={Home} />
@@ -160,7 +452,9 @@ async loadBlockchainData() {
 
 		return(
 			<Router>
+				
 				<div id="wrapper" className="toggled">
+					
 					<Sidebar connection={!connecting} account={this.props.accounts[0]} />
 					<div id="page-content-wrapper">
 						<div id="bgImage" ref="bgImage" style={{
@@ -180,6 +474,7 @@ async loadBlockchainData() {
 						</div>
 					</div>
 					<ToastContainer />
+					
 				</div>
 			</Router>
 		);

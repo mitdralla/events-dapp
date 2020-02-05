@@ -6,6 +6,7 @@ import Carousel from 'react-bootstrap/Carousel'
 
 // Import dApp Components
 import Loading from './Loading';
+import HydroLoader from './HydroLoader';
 import Event from './Event';
 import Web3 from 'web3';
 import {Open_events_ABI, Open_events_Address} from '../config/OpenEvents';
@@ -26,7 +27,7 @@ class FindEvents extends Component
         openEvents : '',
         blocks : 5000000,
         latestblocks :6000000,
-        loading : false,
+        loading : true,
         Events_Blockchain : [],
         active_length : '',
         isOldestFirst:false,
@@ -64,7 +65,7 @@ class FindEvents extends Component
 
   //Loads Blockhain Data,
   async loadBlockchain(){
-    
+   
     const web3 = new Web3(new Web3.providers.WebsocketProvider('wss://rinkeby.infura.io/ws/v3/72e114745bbf4822b987489c119f858b'));
     const openEvents =  new web3.eth.Contract(Open_events_ABI, Open_events_Address);
     
@@ -77,10 +78,10 @@ class FindEvents extends Component
     const blockNumber = await web3.eth.getBlockNumber();
     if (this._isMounted){
     this.setState({blocks:blockNumber - 50000});
-    this.setState({latestblocks:blockNumber});
+    this.setState({latestblocks:blockNumber - 1});
     this.setState({Events_Blockchain:[]});}
   
-    openEvents.getPastEvents("CreatedEvent",{fromBlock: 5000000, toBlock:'latest'})
+    openEvents.getPastEvents("CreatedEvent",{fromBlock: 5000000, toBlock:this.state.latestblocks})
     .then(events=>{
     if (this._isMounted){
     this.setState({loading:true})
@@ -95,10 +96,10 @@ class FindEvents extends Component
     }).catch((err)=>console.error(err))
 
     //Listens for New Events
-    openEvents.events.CreatedEvent({fromBlock: this.state.latestblocks, toBlock:'latest'})
+    openEvents.events.CreatedEvent({fromBlock: this.state.blockNumber, toBlock:'latest'})
     .on('data', (log) => setTimeout(()=> {
     if (this._isMounted){
-    this.setState({loading:true});
+   // this.setState({loading:true});
    
     this.setState({Events_Blockchain:[...this.state.Events_Blockchain,log]});
     var newest = this.state.Events_Blockchain
@@ -107,8 +108,8 @@ class FindEvents extends Component
     //this.setState({incoming:false});
     this.setState({Events_Blockchain:newsort,event_copy:newsort});
     this.setState({active_length:this.state.Events_Blockchain.length})}
-    this.setState({loading:false});
-    },8000))
+    //this.setState({loading:false});
+    },10000))
   }
 
   //Search Active Events By Name
@@ -153,14 +154,17 @@ class FindEvents extends Component
 
 	render()
   {
-		let body = <Loading />;
+		let body = <HydroLoader />;
 
 		if (typeof this.props.contracts['OpenEvents'].getEventsCount[this.eventCount] !== 'undefined' && this.state.active_length !== 'undefined') {
       //let count = Number(this.props.contracts['OpenEvents'].getEventsCount[this.eventCount].value);
-      let count = this.state.active_length
-			if (count === 0) {
+      let count = this.state.Events_Blockchain.length
+      if(this.state.loading){
+        body = <HydroLoader/>
+      }
+			else if (count === 0 && !this.state.loading) {
 				body = <p className="text-center not-found"><span role="img" aria-label="thinking">🤔</span>&nbsp;No events found. <a href="/createevent">Try creating one.</a></p>;
-			} else {
+			} else  {
 				let currentPage = Number(this.props.match.params.page);
 				if (isNaN(currentPage) || currentPage < 1) currentPage = 1;
 
@@ -171,7 +175,7 @@ class FindEvents extends Component
 
         let events_list = [];
         for (let i = start; i < end; i++) {
-          events_list.push(<Event 
+          events_list.push(<Event inquire={this.props.inquire}
             key={this.state.Events_Blockchain[i].returnValues.eventId} 
             id={this.state.Events_Blockchain[i].returnValues.eventId} 
             ipfs={this.state.Events_Blockchain[i].returnValues.ipfs} />);
@@ -210,7 +214,8 @@ class FindEvents extends Component
 					</div>
 				;
 			}
-		}
+    }
+    
 
 		return(
       <React.Fragment>
@@ -258,7 +263,7 @@ class FindEvents extends Component
         </Carousel>
 
 			<div className="retract-page-inner-wrapper-alternative">
-
+     
 
       <br/><br />
 
@@ -278,7 +283,7 @@ class FindEvents extends Component
         </div>
 
         <hr/>
-        {body}
+         {body}
 
       </div>
 
@@ -333,7 +338,7 @@ class FindEvents extends Component
   
   componentDidMount() {
     this._isMounted = true;
-		this.loadBlockchain();
+		setTimeout(()=>this.loadBlockchain(),1000);
   }
   
   componentWillUnmount() {
@@ -341,8 +346,7 @@ class FindEvents extends Component
   }
 }
 
-FindEvents.contextTypes =
-{
+FindEvents.contextTypes = {
     drizzle: PropTypes.object
 }
 
