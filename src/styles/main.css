@@ -861,6 +861,10 @@ button.read-more:hover {
   padding-left: 120px;
 }
 
+.github {
+  margin-left: 10px !important;
+}
+
 
 @media (max-width : 990px) {
   .event-image {
