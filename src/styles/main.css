@@ -266,13 +266,13 @@ button {
     bottom: 0;
     left: 0;
     z-index: 10;
-    padding-top: 45px;
+    padding-top: 162px;
     padding-bottom: 20px;
     color: #fff;
     text-align: center;
     width: 100%;
     padding-bottom: 45px;
-		min-height: 330px;
+    min-height: 415px;
 }
 
 .carousel-indicators {
@@ -874,13 +874,85 @@ button.read-more:hover {
 }
 
 
+@media (max-width : 2000px) {
+  .carousel-caption h3 {
+    font-size: 4rem;
+  }
+
+  .carousel button {
+    padding: 15px 60px 15px 60px !important;
+    border-radius: 30px !important;
+    font-size: 16px;
+  }
+
+  .carousel-caption {
+    padding-top: 336px;
+    min-height: 766px;
+  }
+}
+
+
+@media (max-width : 1600px) {
+  .carousel-caption h3 {
+    font-size: 3rem;
+  }
+
+  .carousel button {
+    padding: 5px 30px 5px 30px !important;
+    border-radius: 30px !important;
+    font-size: 16px;
+  }
+
+  .carousel-caption {
+    padding-top: 336px;
+    min-height: 662px;
+  }
+}
+
+
+@media (max-width : 1300px) {
+  .carousel-caption h3 {
+    font-size: 2rem;
+  }
+
+  .carousel button {
+    padding: 5px 30px 5px 30px !important;
+    border-radius: 30px !important;
+    font-size: 16px;
+  }
+
+  .carousel-caption {
+    min-height: 403px;
+    padding-top: 200px;
+  }
+}
+
+
+
+@media (max-width : 1200px) {
+  .carousel-caption h3 {
+    font-size: 2rem;
+  }
+
+  .carousel button {
+    padding: 5px 30px 5px 30px !important;
+    border-radius: 30px !important;
+    font-size: 16px;
+  }
+
+  .carousel-caption {
+    min-height: 403px;
+    padding-top: 200px;
+  }
+}
+
 @media (max-width : 990px) {
   .event-image {
       height: 40vw !important;
   }
 }
 
-@media (max-width : 700px) {
+@media (max-width : 900px) {
   #wrapper.toggled #sidebar-wrapper {
     width: 100%;
     transition-duration: 0.5s;
