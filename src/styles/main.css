@@ -928,6 +928,11 @@ button.read-more:hover {
   font-size: 20px !important;
 }
 
+.sidebar-closed .sidebar_hydro-logo {
+  margin-right: 0px !important;
+  width: 20px !important;
+}
+
 .pagination {
   margin-top: 35px;
 }
