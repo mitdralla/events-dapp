@@ -904,6 +904,7 @@ button.read-more:hover {
 
 #wrapper.toggled #sidebar-wrapper.sidebar-closed .toggleHidden {
   display: none;
+  transition-duration: 1s;
 }
 
 #wrapper.toggled #sidebar-wrapper.sidebar-closed .menu {
@@ -912,6 +913,7 @@ button.read-more:hover {
   width: 20px;
   right:20px;
   position: absolute;
+  transition-duration: 1s;
 }
 
 #wrapper.toggled #sidebar-wrapper.sidebar-closed ul li i {
