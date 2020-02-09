@@ -455,6 +455,9 @@ button {
     border-radius: 100px / 5px;
     -webkit-box-shadow: 0 0 18px rgba(0,0,0,1);
     box-shadow: 0 0 18px rgba(0,0,0,1);
+    height: 1%;
+    position: absolute;
+    z-index: -999
 }
 
 .card-footer button {
