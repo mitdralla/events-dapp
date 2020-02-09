@@ -121,7 +121,7 @@ button {
 
 .event-image {
     width: 100%;
-    height: 15vw;
+    height: 16vw;
     object-fit: cover;
 }
 
@@ -856,4 +856,11 @@ button.read-more:hover {
 
 #wrapper.toggled #page-content-wrapper.sidebar-open {
   padding-left: 120px;
+}
+
+
+@media (max-width : 990px) {
+  .event-image {
+      height: 40vw !important;
+  }
 }
