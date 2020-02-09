@@ -865,6 +865,10 @@ button.read-more:hover {
   margin-left: 10px !important;
 }
 
+.connection {
+  max-width: 175px;
+}
+
 
 @media (max-width : 990px) {
   .event-image {
