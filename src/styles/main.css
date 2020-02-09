@@ -851,5 +851,9 @@ button.read-more:hover {
 }
 
 #wrapper.toggled #sidebar-wrapper.sidebar-closed {
-  left: 50px;
+  left: 55px;
+}
+
+#wrapper.toggled #page-content-wrapper.sidebar-open {
+  padding-left: 120px;
 }

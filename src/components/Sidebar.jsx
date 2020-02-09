@@ -6,9 +6,14 @@ class Sidebar extends Component
 {
 
 	toggleSidebarClass = () => {
-    const oldClassName = document.getElementById('sidebar-wrapper').className;
-    const newClassName = oldClassName === 'my-sidebar sidebar-open' ? 'my-sidebar sidebar-closed' : 'my-sidebar sidebar-open'
-    document.getElementById('sidebar-wrapper').className = newClassName
+    const oldSidebarClassName = document.getElementById('sidebar-wrapper').className;
+    const newSidebarClassName = oldSidebarClassName === 'my-sidebar sidebar-open' ? 'my-sidebar sidebar-closed' : 'my-sidebar sidebar-open'
+
+		const oldPageWrapperClassName = document.getElementById('page-content-wrapper').className;
+		const newPageWrapperClassName = oldPageWrapperClassName === 'sidebar-open' ? 'sidebar-closed' : 'sidebar-open'
+
+    document.getElementById('sidebar-wrapper').className = newSidebarClassName
+		document.getElementById('page-content-wrapper').className = newPageWrapperClassName
   }
 
 	render() {
