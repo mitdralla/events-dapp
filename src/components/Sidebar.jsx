@@ -18,8 +18,8 @@ class Sidebar extends Component
 		const oldPageWrapperClassName = document.getElementById('page-content-wrapper').className;
 		const newPageWrapperClassName = oldPageWrapperClassName === 'sidebar-open' ? 'sidebar-closed' : 'sidebar-open'
 
-    document.getElementById('sidebar-wrapper').className = newSidebarClassName
-		document.getElementById('page-content-wrapper').className = newPageWrapperClassName
+    document.getElementById('sidebar-wrapper').className = newSidebarClassName;
+		document.getElementById('page-content-wrapper').className = newPageWrapperClassName;
   }
 
 	render() {
@@ -54,41 +54,41 @@ class Sidebar extends Component
 					{user}
 				</div>
 				<div className="menu mt-5">
-					<h5>Events & Tickets</h5>
+					<h5 className="toggleHidden">Events & Tickets</h5>
 					<ul className="nav flex-column">
 						<li className="nav-item">
-							<Link to="/findevents/1" className="nav-link"><i className="fa fa-search"></i> Events</Link>
+							<Link to="/findevents/1" className="nav-link"><i className="fa fa-search"></i> <span className="toggleHidden">Events</span></Link>
 						</li>
 
 						<li className="nav-item">
-							<Link to="/pastevents/1" className="nav-link"><i className="fa fa-search"></i> Past Events</Link>
+							<Link to="/pastevents/1" className="nav-link"><i className="fa fa-archive"></i> <span className="toggleHidden">Past Events</span></Link>
 						</li>
 						<li className="nav-item">
-							<Link to="/topics" className="nav-link"><i className="fa fa-book"></i> Topics</Link>
+							<Link to="/topics" className="nav-link"><i className="fa fa-comment-alt"></i> <span className="toggleHidden">Topics</span></Link>
 						</li>
 						<li className="nav-item">
-							<Link to="/locations" className="nav-link"><i className="fa fa-map-marker-alt"></i> Locations</Link>
+							<Link to="/locations" className="nav-link"><i className="fa fa-map-marker-alt"></i> <span className="toggleHidden">Locations</span></Link>
 						</li>
 						<li className="nav-item">
-							<Link to="/mytickets/1" className="nav-link"><i className="fa fa-ticket-alt"></i> My Tickets</Link>
-						</li>
-					</ul>
-					<h5 className="mt-5">Manage Events</h5>
-					<ul className="nav flex-column">
-						<li className="nav-item">
-							<Link to="/createevent" className="nav-link"><i className="fa fa-edit"></i> Create Event</Link>
-						</li>
-						<li className="nav-item">
-							<Link to="/myevents/1" className="nav-link"><i className="fa fa-calendar-alt"></i> My Created Events</Link>
+							<Link to="/mytickets/1" className="nav-link"><i className="fa fa-ticket-alt"></i> <span className="toggleHidden">My Tickets</span></Link>
 						</li>
 					</ul>
-					<h5 className="mt-5">Tools</h5>
+					<h5 className="mt-5 toggleHidden">Manage Events</h5>
 					<ul className="nav flex-column">
 						<li className="nav-item">
-							<Link to="/how-it-works" className="nav-link"><i className="fa fa-question-circle"></i> How It Works</Link>
+							<Link to="/createevent" className="nav-link"><i className="fa fa-edit"></i> <span className="toggleHidden">Create Event</span></Link>
 						</li>
 						<li className="nav-item">
-							<Link to="/token" className="nav-link"><img src="/images/hydro.png" className="sidebar_hydro-logo" alt="Hydro Token Logo"/> Get Hydro Tokens</Link>
+							<Link to="/myevents/1" className="nav-link"><i className="fa fa-calendar-alt"></i> <span className="toggleHidden">My Created Events</span></Link>
+						</li>
+					</ul>
+					<h5 className="mt-5 toggleHidden">Tools</h5>
+					<ul className="nav flex-column">
+						<li className="nav-item">
+							<Link to="/how-it-works" className="nav-link"><i className="fa fa-question-circle"></i> <span className="toggleHidden">How It Works</span></Link>
+						</li>
+						<li className="nav-item">
+							<Link to="/token" className="nav-link"><img src="/images/hydro.png" className="sidebar_hydro-logo" alt="Hydro Token Logo"/> <span className="toggleHidden">Get Hydro Tokens</span></Link>
 						</li>
 					</ul>
 					<br />

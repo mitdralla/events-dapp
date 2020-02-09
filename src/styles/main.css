@@ -886,4 +886,22 @@ button.read-more:hover {
     opacity: 1;
     z-index: 99999999999999999999999999999999 !important;
   }
+
+}
+
+
+#wrapper.toggled #sidebar-wrapper.sidebar-closed .toggleHidden {
+  display: none;
+}
+
+#wrapper.toggled #sidebar-wrapper.sidebar-closed .menu {
+  text-align: center;
+  margin-right: 15px;
+  width: 20px;
+  right:20px;
+  position: absolute;
+}
+
+#wrapper.toggled #sidebar-wrapper.sidebar-closed ul li i {
+  font-size: 20px !important;
 }
