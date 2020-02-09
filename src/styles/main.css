@@ -856,10 +856,12 @@ button.read-more:hover {
 #wrapper.toggled #sidebar-wrapper.sidebar-closed {
   left: 55px;
   width: 250px;
+  transition-duration: 1s;
 }
 
 #wrapper.toggled #page-content-wrapper.sidebar-open {
   padding-left: 120px;
+  transition-duration: 1s;
 }
 
 .github {
@@ -880,6 +882,12 @@ button.read-more:hover {
 @media (max-width : 700px) {
   #wrapper.toggled #sidebar-wrapper {
     width: 100%;
+    transition-duration: 0.5s;
+  }
+
+  #wrapper.toggled #page-content-wrapper.sidebar-closed {
+    opacity: 0;
+    transition-duration: 1s;
   }
 
   #sidebar-wrapper.my-sidebar {
