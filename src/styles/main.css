@@ -597,7 +597,7 @@ button {
 }
 
 .topic-hero-wrapper {
-  
+
 }
 
 .topic-hero-wrapper img {
@@ -675,14 +675,14 @@ button.read-more:hover {
   }
 
   .sort_button:hover{
-	color:rgb(250, 250, 250); 
+	color:rgb(250, 250, 250);
 	border-color: #4f6e8d;
   }
 
   .transactions{
-	text-align:center; 
+	text-align:center;
 	padding:5px;
-	
+
   }
 
 
@@ -693,7 +693,7 @@ button.read-more:hover {
 	border-top:1px solid rgb(197, 195, 197);
 	font-size: 14px;
 	overflow:hidden;
-	
+
   }
 
   .transaction-wrapper{
@@ -707,7 +707,7 @@ button.read-more:hover {
 	border:1px solid black;
 	border-radius: 10px;
 	overflow:hidden;
-	font-family: Verdana, Geneva, Tahoma, sans-serif;	
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
 	opacity: 0.9;
   }
 
@@ -730,7 +730,7 @@ button.read-more:hover {
   margin-left: -18px;
   position: absolute;
   animation: drop 1.3s cubic-bezier(0.55, 0.085, 0.68, 0.53) 0s infinite;
-  
+
 }
 
 .drop path {
@@ -820,7 +820,7 @@ button.read-more:hover {
     transform: scale3d(0.01,0.01,0.01) translateY(0)
   }
   10% {
-    transform: scale3d(1,1,1) 
+    transform: scale3d(1,1,1)
   }
   44% {
     transform: scale3d(1,1,1) translateY(180px)
@@ -848,4 +848,8 @@ button.read-more:hover {
   0% { stroke-width: 4px }
   42% { stroke-width: 4px }
   100% {stroke-width: 2px }
+}
+
+#wrapper.toggled #sidebar-wrapper.sidebar-closed {
+  left: 50px;
 }

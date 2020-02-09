@@ -5,6 +5,12 @@ import makeBlockie from 'ethereum-blockies-base64';
 class Sidebar extends Component
 {
 
+	toggleSidebarClass = () => {
+    const oldClassName = document.getElementById('sidebar-wrapper').className;
+    const newClassName = oldClassName === 'my-sidebar sidebar-open' ? 'my-sidebar sidebar-closed' : 'my-sidebar sidebar-open'
+    document.getElementById('sidebar-wrapper').className = newClassName
+  }
+
 	render() {
 		let user =
 			<div>
@@ -24,11 +30,13 @@ class Sidebar extends Component
 					{/* {this.props.account} */}
 				</div>
 			;
+
+
 		}
 
 		return (
-			<div id="sidebar-wrapper" className="my-sidebar">
-				<div className="hamburgerNav">
+			<div id="sidebar-wrapper" className="my-sidebar sidebar-open">
+				<div className="hamburgerNav" onClick={this.toggleSidebarClass}>
 					<i className="fa fa-bars"></i>
 				</div>
 				<div className="user-status mt-5">
@@ -40,7 +48,7 @@ class Sidebar extends Component
 						<li className="nav-item">
 							<Link to="/findevents/1" className="nav-link"><i className="fa fa-search"></i> Events</Link>
 						</li>
-						
+
 						<li className="nav-item">
 							<Link to="/pastevents/1" className="nav-link"><i className="fa fa-search"></i> Past Events</Link>
 						</li>
