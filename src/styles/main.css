@@ -1045,3 +1045,7 @@ button.read-more:hover {
   padding-bottom: 45px;
   min-height: 415px;
 }
+
+.nav li.active i:before {
+  color: #71b0fc;
+}

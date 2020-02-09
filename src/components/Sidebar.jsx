@@ -11,6 +11,22 @@ class Sidebar extends Component
       super(props);
 	}
 
+	sidebarClick()
+	{
+		var isActive = this.context.router.route.location.pathname;
+		var activeClassName = "";
+		var linkLocation = this.props.to;
+
+		if (isActive == linkLocation) {
+			activeClassName = 'nav-item active';
+		} else {
+			activeClassName = 'nav-item';
+		}
+
+		//console.log(this);
+	}
+
+
 	toggleSidebarClass = () => {
     const oldSidebarClassName = document.getElementById('sidebar-wrapper').className;
     const newSidebarClassName = oldSidebarClassName === 'my-sidebar sidebar-open' ? 'my-sidebar sidebar-closed' : 'my-sidebar sidebar-open'
@@ -22,7 +38,12 @@ class Sidebar extends Component
 		document.getElementById('page-content-wrapper').className = newPageWrapperClassName;
   }
 
+
+
 	render() {
+		var activeClassName = '';
+		var isActive = '';
+
 		let user =
 			<div>
 				<div className="user-status-icon">
@@ -56,36 +77,36 @@ class Sidebar extends Component
 				<div className="menu mt-5">
 					<h5 className="toggleHidden">Events & Tickets</h5>
 					<ul className="nav flex-column">
-						<li className="nav-item">
-							<Link to="/findevents/1" className="nav-link"><i className="fa fa-search"></i> <span className="toggleHidden">Events</span></Link>
+						<li className={activeClassName}>
+							<Link to="/findevents/1" className="nav-link" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-search"></i> <span className="toggleHidden">Events</span></Link>
 						</li>
 
-						<li className="nav-item">
-							<Link to="/pastevents/1" className="nav-link"><i className="fa fa-archive"></i> <span className="toggleHidden">Past Events</span></Link>
+						<li className={activeClassName}>
+							<Link to="/pastevents/1" className="nav-link" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-archive"></i> <span className="toggleHidden">Past Events</span></Link>
 						</li>
-						<li className="nav-item">
-							<Link to="/topics" className="nav-link"><i className="fa fa-comment-alt"></i> <span className="toggleHidden">Topics</span></Link>
+						<li className={activeClassName}>
+							<Link to="/topics" className="nav-link" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-comment-alt"></i> <span className="toggleHidden">Topics</span></Link>
 						</li>
-						<li className="nav-item">
-							<Link to="/locations" className="nav-link"><i className="fa fa-map-marker-alt"></i> <span className="toggleHidden">Locations</span></Link>
+						<li className={activeClassName}>
+							<Link to="/locations" className="nav-link" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-map-marker-alt"></i> <span className="toggleHidden">Locations</span></Link>
 						</li>
-						<li className="nav-item">
-							<Link to="/mytickets/1" className="nav-link"><i className="fa fa-ticket-alt"></i> <span className="toggleHidden">My Tickets</span></Link>
+						<li className={activeClassName}>
+							<Link to="/mytickets/1" className="nav-link" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-ticket-alt"></i> <span className="toggleHidden">My Tickets</span></Link>
 						</li>
 					</ul>
 					<h5 className="mt-5 toggleHidden">Manage Events</h5>
 					<ul className="nav flex-column">
-						<li className="nav-item">
-							<Link to="/createevent" className="nav-link"><i className="fa fa-edit"></i> <span className="toggleHidden">Create Event</span></Link>
+						<li className={activeClassName}>
+							<Link to="/createevent" className="nav-link" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-edit"></i> <span className="toggleHidden">Create Event</span></Link>
 						</li>
-						<li className="nav-item">
-							<Link to="/myevents/1" className="nav-link"><i className="fa fa-calendar-alt"></i> <span className="toggleHidden">My Created Events</span></Link>
+						<li className={activeClassName}>
+							<Link to="/myevents/1" className="nav-link" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-calendar-alt"></i> <span className="toggleHidden">My Created Events</span></Link>
 						</li>
 					</ul>
 					<h5 className="mt-5 toggleHidden">Tools</h5>
 					<ul className="nav flex-column">
-						<li className="nav-item">
-							<Link to="/how-it-works" className="nav-link"><i className="fa fa-question-circle"></i> <span className="toggleHidden">How It Works</span></Link>
+						<li className={activeClassName}>
+							<Link to="/how-it-works" className="nav-link" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-question-circle"></i> <span className="toggleHidden">How It Works</span></Link>
 						</li>
 						<li className="nav-item">
 							<Link to="/token" className="nav-link"><img src="/images/hydro.png" className="sidebar_hydro-logo" alt="Hydro Token Logo"/> <span className="toggleHidden">Get Hydro Tokens</span></Link>
@@ -101,5 +122,9 @@ class Sidebar extends Component
 		);
 	}
 }
+
+Sidebar.contextTypes = {
+    router: PropTypes.object
+};
 
 export default Sidebar;
