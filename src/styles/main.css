@@ -944,12 +944,16 @@ button.read-more:hover {
     min-height: 403px;
     padding-top: 200px;
   }
+
+  .event-image {
+    height: 28vw;
+  }
 }
 
 @media (max-width : 1500px) {
 
   .container-fluid {
-    background-color: transparent;
+    /* background-color: transparent; */
   }
 }
 
@@ -959,7 +963,7 @@ button.read-more:hover {
   }
 
   .container-fluid {
-    background-color: transparent;
+    /* background-color: transparent; */
   }
 }
 

@@ -16,9 +16,9 @@ class Event extends Component {
 			  contractName: 'Hydro',
 			  web3Contract: new context.drizzle.web3.eth.Contract(
 				Hydro_Testnet_Token_ABI,
-				Hydro_Testnet_Token_Address,	
+				Hydro_Testnet_Token_Address,
 			  ),
-			  
+
 			};
 			context.drizzle.addContract(contractConfig);
 			//Importing Hydro contracts
@@ -43,7 +43,7 @@ class Event extends Component {
 			image: null,
 			ipfs_problem: false,
 			locations:'',
-			
+
 			fee:'',
 			token:'',
 			openEvents_address:'',
@@ -52,7 +52,7 @@ class Event extends Component {
 		};
 		this.isCancelled = false;
 	}
-	
+
 
 	updateIPFS = () => {
 
@@ -81,12 +81,12 @@ class Event extends Component {
 					}
 				});
 			});
-			
-		}	
-		
+
+		}
+
 	}
 
-	
+
 	getImage = () => {
 		let image = '/images/loading_ipfs.png';
 		if (this.state.ipfs_problem) image = '/images/problem_ipfs.png';
@@ -138,20 +138,20 @@ class Event extends Component {
 		let body = <div className="card"><div className="card-body"><Loading /></div></div>;
 
 		if (typeof this.props.contracts['OpenEvents'].getEvent[this.event] !== 'undefined' && this.props.contracts['OpenEvents'].getEvent[this.event].value) {
-		
-			
+
+
 			let event_data = this.props.contracts['OpenEvents'].getEvent[this.event].value;
-		
-			
+
+
 			let image = this.getImage();
 			let description = this.getDescription();
 			let locations = this.getLocation();
 
      		let buttonText = "Buy Ticket";
-			
+
 			if (event_data[3] !=='undefined'){
 			let symbol = event_data[3] ? 'hydro.png' : 'ethereum.png';
-			 
+
 			let price = this.context.drizzle.web3.utils.fromWei(event_data[2]);
 			let date = new Date(parseInt(event_data[1], 10) * 1000);
 
@@ -176,7 +176,7 @@ class Event extends Component {
       if (event_data[6] >= 2) {
         badge = <img src="/images/fire.png" className="event_badge-hot" alt="Hot Icon" />;
       }
-	
+
 			body =
 				<div className="card">
 					<Link to={"/event/" + this.props.id}>
@@ -190,15 +190,15 @@ class Event extends Component {
 							</a>
 						</p>
 					</div>
-					
+
 					<div className="card-body">
 						<h5 className="card-title event-title">
 							<Link to={"/event/" + this.props.id} >{badge}{event_data[0]}</Link>
 						</h5>
 						{description}
 						</div>
-					
-					
+
+
 					<ul className="list-group list-group-flush">
 						<li className="list-group-item ">{locations}</li>
 						<li className="list-group-item"><strong>Category:</strong> {event_data[8]}</li>
@@ -206,7 +206,7 @@ class Event extends Component {
 						<li className="list-group-item"><strong>Date:</strong> {date.toLocaleDateString()} at {date.toLocaleTimeString()}</li>
 						<li className="list-group-item"><strong>Tickets Sold:</strong> {event_data[6]}/{max_seats}</li>
 					</ul>
-				
+
 					<div className="card-footer text-muted text-center">
 						<button className="btn btn-dark" onClick={this.inquire} disabled={disabled}><i className="fas fa-ticket-alt"></i> {buttonText}</button>
 					</div>
@@ -215,7 +215,7 @@ class Event extends Component {
 		}}
 
 		return (
-			<div className="col-lg-4 pb-4 d-flex align-items-stretch">
+			<div className="col-xl-4 col-lg-6 col-md-12 col-sm-12 pb-4 d-flex align-items-stretch">
 				{body}
 			</div>
 		);
@@ -223,7 +223,7 @@ class Event extends Component {
 
 	componentDidMount() {
 		this.updateIPFS()
-	
+
 	}
 
 	componentDidUpdate() {
