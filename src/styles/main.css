@@ -302,7 +302,7 @@ button {
 }
 
 .carousel-control-next, .carousel-control-prev {
-    z-index: 9999999999999999 !important;
+    z-index: 9999999 !important;
 }
 
 .carousel .slide1 button {
@@ -394,7 +394,7 @@ button {
 }
 
 .branding {
-	z-index: 99999999999999999999999 !important;
+	z-index: 999999 !important;
   position: inherit;
 	color: #fff;
 	text-shadow: 2px 2px 24px #000;
@@ -855,6 +855,7 @@ button.read-more:hover {
 
 #wrapper.toggled #sidebar-wrapper.sidebar-closed {
   left: 55px;
+  width: 250px;
 }
 
 #wrapper.toggled #page-content-wrapper.sidebar-open {
@@ -873,5 +874,16 @@ button.read-more:hover {
 @media (max-width : 990px) {
   .event-image {
       height: 40vw !important;
+  }
+}
+
+@media (max-width : 700px) {
+  #wrapper.toggled #sidebar-wrapper {
+    width: 100%;
+  }
+
+  #sidebar-wrapper.my-sidebar {
+    opacity: 1;
+    z-index: 99999999999999999999999999999999 !important;
   }
 }
