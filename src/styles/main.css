@@ -860,7 +860,8 @@ button.read-more:hover {
 }
 
 #wrapper.toggled #page-content-wrapper.sidebar-open {
-  padding-left: 120px;
+  padding-left: 105px;
+  padding-right: 60px;
   transition-duration: 1s;
 }
 
@@ -887,6 +888,13 @@ button.read-more:hover {
 
   #sidebar-wrapper.my-sidebar a {
     font-size: 17px;
+  }
+
+  #wrapper.toggled #page-content-wrapper.sidebar-open {
+    padding-left: 85px;
+    padding-right: 30px;
+    padding-top: 10px !important;
+    transition-duration: 1s;
   }
 
   #wrapper.toggled #page-content-wrapper.sidebar-closed {
@@ -918,4 +926,12 @@ button.read-more:hover {
 
 #wrapper.toggled #sidebar-wrapper.sidebar-closed ul li i {
   font-size: 20px !important;
+}
+
+.pagination {
+  margin-top: 35px;
+}
+
+.page-link {
+  padding: 0.75rem 1.00rem;
 }
