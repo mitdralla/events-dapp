@@ -34,13 +34,13 @@ class FindEvents extends Component
         event_copy:[],
 
       };
-      
+
 	    this.contracts = context.drizzle.contracts;
 	    this.eventCount = this.contracts['OpenEvents'].methods.getEventsCount.cacheCall();
 	    this.perPage = 6;
       this.topicClick = this.topicClick.bind(this);
 
-      this.toggleSortDate = this.toggleSortDate.bind(this); 
+      this.toggleSortDate = this.toggleSortDate.bind(this);
 	}
 
   topicClick(slug)
@@ -62,37 +62,43 @@ class FindEvents extends Component
     window.scrollTo(0, 0);
   }
 
+  caruselClick(location)
+  {
+    this.props.history.push(location);
+    window.scrollTo(0, 0);
+  }
+
 
   //Loads Blockhain Data,
   async loadBlockchain(){
-   
+
     const web3 = new Web3(new Web3.providers.WebsocketProvider('wss://rinkeby.infura.io/ws/v3/72e114745bbf4822b987489c119f858b'));
     const openEvents =  new web3.eth.Contract(Open_events_ABI, Open_events_Address);
-    
+
     if (this._isMounted){
     this.setState({openEvents});
     this.setState({Events_Blockchain:[]});}
     const dateTime = Date.now();
     const dateNow = Math.floor(dateTime / 1000);
-    
+
     const blockNumber = await web3.eth.getBlockNumber();
     if (this._isMounted){
     this.setState({blocks:blockNumber - 50000});
     this.setState({latestblocks:blockNumber - 1});
     this.setState({Events_Blockchain:[]});}
-  
+
     openEvents.getPastEvents("CreatedEvent",{fromBlock: 5000000, toBlock:this.state.latestblocks})
     .then(events=>{
     if (this._isMounted){
     this.setState({loading:true})
     var newest = events.filter((activeEvents)=>activeEvents.returnValues.time >=(dateNow));
     var newsort= newest.concat().sort((a,b)=> b.blockNumber- a.blockNumber);
-    
+
     this.setState({Events_Blockchain:newsort,event_copy:newsort});
     this.setState({loading:false})
-    this.setState({active_length:this.state.Events_Blockchain.length});   
+    this.setState({active_length:this.state.Events_Blockchain.length});
     }
-     
+
     }).catch((err)=>console.error(err))
 
     //Listens for New Events
@@ -100,11 +106,11 @@ class FindEvents extends Component
     .on('data', (log) => setTimeout(()=> {
     if (this._isMounted){
    // this.setState({loading:true});
-   
+
     this.setState({Events_Blockchain:[...this.state.Events_Blockchain,log]});
     var newest = this.state.Events_Blockchain
     var newsort= newest.concat().sort((a,b)=> b.blockNumber- a.blockNumber);
-    
+
     //this.setState({incoming:false});
     this.setState({Events_Blockchain:newsort,event_copy:newsort});
     this.setState({active_length:this.state.Events_Blockchain.length})}
@@ -116,12 +122,12 @@ class FindEvents extends Component
   updateSearch=(e)=>{
     let {value} = e.target
     this.setState({value},()=>{
-    if(this.state.value !== ""){  
+    if(this.state.value !== ""){
     var filteredEvents = this.state.event_copy;
     filteredEvents = filteredEvents.filter((events)=>{
     return events.returnValues.name.toLowerCase().search(this.state.value.toLowerCase()) !==-1;
-    
-    
+
+
     })}else{ filteredEvents = this.state.event_copy}
 
   this.setState({Events_Blockchain:filteredEvents,
@@ -136,20 +142,20 @@ class FindEvents extends Component
     const{Events_Blockchain}=this.state
     const{ended}=Events_Blockchain
     var newPolls = ended
-   
+
      if(this.state.isOldestFirst){
         newPolls = Events_Blockchain.concat().sort((a,b)=> b.returnValues.eventId - a.returnValues.eventId)
-        } 
+        }
     else {
         newPolls = Events_Blockchain.concat().sort((a,b)=> a.returnValues.eventId - b.returnValues.eventId)
       }
-    
+
       this.setState({
       isOldestFirst: !this.state.isOldestFirst,
-      Events_Blockchain:newPolls  
+      Events_Blockchain:newPolls
       });
     })}
-  
+
 
 
 	render()
@@ -176,13 +182,13 @@ class FindEvents extends Component
         let events_list = [];
         for (let i = start; i < end; i++) {
           events_list.push(<Event inquire={this.props.inquire}
-            key={this.state.Events_Blockchain[i].returnValues.eventId} 
-            id={this.state.Events_Blockchain[i].returnValues.eventId} 
+            key={this.state.Events_Blockchain[i].returnValues.eventId}
+            id={this.state.Events_Blockchain[i].returnValues.eventId}
             ipfs={this.state.Events_Blockchain[i].returnValues.ipfs} />);
 				}
 
         //events_list.reverse();
-        
+
 				let pagination = '';
 				if (pages > 1) {
 					let links = [];
@@ -215,7 +221,7 @@ class FindEvents extends Component
 				;
 			}
     }
-    
+
 
 		return(
       <React.Fragment>
@@ -225,7 +231,7 @@ class FindEvents extends Component
             <Carousel.Caption>
               <h3>Check out a Concert</h3>
               <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-              <button className="btn btn-dark"><i className="fas fa-ticket-alt"></i> Find Events</button>
+              <button className="btn btn-dark" onClick={() => {this.caruselClick("/topic/music/1")}}><i className="fas fa-ticket-alt"></i> Find Events</button>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item className="slide2">
@@ -233,7 +239,7 @@ class FindEvents extends Component
             <Carousel.Caption>
               <h3>Support a Local Charity</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <button className="btn btn-dark"><i className="fas fa-ticket-alt"></i> Find Events</button>
+              <button className="btn btn-dark" onClick={() => {this.caruselClick("/topic/charity-and-causes/1")}}><i className="fas fa-ticket-alt"></i> Find Events</button>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item className="slide3">
@@ -241,7 +247,7 @@ class FindEvents extends Component
             <Carousel.Caption>
               <h3>Attend an Exclusive Party</h3>
               <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-              <button className="btn btn-dark"><i className="fas fa-ticket-alt"></i> Find Events</button>
+              <button className="btn btn-dark" onClick={() => {this.caruselClick("/topic/parties/1")}}><i className="fas fa-ticket-alt"></i> Find Events</button>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item className="slide4">
@@ -249,7 +255,7 @@ class FindEvents extends Component
             <Carousel.Caption>
               <h3>Play a New Sport</h3>
               <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-              <button className="btn btn-dark"><i className="fas fa-ticket-alt"></i> Find Events</button>
+              <button className="btn btn-dark" onClick={() => {this.caruselClick("/topic/sports-and-fitness/1")}}><i className="fas fa-ticket-alt"></i> Find Events</button>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item className="slide5">
@@ -257,28 +263,28 @@ class FindEvents extends Component
             <Carousel.Caption>
               <h3>Create Your Own and Sell Tickets</h3>
               <p>Create your own event, it takes only a minute.</p>
-              <button className="btn btn-dark"><i className="fas fa-ticket-alt"></i> Create Event</button>
+              <button className="btn btn-dark" onClick={() => {this.caruselClick("/createevent")}}><i className="fas fa-ticket-alt"></i> Create Event</button>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
 
 			<div className="retract-page-inner-wrapper-alternative">
-     
+
 
       <br/><br />
 
       <div className="input-group input-group-lg">
         <div className="input-group-prepend ">
           <span className="input-group-text search-icon" id="inputGroup-sizing-lg"><i className="fa fa-search"></i>&nbsp;Search </span>
-        </div> 
+        </div>
         <input type="text" value={this.state.value} onChange={this.updateSearch.bind(this)} className="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
       </div>
       <br /><br />
-      
+
       <div>
-        
+
         <div className="row">
-         <h2 className="col-md-10"><i className="fa fa-calendar-alt"></i> Recent Events</h2> 
+         <h2 className="col-md-10"><i className="fa fa-calendar-alt"></i> Recent Events</h2>
          <button className="btn sort_button col-md-2" value={this.state.value} onClick={this.toggleSortDate} onChange={this.toggleSortDate.bind(this)}>{this.state.isOldestFirst ?'Sort:Oldest':'Sort:Newest'}</button>
         </div>
 
@@ -327,7 +333,7 @@ class FindEvents extends Component
           }
 
           <button className="btn read-more" onClick={() => {this.readMoreClick("/topics")}}>All Topics</button>
-          </div>      
+          </div>
       </div>
 
     </div>
@@ -335,12 +341,12 @@ class FindEvents extends Component
     </React.Fragment>
 		);
   }
-  
+
   componentDidMount() {
     this._isMounted = true;
 		setTimeout(()=>this.loadBlockchain(),1000);
   }
-  
+
   componentWillUnmount() {
     this._isMounted = false;
   }
