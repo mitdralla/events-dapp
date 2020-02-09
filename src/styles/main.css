@@ -885,6 +885,10 @@ button.read-more:hover {
     transition-duration: 0.5s;
   }
 
+  #sidebar-wrapper.my-sidebar a {
+    font-size: 17px;
+  }
+
   #wrapper.toggled #page-content-wrapper.sidebar-closed {
     opacity: 0;
     transition-duration: 1s;
