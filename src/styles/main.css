@@ -946,13 +946,26 @@ button.read-more:hover {
   }
 }
 
+@media (max-width : 1500px) {
+
+  .container-fluid {
+    background-color: transparent;
+  }
+}
+
 @media (max-width : 990px) {
   .event-image {
       height: 40vw !important;
   }
+
+  .container-fluid {
+    background-color: transparent;
+  }
 }
 
 @media (max-width : 900px) {
+
+
   #wrapper.toggled #sidebar-wrapper {
     width: 100%;
     transition-duration: 0.5s;
@@ -1011,4 +1024,20 @@ button.read-more:hover {
 
 .page-link {
   padding: 0.75rem 1.00rem;
+}
+
+
+.topic-headline {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  padding-top: 162px;
+  padding-bottom: 20px;
+  color: #fff;
+  text-align: center;
+  width: 100%;
+  padding-bottom: 45px;
+  min-height: 415px;
 }
