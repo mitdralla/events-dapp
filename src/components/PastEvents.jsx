@@ -56,38 +56,44 @@ class PastEvents extends Component
     window.scrollTo(0, 0);
   }
 
+  caruselClick(location)
+  {
+    this.props.history.push(location);
+    window.scrollTo(0, 0);
+  }
+
   //Load Blockchain Data
   async loadBlockchain(){
-    
+
     const web3 = new Web3(new Web3.providers.WebsocketProvider('wss://rinkeby.infura.io/ws/v3/72e114745bbf4822b987489c119f858b'));
     const openEvents =  new web3.eth.Contract(Open_events_ABI, Open_events_Address);
-    
+
     if (this._isMounted){
     this.setState({openEvents});
     this.setState({past_events:[]});}
     const dateTime = Date.now();
     const dateNow = Math.floor(dateTime / 1000);
-  
+
     const blockNumber = await web3.eth.getBlockNumber();
     if (this._isMounted){
     this.setState({blocks:blockNumber - 50000});
     this.setState({latestblocks:blockNumber});
     this.setState({past_events:[]});}
-    
+
     //Get Finished Events
     openEvents.getPastEvents("CreatedEvent",{fromBlock: 5000000, toBlock:'latest'})
     .then(events=>{
     if (this._isMounted){
     this.setState({loading:true})
-  
+
     var newest = events.filter((activeEvents)=>activeEvents.returnValues.time <=(dateNow));
     var newsort= newest.concat().sort((a,b)=> b.blockNumber- a.blockNumber);
-    
+
     this.setState({past_events:newsort,past_events_copy:newsort});
     this.setState({past_length:this.state.past_events.length})
     this.setState({loading:false});
     }
-     
+
     }).catch((err)=>console.error(err))
 
   }
@@ -96,13 +102,13 @@ class PastEvents extends Component
   updateSearch=(e)=>{
     let {value} = e.target
     this.setState({value},()=>{
-    if(this.state.value !== ""){  
+    if(this.state.value !== ""){
     var filteredEvents = this.state.past_events_copy;
     filteredEvents = filteredEvents.filter((events)=>{
     return events.returnValues.name.toLowerCase().search(this.state.value.toLowerCase()) !==-1;
       })
     }
-    else{ 
+    else{
       filteredEvents = this.state.past_events_copy
     }
 
@@ -120,17 +126,17 @@ class PastEvents extends Component
     const{past_events}=this.state
     const{ended}=past_events
     var newPolls = ended
- 
+
     if(this.state.isOldestFirst){
         newPolls = past_events.concat().sort((a,b)=> b.returnValues.eventId - a.returnValues.eventId)
-      } 
+      }
     else {
         newPolls = past_events.concat().sort((a,b)=> a.returnValues.eventId - b.returnValues.eventId)
     }
-  
+
     this.setState({
     isOldestFirst: !this.state.isOldestFirst,
-    past_events:newPolls  
+    past_events:newPolls
       });
     })
   }
@@ -158,14 +164,14 @@ class PastEvents extends Component
 
         let events_list = [];
         for (let i = start; i < end; i++) {
-          events_list.push(<Event 
-            key={this.state.past_events[i].returnValues.eventId} 
-            id={this.state.past_events[i].returnValues.eventId} 
+          events_list.push(<Event
+            key={this.state.past_events[i].returnValues.eventId}
+            id={this.state.past_events[i].returnValues.eventId}
             ipfs={this.state.past_events[i].returnValues.ipfs} />);
 				}
 
         //events_list.reverse();
-        
+
 				let pagination = '';
 				if (pages > 1) {
 					let links = [];
@@ -203,27 +209,27 @@ class PastEvents extends Component
       <React.Fragment>
       <Carousel className="retract-page-inner-wrapper">
           <Carousel.Item className="slide1">
-            <img className="d-block w-100" src="/images/slides/slide1.png" alt="First slide" />
+            <img className="d-block w-100" src="/images/topics/music.jpg" alt="First slide" />
             <Carousel.Caption>
               <h3>Check out a Concert</h3>
               <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-              <button className="btn btn-dark"><i className="fas fa-ticket-alt"></i> Find Events</button>
+              <button className="btn btn-dark" onClick={() => {this.caruselClick("/topic/music/1")}}><i className="fas fa-ticket-alt"></i> Find Events</button>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item className="slide2">
-          <img className="d-block w-100" src="/images/slides/slide2.png" alt="First slide" />
+          <img className="d-block w-100" src="/images/topics/charity-and-causes.jpg" alt="First slide" />
             <Carousel.Caption>
               <h3>Support a Local Charity</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <button className="btn btn-dark"><i className="fas fa-ticket-alt"></i> Find Events</button>
+              <button className="btn btn-dark" onClick={() => {this.caruselClick("/topic/charity-and-causes/1")}}><i className="fas fa-ticket-alt"></i> Find Events</button>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item className="slide3">
-          <img className="d-block w-100" src="/images/slides/slide3.png" alt="First slide" />
+          <img className="d-block w-100" src="/images/topics/parties.jpg" alt="First slide" />
             <Carousel.Caption>
               <h3>Attend an Exclusive Party</h3>
               <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-              <button className="btn btn-dark"><i className="fas fa-ticket-alt"></i> Find Events</button>
+              <button className="btn btn-dark" onClick={() => {this.caruselClick("/topic/parties/1")}}><i className="fas fa-ticket-alt"></i> Find Events</button>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item className="slide4">
@@ -231,15 +237,15 @@ class PastEvents extends Component
             <Carousel.Caption>
               <h3>Play a New Sport</h3>
               <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-              <button className="btn btn-dark"><i className="fas fa-ticket-alt"></i> Find Events</button>
+              <button className="btn btn-dark" onClick={() => {this.caruselClick("/topic/sports-and-fitness/1")}}><i className="fas fa-ticket-alt"></i> Find Events</button>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item className="slide5">
           <img className="d-block w-100" src="/images/slides/slide5.png" alt="First slide" />
             <Carousel.Caption>
-              <h3>Create Your Own and Sell Tickets</h3>
+              <h3>Create and Sell Tickets</h3>
               <p>Create your own event, it takes only a minute.</p>
-              <button className="btn btn-dark"><i className="fas fa-ticket-alt"></i> Create Event</button>
+              <button className="btn btn-dark" onClick={() => {this.caruselClick("/createevent")}}><i className="fas fa-ticket-alt"></i> Create Event</button>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
@@ -251,7 +257,7 @@ class PastEvents extends Component
       <div className="input-group input-group-lg">
         <div className="input-group-prepend">
           <span className="input-group-text search-icon" id="inputGroup-sizing-lg"><i className="fa fa-search"></i>&nbsp;Search </span>
-        </div> 
+        </div>
         <input type="text" value={this.state.value} onChange={this.updateSearch.bind(this)} className="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
       </div>
       <br /><br />
@@ -314,12 +320,12 @@ class PastEvents extends Component
     </React.Fragment>
 		);
   }
-  
+
   componentDidMount() {
     this._isMounted = true;
 		setTimeout(()=>this.loadBlockchain(),1000);
   }
-  
+
   componentWillUnmount() {
     this._isMounted = false;
   }
