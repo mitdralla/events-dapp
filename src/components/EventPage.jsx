@@ -140,7 +140,8 @@ class EventPage extends Component {
 							loading: false,
 							loaded: true,
 							description: data.text,
-							image: data.image
+							image: data.image,
+              locations: data.location
 						});
 					}
 				}).catch(() => {
@@ -189,6 +190,15 @@ class EventPage extends Component {
 				})
 			}
 
+      getLocation = () => {
+    		let locations = []
+    		if (this.state.ipfs_problem) locations = <p className="text-center mb-0 event-description"><span role="img" aria-label="monkey">🙊</span>We can not load location</p>;
+    		if (this.state.locations !== null) {
+    			let place= this.state.locations
+    			locations = <span>Location: {place}</span>;
+    		}
+    		return locations;
+    	}
 
 	render() {
 		let body = <Loading />;
@@ -202,6 +212,7 @@ class EventPage extends Component {
 
 				let image = this.getImage();
 				let description = this.getDescription();
+        let locations = this.getLocation();
 
 				let symbol = event_data[3] ? 'hydro.png' : 'ethereum.png';
 				let price = this.context.drizzle.web3.utils.fromWei(event_data[2]);
@@ -252,7 +263,16 @@ class EventPage extends Component {
 										</a>
 									</p>
 								</div>
+
+                <div className="card-body">
+                  <h5 className="card-title event-title">
+                    {event_data[0]}
+                  </h5>
+      						{description}
+      					</div>
+
 								<ul className="list-group list-group-flush">
+                  <li className="list-group-item ">{locations}</li>
 									<li className="list-group-item">Category: {event_data[8]}</li>
 									<li className="list-group-item">Price: <img src={'/images/'+symbol} className="event_price-image"  alt="Event Price" /> {price}</li>
 									<li className="list-group-item">{date.toLocaleDateString()} at {date.toLocaleTimeString()}</li>
@@ -262,10 +282,10 @@ class EventPage extends Component {
 
               <div className="new-transaction-wrapper"><h4 className="transactions">Ticket Purchases</h4>
   						{this.state.load &&<Loading/>}
-  						{this.state.soldTicket.map((sold,index)=>(<p className="sold_text col-md-12" key={index}><img className="float-left blockie" src={makeBlockie(sold.returnValues.buyer)} /> bought 1 ticket for <strong>{event_data[0]}</strong></p>))}
-  						{!sold &&  <p className="sold_text col-md-12" >No one has bought a ticket so far,</p>}
+  						{this.state.soldTicket.map((sold,index)=>(<p className="sold_text col-md-12" key={index}><img className="float-left blockie" src={makeBlockie(sold.returnValues.buyer)} /> Someone bought 1 ticket for <strong>{event_data[0]}</strong>.</p>))}
+  						{!sold &&  <p className="sold_text col-md-12 no-tickets">There are currently no purchases for this ticket.</p>}
   						</div>
-              
+
 						</div>
 						<hr/>
 

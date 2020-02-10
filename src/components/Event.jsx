@@ -214,7 +214,7 @@ class Event extends Component {
 							<Link to={"/event/" + this.props.id} >{badge}{event_data[0]}</Link>
 						</h5>
 						{description}
-						</div>
+					</div>
 
 
 					<ul className="list-group list-group-flush">

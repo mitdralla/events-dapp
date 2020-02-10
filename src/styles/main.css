@@ -1118,3 +1118,7 @@ h4.transactions {
   margin-top: 60px;
   font-size: 1.75rem;
 }
+
+.no-tickets {
+  padding-left: 5px !important;
+}
