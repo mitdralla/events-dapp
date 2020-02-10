@@ -8,6 +8,8 @@ import {Hydro_Testnet_Token_ABI, Hydro_Testnet_Token_Address} from '../config/hy
 import ipfs from '../utils/ipfs';
 
 import Loading from './Loading';
+import eventTopics from '../config/topics.json';
+
 
 class Event extends Component {
     constructor(props, context) {
@@ -134,6 +136,20 @@ class Event extends Component {
 			}
 
 
+    // getPrettyCategory(rawCategory) {
+    //   let prettyCategory = "";
+    //
+    //   {eventTopics.map((Topic, index) => (
+    //     if(Topic.slug == rawCategory) {
+    //       prettyCategory = Topic.slug;
+    //     }
+    //
+    //   ))}
+    //
+    //   return prettyCategory;
+    // }
+
+
 	 render() {
 		let body = <div className="card"><div className="card-body"><Loading /></div></div>;
 
@@ -176,6 +192,8 @@ class Event extends Component {
       if (event_data[6] >= 2) {
         badge = <img src="/images/fire.png" className="event_badge-hot" alt="Hot Icon" />;
       }
+
+      let rawCategory = event_data[8];
 
 			body =
 				<div className="card">

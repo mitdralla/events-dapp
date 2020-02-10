@@ -730,7 +730,6 @@ button.read-more:hover {
   margin-left: -18px;
   position: absolute;
   animation: drop 1.3s cubic-bezier(0.55, 0.085, 0.68, 0.53) 0s infinite;
-
 }
 
 .drop path {
@@ -750,6 +749,7 @@ button.read-more:hover {
   transform: translate3d(0, 0, 0);
   background-clip: padding-box;
   -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
+  background-color: #FAFAFA;
 }
 
 .ripple {
