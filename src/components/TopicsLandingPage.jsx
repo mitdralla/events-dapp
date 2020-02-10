@@ -114,7 +114,7 @@ class TopicsLandingPage extends Component {
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item className="slide4">
-          <img className="d-block w-100" src="/images/slides/slide4.png" alt="First slide" />
+          <img className="d-block w-100" src="/images/topics/sports-and-fitness.jpg" alt="First slide" />
             <Carousel.Caption>
               <h3>Play a New Sport</h3>
               <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
