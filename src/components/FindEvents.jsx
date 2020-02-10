@@ -285,7 +285,7 @@ class FindEvents extends Component
 
         <div className="row">
          <h2 className="col-md-10"><i className="fa fa-calendar-alt"></i> Recent Events</h2>
-         <button className="btn sort_button col-md-2" value={this.state.value} onClick={this.toggleSortDate} onChange={this.toggleSortDate.bind(this)}>{this.state.isOldestFirst ?'Sort:Oldest':'Sort:Newest'}</button>
+         <button className="btn sort_button col-md-2" value={this.state.value} onClick={this.toggleSortDate} onChange={this.toggleSortDate.bind(this)}>{this.state.isOldestFirst ?'Sort: Oldest':'Sort: Newest'}</button>
         </div>
 
         <hr/>

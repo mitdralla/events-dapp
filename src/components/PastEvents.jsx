@@ -264,7 +264,7 @@ class PastEvents extends Component
 
       <div>
         <div className="row">
-         <h2 className="col-md-10"><i className="fa fa-calendar-alt"></i> Past Events</h2> <button className="btn sort_button col-md-2" value={this.state.value} onClick={this.toggleSortDate} onChange={this.toggleSortDate.bind(this)}>{this.state.isOldestFirst ?'Sort:Oldest':'Sort:Newest'}</button>
+         <h2 className="col-md-10"><i className="fa fa-calendar-alt"></i> Past Events</h2> <button className="btn sort_button col-md-2" value={this.state.value} onClick={this.toggleSortDate} onChange={this.toggleSortDate.bind(this)}>{this.state.isOldestFirst ?'Sort: Oldest':'Sort: Newest'}</button>
         </div>
           <hr />
           {body}
