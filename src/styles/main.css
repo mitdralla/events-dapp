@@ -362,7 +362,7 @@ button {
   height: 800px !important;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 100%;
+  background-size: cover;
   -webkit-filter: blur(25px);
   -moz-filter: blur(25px);
   -o-filter: blur(25px);
@@ -1002,6 +1002,26 @@ button.read-more:hover {
       height: 36vw !important;
   }
 
+}
+
+
+@media (max-width : 700px) {
+  .branding h1 {
+      font-size: 1.5rem;
+  }
+
+  .branding p {
+      font-size: 1.0rem;
+  }
+
+  .container-fluid {
+    /* background-color: transparent; */
+  }
+
+  #bgImage {
+    background-position: top;
+    background-size: cover;
+  }
 }
 
 
