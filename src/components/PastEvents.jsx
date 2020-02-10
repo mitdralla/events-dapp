@@ -86,8 +86,10 @@ class PastEvents extends Component
     if (this._isMounted){
     this.setState({loading:true})
 
-    var newest = events.filter((activeEvents)=>activeEvents.returnValues.time <=(dateNow));
-    var newsort= newest.concat().sort((a,b)=> b.blockNumber- a.blockNumber);
+    //var newest = events.filter((activeEvents)=>activeEvents.returnValues.time <=(dateNow));
+    var newsort= events.concat().sort((a,b)=> 
+    b.blockNumber- a.blockNumber).filter((pastEvents=>
+    pastEvents.returnValues.time <=(dateNow)));
 
     this.setState({past_events:newsort,past_events_copy:newsort});
     this.setState({past_length:this.state.past_events.length})
@@ -323,7 +325,7 @@ class PastEvents extends Component
 
   componentDidMount() {
     this._isMounted = true;
-		setTimeout(()=>this.loadBlockchain(),1000);
+	  this.loadBlockchain();
   }
 
   componentWillUnmount() {
