@@ -28,17 +28,22 @@ class MyTickets extends Component {
     window.scrollTo(0, 0);
   }
 
-  async loadBlockchainData(){
-	if (typeof this.props.contracts['OpenEvents'].ticketsOf[this.tickets] !== 'undefined') {
-	const myTicket = await this.props.contracts['OpenEvents'].ticketsOf[this.tickets].value;
-	var newsort= myTicket.concat().sort((a,b)=> b - a);
-	
+  setLoader(){
 	if(this._isMounted){
 	this.setState({
-		myTicket:newsort,
 		loading:false});
 		}
+  	}
+
+	getTickets = () =>{
+	if (typeof this.props.contracts['OpenEvents'].ticketsOf[this.tickets] !== 'undefined') {
+		const myTicket = this.props.contracts['OpenEvents'].ticketsOf[this.tickets].value;
+		let newsort= myTicket.concat().sort((a,b)=> b - a);
+		if(newsort!=='undefined'){
+		return newsort
+		}
 	}
+	
   }
 
 	render() {
@@ -46,7 +51,7 @@ class MyTickets extends Component {
 
 		if (typeof this.props.contracts['OpenEvents'].ticketsOf[this.tickets] !== 'undefined') {
 			//let allTickets = this.props.contracts['OpenEvents'].ticketsOf[this.tickets].value;
-			let allTickets = this.state.myTicket;
+			let allTickets = this.getTickets();
 			if(this.state.loading){
 				body = 
 				<div>
@@ -124,7 +129,7 @@ class MyTickets extends Component {
 	}
 	componentDidMount(){
 		this._isMounted = true;
-		setTimeout(()=>this.loadBlockchainData(),2000);
+		setTimeout(()=>this.setLoader(),1000);
 	}
 
 	componentWillUnmount(){
