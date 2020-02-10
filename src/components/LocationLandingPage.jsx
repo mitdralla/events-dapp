@@ -42,7 +42,7 @@ class LocationLandingPage extends Component
     this.props.history.push("/location/"+slug);
     this.theLocation = this.getLocationData();
 
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 80);
   }
 
   getLastURLSegment()

@@ -286,7 +286,7 @@ class TopicLandingPage extends Component
 						let active = i === currentPage ? 'active' : '';
 						links.push(
 							<li className={"page-item " + active} key={i}>
-                <Link to={"/topic/" + this.props.match.params.page + "/" + i } onClick={window.scrollTo(0, 700)} className="page-link">{i}</Link>
+                <Link to={"/topic/" + this.props.match.params.page + "/" + i } className="page-link">{i}</Link>
 							</li>
 						);
 					}

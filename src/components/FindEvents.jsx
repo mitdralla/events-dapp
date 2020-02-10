@@ -47,7 +47,7 @@ class FindEvents extends Component
   {
 
     this.props.history.push("/topic/"+slug+"/"+1);
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 80);
   }
 
   readMoreClick(location)
@@ -65,7 +65,7 @@ class FindEvents extends Component
   caruselClick(location)
   {
     this.props.history.push(location);
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 80);
   }
 
 

@@ -22,7 +22,7 @@ class LocationsLandingPage extends Component {
 
   topicClick(slug) {
     this.props.history.push(slug);
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 80);
   }
 
 	render() {

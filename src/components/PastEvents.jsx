@@ -41,13 +41,12 @@ class PastEvents extends Component
   topicClick(slug)
   {
     this.props.history.push("/topic/"+slug+"/"+1);
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 80);
   }
 
   readMoreClick(location)
   {
     this.props.history.push(location);
-    window.scrollTo(0, 0);
   }
 
   ctasClick(slug)
@@ -59,7 +58,7 @@ class PastEvents extends Component
   caruselClick(location)
   {
     this.props.history.push(location);
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 80);
   }
 
   //Load Blockchain Data
