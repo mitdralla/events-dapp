@@ -71,35 +71,37 @@ class FindEvents extends Component
 
   //Loads Blockhain Data,
   async loadBlockchain(){
-
+   
     const web3 = new Web3(new Web3.providers.WebsocketProvider('wss://rinkeby.infura.io/ws/v3/72e114745bbf4822b987489c119f858b'));
     const openEvents =  new web3.eth.Contract(Open_events_ABI, Open_events_Address);
-
+    
     if (this._isMounted){
-    this.setState({openEvents});
-    this.setState({Events_Blockchain:[]});}
+    this.setState({openEvents});}
     const dateTime = Date.now();
     const dateNow = Math.floor(dateTime / 1000);
-
+    
     const blockNumber = await web3.eth.getBlockNumber();
     if (this._isMounted){
     this.setState({blocks:blockNumber - 50000});
     this.setState({latestblocks:blockNumber - 1});
     this.setState({Events_Blockchain:[]});}
-
+  
     openEvents.getPastEvents("CreatedEvent",{fromBlock: 5000000, toBlock:this.state.latestblocks})
     .then(events=>{
     if (this._isMounted){
     this.setState({loading:true})
-    var newest = events.filter((activeEvents)=>activeEvents.returnValues.time >=(dateNow));
-    var newsort= newest.concat().sort((a,b)=> b.blockNumber- a.blockNumber);
 
+    var newsort= events.concat().sort((a,b)=> 
+    b.blockNumber- a.blockNumber).filter((activeEvents=>
+    activeEvents.returnValues.time >=(dateNow)));
+    
     this.setState({Events_Blockchain:newsort,event_copy:newsort});
-    this.setState({loading:false})
-    this.setState({active_length:this.state.Events_Blockchain.length});
+    this.setState({active_length:this.state.Events_Blockchain.length})
+    this.setState({loading:false});   
     }
-
+     
     }).catch((err)=>console.error(err))
+
 
     //Listens for New Events
     openEvents.events.CreatedEvent({fromBlock: this.state.blockNumber, toBlock:'latest'})
@@ -344,7 +346,7 @@ class FindEvents extends Component
 
   componentDidMount() {
     this._isMounted = true;
-		setTimeout(()=>this.loadBlockchain(),1000);
+		this.loadBlockchain();
   }
 
   componentWillUnmount() {
