@@ -1085,3 +1085,36 @@ button.read-more:hover {
 .nav li.active i:before {
   color: #71b0fc;
 }
+
+.new-transaction-wrapper {
+    width: 100%;
+    max-width: 100%;
+    text-align: left;
+}
+
+.new-transaction-wrapper .sold_text {
+  padding-top: 15px;
+  padding-bottom: 0px;
+  padding-left: 15px;
+  text-align: left;
+  border-top: 1px solid rgb(197, 195, 197);
+  font-size: 14px;
+  overflow: hidden;
+  min-height: 100px;
+  font-size: 20px;
+}
+
+.blockie {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  border: 5px solid #f7f7f7;
+  box-shadow: 0 0 17px rgba(0,0,0,0.5);
+  margin-right:20px;
+}
+
+h4.transactions {
+  text-align: left;
+  margin-top: 60px;
+  font-size: 1.75rem;
+}

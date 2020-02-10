@@ -21,9 +21,9 @@ class EventPage extends Component {
 			  contractName: 'Hydro',
 			  web3Contract: new context.drizzle.web3.eth.Contract(
 				Hydro_Testnet_Token_ABI,
-				Hydro_Testnet_Token_Address,	
+				Hydro_Testnet_Token_Address,
 			  ),
-			  
+
 			};
 			context.drizzle.addContract(contractConfig);
 			//Importing Hydro/OMG contracts
@@ -47,7 +47,7 @@ class EventPage extends Component {
 			  description: null,
 			  image: null,
 			  ipfs_problem: false,
-			  
+
 			  soldTicket:[],
 			  latestblocks:5000000,
 			  hydro_market:[],
@@ -57,7 +57,7 @@ class EventPage extends Component {
 			  openEvents_address:'',
 			  buyticket:'',
 			  approve:'',
-			  
+
 		  };
 		  this.isCancelled = false;
 	}
@@ -71,7 +71,7 @@ class EventPage extends Component {
     if (this._isMounted){
     this.setState({openEvents});
     this.setState({hydroTransfer:[]});}
-  
+
     const blockNumber = await web3.eth.getBlockNumber();
     if (this._isMounted){
     this.setState({
@@ -80,7 +80,7 @@ class EventPage extends Component {
 		soldTicket:[]
 		});
 	}
-  
+
     openEvents.getPastEvents("SoldTicket",{filter:{eventId:this.props.match.params.id},fromBlock: 5000000, toBlock:this.state.latestblocks})
     .then(events=>{
 
@@ -91,15 +91,15 @@ class EventPage extends Component {
     this.setState({soldTicket:newsort,check:newsort});
     this.setState({load:false})
     this.setState({active_length:this.state.soldTicket.length});
-    
-  	}  
+
+  	}
     }).catch((err)=>console.error(err))
 
 	//Listen for Incoming Sold Tickets
     openEvents.events.SoldTicket({filter:{eventId:this.props.match.params.id},fromBlock: blockNumber, toBlock:'latest'})
   	.on('data', (log) =>setTimeout(()=> {
     this.setState({load:true});
-    
+
     this.setState({soldTicket:[...this.state.soldTicket,log]});
     var newest = this.state.soldTicket
     var newsort= newest.concat().sort((a,b)=> b.blockNumber- a.blockNumber);
@@ -189,7 +189,7 @@ class EventPage extends Component {
 				})
 			}
 
-	
+
 	render() {
 		let body = <Loading />;
 
@@ -198,7 +198,7 @@ class EventPage extends Component {
 				body = <div className="text-center mt-5"><span role="img" aria-label="unicorn">🦄</span> Hydro Event not found</div>;
 			} else {
 
-				let event_data = this.props.contracts['OpenEvents'].getEvent[this.event].value;	
+				let event_data = this.props.contracts['OpenEvents'].getEvent[this.event].value;
 
 				let image = this.getImage();
 				let description = this.getDescription();
@@ -217,7 +217,7 @@ class EventPage extends Component {
 					disabled = true;
 					disabledStatus = <span><span role="img" aria-label="alert">⚠️</span> No more tickets</span>;
 				}
-				
+
 
 				if (date.getTime() < new Date().getTime()) {
 					disabled = true;
@@ -226,9 +226,9 @@ class EventPage extends Component {
 
 				if(this.state.active_length <= 0){
 					sold=false;
-					
+
 				}
-				
+
 
 				body =
 					<div className="row">
@@ -259,25 +259,23 @@ class EventPage extends Component {
 									<li className="list-group-item">Tickets: {event_data[6]}/{max_seats}</li>
 								</ul>
 							</div>
+
+              <div className="new-transaction-wrapper"><h4 className="transactions">Ticket Purchases</h4>
+  						{this.state.load &&<Loading/>}
+  						{this.state.soldTicket.map((sold,index)=>(<p className="sold_text col-md-12" key={index}><img className="float-left blockie" src={makeBlockie(sold.returnValues.buyer)} /> bought 1 ticket for <strong>{event_data[0]}</strong></p>))}
+  						{!sold &&  <p className="sold_text col-md-12" >No one has bought a ticket so far,</p>}
+  						</div>
+              
 						</div>
 						<hr/>
-						
-						<div className="transaction-wrapper col-12"><h4 className="transactions">Transactions</h4>
-						{this.state.load &&<Loading/>}
-						{this.state.soldTicket.map((sold,index)=>(<p className="sold_text col-md-12" key={index}>{sold.returnValues.buyer} has bought 1 ticket for {event_data[0]}</p>))}
-						{!sold &&  <p className="sold_text col-md-12" >No one has bought a ticket so far,</p>}
-      
-						
-						</div>
-						
-						
+
 					</div>
-					
+
 				;
 			}
 		}
 
-		
+
 
 		return (
 			<div>
@@ -285,7 +283,7 @@ class EventPage extends Component {
 				<hr />
 				{body}
 				<hr/>
-		 			
+
 			</div>
 		);
 	}
