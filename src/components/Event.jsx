@@ -214,11 +214,6 @@ class Event extends Component {
           </Link>
 					<div className="card-header text-muted event-header ">
 						<img className="float-left" src={makeBlockie(event_data[9])} alt={event_data[9]} />
-						<p className="small text-truncate mb-0">
-							Creator: <a href={"https://rinkeby.etherscan.io/address/" + event_data[9]} target="_blank" className="event_creator-link">
-								{event_data[9]}
-							</a>
-						</p>
 					</div>
 
 					<div className="card-body">

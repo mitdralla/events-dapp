@@ -209,7 +209,7 @@ class EventPage extends Component {
 			} else {
 
 				let event_data = this.props.contracts['OpenEvents'].getEvent[this.event].value;
-        let title = event_data[0];
+        let event_tit
 				let image = this.getImage();
 				let description = this.getDescription();
         let locations = this.getLocation();
@@ -256,7 +256,8 @@ class EventPage extends Component {
 
 						<div className="col-12">
 
-            <h3></h3>
+            <h3>{event_data[0]}</h3>
+            <br />
             {description}
             <button className="btn btn-dark" onClick={this.inquire} disabled={disabled}><i className="fas fa-ticket-alt"></i> Buy Ticket</button>
             <label className="pl-2 small">{disabledStatus}</label>
@@ -268,11 +269,6 @@ class EventPage extends Component {
 								<img className="card-img-top event-image" src={image} alt="Event" />
 								<div className="card-header event-header">
 									<img className="float-left" src={makeBlockie(event_data[9])} alt="User Identicon" />
-									<p className="small text-truncate mb-0">
-										Creator: <a href={"https://rinkeby.etherscan.io/address/" + event_data[9]} target="_blank">
-											{event_data[9]}
-										</a>
-									</p>
 								</div>
 
                 <div className="card-body">
