@@ -1122,3 +1122,12 @@ h4.transactions {
 .no-tickets {
   padding-left: 5px !important;
 }
+
+.list-group-item a {
+  color: #333;
+}
+
+.list-group-item a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}

@@ -240,6 +240,16 @@ class EventPage extends Component {
 
 				}
 
+        let rawCategory = event_data[8];
+
+        var categoryRemovedDashes = rawCategory;
+        categoryRemovedDashes = categoryRemovedDashes.replace(/-/g, ' ');
+
+        var category = categoryRemovedDashes.toLowerCase()
+        .split(' ')
+        .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+        .join(' ');
+
 
 				body =
 					<div className="row">
@@ -273,7 +283,7 @@ class EventPage extends Component {
 
 								<ul className="list-group list-group-flush">
                   <li className="list-group-item ">{locations}</li>
-									<li className="list-group-item">Category: {event_data[8]}</li>
+									<li className="list-group-item">Category: {category}</li>
 									<li className="list-group-item">Price: <img src={'/images/'+symbol} className="event_price-image"  alt="Event Price" /> {price}</li>
 									<li className="list-group-item">{date.toLocaleDateString()} at {date.toLocaleTimeString()}</li>
 									<li className="list-group-item">Tickets: {event_data[6]}/{max_seats}</li>

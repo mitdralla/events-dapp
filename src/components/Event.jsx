@@ -195,6 +195,18 @@ class Event extends Component {
 
       let rawCategory = event_data[8];
 
+      var categoryRemovedDashes = rawCategory;
+      categoryRemovedDashes = categoryRemovedDashes.replace(/-/g, ' ');
+
+      var category = categoryRemovedDashes.toLowerCase()
+      .split(' ')
+      .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+      .join(' ');
+
+      let topicURL = "/topic/"+event_data[8]+"/1";
+
+      console.log(event_data);
+
 			body =
 				<div className="card">
 					<Link to={"/event/" + this.props.id}>
@@ -219,7 +231,7 @@ class Event extends Component {
 
 					<ul className="list-group list-group-flush">
 						<li className="list-group-item ">{locations}</li>
-						<li className="list-group-item"><strong>Category:</strong> {event_data[8]}</li>
+						<li className="list-group-item"><strong>Category:</strong> <a href={topicURL}>{category}</a></li>
 						<li className="list-group-item"><strong>Price:</strong> <img src={'/images/'+symbol} className="event_price-image" alt="Event Price Icon" /> {price}</li>
 						<li className="list-group-item"><strong>Date:</strong> {date.toLocaleDateString()} at {date.toLocaleTimeString()}</li>
 						<li className="list-group-item"><strong>Tickets Sold:</strong> {event_data[6]}/{max_seats}</li>
