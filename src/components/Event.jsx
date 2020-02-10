@@ -10,6 +10,7 @@ import ipfs from '../utils/ipfs';
 import Loading from './Loading';
 import eventTopics from '../config/topics.json';
 
+let numeral = require('numeral');
 
 class Event extends Component {
     constructor(props, context) {
@@ -227,7 +228,7 @@ class Event extends Component {
 					<ul className="list-group list-group-flush">
 						<li className="list-group-item ">{locations}</li>
 						<li className="list-group-item"><strong>Category:</strong> <a href={topicURL}>{category}</a></li>
-						<li className="list-group-item"><strong>Price:</strong> <img src={'/images/'+symbol} className="event_price-image" alt="Event Price Icon" /> {price}</li>
+						<li className="list-group-item"><strong>Price:</strong> <img src={'/images/'+symbol} className="event_price-image" alt="Event Price Icon" /> {event_data[3] ? '' + numeral(price).format('0,0'): '' + price}</li>
 						<li className="list-group-item"><strong>Date:</strong> {date.toLocaleDateString()} at {date.toLocaleTimeString()}</li>
 						<li className="list-group-item"><strong>Tickets Sold:</strong> {event_data[6]}/{max_seats}</li>
 					</ul>

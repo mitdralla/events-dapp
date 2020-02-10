@@ -11,7 +11,7 @@ import CheckUser from './CheckUser';
 import {Open_events_ABI, Open_events_Address} from '../config/OpenEvents';
 import {Hydro_Testnet_Token_ABI, Hydro_Testnet_Token_Address} from '../config/hydrocontract_testnet';
 
-
+let numeral = require('numeral');
 
 class EventPage extends Component {
 
@@ -281,7 +281,7 @@ class EventPage extends Component {
 								<ul className="list-group list-group-flush">
                   <li className="list-group-item ">{locations}</li>
 									<li className="list-group-item">Category: {category}</li>
-									<li className="list-group-item">Price: <img src={'/images/'+symbol} className="event_price-image"  alt="Event Price" /> {price}</li>
+									<li className="list-group-item">Price: <img src={'/images/'+symbol} className="event_price-image"  alt="Event Price" /> {numeral(price).format('0,0')} {event_data[3] ? 'or $ '+ numeral(price * this.state.hydro_market.usd).format('0,0.00'):''}</li>
 									<li className="list-group-item">{date.toLocaleDateString()} at {date.toLocaleTimeString()}</li>
 									<li className="list-group-item">Tickets: {event_data[6]}/{max_seats}</li>
 								</ul>
