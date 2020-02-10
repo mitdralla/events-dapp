@@ -48,8 +48,8 @@ class App extends Component
 			sent_tx: [],
 			showSidebar: true,
 			account:[],
-			
-			
+
+
 			id:'',
 			fee:'',
 			token:'',
@@ -68,23 +68,23 @@ class App extends Component
 
 	componentDidMount(){
 		this.loadBlockchainData();
-		
+
 
 	}
 
 	componentWillUpdate() {
 		let sent_tx = this.state.sent_tx;
-		
+
 		for (let i = 0; i < this.props.transactionStack.length; i++) {
 			if (sent_tx.indexOf(this.props.transactionStack[i]) === -1) {
 				sent_tx.push(this.props.transactionStack[i]);
-			
+
 				toast(<Notify hash={this.props.transactionStack[i]} />, {
 					position: "bottom-right",
 					autoClose: false,
 					pauseOnHover: true
-					
-				});	
+
+				});
 			}
 		}
 
@@ -94,24 +94,24 @@ class App extends Component
 			});
 		}
 	}
-	
-	
 
-//Get Account	
-async loadBlockchainData() { 
+
+
+//Get Account
+async loadBlockchainData() {
 
 	if(typeof ethereum !=='undefined'){
 	// console.log("metamask")
 	 await ethereum.enable();
 	 web3 = new Web3(ethereum);
-	
+
  	}
- 
+
  	else if (typeof web3 !== 'undefined'){
 	console.log('Web3 Detected!')
  	window.web3 = new Web3(web3.currentProvider);
 	 }
-	 
+
  	else{console.log('No Web3 Detected')
  	window.web3 = new Web3(new Web3.providers.HttpProvider('https://rinkeby.infura.io/v3/72e114745bbf4822b987489c119f858b'));
 
@@ -123,13 +123,13 @@ async loadBlockchainData() {
 
 	window.ethereum.on('networkChanged', function (netId) {
  	window.location.reload();
-	}) 
+	})
 
 	const accounts = await web3.eth.getAccounts();
     this.setState({account: accounts[0]});
-	
+
 	}
-	
+
 	//get value from buyer/from child components
 	inquireBuy = (id,fee,token,openEvents_address,buyticket,approve)=>{
 		this.setState({
@@ -137,7 +137,7 @@ async loadBlockchainData() {
 			token:token,
 			buyticket:buyticket,
 			approve:approve
-		},()=>this.buy())	 
+		},()=>this.buy())
 	}
 
 	//TransferFrom when buying with Hydro
@@ -154,7 +154,7 @@ async loadBlockchainData() {
 					position: "bottom-right",
 					autoClose: false,
 					pauseOnHover: true
-					
+
 				})
 			}
 		})
@@ -166,11 +166,11 @@ async loadBlockchainData() {
 				toast(<NotifySuccess hash={txreceiptApproved.transactionHash} />, {
 						position: "bottom-right",
 						autoClose: false,
-						pauseOnHover: true	
+						pauseOnHover: true
 					})
 				}
-			 	
-			} 
+
+			}
 	   	})
 	   .on('error',(error)=>{
 		if(error !== null){
@@ -178,18 +178,18 @@ async loadBlockchainData() {
 		   		toast(<NotifyError message={txerror.message} />, {
 					position: "bottom-right",
 					autoClose: false,
-					pauseOnHover: true	
+					pauseOnHover: true
 					})
-			   	} 
+			   	}
 	  	  	})
 		},3000)
-	
+
 	//Buy Function, Notify listen for transaction status.
 	buy = () =>{
 		let txreceipt='';
 		let txconfirmed = '';
 		let txerror = '';
-	
+
 		if(this.state.token){
 		this.state.approve.send({from:this.state.account})
 
@@ -199,7 +199,7 @@ async loadBlockchainData() {
 					position: "bottom-right",
 					autoClose: false,
 					pauseOnHover: true
-					
+
 				})
 			}
 		})
@@ -208,30 +208,30 @@ async loadBlockchainData() {
 			 txreceipt = receipt
 			 txconfirmed = confirmationNumber
 			if (txconfirmed == 0 && txreceipt.status == true){
-				toast(<NotifyApproveSuccess hash={txreceipt.transactionHash} />, 
+				toast(<NotifyApproveSuccess hash={txreceipt.transactionHash} />,
 					{
 					position: "bottom-right",
 					autoClose: false,
-					pauseOnHover: true	
+					pauseOnHover: true
 					})
 				}
-			 	
-			} 
+
+			}
 	   	})
 	   .on('error',(error)=>{
 		if(error !== null){
 			txerror = error
-		   		toast(<NotifyError message={txerror.message} />, 
+		   		toast(<NotifyError message={txerror.message} />,
 				{
 				position: "bottom-right",
 				autoClose: false,
-				pauseOnHover: true	
+				pauseOnHover: true
 				})
-			   } 
+			   }
 	  	  	})
 		this.afterApprove()
 	}
-		
+
 		else{
 		this.state.buyticket.send({value:this.state.fee, from:this.state.account})
 
@@ -241,7 +241,7 @@ async loadBlockchainData() {
 					position: "bottom-right",
 					autoClose: false,
 					pauseOnHover: true
-					
+
 				})
 			}
 		})
@@ -250,26 +250,26 @@ async loadBlockchainData() {
 			txreceipt = receipt
 			txconfirmed = confirmationNumber
 			if (txconfirmed == 0 && txreceipt.status == true){
-				toast(<NotifySuccess hash={txreceipt.transactionHash} />, 
+				toast(<NotifySuccess hash={txreceipt.transactionHash} />,
 					{
 					position: "bottom-right",
 					autoClose: false,
-					pauseOnHover: true	
+					pauseOnHover: true
 					})
 				}
-			 	
-			} 
+
+			}
 	   	})
 	   	.on('error',(error)=>{
 		 	if(error !== null){
 			txerror = error
-		   		toast(<NotifyError message={txerror.message} />, 
+		   		toast(<NotifyError message={txerror.message} />,
 				{
 					position: "bottom-right",
 					autoClose: false,
-					pauseOnHover: true	
+					pauseOnHover: true
 					})
-			   	} 
+			   	}
 	  	  	})
 	    }
 	}
@@ -283,7 +283,7 @@ async loadBlockchainData() {
 
 		this.setState({upload:true,createEvent:transaction},()=>
 		this.state.createEvent.send({from:this.state.account})
-	
+
 		.on('transactionHash',(hash)=>{
 			if(hash !==null){
 				this.setState({
@@ -294,9 +294,9 @@ async loadBlockchainData() {
 					position: "bottom-right",
 					autoClose: false,
 					pauseOnHover: true
-					
+
 				})
-				
+
 			}
 		})
 		.on('confirmation',(confirmationNumber, receipt)=>{
@@ -304,30 +304,30 @@ async loadBlockchainData() {
 			 txreceipt = receipt
 			 txconfirmed = confirmationNumber
 			 if (txconfirmed == 0 && txreceipt.status == true ){
-				toast(<NotifyEventSuccess hash={txreceipt.transactionHash} 
-					createdEvent = {txreceipt.events.CreatedEvent.returnValues} />, 
+				toast(<NotifyEventSuccess hash={txreceipt.transactionHash}
+					createdEvent = {txreceipt.events.CreatedEvent.returnValues} />,
 					{
 					position: "bottom-right",
 					autoClose: false,
-					pauseOnHover: true	
+					pauseOnHover: true
 					})
-				}	
-			} 
+				}
+			}
 		})
 		.on('error',(error)=>{
 			if(error !== null){
 			   txerror = error
 			   this.setState({error:true})
-				toast(<NotifyError message={txerror.message} />, 
+				toast(<NotifyError message={txerror.message} />,
 				   {
 				   position: "bottom-right",
 				   autoClose: false,
-				   pauseOnHover: true	
+				   pauseOnHover: true
 				   })
-				} 
-			})	
-		)	
-		
+				}
+			})
+		)
+
 	}
 
 
@@ -338,7 +338,7 @@ async loadBlockchainData() {
 
 		this.setState({getHydro:getHydro},()=>
 		this.state.getHydro.send({from:this.state.account})
-	
+
 		.on('transactionHash',(hash)=>{
 			if(hash !==null){
 				this.setState({
@@ -349,9 +349,9 @@ async loadBlockchainData() {
 					position: "bottom-right",
 					autoClose: false,
 					pauseOnHover: true
-					
+
 				})
-				
+
 			}
 		})
 		.on('confirmation',(confirmationNumber, receipt)=>{
@@ -359,35 +359,35 @@ async loadBlockchainData() {
 
 			 txreceipt = receipt
 			 txconfirmed = confirmationNumber
-			 
+
 			 if (txconfirmed == 0 && txreceipt.status == true ){
-				toast(<NotifySuccessFaucet hash={txreceipt.transactionHash}/>, 
+				toast(<NotifySuccessFaucet hash={txreceipt.transactionHash}/>,
 					{
 					position: "bottom-right",
 					autoClose: false,
-					pauseOnHover: true	
+					pauseOnHover: true
 					})
-				}	
-			} 
+				}
+			}
 		})
 		.on('error',(error)=>{
 			if(error !== null){
 			   txerror = error
 			   this.setState({error:true})
-				toast(<NotifyError message={txerror.message} />, 
+				toast(<NotifyError message={txerror.message} />,
 				   {
 				   position: "bottom-right",
 				   autoClose: false,
-				   pauseOnHover: true	
+				   pauseOnHover: true
 				   })
-				} 
-			})	
-		)	
-		
+				}
+			})
+		)
+
 	}
 
 	render() {
-		
+
 		let body;
 		let connecting = false;
 
@@ -412,7 +412,7 @@ async loadBlockchainData() {
 			(this.props.web3.status === 'initialized' && Object.keys(this.props.accounts).length === 0) ||
 			(process.env.NODE_ENV === 'production' && this.props.web3.networkId !== 4)
 		) {
-			
+
 			console.log("account",this.props.accounts)
 
 			body =
@@ -432,17 +432,17 @@ async loadBlockchainData() {
 					<Route path="/pastevents/:page" component={PastEvents} />
 					<Route path="/mytickets/:page" component={MyTickets} />
 
-					<Route path="/createevent" render={props=><CreateEvent  {...props} 
+					<Route path="/createevent" render={props=><CreateEvent  {...props}
 					passtransaction = {this.passtransaction}
-					upload={this.state.upload} 
+					upload={this.state.upload}
 					done = {this.state.done}
-					error = {this.state.error}/>}/> 
+					error = {this.state.error}/>}/>
 
 					<Route path="/myevents/:page"  render={props => <MyEvents {...props} inquire = {this.inquireBuy}/>}/>
 					<Route path="/event/:id"  render={props => <EventPage {...props} inquire = {this.inquireBuy}/>}/>
 					<Route path="/token" render={props => <Token {...props} getHydro = {this.getHydro}/>}/>
 					<Route path="/topics" component={TopicsLandingPage} />
-					<Route path="/topic/:page/:id" render={props => <TopicLandingPage {...props} inquire = {this.inquireBuy}/>}/> 
+					<Route path="/topic/:page/:id" render={props => <TopicLandingPage {...props} inquire = {this.inquireBuy}/>}/>
 					<Route path="/locations" component={LocationsLandingPage} />
 					<Route path="/location/:page" component={LocationLandingPage} />
 					<Route path="/how-it-works" component={Home} />
@@ -452,16 +452,16 @@ async loadBlockchainData() {
 
 		return(
 			<Router>
-				
+
 				<div id="wrapper" className="toggled">
-					
+
 					<Sidebar connection={!connecting} account={this.props.accounts[0]} />
-					<div id="page-content-wrapper">
+					<div id="page-content-wrapper" className="sidebar-open">
 						<div id="bgImage" ref="bgImage" style={{
   						backgroundImage: "url(/images/slides/"+ randomBG + ")",
 						}} />
 						<div className="branding">
-						<img src="/images/hydro.png" className="branding-logo" alt="hydro logo" /> 
+						<img src="/images/hydro.png" className="branding-logo" alt="hydro logo" />
 						<h1>Hydro Events Marketplace</h1>
 						<p>What are you going to do?</p>
 						</div>
@@ -474,7 +474,7 @@ async loadBlockchainData() {
 						</div>
 					</div>
 					<ToastContainer />
-					
+
 				</div>
 			</Router>
 		);

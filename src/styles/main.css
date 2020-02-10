@@ -410,15 +410,12 @@ button {
   padding-right: 80px;
 	padding-left: 325px;
 	padding-top: 85px;
-
+  transition-duration: .5s;
 }
 
 #wrapper.toggled {
   padding-left: 0px;
   padding-right: 0px;
-}
-
-#wrapper.toggled #page-content-wrapper {
 }
 
 .bg-light {

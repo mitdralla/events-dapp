@@ -29,10 +29,10 @@ class Sidebar extends Component
 
 	toggleSidebarClass = () => {
     const oldSidebarClassName = document.getElementById('sidebar-wrapper').className;
-    const newSidebarClassName = oldSidebarClassName === 'my-sidebar sidebar-open' ? 'my-sidebar sidebar-closed' : 'my-sidebar sidebar-open'
+    const newSidebarClassName = oldSidebarClassName === 'my-sidebar sidebar-closed' ? 'my-sidebar sidebar-open' : 'my-sidebar sidebar-closed'
 
 		const oldPageWrapperClassName = document.getElementById('page-content-wrapper').className;
-		const newPageWrapperClassName = oldPageWrapperClassName === 'sidebar-open' ? 'sidebar-closed' : 'sidebar-open'
+		const newPageWrapperClassName = oldPageWrapperClassName === 'sidebar-closed' ? 'sidebar-open' : 'sidebar-closed'
 
     document.getElementById('sidebar-wrapper').className = newSidebarClassName;
 		document.getElementById('page-content-wrapper').className = newPageWrapperClassName;
@@ -67,7 +67,7 @@ class Sidebar extends Component
 		}
 
 		return (
-			<div id="sidebar-wrapper" className="my-sidebar sidebar-open">
+			<div id="sidebar-wrapper" className="my-sidebar sidebar-closed">
 				<div className="hamburgerNav" onClick={this.toggleSidebarClass}>
 					<i className="fa fa-bars"></i>
 				</div>
