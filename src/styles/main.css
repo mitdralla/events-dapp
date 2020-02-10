@@ -993,6 +993,15 @@ button.read-more:hover {
     z-index: 99999999999999999999999999999999 !important;
   }
 
+  .card {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .event-image {
+      height: 36vw !important;
+  }
+
 }
 
 
