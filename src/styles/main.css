@@ -890,7 +890,7 @@ button.read-more:hover {
 
 @media (min-width: 1100px) {
   .event-hero-sidebar .event-image {
-    height: 48vw !important;
+    height: 40vw !important;
   }
 }
 
@@ -1136,4 +1136,9 @@ h4.transactions {
 .list-group-item a:hover {
   color: #0056b3;
   text-decoration: underline;
+}
+
+.event-hero-sidebar.card {
+  width: 100% !important;
+  max-width:100% !important;
 }

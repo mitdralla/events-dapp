@@ -121,7 +121,7 @@ class CheckUser extends Component {
 						<label htmlFor="address">Ethereum address</label>
 						<input type="text" className={"form-control " + warning} id="address" ref={(input) => this.address = input} />
 					</div>
-					<button className="btn btn-dark" onClick={this.checkManual}><i className="fas fa-receipt"></i> Check user</button>
+					<button className="btn btn-dark" onClick={this.checkManual}><i className="fas fa-receipt"></i> Confirm Purchase</button>
 				</div>
 			;
 		} else if (this.state.tab === 2) {
@@ -151,7 +151,7 @@ class CheckUser extends Component {
 		return(
 			<div>
 				<hr className="mt-5" />
-				<h3>Check user</h3>
+				<h3>Confirm Purchase</h3>
 				<p>Check if user has ticket to this event.</p>
 				{message}
 				<ul className="nav nav-pills nav-fill nav-justified mt-3">
@@ -159,7 +159,7 @@ class CheckUser extends Component {
 						<a href="" className={"nav-link " + (this.state.tab === 1 ? 'active' : '')} onClick={(e) => this.changeTab(1, e)}>Enter Address</a>
 					</li>
 					<li className="nav-item">
-						<a href="" className={"nav-link " + (this.state.tab === 2 ? 'active' : '')} onClick={(e) => this.changeTab(2, e)}>QR scanner</a>
+						<a href="" className={"nav-link " + (this.state.tab === 2 ? 'active' : '')} onClick={(e) => this.changeTab(2, e)}>QR Scanner</a>
 					</li>
 				</ul>
 				{body}

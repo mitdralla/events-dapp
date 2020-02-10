@@ -209,7 +209,7 @@ class EventPage extends Component {
 			} else {
 
 				let event_data = this.props.contracts['OpenEvents'].getEvent[this.event].value;
-
+        let title = event_data[0];
 				let image = this.getImage();
 				let description = this.getDescription();
         let locations = this.getLocation();
@@ -253,16 +253,17 @@ class EventPage extends Component {
 
 				body =
 					<div className="row">
-						<div className="col-6">
-							<h3>{event_data[0]}</h3>
-							{description}
-							<div className="mt-5">
-								<button className="btn btn-dark" onClick={this.inquire} disabled={disabled}><i className="fas fa-ticket-alt"></i> Buy Ticket</button>
-								<label className="pl-2 small">{disabledStatus}</label>
-							</div>
-							<CheckUser event_id={this.props.match.params.id} />
-						</div>
-						<div className="col-6">
+
+						<div className="col-12">
+
+            <h3></h3>
+            {description}
+            <button className="btn btn-dark" onClick={this.inquire} disabled={disabled}><i className="fas fa-ticket-alt"></i> Buy Ticket</button>
+            <label className="pl-2 small">{disabledStatus}</label>
+            <br />
+            <br />
+            <br />
+
 							<div className="card event-hero-sidebar">
 								<img className="card-img-top event-image" src={image} alt="Event" />
 								<div className="card-header event-header">
@@ -296,7 +297,20 @@ class EventPage extends Component {
   						{!sold &&  <p className="sold_text col-md-12 no-tickets">There are currently no purchases for this ticket.</p>}
   						</div>
 
+
+
+
 						</div>
+
+            <div className="col-12">
+
+              <div className="mt-5">
+
+              </div>
+              <CheckUser event_id={this.props.match.params.id} />
+            </div>
+
+
 						<hr/>
 
 					</div>
