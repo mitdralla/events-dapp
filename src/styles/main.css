@@ -664,14 +664,15 @@ button.read-more:hover {
 
 .sort_button {
 	color: #fff;
-    background-color: #343a40;
-    border-color: #343a40;
+  background-color: #343a40;
+  border-color: #343a40;
 	max-width:140px;
 	max-height:40px;
 	border-radius:25px;
 	font-size:0.9rem;
 	transition: all 0.3s;
-	overflow:hidden;
+  overflow:hidden;
+  
   }
 
   .sort_button:hover{
@@ -1056,6 +1057,8 @@ button.read-more:hover {
 
 .pagination {
   margin-top: 35px;
+  justify-content: center;
+
 }
 
 .page-item.active .page-link {
@@ -1065,11 +1068,23 @@ button.read-more:hover {
 
 .page-link {
   padding: 0.75rem 1.00rem;
-  color: #313131;
+  color: #313131!important;
+}
+
+.page-item.active .page-link {
+  background-color: #323232;
+  border-color: #313131!important;
+  color:white!important;
 }
 
 .page-link:hover {
   color: #313131;
+}
+
+
+.page-item.first .page-link,.page-item.last .page-link, 
+.page-item.previous .page-link, .page-item.next .page-link {
+display:none!important;
 }
 
 
@@ -1142,3 +1157,11 @@ h4.transactions {
   width: 100% !important;
   max-width:100% !important;
 }
+
+
+@media(max-width:800px){
+  .row_mobile{
+  justify-content: center;
+  }
+}
+

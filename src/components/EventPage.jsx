@@ -6,12 +6,31 @@ import makeBlockie from 'ethereum-blockies-base64';
 import ipfs from '../utils/ipfs';
 import Web3 from 'web3';
 
+
 import Loading from './Loading';
+import JwPagination from 'jw-react-pagination';
+
 import CheckUser from './CheckUser';
 import {Open_events_ABI, Open_events_Address} from '../config/OpenEvents';
 import {Hydro_Testnet_Token_ABI, Hydro_Testnet_Token_Address} from '../config/hydrocontract_testnet';
 
 let numeral = require('numeral');
+
+const customStyles = {
+    ul: {
+		border:'rgb(10, 53, 88)'
+        
+    },
+    li: {
+		border:'rgb(10, 53, 88)'
+       
+    },
+    a: {
+		color: '#007bff',
+		
+	},
+	
+};
 
 class EventPage extends Component {
 
@@ -57,9 +76,11 @@ class EventPage extends Component {
 			  openEvents_address:'',
 			  buyticket:'',
 			  approve:'',
+			  pageTransactions:[],
 
 		  };
 		  this.isCancelled = false;
+		  this.onChangePage = this.onChangePage.bind(this);
 	}
 
 	//Get SoldTicket Data
@@ -198,7 +219,11 @@ class EventPage extends Component {
     			locations = <span>Location: {place}</span>;
     		}
     		return locations;
-    	}
+		}
+		
+		onChangePage(pageTransactions) {
+			this.setState({ pageTransactions });
+		}
 
 	render() {
 		let body = <Loading />;
@@ -281,18 +306,21 @@ class EventPage extends Component {
 								<ul className="list-group list-group-flush">
                   <li className="list-group-item ">{locations}</li>
 									<li className="list-group-item">Category: {category}</li>
-									<li className="list-group-item">Price: <img src={'/images/'+symbol} className="event_price-image"  alt="Event Price" /> {numeral(price).format('0,0')} {event_data[3] ? 'or $ '+ numeral(price * this.state.hydro_market.usd).format('0,0.00'):''}</li>
+									<li className="list-group-item">Price: <img src={'/images/'+symbol} className="event_price-image"  alt="Event Price" /> {event_data[3]? numeral(price).format('0,0'):price} {event_data[3] ? 'or $ '+ numeral(price * this.state.hydro_market.usd).format('0,0.00'):''}</li>
 									<li className="list-group-item">{date.toLocaleDateString()} at {date.toLocaleTimeString()}</li>
 									<li className="list-group-item">Tickets: {event_data[6]}/{max_seats}</li>
 								</ul>
 							</div>
 
-              <div className="new-transaction-wrapper"><h4 className="transactions">Ticket Purchases</h4>
+              			<div className="new-transaction-wrapper"><h4 className="transactions">Ticket Purchases</h4>
   						{this.state.load &&<Loading/>}
-  						{this.state.soldTicket.map((sold,index)=>(<p className="sold_text col-md-12" key={index}><img className="float-left blockie" src={makeBlockie(sold.returnValues.buyer)} /> Someone bought 1 ticket for <strong>{event_data[0]}</strong>.</p>))}
+  						{this.state.pageTransactions.map((sold,index)=>(<p className="sold_text col-md-12" key={index}><img className="float-left blockie" src={makeBlockie(sold.returnValues.buyer)} /> Someone bought 1 ticket for <strong>{event_data[0]}</strong>.</p>))}
   						{!sold &&  <p className="sold_text col-md-12 no-tickets">There are currently no purchases for this ticket.</p>}
   						</div>
 
+						<div className="pagination">
+						<JwPagination items={this.state.soldTicket} onChangePage={this.onChangePage} maxPages={5} pageSize={5} styles={customStyles} />	
+						</div>
 
 
 
@@ -323,6 +351,7 @@ class EventPage extends Component {
 				<hr />
 				{body}
 				<hr/>
+				
 
 			</div>
 		);

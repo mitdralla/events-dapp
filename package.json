@@ -12,6 +12,7 @@
     "gyp": "^0.5.0",
     "ipfs-api": "^22.3.0",
     "jquery": "^1.9.1",
+    "jw-react-pagination": "^1.1.0",
     "moment": "^2.22.2",
     "node": "^11.15.0",
     "numeral": "^2.0.6",

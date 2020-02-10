@@ -217,7 +217,7 @@ class MyEvents extends Component {
 
 		return (
 			<div>
-
+				
 				<h2 className="col-md-10"><i className="fa fa-calendar-alt "></i> My{this.state.isActive ?' Active':' Past'}  Events</h2>
 				<div className="input-group input-group-lg mt-5 mb-4">
 				<button className="btn sort_button col-md-2 mx-3"  onClick={this.ActiveEvent} >Active Events</button>
