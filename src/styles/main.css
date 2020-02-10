@@ -888,6 +888,12 @@ button.read-more:hover {
   }
 }
 
+@media (min-width: 1100px) {
+  .event-hero-sidebar .event-image {
+    height: 48vw !important;
+  }
+}
+
 
 @media (max-width : 1600px) {
   .carousel-caption h3 {

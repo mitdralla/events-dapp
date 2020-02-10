@@ -263,7 +263,7 @@ class EventPage extends Component {
 							<CheckUser event_id={this.props.match.params.id} />
 						</div>
 						<div className="col-6">
-							<div className="card">
+							<div className="card event-hero-sidebar">
 								<img className="card-img-top event-image" src={image} alt="Event" />
 								<div className="card-header event-header">
 									<img className="float-left" src={makeBlockie(event_data[9])} alt="User Identicon" />
