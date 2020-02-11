@@ -8,6 +8,8 @@ import 'react-datetime/css/react-datetime.css';
 import eventTypes from '../../config/types.json';
 import eventTopics from '../../config/topics.json';
 
+
+
 class Form extends Component {
 	constructor(props) {
 		super(props);
@@ -24,8 +26,8 @@ class Form extends Component {
 			time: 0,
 			timeForHumans: null,
 			currency: 'hydro',
-			type: '',
-			topic: '',
+			type: 'auto-boat-and-air',
+			topic: 'appearance-or-signing',
 			limited: false,
 			seatsForHumans: 0,
 			wrong_file: false,
@@ -122,12 +124,20 @@ class Form extends Component {
 		});
 	}
 
+	typeChange = (event) => {
+		let topic = event.target.value;
+
+		this.setState({
+			topic: topic
+		},()=>(console.log()));
+	}
+
 	categoryChange = (event) => {
 		let type = event.target.value;
 
 		this.setState({
 			type: type
-		},()=>(console.log("check",this.state.type)));
+		},()=>(console.log()));
 	}
 
 	priceChange = (event) => {
@@ -183,6 +193,7 @@ class Form extends Component {
 	}
 
 	render() {
+		
 		let symbol = this.state.currency === 'eth' ? 'ethereum.png' : 'hydro.png';
 
 		let file_label = !this.state.wrong_file && this.state.file_name !== '' ? this.state.file_name : 'Select file';
@@ -264,7 +275,7 @@ class Form extends Component {
 				</div>
 				<div className="form-group">
 					<label htmlFor="description">Event Type:</label>
-					<select className="form-control" id="type">
+					<select className="form-control" id="type" onChange={this.typeChange}>
 					<option value="" disabled="disabled">Select the type of the event</option>
 					{eventTypes.map((Type, index) => (
 						<option value={Type.slug} key={Type.name}>{Type.name}</option>

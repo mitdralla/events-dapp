@@ -29,6 +29,7 @@ import Notify from './Notify';
 import NotifySuccess from './NotifySuccess';
 import NotifyEventSuccess from './NotifyEventSuccess';
 import NotifyApproveSuccess from './NotifyApproveSuccess';
+import NotifyFaucet from './NotifyFaucet';
 import NotifySuccessFaucet from './NotifySuccessFaucet';
 import NotifyError from './NotifyError';
 
@@ -152,7 +153,7 @@ async loadBlockchainData() {
 			if(hash !==null){
 				toast(<Notify hash={hash} />, {
 					position: "bottom-right",
-					autoClose: false,
+					autoClose: true,
 					pauseOnHover: true
 
 				})
@@ -165,7 +166,7 @@ async loadBlockchainData() {
 			if (txconfirmedApproved == 0 && txreceiptApproved.status == true){
 				toast(<NotifySuccess hash={txreceiptApproved.transactionHash} />, {
 						position: "bottom-right",
-						autoClose: false,
+						autoClose: true,
 						pauseOnHover: true
 					})
 				}
@@ -177,7 +178,7 @@ async loadBlockchainData() {
 			txerror = error
 		   		toast(<NotifyError message={txerror.message} />, {
 					position: "bottom-right",
-					autoClose: false,
+					autoClose: true,
 					pauseOnHover: true
 					})
 			   	}
@@ -197,7 +198,7 @@ async loadBlockchainData() {
 			if(hash !==null){
 				toast(<Notify hash={hash} />, {
 					position: "bottom-right",
-					autoClose: false,
+					autoClose: true,
 					pauseOnHover: true
 
 				})
@@ -211,7 +212,7 @@ async loadBlockchainData() {
 				toast(<NotifyApproveSuccess hash={txreceipt.transactionHash} />,
 					{
 					position: "bottom-right",
-					autoClose: false,
+					autoClose: true,
 					pauseOnHover: true
 					})
 				}
@@ -224,7 +225,7 @@ async loadBlockchainData() {
 		   		toast(<NotifyError message={txerror.message} />,
 				{
 				position: "bottom-right",
-				autoClose: false,
+				autoClose: true,
 				pauseOnHover: true
 				})
 			   }
@@ -239,7 +240,7 @@ async loadBlockchainData() {
 			if(hash !==null){
 				toast(<Notify hash={hash} />, {
 					position: "bottom-right",
-					autoClose: false,
+					autoClose: true,
 					pauseOnHover: true
 
 				})
@@ -253,7 +254,7 @@ async loadBlockchainData() {
 				toast(<NotifySuccess hash={txreceipt.transactionHash} />,
 					{
 					position: "bottom-right",
-					autoClose: false,
+					autoClose: true,
 					pauseOnHover: true
 					})
 				}
@@ -266,7 +267,7 @@ async loadBlockchainData() {
 		   		toast(<NotifyError message={txerror.message} />,
 				{
 					position: "bottom-right",
-					autoClose: false,
+					autoClose: true,
 					pauseOnHover: true
 					})
 			   	}
@@ -292,7 +293,7 @@ async loadBlockchainData() {
 				});
 				toast(<Notify hash={hash} />, {
 					position: "bottom-right",
-					autoClose: false,
+					autoClose: true,
 					pauseOnHover: true
 
 				})
@@ -308,7 +309,7 @@ async loadBlockchainData() {
 					createdEvent = {txreceipt.events.CreatedEvent.returnValues} />,
 					{
 					position: "bottom-right",
-					autoClose: false,
+					autoClose: true,
 					pauseOnHover: true
 					})
 				}
@@ -321,7 +322,7 @@ async loadBlockchainData() {
 				toast(<NotifyError message={txerror.message} />,
 				   {
 				   position: "bottom-right",
-				   autoClose: false,
+				   autoClose: true,
 				   pauseOnHover: true
 				   })
 				}
@@ -345,9 +346,9 @@ async loadBlockchainData() {
 					upload:false,
 					done:true
 				});
-				toast(<Notify hash={hash} />, {
+				toast(<NotifyFaucet hash={hash} />, {
 					position: "bottom-right",
-					autoClose: false,
+					autoClose: true,
 					pauseOnHover: true
 
 				})
@@ -364,7 +365,7 @@ async loadBlockchainData() {
 				toast(<NotifySuccessFaucet hash={txreceipt.transactionHash}/>,
 					{
 					position: "bottom-right",
-					autoClose: false,
+					autoClose: true,
 					pauseOnHover: true
 					})
 				}
@@ -377,7 +378,7 @@ async loadBlockchainData() {
 				toast(<NotifyError message={txerror.message} />,
 				   {
 				   position: "bottom-right",
-				   autoClose: false,
+				   autoClose: true,
 				   pauseOnHover: true
 				   })
 				}
