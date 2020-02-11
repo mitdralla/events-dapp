@@ -188,12 +188,15 @@ class Event extends Component {
 			let max_seats = event_data[4] ? event_data[5] : '∞';
 
 			let disabled = false;
+			let soldOut = " ";
 
 			if (event_data[4] && (Number(event_data[6]) >= Number(event_data[5]))) {
 
-        let disabledStatus = '';
+			let disabledStatus = '';
+		
 				disabled = true;
-				disabledStatus = <span><span role="img" aria-label="alert">⚠️</span> No tickets available.</span>;
+				buttonText = <span><span role="img" aria-label="alert"> </span> Sold Out.</span>;
+				soldOut = <p className="sold_out">Sold Out</p>;
 			}
 
 			if (date.getTime() < new Date().getTime()) {
@@ -223,9 +226,12 @@ class Event extends Component {
 
 			body =
 				<div className="card">
+					<div className="image_wrapper">
 					<Link to={"/event/" + this.props.id}>
             <img className="card-img-top event-image" src={image} alt={event_data[0]} />
           </Link>
+		  {soldOut}
+		  </div>
 					<div className="card-header text-muted event-header ">
 						<img className="float-left" src={makeBlockie(event_data[9])} alt={event_data[9]} />
 					</div>

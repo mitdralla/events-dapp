@@ -8,7 +8,7 @@ function NotifySuccess(props) {
 			<a href={"https://rinkeby.etherscan.io/tx/" + props.hash} title={props.hash} target = "blank">
 				<img src={makeBlockie(props.hash)} alt={props.hash} />
 			</a>
-			<a href={"https://rinkeby.etherscan.io/tx/" + props.hash} title={props.hash} target = "blank">Transaction successful!</a> 
+			<a href={"https://rinkeby.etherscan.io/tx/" + props.hash} title={props.hash} target = "blank">Ticket purchase successful!</a> 
             <Link to={"/mytickets/1" }><p> Check out your TICKET here</p></Link>
 		</div>
 	);

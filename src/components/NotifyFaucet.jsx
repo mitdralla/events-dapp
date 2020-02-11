@@ -8,7 +8,7 @@ function NotifyFaucet(props) {
 				<img src={makeBlockie(props.hash)} alt={props.hash} />
 			</a>
 			<a href={"https://rinkeby.etherscan.io/tx/" + props.hash} title={props.hash} target = "blank">Request for 10,000 Hydro</a> <span role="img" aria-labelledby="rocket">🚀 {props.tx}</span>
-            <p className="mt-1">Your request for Hydro Tokens has been sent</p>
+            <p className="mt-1">Your token request has been sent</p>
 		</div>
 	);
 }

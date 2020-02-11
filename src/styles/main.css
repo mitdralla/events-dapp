@@ -161,6 +161,10 @@ button {
 	margin-top: -3px;
 }
 
+.card-header {
+  z-index:100;
+}
+
 .card-footer {
   padding: 1rem 1.25rem;
 }
@@ -1163,5 +1167,43 @@ h4.transactions {
   .row_mobile{
   justify-content: center;
   }
+}
+
+.sold_out{
+  top:1rem;
+  left:-6rem;
+  color:rgb(214, 140, 3);
+  display:block;
+  position:absolute;
+  text-align:center;
+  text-decoration:none;
+  letter-spacing:.06rem;
+  background:linear-gradient(45deg, rgb(136, 6, 28),rgb(65, 3, 13),rgb(68, 44, 48))!important;
+  padding:0.5em 5em 0.4em 5em;
+  -webkit-transform: rotate(-45deg) scale(0.75,1);
+  z-index:10;
+  height:40px;
+  font: bold 17px/1.2 Verdana, Geneva, Tahoma, sans-serif;
+  overflow:hidden;
+}
+
+.sold_out:before{
+content:'';
+top:0;
+left:0px;
+bottom:0;
+right:0px;
+position:absolute;
+margin:-0.3em -5em;
+transform: scale(0.7);
+-webkit-transform: scale(0.7);
+border: 2px dashed rgb(209, 177, 59);
+
+}
+
+.image_wrapper{
+  overflow:hidden;
+  position:relative;
+  z-index:1;
 }
 

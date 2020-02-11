@@ -46,7 +46,6 @@ class Token extends Component {
 		let checkHydro = this.contracts['Hydro'].methods.balanceOf.cacheCall(this.props.accounts[0])
 		if (typeof this.props.contracts['Hydro'].balanceOf[checkHydro] !== 'undefined') {
 		let hydroBalance = this.context.drizzle.web3.utils.fromWei(this.props.contracts['Hydro'].balanceOf[this.balance].value);
-		console.log("function",hydroBalance)
 		return hydroBalance
 		}
 	}
@@ -57,7 +56,6 @@ class Token extends Component {
 		if (typeof this.props.contracts['StableToken'].balanceOf[this.balance] !== 'undefined') {
 			//let balance = this.context.drizzle.web3.utils.fromWei(this.props.contracts['StableToken'].balanceOf[this.balance].value);
 			let balance = this.getbalance()
-			console.log("render",balance)
 			body =
 				<div className="text-center mt-5" >
 					<h4>Your balance is: <img src="/images/hydro.png" width="25" alt="Hydro branding" />&nbsp;{numeral(balance).format('0,0.00')}</h4>

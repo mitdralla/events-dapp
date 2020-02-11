@@ -237,7 +237,8 @@ class EventPage extends Component {
         let event_tit
 				let image = this.getImage();
 				let description = this.getDescription();
-        let locations = this.getLocation();
+				let locations = this.getLocation();
+				let buttonText = " Buy Ticket";
 
 				let symbol = event_data[3] ? 'hydro.png' : 'ethereum.png';
 				let price = this.context.drizzle.web3.utils.fromWei(event_data[2]);
@@ -252,6 +253,7 @@ class EventPage extends Component {
 				if (event_data[4] && (Number(event_data[6]) >= Number(event_data[5]))) {
 					disabled = true;
 					disabledStatus = <span><span role="img" aria-label="alert">⚠️</span> No more tickets</span>;
+					buttonText = " Sold Out"
 				}
 
 
@@ -284,7 +286,7 @@ class EventPage extends Component {
             <h3>{event_data[0]}</h3>
             <br />
             {description}
-            <button className="btn btn-dark" onClick={this.inquire} disabled={disabled}><i className="fas fa-ticket-alt"></i> Buy Ticket</button>
+            <button className="btn btn-dark" onClick={this.inquire} disabled={disabled}><i className="fas fa-ticket-alt"></i>{buttonText}</button>
             <label className="pl-2 small">{disabledStatus}</label>
             <br />
             <br />
