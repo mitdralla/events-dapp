@@ -46,6 +46,7 @@ class Event extends Component {
 			image: null,
 			ipfs_problem: false,
 			locations:'',
+			hydro_market:[],
 
 			fee:'',
 			token:'',
@@ -55,6 +56,18 @@ class Event extends Component {
 		};
 		this.isCancelled = false;
 	}
+
+	//get market cap & dollar value of hydro
+	async getHydroMarketValue(){
+
+		fetch('https://api.coingecko.com/api/v3/simple/price?ids=Hydro&vs_currencies=usd&include_market_cap=true&include_24hr_change=ture&include_last_updated_at=ture')
+			  .then(res => res.json())
+			  .then((data) => {
+				if (this._isMounted){
+				this.setState({hydro_market: data.hydro })}
+			  })
+			  .catch(console.log)
+	  }
 
 
 	updateIPFS = () => {
@@ -228,7 +241,10 @@ class Event extends Component {
 					<ul className="list-group list-group-flush">
 						<li className="list-group-item ">{locations}</li>
 						<li className="list-group-item"><strong>Category:</strong> <a href={topicURL}>{category}</a></li>
-						<li className="list-group-item"><strong>Price:</strong> <img src={'/images/'+symbol} className="event_price-image" alt="Event Price Icon" /> {event_data[3] ? '' + numeral(price).format('0,0'): '' + price}</li>
+						<li className="list-group-item"><strong>Price:</strong> <img src={'/images/'+symbol} className="event_price-image" alt="Event Price Icon" /> {event_data[3] ? '' + numeral(price).format('0,0'): '' + price}
+						{event_data[3] ? ' or ':''} 
+						{event_data[3]? <img src={'/images/dollarsign.png'} className="event_price-image"  alt="Event Price" />:''} 
+						{event_data[3]?numeral(price * this.state.hydro_market.usd).format('0,0.00'):''}</li>
 						<li className="list-group-item"><strong>Date:</strong> {date.toLocaleDateString()} at {date.toLocaleTimeString()}</li>
 						<li className="list-group-item"><strong>Tickets Sold:</strong> {event_data[6]}/{max_seats}</li>
 					</ul>
@@ -248,17 +264,20 @@ class Event extends Component {
 	}
 
 	componentDidMount() {
-		this.updateIPFS()
+		this._isMounted = true;
+		this.updateIPFS();
+		this.getHydroMarketValue();
 
 	}
 
 	componentDidUpdate() {
-		this.updateIPFS()
+		this.updateIPFS();
 		//this.afterApprove();
 	}
 
 	componentWillUnmount() {
 		this.isCancelled = true;
+		this._isMounted = false;
 	}
 }
 

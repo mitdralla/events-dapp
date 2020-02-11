@@ -225,7 +225,7 @@ class EventPage extends Component {
 			this.setState({ pageTransactions });
 		}
 
-	render() {
+		render() {
 		let body = <Loading />;
 
 		if (typeof this.props.contracts['OpenEvents'].getEvent[this.event] !== 'undefined') {
@@ -306,7 +306,10 @@ class EventPage extends Component {
 								<ul className="list-group list-group-flush">
                   <li className="list-group-item ">{locations}</li>
 									<li className="list-group-item">Category: {category}</li>
-									<li className="list-group-item">Price: <img src={'/images/'+symbol} className="event_price-image"  alt="Event Price" /> {event_data[3]? numeral(price).format('0,0'):price} {event_data[3] ? 'or $ '+ numeral(price * this.state.hydro_market.usd).format('0,0.00'):''}</li>
+									<li className="list-group-item">Price: <img src={'/images/'+symbol} className="event_price-image"  alt="Event Price" /> {event_data[3]? numeral(price).format('0,0'):price} 
+									{event_data[3] ? ' or ':''} 
+									{event_data[3]? <img src={'/images/dollarsign.png'} className="event_price-image"  alt="Event Price" />:''} 
+									{event_data[3]?numeral(price * this.state.hydro_market.usd).format('0,0.00'):''}</li>
 									<li className="list-group-item">{date.toLocaleDateString()} at {date.toLocaleTimeString()}</li>
 									<li className="list-group-item">Tickets: {event_data[6]}/{max_seats}</li>
 								</ul>
