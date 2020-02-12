@@ -11,9 +11,6 @@ const options = {
 
 	
 	contracts: [OpenEvents, StableToken],
-	polls:{
-		accounts:1500
-	},
 	
 	events: {
 		OpenEvents: ['CreatedEvent','SoldTicket']
