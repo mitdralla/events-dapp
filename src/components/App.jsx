@@ -456,7 +456,7 @@ async loadBlockchainData() {
 
 				<div id="wrapper" className="toggled">
 
-					<Sidebar connection={!connecting} account={this.props.accounts[0]} />
+					<Sidebar connection={!connecting} account={this.state.account} />
 					<div id="page-content-wrapper" className="sidebar-open">
 						<div id="bgImage" ref="bgImage" style={{
   						backgroundImage: "url(/images/slides/"+ randomBG + ")",
