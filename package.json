@@ -39,7 +39,7 @@
   },
   "scripts": {
     "start": "react-app-rewired start --config-overrides settings/start.js",
-    "build": "webpack --config settings/build.js --progress",
+    "build": "react-scripts build",
     "deploy": "gh-pages -d build/app"
   },
   "browserslist": {
