@@ -8,6 +8,8 @@ import Loading from './Loading';
 
 let numeral = require('numeral');
 
+
+
 class Token extends Component {
 	constructor(props, context) {
 
@@ -28,6 +30,7 @@ class Token extends Component {
 		super(props);
 		this.state = {
 			getHydro:'',
+			balance:'',
 			
 		}
 		this.contracts = context.drizzle.contracts;
@@ -35,6 +38,16 @@ class Token extends Component {
 		this.account = this.props.accounts[0];
 		
 	}
+
+	componentDidMount(){
+        this._isMounted = true;
+        if(this._isMounted){this.interval=setInterval(()=>this.getbalance(),1500)}
+	}
+	
+	componentWillUnmount(){
+		this._isMounted = false;
+		clearInterval(this.interval)
+    }
 
 	mintToken = () => {
 		this.setState({getHydro:this.contracts['Hydro'].methods.getMoreTokens()},()=>{
@@ -46,29 +59,35 @@ class Token extends Component {
 		let checkHydro = this.contracts['Hydro'].methods.balanceOf.cacheCall(this.props.accounts[0])
 		if (typeof this.props.contracts['Hydro'].balanceOf[checkHydro] !== 'undefined') {
 		let hydroBalance = this.context.drizzle.web3.utils.fromWei(this.props.contracts['Hydro'].balanceOf[this.balance].value);
+		this.setState({balance:hydroBalance})
+		console.log(hydroBalance)
 		return hydroBalance
 		}
 	}
 
 	render() {
-		let body = <Loading />;
+		/*let body = <Loading />;
 
 		if (typeof this.props.contracts['StableToken'].balanceOf[this.balance] !== 'undefined') {
 			//let balance = this.context.drizzle.web3.utils.fromWei(this.props.contracts['StableToken'].balanceOf[this.balance].value);
-			let balance = this.getbalance()
+			//let balance = this.getbalance()
+		
 			body =
 				<div className="text-center mt-5" >
 					<h4>Your balance is: <img src="/images/hydro.png" width="25" alt="Hydro branding" />&nbsp;{numeral(balance).format('0,0.00')}</h4>
 					<button className="btn btn-dark mt-5" onClick={this.mintToken}>Get Hydro Tokens</button>
 				</div>
 			;
-		}
+		}*/
 
 		return (
 			<div>
 				<h2>Get Hydro Tokens</h2>
 				<hr />
-				{body}
+				<div className="text-center mt-5" >
+					<h4>Your balance is: <img src="/images/hydro.png" width="25" alt="Hydro branding" />&nbsp;{numeral(this.state.balance).format('0,0.00')}</h4>
+					<button className="btn btn-dark mt-5" onClick={this.mintToken}>Get Hydro Tokens</button>
+				</div>
 			</div>
 		);
 	}
