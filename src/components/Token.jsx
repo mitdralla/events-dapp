@@ -41,7 +41,9 @@ class Token extends Component {
 
 	componentDidMount(){
         this._isMounted = true;
-        if(this._isMounted){this.interval=setInterval(()=>this.getbalance(),1500)}
+		if(this._isMounted){this.interval=setInterval(()=>this.getbalance(),1500)}
+		if(this._isMounted){setInterval(()=>this.balance = this.contracts['StableToken'].methods.balanceOf.cacheCall(this.props.accounts[0]),1500)}
+		
 	}
 	
 	componentWillUnmount(){
@@ -57,7 +59,9 @@ class Token extends Component {
 
 	getbalance = () =>{
 		let checkHydro = this.contracts['Hydro'].methods.balanceOf.cacheCall(this.props.accounts[0])
+		console.log("check", checkHydro)
 		if (typeof this.props.contracts['Hydro'].balanceOf[checkHydro] !== 'undefined') {
+		console.log("Type",this.props.contracts['Hydro'].balanceOf[checkHydro])
 		let hydroBalance = this.context.drizzle.web3.utils.fromWei(this.props.contracts['Hydro'].balanceOf[this.balance].value);
 		this.setState({balance:hydroBalance})
 		console.log(hydroBalance)
