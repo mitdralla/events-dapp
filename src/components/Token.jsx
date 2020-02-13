@@ -57,11 +57,8 @@ class Token extends Component {
 
 	getbalance = () =>{
 		let checkHydro = this.contracts['Hydro'].methods.balanceOf.cacheCall(this.props.accounts[0])
-		console.log("check", checkHydro)
 		if (typeof this.props.contracts['Hydro'].balanceOf[checkHydro] !== 'undefined') {
-		console.log("Type",this.props.contracts['Hydro'].balanceOf[checkHydro])
 		let hydroBalance = this.context.drizzle.web3.utils.fromWei(this.props.contracts['Hydro'].balanceOf[this.balance].value);
-		console.log(hydroBalance)
 		return hydroBalance
 		}
 	}
