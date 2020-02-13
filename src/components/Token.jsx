@@ -8,6 +8,8 @@ import Loading from './Loading';
 
 let numeral = require('numeral');
 
+
+
 class Token extends Component {
 	constructor(props, context) {
 
@@ -27,6 +29,8 @@ class Token extends Component {
 		  }
 		super(props);
 		this.state = {
+			getHydro:'',
+			balance:'',
 			
 		}
 		this.contracts = context.drizzle.contracts;
@@ -35,14 +39,29 @@ class Token extends Component {
 		
 	}
 
+	componentDidMount(){
+        this._isMounted = true;
+        if(this._isMounted){this.interval=setInterval(()=>this.getbalance(),1500)}
+	}
+	
+	componentWillUnmount(){
+		this._isMounted = false;
+		clearInterval(this.interval)
+    }
+
 	mintToken = () => {
-		this.contracts['Hydro'].methods.getMoreTokens.cacheSend({from:this.account});
+		this.setState({getHydro:this.contracts['Hydro'].methods.getMoreTokens()},()=>{
+			this.props.getHydro(this.state.getHydro)
+		});
 	}
 
 	getbalance = () =>{
 		let checkHydro = this.contracts['Hydro'].methods.balanceOf.cacheCall(this.props.accounts[0])
+		console.log("check", checkHydro)
 		if (typeof this.props.contracts['Hydro'].balanceOf[checkHydro] !== 'undefined') {
+		console.log("Type",this.props.contracts['Hydro'].balanceOf[checkHydro])
 		let hydroBalance = this.context.drizzle.web3.utils.fromWei(this.props.contracts['Hydro'].balanceOf[this.balance].value);
+		console.log(hydroBalance)
 		return hydroBalance
 		}
 	}
@@ -53,6 +72,7 @@ class Token extends Component {
 		if (typeof this.props.contracts['StableToken'].balanceOf[this.balance] !== 'undefined') {
 			//let balance = this.context.drizzle.web3.utils.fromWei(this.props.contracts['StableToken'].balanceOf[this.balance].value);
 			let balance = this.getbalance()
+		
 			body =
 				<div className="text-center mt-5" >
 					<h4>Your balance is: <img src="/images/hydro.png" width="25" alt="Hydro branding" />&nbsp;{numeral(balance).format('0,0.00')}</h4>

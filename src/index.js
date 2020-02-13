@@ -15,6 +15,10 @@ const options = {
 	events: {
 		OpenEvents: ['CreatedEvent','SoldTicket']
 	},
+	polls:{
+		blocks:2500
+	},
+	
 	transactions:{
 		txHash:{
 			
