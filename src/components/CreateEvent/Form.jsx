@@ -8,7 +8,7 @@ import 'react-datetime/css/react-datetime.css';
 import eventTypes from '../../config/types.json';
 import eventTopics from '../../config/topics.json';
 
-
+let numeral = require('numeral');
 
 class Form extends Component {
 	constructor(props) {
@@ -22,6 +22,7 @@ class Form extends Component {
 			description_length: 0,
 			organizer: '',
 			organizer_length: 0,
+			price:'',
 			location: '',
 			time: 0,
 			timeForHumans: null,
@@ -35,17 +36,29 @@ class Form extends Component {
 			file: null,
 			blockie: "/images/hydro.png",
 			fileImg: "/images/event-placeholder.jpg",
-			form_validation: []
+			form_validation: [],
+
+			hydro_market:'',
+			dateDisplay:new Date(parseInt('1577952000', 10) * 1000)
 		}
 	}
+
+
+	getHydroMarketValue = () => {
+
+		fetch('https://api.coingecko.com/api/v3/simple/price?ids=Hydro&vs_currencies=usd&include_market_cap=true&include_24hr_change=ture&include_last_updated_at=ture')
+			  .then(res => res.json())
+			  .then((data) => {	
+				this.setState({hydro_market: data.hydro})})
+			  .catch(console.log)
+	  }
 
 	handleDate = (date) => {
 		if (typeof date === 'object' && date.isValid()) {
 			this.setState({
 				timeForHumans: date.time,
-				time: date.unix()
-			});
-
+				time: date.unix(),		
+			},()=>this.setState({dateDisplay: new Date(parseInt(this.state.time, 10) * 1000)}));
 			console.log(date)
 		}
 	}
@@ -235,6 +248,7 @@ class Form extends Component {
 			organizerForHumans = "Organizer: " + this.state.organizer;
 
 		}
+		let date = new Date(parseInt(this.state.date, 10) * 1000);
 
 		return (
 			<React.Fragment>
@@ -312,8 +326,14 @@ class Form extends Component {
 							<div className="input-group-prepend">
 								<span className="input-group-text"><img src={'/images/'+symbol} className="event_price-image" alt="" /></span>
 							</div>
-							<input type="number" min="0.00000001" className={"form-control " + warning.price} id="price" ref={(input) => this.form.price = input} autoComplete="off" />
+							<input type="number" min="0.00000001" className={"form-control " + warning.price} id="price" ref={(input) => this.form.price = input} autoComplete="off" onChange={this.priceChange} />
 						</div>
+						{this.state.currency === 'hydro' &&<div className="input-group mb-3">
+							<div className="input-group-prepend">
+								<span className="input-group-text"><img src={'/images/dollarsign.png'} className="event_price-image" alt="" /></span>
+							</div>
+							 <div className={"form-control " + warning.price}>{numeral(this.state.price * this.state.hydro_market.usd).format('0,0.00')} </div>
+						</div>}
 					</div>
 				</div>
 				<div className="form-group">
@@ -325,7 +345,7 @@ class Form extends Component {
 					<div className="row mt-3">
 						<div className="col-lg-6">
 							<label htmlFor="seats">Tickets available:</label>
-							<input type="number" className={"form-control " + warning.seats} id="seats" disabled={!this.state.limited}  ref={(input) => this.form.seats = input} autoComplete="off" />
+							<input type="number" className={"form-control " + warning.seats} id="seats" disabled={!this.state.limited}  ref={(input) => this.form.seats = input} autoComplete="off" onChange ={this.ticketsChange} />
 						</div>
 					</div>
 				</div>
@@ -352,8 +372,11 @@ class Form extends Component {
 		{this.state.description}
 	</div>
 	<ul className="list-group list-group-flush">
-		<li className="list-group-item"><strong>Price:</strong> <img src={'/images/'+symbol} className="event_price-image" alt="" /> {this.state.price}</li>
-		<li className="list-group-item"><strong>Date:</strong>  </li>
+		
+		{this.state.currency == 'hydro' &&<li className="list-group-item"><strong>Price:</strong> <img src={'/images/'+symbol} className="event_price-image" alt="" /> {numeral(this.state.price).format('0,0.00')} or <img src={'/images/dollarsign.png'} className="event_price-image"  alt="Event Price" />
+		{numeral(this.state.price * this.state.hydro_market.usd).format('0,0.00')}</li>}
+		{this.state.currency == 'eth' &&<li className="list-group-item"><strong>Price:</strong> <img src={'/images/'+symbol} className="event_price-image" alt="" /> {this.state.price}</li>}
+		<li className="list-group-item"><strong>Date: {this.state.dateDisplay.toLocaleDateString()} at {this.state.dateDisplay.toLocaleTimeString()}</strong>  </li>
 		<li className="list-group-item"><strong>Location:</strong> {this.state.location} </li>
 		<li className="list-group-item"><strong>Tickets Sold:</strong> {seatsForHumans}</li>
 		
@@ -366,6 +389,10 @@ class Form extends Component {
 </div>
 </React.Fragment>
 		);
+	}
+
+	componentDidMount(){
+		this.getHydroMarketValue()
 	}
 }
 

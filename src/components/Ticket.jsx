@@ -8,6 +8,8 @@ import ipfs from '../utils/ipfs';
 
 import Loading from './Loading';
 
+var QRCode = require('qrcode.react');
+
 class Ticket extends Component {
     constructor(props, context) {
         super(props);
@@ -20,9 +22,10 @@ class Ticket extends Component {
 			loaded: false,
 			description: null,
 			image: null,
+			location:null,
 			ipfs_problem: false,
 			card_tab: 1,
-			wrong_address: false
+			wrong_address: false,
 		};
 		this.isCancelled = false;
 	}
@@ -39,7 +42,8 @@ class Ticket extends Component {
 							loading: false,
 							loaded: true,
 							description: data.text,
-							image: data.image
+							image: data.image,
+							location:data.location
 						});
 					}
 				}).catch(() => {
@@ -72,6 +76,16 @@ class Ticket extends Component {
 		return description;
 	}
 
+	getLocation = () => {
+		let locations = []
+		if (this.state.ipfs_problem) locations = <p className="text-center mb-0 event-description"><span role="img" aria-label="monkey">🙊</span>We can not load location</p>;
+		if (this.state.location !== null) {
+			let place= this.state.location
+			locations = <strong>Location: {place}</strong>;
+		}
+		return locations;
+	}
+
 	changeTab = (tab, event) => {
 		event.preventDefault();
 		this.setState({
@@ -98,7 +112,25 @@ class Ticket extends Component {
 		if (this.event !== null) {
 			this.updateIPFS();
 		}
+		//<img src="/images/qr.jpg" width="150" alt="qr code" />
 	}
+	
+	downloadQR = () => {
+		let ticket_data = this.props.contracts['OpenEvents'].getTicket[this.ticket].value;
+		let event_data = this.props.contracts['OpenEvents'].getEvent[this.event].value;
+		const canvas = document.getElementById(event_data[0] +"-"+ticket_data[1]);
+		console.log('c',canvas)
+		const pngUrl = canvas
+		  .toDataURL("image/png")
+		  .replace("image/png", "image/octet-stream");
+		  console.log('png',pngUrl)
+		let downloadLink = document.createElement("a");
+		downloadLink.href = pngUrl;
+		downloadLink.download = "Hydro-Event-Ticket.png";
+		document.body.appendChild(downloadLink);
+		downloadLink.click();
+		document.body.removeChild(downloadLink);
+	  };
 
 	render() {
 		let body = <div className="card"><div className="card-body"><Loading /></div></div>;
@@ -106,6 +138,16 @@ class Ticket extends Component {
 		if (this.event !== null && typeof this.props.contracts['OpenEvents'].getEvent[this.event] !== 'undefined') {
 			let ticket_data = this.props.contracts['OpenEvents'].getTicket[this.ticket].value;
 			let event_data = this.props.contracts['OpenEvents'].getEvent[this.event].value;
+
+			let rawTitle = event_data[0];
+      		var titleRemovedSpaces = rawTitle;
+	  		titleRemovedSpaces = titleRemovedSpaces.replace(/ /g, '-');
+
+      		var pagetitle = titleRemovedSpaces.toLowerCase()
+      		.split(' ')
+      		.map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+			.join(' ');
+			let titleURL = "/event/"+pagetitle+"/" + ticket_data[0];
 
 			let card_body;
 
@@ -132,10 +174,10 @@ class Ticket extends Component {
 							{timeStatus}
 							<h5 className="text-center mb-0">Your seat: {ticket_data[1]}</h5>
 						</div>
-						<img className="card-img event-image" src={image} alt={event_data[0]} />
+						<img className="card-img event-image" src={image} alt={event_data[0]}  />
 						<div className="card-body">
 							<h5 className="card-title event-title">
-								<Link to={"/event/" + ticket_data[0]}>{event_data[0]}</Link>
+								<Link to={titleURL}>{event_data[0]}</Link>
 							</h5>
 							{description}
 						</div>
@@ -150,17 +192,42 @@ class Ticket extends Component {
 					</div>
 				;
 			} else {
+				let image = this.getImage();
+				let ticket_data = this.props.contracts['OpenEvents'].getTicket[this.ticket].value;
+				let event_data = this.props.contracts['OpenEvents'].getEvent[this.event].value;
 				let warning = this.state.wrong_address ? 'is-invalid' : '';
-
+				let date = new Date(parseInt(event_data[1], 10) * 1000);
+				
 				card_body =
-					<div>
-						<div className="card-body">
+			  	<div>
+			  	<div className="card-body">
 
-              <h5 className="text-center">Download Digital Ticket:</h5>
-              <div className="form-group">
-                <p className="text-center"><img src="/images/qr.jpg" width="150" alt="qr code" /></p>
-                <p className="text-center"><a href=""><img src="/images/add-to-apple-wallet-logo.png" width="140px" alt="apple wallet logo" /></a></p>
-              </div>
+              	<h5 className="text-center">Download Digital Ticket:</h5>
+			  	<p className="text-center"><a onClick={this.downloadQR}><img src="/images/add-to-apple-wallet-logo.png" width="140px" height="40px" alt="apple wallet logo" /></a></p>
+              	<div className="form-group">
+			 
+				<p className="myTicketQR text-center">
+				<QRCode 
+				id={event_data[0] +"-"+ticket_data[1]}
+				value={'Event Name: ' + event_data[0]+ 
+				', '+ 'Event Date: ' + date.toLocaleDateString() +
+				', '+ 'Event Time: ' + date.toLocaleTimeString() +
+				', '+ 'Event Location: ' + this.state.location +
+				', '+ 'Ticket Number: ' + ticket_data[1]}
+				size={180}
+				level={"H"}
+				bgColor="transparent" 
+				fgColor="black" 
+				imageSettings = {{
+					src:'/images/hydro.png',
+					height:34,
+					width:34,
+					x: null,
+    				y:75,
+    				excavate: false,
+				}}/></p>	
+			  </div>
+			  
 
 							<h5 className="text-center">Send or Transfer Ticket:</h5>
 							<div className="form-group">
@@ -191,6 +258,7 @@ class Ticket extends Component {
 		}
 
 		return (
+			
 			<div className="col-lg-4 pb-4 d-flex align-items-stretch">
 				{body}
 			</div>

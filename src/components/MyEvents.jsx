@@ -177,7 +177,8 @@ class MyEvents extends Component {
 					inquire={this.props.inquire}
             		key={this.state.MyEvents[i].returnValues.eventId} 
             		id={this.state.MyEvents[i].returnValues.eventId} 
-            		ipfs={this.state.MyEvents[i].returnValues.ipfs} />);
+					ipfs={this.state.MyEvents[i].returnValues.ipfs}
+					myEvents={true} />);
 				}
 
         //events.reverse();

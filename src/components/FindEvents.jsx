@@ -193,9 +193,31 @@ class FindEvents extends Component
 
 				let pagination = '';
 				if (pages > 1) {
-					let links = [];
+          let links = [];
+          
+          if (pages > 5 && currentPage >= 3){
+            for (let i = currentPage - 2; i <= currentPage + 2 && i<=pages; i++) {
+                 let active = i === currentPage ? 'active' : '';
+               links.push(
+                <li className={"page-item " + active} key={i}>
+								<Link to={"/findevents/" + i}  className="page-link">{i}</Link>
+                </li>
+              );
+            } 
+          }
 
-					for (let i = 1; i <= pages; i++) {
+          else if (pages > 5 && currentPage < 3){
+            for (let i = 1 ; i <= 5 && i<=pages; i++) {
+              let active = i === currentPage ? 'active' : '';
+              links.push(
+                <li className={"page-item " + active} key={i}>
+								<Link to={"/findevents/" + i}  className="page-link">{i}</Link>
+                </li>
+              );
+            } 
+          } 
+					else{
+            for (let i = 1; i <= pages; i++) {
 						let active = i === currentPage ? 'active' : '';
 						links.push(
 							<li className={"page-item " + active} key={i}>
@@ -203,7 +225,7 @@ class FindEvents extends Component
 							</li>
 						);
 					}
-
+        }
 					pagination =
 						<nav>
 							<ul className="pagination justify-content-center">

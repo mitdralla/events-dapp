@@ -40,14 +40,23 @@ class Clock extends Component {
     render() {
      if(this.props.event_unix < this.state.dateNow)
         return(           
-        <div>     
-            <div className = "countdown"><p  className="mt-1 mb-1"><span>⚠️ This event has already ended.</span></p></div>             
-        </div>)
+        <div className = "justify-content-center">     
+            <div className = "countdownEnded col-lg-3 mb-3">
+                <div className="box">
+                    <p className="mt-1 mb-1">
+                    <span>⚠️ This event has already ended.</span>
+                    </p>
+                </div>
+            </div>             
+        </div>);
                                              
      else
        return (
-        <div className = "countdown">
-            <h5 className="mt-2 mb-1">This Event Will Close In</h5>
+        <div className = "countdown col-lg-5 col md-5">
+           <div className="box"> 
+                <h5 className="mt-2 mb-1">This Event Will Close In</h5>
+           </div>
+
             <div className="clock">
                 <p >{this.state.days} Days</p> 
                 <p>{this.state.hours} Hours</p>
@@ -55,7 +64,7 @@ class Clock extends Component {
                 <p> {this.state.seconds} Seconds</p>
             </div>   
         </div>  
-        )
+        );
     }
 }
 export default Clock;

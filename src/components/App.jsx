@@ -18,6 +18,7 @@ import PastEvents from './PastEvents';
 import MyTickets from './MyTickets';
 import CreateEvent from './CreateEvent/';
 import MyEvents from './MyEvents';
+import MyEventStat from './MyEventStat';
 import EventPage from './EventPage';
 import TopicLandingPage from './TopicLandingPage';
 import TopicsLandingPage from './TopicsLandingPage';
@@ -440,7 +441,8 @@ async loadBlockchainData() {
 					error = {this.state.error}/>}/>
 
 					<Route path="/myevents/:page"  render={props => <MyEvents {...props} inquire = {this.inquireBuy}/>}/>
-					<Route path="/event/:id"  render={props => <EventPage {...props} inquire = {this.inquireBuy}/>}/>
+					<Route path="/event-stat/:page/:id"  render={props => <MyEventStat {...props} inquire = {this.inquireBuy}/>}/>
+					<Route path="/event/:page/:id"  render={props => <EventPage {...props} inquire = {this.inquireBuy}/>}/>
 					<Route path="/token" render={props => <Token {...props} getHydro = {this.getHydro}/>}/>
 					<Route path="/topics" component={TopicsLandingPage} />
 					<Route path="/topic/:page/:id" render={props => <TopicLandingPage {...props} inquire = {this.inquireBuy}/>}/>

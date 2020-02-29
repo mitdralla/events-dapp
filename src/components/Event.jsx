@@ -45,7 +45,7 @@ class Event extends Component {
 			description: null,
 			image: null,
 			ipfs_problem: false,
-			locations:'',
+			locations:null,
 			hydro_market:[],
 
 			fee:'',
@@ -208,8 +208,8 @@ class Event extends Component {
 
       if (event_data[6] >= 2) {
         badge = <img src="/images/fire.png" className="event_badge-hot" alt="Hot Icon" />;
-      }
-
+	  }
+	  
       let rawCategory = event_data[8];
 
       var categoryRemovedDashes = rawCategory;
@@ -222,23 +222,36 @@ class Event extends Component {
 
       let topicURL = "/topic/"+event_data[8]+"/1";
 
-      console.log(event_data);
+	  //console.log(event_data);
+	  //Friendly URL Title
+	  let rawTitle = event_data[0];
+      var titleRemovedSpaces = rawTitle;
+	  titleRemovedSpaces = titleRemovedSpaces.replace(/ /g, '-');
 
+      var pagetitle = titleRemovedSpaces.toLowerCase()
+      .split(' ')
+      .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+      .join(' ');
+
+	  let titleURL = "/event/"+pagetitle+"/" + this.props.id;
+	  let myEventStatURL = "/event-stat/"+pagetitle+"/" + this.props.id;
+	  
 			body =
 				<div className="card">
 					<div className="image_wrapper">
-					<Link to={"/event/" + this.props.id}>
+					<Link to={titleURL}>
             <img className="card-img-top event-image" src={image} alt={event_data[0]} />
           </Link>
 		  {soldOut}
 		  </div>
 					<div className="card-header text-muted event-header ">
 						<img className="float-left" src={makeBlockie(event_data[9])} alt={event_data[9]} />
+						{this.props.myEvents?<Link to={myEventStatURL}><p className="myEventStat small text-truncate mb-0">View Event Stats</p></Link>:''}
 					</div>
 
 					<div className="card-body">
 						<h5 className="card-title event-title">
-							<Link to={"/event/" + this.props.id} >{badge}{event_data[0]}</Link>
+							<Link to={titleURL} >{badge}{event_data[0]}</Link>
 						</h5>
 						{description}
 					</div>

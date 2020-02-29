@@ -8,7 +8,10 @@ import Web3 from 'web3';
 
 
 import Loading from './Loading';
+import EventNotFound from './EventNotFound';
+import Clock from './Clock';
 import JwPagination from 'jw-react-pagination';
+import { Link } from 'react-router-dom';
 
 import CheckUser from './CheckUser';
 import {Open_events_ABI, Open_events_Address} from '../config/OpenEvents';
@@ -267,6 +270,11 @@ class EventPage extends Component {
 
 				}
 
+				let myEvent = false;
+				if(event_data[9] === this.account){
+				 myEvent = true;
+				}
+		
         let rawCategory = event_data[8];
 
         var categoryRemovedDashes = rawCategory;
@@ -275,22 +283,36 @@ class EventPage extends Component {
         var category = categoryRemovedDashes.toLowerCase()
         .split(' ')
         .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
-        .join(' ');
+		.join(' ');
+		//Friendly URL Title
+		let rawTitle = event_data[0];
+      	var titleRemovedSpaces = rawTitle;
+	  	titleRemovedSpaces = titleRemovedSpaces.replace(/ /g, '-');
 
+      	var pagetitle = titleRemovedSpaces.toLowerCase()
+      	.split(' ')
+      	.map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+      	.join(' ');
 
+		if(this.props.match.params.page === pagetitle){
+		 
 				body =
 					<div className="row">
 
 						<div className="col-12">
 
-            <h3>{event_data[0]}</h3>
-            <br />
-            {description}
-            <button className="btn btn-dark" onClick={this.inquire} disabled={disabled}><i className="fas fa-ticket-alt"></i>{buttonText}</button>
-            <label className="pl-2 small">{disabledStatus}</label>
-            <br />
-            <br />
-            <br />
+            	<h3>{event_data[0]}</h3>
+           		 <br />
+           		 {description}
+            	<button className="btn btn-dark" onClick={this.inquire} disabled={disabled}><i className="fas fa-ticket-alt"></i>{buttonText}</button>
+            	<label className="pl-2 small">{disabledStatus}</label>
+
+            	<br />
+				{myEvent === true && <Link to ={"/event-stat/"+pagetitle+"/" + this.props.match.params.id}>
+				<button className="btn btn-dark mt-2"><i className="fas fa-chart-bar"></i> View Event Stat</button>
+				</Link>}
+           		<br />
+           	 	<br />
 
 							<div className="card event-hero-sidebar">
 								<img className="card-img-top event-image" src={image} alt="Event" />
@@ -298,15 +320,15 @@ class EventPage extends Component {
 									<img className="float-left" src={makeBlockie(event_data[9])} alt="User Identicon" />
 								</div>
 
-                <div className="card-body">
-                  <h5 className="card-title event-title">
-                    {event_data[0]}
-                  </h5>
+                		<div className="card-body">
+                  		<h5 className="card-title event-title">
+                    	{event_data[0]}
+                  		</h5>
       						{description}
       					</div>
 
 								<ul className="list-group list-group-flush">
-                  <li className="list-group-item ">{locations}</li>
+                  					<li className="list-group-item ">{locations}</li>
 									<li className="list-group-item">Category: {category}</li>
 									<li className="list-group-item">Price: <img src={'/images/'+symbol} className="event_price-image"  alt="Event Price" /> {event_data[3]? numeral(price).format('0,0'):price} 
 									{event_data[3] ? ' or ':''} 
@@ -316,8 +338,8 @@ class EventPage extends Component {
 									<li className="list-group-item">Tickets: {event_data[6]}/{max_seats}</li>
 								</ul>
 							</div>
-
-              			<div className="new-transaction-wrapper"><h4 className="transactions">Ticket Purchases</h4>
+						{this._isMounted && <Clock deadline = {date} event_unix = {event_data[1]}/>}
+              			<div className="new-transaction-wrapper"><h4 className="transactions">Ticket Purchases</h4> 
   						{this.state.load &&<Loading/>}
   						{this.state.pageTransactions.map((sold,index)=>(<p className="sold_text col-md-12" key={index}><img className="float-left blockie" src={makeBlockie(sold.returnValues.buyer)} /> Someone bought 1 ticket for <strong>{event_data[0]}</strong>.</p>))}
   						{!sold &&  <p className="sold_text col-md-12 no-tickets">There are currently no purchases for this ticket.</p>}
@@ -327,28 +349,23 @@ class EventPage extends Component {
 						<JwPagination items={this.state.soldTicket} onChangePage={this.onChangePage} maxPages={5} pageSize={5} styles={customStyles} />	
 						</div>
 
-
-
 						</div>
 
             <div className="col-12">
-
               <div className="mt-5">
-
               </div>
               <CheckUser event_id={this.props.match.params.id} />
-            </div>
-
-
-						<hr/>
-
-					</div>
-
-				;
+              </div>
+			<hr/>
+			</div>;
+				}
+				
+			else {
+				body = <EventNotFound/>;
+				}
 			}
+			
 		}
-
-
 
 		return (
 			<div>
