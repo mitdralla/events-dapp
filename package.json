@@ -42,7 +42,7 @@
   },
   "scripts": {
     "start": "react-app-rewired start --config-overrides settings/start.js",
-    "build": "react-scripts build",
+    "build":"react-scripts --max_old_space_size=4096 build",
     "deploy": "gh-pages -d build/app"
   },
   "browserslist": {
