@@ -33,6 +33,7 @@ import NotifyApproveSuccess from './NotifyApproveSuccess';
 import NotifyFaucet from './NotifyFaucet';
 import NotifySuccessFaucet from './NotifySuccessFaucet';
 import NotifyError from './NotifyError';
+import NotifyNetwork from './NotifyNetwork';
 
 
 import NetworkError from './NetworkError';
@@ -66,6 +67,7 @@ class App extends Component
 
 			getHydro:'',
 		};
+		this.loadBlockchainData = this.loadBlockchainData.bind(this);
 	}
 
 	componentDidMount(){
@@ -127,19 +129,28 @@ async loadBlockchainData() {
  	window.location.reload();
 	})
 
-	const accounts = await web3.eth.getAccounts();
+	const accounts = await web3.eth.getAccounts()
     this.setState({account: accounts[0]});
 
 	}
 
 	//get value from buyer/from child components
 	inquireBuy = (id,fee,token,openEvents_address,buyticket,approve)=>{
+		if(this.state.account && this.props.web3.networkId == 4){	
 		this.setState({
 			fee:fee,
 			token:token,
 			buyticket:buyticket,
 			approve:approve
 		},()=>this.buy())
+	 } 	 
+	 	else if(!this.state.account||this.props.web3.networkId !== 4){
+		toast(<NotifyNetwork/>, {
+			position: "bottom-right",
+			autoClose: true,
+			pauseOnHover: true
+		})
+	 }
 	}
 
 	//TransferFrom when buying with Hydro
@@ -188,6 +199,7 @@ async loadBlockchainData() {
 
 	//Buy Function, Notify listen for transaction status.
 	buy = () =>{
+		
 		let txreceipt='';
 		let txconfirmed = '';
 		let txerror = '';
@@ -409,14 +421,9 @@ async loadBlockchainData() {
 				</div>
 			;
 			connecting = true;
-		} else if (
-			this.props.web3.status === 'failed' ||
-			(this.props.web3.status === 'initialized' && Object.keys(this.props.accounts).length === 0) ||
-			(process.env.NODE_ENV === 'production' && this.props.web3.networkId !== 4)
-		) {
-
+		} else if (this.props.web3.status === 'failed') {
 			console.log("account",this.props.accounts)
-
+			console.log("web3",this.props.web3.status)
 			body =
 				<div>
 					<Switch>
@@ -426,7 +433,36 @@ async loadBlockchainData() {
 				</div>
 			;
 			connecting = true;
-		} else {
+		} else if(
+				(this.props.web3.status === 'initialized' && Object.keys(this.props.accounts).length === 0) ||
+				(process.env.NODE_ENV === 'production' && this.props.web3.networkId !== 4)
+				)
+			{
+			  console.log("account",this.props.accounts)
+			  console.log("web3",this.props.web3.status)
+			  console.log("web3",this.props.web3.networkId)
+			  body = 
+			  		<div>
+			  		<Route exact path="/" render={props => <FindEvents  {...props} inquire = {this.inquireBuy}/>} />
+					<Route path="/findevents/:page"  render={props => <FindEvents  {...props} inquire = {this.inquireBuy}/>}  />
+					<Route path="/pastevents/:page" component={PastEvents} />
+
+					<Route path="/createevent" render={props=><CreateEvent  {...props}
+					passtransaction = {this.passtransaction}
+					upload={this.state.upload}
+					done = {this.state.done}
+					error = {this.state.error}/>}/>
+
+					<Route path="/event/:page/:id"  render={props => <EventPage {...props} inquire = {this.inquireBuy}/>}/>
+					<Route path="/topics" component={TopicsLandingPage} />
+					<Route path="/topic/:page/:id" render={props => <TopicLandingPage {...props} inquire = {this.inquireBuy}/>}/>
+					<Route path="/locations" component={LocationsLandingPage} />
+					<Route path="/location/:page" component={LocationLandingPage} />
+					<Route path="/how-it-works" component={Home} />
+					</div>
+			}
+		
+		else {
 			body =
 				<div>
 					<Route exact path="/" render={props => <FindEvents  {...props} inquire = {this.inquireBuy}/>} />
@@ -458,7 +494,7 @@ async loadBlockchainData() {
 
 				<div id="wrapper" className="toggled">
 
-					<Sidebar connection={!connecting} account={this.state.account} />
+					<Sidebar connection={!connecting} account={this.state.account} connect = {this.loadBlockchainData}/>
 					<div id="page-content-wrapper" className="sidebar-open">
 						<div id="bgImage" ref="bgImage" style={{
   						backgroundImage: "url(/images/slides/"+ randomBG + ")",

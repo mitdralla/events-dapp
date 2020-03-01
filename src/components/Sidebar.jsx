@@ -54,7 +54,8 @@ class Sidebar extends Component
 			</div>
 		;
 
-		if (this.props.connection === true) {
+		if (this.props.connection === true && this.props.account.length !== 0) {
+			console.log(this.props.account)
 			user =
 				<div>
 					<div className="user-status-icon">
@@ -106,7 +107,11 @@ class Sidebar extends Component
 						<li className={activeClassName}>
 							<Link to="/how-it-works" className="nav-link" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-question-circle"></i> <span className="toggleHidden">How It Works</span></Link>
 						</li>
+						<li >
+							<div className="nav-link"  onClick={() => {this.props.connect()}}><i className="fas fa-plug"></i> <span className="toggleHidden">Connect Wallet</span></div>
+						</li>
 					</ul>
+					
 					<br />
 					<br /><br />
 					<a aria-label="Homepage" title="GitHub" className="github footer-octicon d-none d-lg-block mx-lg-4" href="https://github.com/mitdralla/events-dapp">

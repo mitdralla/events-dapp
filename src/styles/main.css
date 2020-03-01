@@ -447,6 +447,9 @@ button {
 	color: #fff;
 }
 
+.nav-link{
+  cursor: pointer!important;
+}
 .navbar-light .navbar-nav .nav-link {
   color: rgb(255, 255, 255);
 }
@@ -1424,3 +1427,6 @@ justify-content: center;
   }
 }
 
+.nav-item{
+  color:blue!important;
+}
