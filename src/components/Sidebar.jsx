@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import {Link,NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import makeBlockie from 'ethereum-blockies-base64';
 
@@ -23,6 +23,7 @@ class Sidebar extends Component
 			activeClassName = 'nav-item';
 		}
 
+
 		//console.log(this);
 	}
 
@@ -42,8 +43,6 @@ class Sidebar extends Component
 
 	render() {
 		
-		var activeClassName = '';
-		var isActive = '';
 
 		let user =
 			<div>
@@ -80,35 +79,34 @@ class Sidebar extends Component
 				<div className="menu mt-5">
 					<h5 className="toggleHidden">Events & Tickets</h5>
 					<ul className="nav flex-column">
-						<li className={activeClassName}>
-							<Link to="/findevents/1" className="nav-link" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-search"></i> <span className="toggleHidden">Events</span></Link>
+						<li>
+							<NavLink to="/findevents/1" className="nav-link" activeClassName="nav-link-active" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-search"></i> <span className="toggleHidden">Events</span></NavLink>
 						</li>
-
-						<li className={activeClassName}>
-							<Link to="/pastevents/1" className="nav-link" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-archive"></i> <span className="toggleHidden">Past Events</span></Link>
+						<li>
+							<NavLink to="/pastevents/1" className="nav-link" activeClassName="nav-link-active" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-archive"></i> <span className="toggleHidden">Past Events</span></NavLink>
 						</li>
-						<li className={activeClassName}>
-							<Link to="/topics" className="nav-link" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-comment-alt"></i> <span className="toggleHidden">Topics</span></Link>
+						<li>
+							<NavLink to="/topics" className="nav-link" activeClassName="nav-link-active" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-comment-alt"></i> <span className="toggleHidden">Topics</span></NavLink>
 						</li>
-						<li className={activeClassName}>
-							<Link to="/locations" className="nav-link" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-map-marker-alt"></i> <span className="toggleHidden">Locations</span></Link>
+						<li>
+							<NavLink to="/locations" className="nav-link" activeClassName="nav-link-active" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-map-marker-alt"></i> <span className="toggleHidden">Locations</span></NavLink>
 						</li>
 						
 					</ul>
 					<h5 className="mt-5 toggleHidden">Manage Events</h5>
 					<ul className="nav flex-column">
-						<li className={activeClassName}>
-							<Link to="/createevent" className="nav-link" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-edit"></i> <span className="toggleHidden">Create Event</span></Link>
+						<li>
+							<NavLink to="/createevent" className="nav-link" activeClassName="nav-link-active" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-edit"></i> <span className="toggleHidden">Create Event</span></NavLink>
 						</li>
 
 					</ul>
 					<h5 className="mt-5 toggleHidden">Tools</h5>
 					<ul className="nav flex-column">
-						<li className={activeClassName}>
-							<Link to="/how-it-works" className="nav-link" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-question-circle"></i> <span className="toggleHidden">How It Works</span></Link>
+						<li>
+							<NavLink to="/how-it-works" className="nav-link" activeClassName="nav-link-active" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-question-circle"></i> <span className="toggleHidden">How It Works</span></NavLink>
 						</li>
 						<li >
-							<div className="nav-link"  onClick={() => {this.props.connect()}}><i className="fas fa-plug"></i> <span className="toggleHidden">Connect Wallet</span></div>
+							<div className="nav-link" onClick={() => {this.props.connect()}}><i className="fas fa-plug"></i> <span className="toggleHidden">Connect Wallet</span></div>
 						</li>
 					</ul>
 					
@@ -133,39 +131,39 @@ class Sidebar extends Component
 				<div className="menu mt-5">
 					<h5 className="toggleHidden">Events & Tickets</h5>
 					<ul className="nav flex-column">
-						<li className={activeClassName}>
-							<Link to="/findevents/1" className="nav-link" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-search"></i> <span className="toggleHidden">Events</span></Link>
+						<li>
+							<NavLink to="/findevents/1" className="nav-link" activeClassName="nav-link-active" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-search"></i> <span className="toggleHidden">Events</span></NavLink>
 						</li>
 
-						<li className={activeClassName}>
-							<Link to="/pastevents/1" className="nav-link" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-archive"></i> <span className="toggleHidden">Past Events</span></Link>
+						<li>
+							<NavLink to="/pastevents/1" className="nav-link" activeClassName="nav-link-active" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-archive"></i> <span className="toggleHidden">Past Events</span></NavLink>
 						</li>
-						<li className={activeClassName}>
-							<Link to="/topics" className="nav-link" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-comment-alt"></i> <span className="toggleHidden">Topics</span></Link>
+						<li>
+							<NavLink to="/topics" className="nav-link" activeClassName="nav-link-active" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-comment-alt"></i> <span className="toggleHidden">Topics</span></NavLink>
 						</li>
-						<li className={activeClassName}>
-							<Link to="/locations" className="nav-link" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-map-marker-alt"></i> <span className="toggleHidden">Locations</span></Link>
+						<li>
+							<NavLink to="/locations" className="nav-link" activeClassName="nav-link-active" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-map-marker-alt"></i> <span className="toggleHidden">Locations</span></NavLink>
 						</li>
-						<li className={activeClassName}>
-							<Link to="/mytickets/1" className="nav-link" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-ticket-alt"></i> <span className="toggleHidden">My Tickets</span></Link>
+						<li>
+							<NavLink to="/mytickets/1" className="nav-link" activeClassName="nav-link-active" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-ticket-alt"></i> <span className="toggleHidden">My Tickets</span></NavLink>
 						</li>
 					</ul>
 					<h5 className="mt-5 toggleHidden">Manage Events</h5>
 					<ul className="nav flex-column">
-						<li className={activeClassName}>
-							<Link to="/createevent" className="nav-link" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-edit"></i> <span className="toggleHidden">Create Event</span></Link>
+						<li>
+							<NavLink to="/createevent" className="nav-link" activeClassName="nav-link-active" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-edit"></i> <span className="toggleHidden">Create Event</span></NavLink>
 						</li>
-						<li className={activeClassName}>
-							<Link to="/myevents/1" className="nav-link" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-calendar-alt"></i> <span className="toggleHidden">My Created Events</span></Link>
+						<li >
+							<NavLink to="/myevents/1" className="nav-link" activeClassName="nav-link-active" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-calendar-alt"></i> <span className="toggleHidden">My Created Events</span></NavLink>
 						</li>
 					</ul>
 					<h5 className="mt-5 toggleHidden">Tools</h5>
 					<ul className="nav flex-column">
-						<li className={activeClassName}>
-							<Link to="/how-it-works" className="nav-link" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-question-circle"></i> <span className="toggleHidden">How It Works</span></Link>
+						<li>
+							<NavLink to="/how-it-works" className="nav-link" activeClassName="nav-link-active" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-question-circle"></i> <span className="toggleHidden">How It Works</span></NavLink>
 						</li>
 						<li className="nav-item">
-							<Link to="/token" className="nav-link"><img src="/images/hydro.png" className="sidebar_hydro-logo" alt="Hydro Token Logo"/> <span className="toggleHidden">Get Hydro Tokens</span></Link>
+							<NavLink to="/token" className="nav-link" activeClassName="nav-link-active"><img src="/images/hydro.png" className="sidebar_hydro-logo" alt="Hydro Token Logo"/> <span className="toggleHidden">Get Hydro Tokens</span></NavLink>
 						</li>
 					</ul>
 					<br />

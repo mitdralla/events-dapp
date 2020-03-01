@@ -450,6 +450,13 @@ button {
 .nav-link{
   cursor: pointer!important;
 }
+
+.nav-link-active{
+display:block;
+padding: .5rem 1rem;
+color:#0099ff!important;
+}
+
 .navbar-light .navbar-nav .nav-link {
   color: rgb(255, 255, 255);
 }
@@ -1427,6 +1434,10 @@ justify-content: center;
   }
 }
 
-.nav-item{
+.side-active{
   color:blue!important;
+}
+
+.not{
+  color:rgb(219, 219, 223)!important;
 }

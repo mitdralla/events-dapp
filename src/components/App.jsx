@@ -136,7 +136,7 @@ async loadBlockchainData() {
 
 	//get value from buyer/from child components
 	inquireBuy = (id,fee,token,openEvents_address,buyticket,approve)=>{
-		if(this.state.account && this.props.web3.networkId == 4){	
+		if(this.state.account.length !== 0 && this.props.web3.networkId == 4){	
 		this.setState({
 			fee:fee,
 			token:token,
@@ -144,7 +144,7 @@ async loadBlockchainData() {
 			approve:approve
 		},()=>this.buy())
 	 } 	 
-	 	else if(!this.state.account||this.props.web3.networkId !== 4){
+	 	else if(this.state.account === 0 ||this.props.web3.networkId !== 4){
 		toast(<NotifyNetwork/>, {
 			position: "bottom-right",
 			autoClose: true,
