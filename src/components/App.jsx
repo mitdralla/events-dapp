@@ -24,6 +24,7 @@ import TopicLandingPage from './TopicLandingPage';
 import TopicsLandingPage from './TopicsLandingPage';
 import LocationLandingPage from './LocationLandingPage';
 import LocationsLandingPage from './LocationsLandingPage';
+import Calendars from './Calendars';
 import Token from './Token';
 
 import Notify from './Notify';
@@ -144,7 +145,7 @@ async loadBlockchainData() {
 			approve:approve
 		},()=>this.buy())
 	 } 	 
-	 	else if(this.state.account === 0 ||this.props.web3.networkId !== 4){
+	 	else {
 		toast(<NotifyNetwork/>, {
 			position: "bottom-right",
 			autoClose: true,
@@ -422,8 +423,7 @@ async loadBlockchainData() {
 			;
 			connecting = true;
 		} else if (this.props.web3.status === 'failed') {
-			console.log("account",this.props.accounts)
-			console.log("web3",this.props.web3.status)
+
 			body =
 				<div>
 					<Switch>
@@ -438,9 +438,8 @@ async loadBlockchainData() {
 				(process.env.NODE_ENV === 'production' && this.props.web3.networkId !== 4)
 				)
 			{
-			  console.log("account",this.props.accounts)
-			  console.log("web3",this.props.web3.status)
-			  console.log("web3",this.props.web3.networkId)
+			  console.log("web3",process.env.NODE_ENV)
+			  
 			  body = 
 			  		<div>
 			  		<Route exact path="/" render={props => <FindEvents  {...props} inquire = {this.inquireBuy}/>} />
@@ -451,13 +450,15 @@ async loadBlockchainData() {
 					passtransaction = {this.passtransaction}
 					upload={this.state.upload}
 					done = {this.state.done}
-					error = {this.state.error}/>}/>
+					error = {this.state.error}
+					account ={this.state.account}/>}/>
 
 					<Route path="/event/:page/:id"  render={props => <EventPage {...props} inquire = {this.inquireBuy}/>}/>
 					<Route path="/topics" component={TopicsLandingPage} />
 					<Route path="/topic/:page/:id" render={props => <TopicLandingPage {...props} inquire = {this.inquireBuy}/>}/>
 					<Route path="/locations" component={LocationsLandingPage} />
 					<Route path="/location/:page" component={LocationLandingPage} />
+					<Route path="/Calendar" component={Calendars} />
 					<Route path="/how-it-works" component={Home} />
 					</div>
 			}
@@ -474,7 +475,8 @@ async loadBlockchainData() {
 					passtransaction = {this.passtransaction}
 					upload={this.state.upload}
 					done = {this.state.done}
-					error = {this.state.error}/>}/>
+					error = {this.state.error}
+					account ={this.state.account}/>}/>
 
 					<Route path="/myevents/:page"  render={props => <MyEvents {...props} inquire = {this.inquireBuy}/>}/>
 					<Route path="/event-stat/:page/:id"  render={props => <MyEventStat {...props} inquire = {this.inquireBuy}/>}/>
@@ -484,6 +486,7 @@ async loadBlockchainData() {
 					<Route path="/topic/:page/:id" render={props => <TopicLandingPage {...props} inquire = {this.inquireBuy}/>}/>
 					<Route path="/locations" component={LocationsLandingPage} />
 					<Route path="/location/:page" component={LocationLandingPage} />
+					<Route path="/Calendar" component={Calendars} />
 					<Route path="/how-it-works" component={Home} />
 				</div>
 			;

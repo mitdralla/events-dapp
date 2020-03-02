@@ -249,6 +249,11 @@ class Form extends Component {
 
 		}
 		let date = new Date(parseInt(this.state.date, 10) * 1000);
+		
+		let disabled = false;
+		if(this.props.account.length == 0){
+			disabled = true;
+		} 
 
 		return (
 			<React.Fragment>
@@ -351,7 +356,7 @@ class Form extends Component {
 				</div>
 				{alert}
 				<br />
-				<button type="submit" className="btn btn-outline-dark" onClick={this.handleForm}>Make Your Event Live</button>
+				<button type="submit" className="btn btn-outline-dark" onClick={this.handleForm} disabled={disabled}>Make Your Event Live</button>
 			</form>
 			</div>
 

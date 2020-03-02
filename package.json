@@ -23,6 +23,7 @@
     "qrcode.react": "^1.0.0",
     "react": "^16.9.0",
     "react-app-rewired": "^2.1.5",
+    "react-big-calendar": "^0.24.0",
     "react-bootstrap": "^1.0.0-beta.16",
     "react-chartjs-2": "^2.9.0",
     "react-datetime": "^2.15.0",
@@ -42,7 +43,7 @@
   },
   "scripts": {
     "start": "react-app-rewired start --config-overrides settings/start.js",
-    "build":"react-scripts --max_old_space_size=4096 build",
+    "build": "react-scripts --max_old_space_size=4096 build",
     "deploy": "gh-pages -d build/app"
   },
   "browserslist": {

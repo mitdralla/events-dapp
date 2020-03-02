@@ -163,7 +163,11 @@ class CreateEvent extends Component {
 
 
 	render() {
-		
+
+		let disabled = true;
+		if(this.props.account.length !== 0){
+			disabled = false;
+		}
 		if (this.state.error || this.props.error) {
 			return <Error message={this.state.error_text} />;
 		}
@@ -178,7 +182,7 @@ class CreateEvent extends Component {
 				<Loader progress={this.state.stage} text={this.state.title} /> :
 				<React.Fragment>
 					<div className="row">
-							<Form createEvent={this.createEvent} />
+							<Form createEvent={this.createEvent} account={this.props.account}/>
 					</div>
 				</React.Fragment>
 		;
@@ -187,6 +191,14 @@ class CreateEvent extends Component {
 			<div>
 				
 				<h2><i className="fa fa-edit"></i> Create Event</h2>
+				{disabled && <div className = "alert-connection col-lg-6 mb-6">
+				<div className="connection-box">
+                    <p className="mt-1 mb-1">
+                    <span>⚠️ You are on VIEW ONLY mode. You won't be able to submit because you are not connected to a network.</span>
+                    </p>
+                </div>	
+				</div>}
+
 				<hr />
 				{body}
 			</div>
