@@ -183,7 +183,8 @@ button {
 .event_price-image2 {
 	height: 19px;
 	margin-right: 2px;
-	margin-top: -5px;
+  margin-top: -5px;
+ 
 }
 
 .event_ticket-image {
@@ -407,8 +408,7 @@ button {
 }
 
 .page-wrapper-inner {
-  padding: 60px 60px 60px 60px;
- 
+  padding: 60px 60px 10px 60px;
 }
 
 .branding {
@@ -429,8 +429,17 @@ button {
 	padding-left: 325px;
 	padding-top: 85px;
   transition-duration: .5s;
-
 }
+
+@media (max-width : 650px){
+  #wrapper.toggled #page-content-wrapper {
+    position: relative;
+    margin-right: 0;
+    padding-right: 120px;
+    padding-left: 0px;
+    padding-top: 15px;
+    }
+  }
 
 #wrapper.toggled {
   padding-left: 0px;
@@ -525,15 +534,23 @@ color:#0099ff!important;
 }
 
 .retract-page-inner-wrapper {
-	margin: -60px -60px 0 -60px !important;
+  margin: -60px -60px 0 -60px !important;
+  background:transparent!important;
 }
 
 .retract-page-inner-wrapper-alternative {
-	margin: 0px -60px 0 -60px !important;
+  margin: 0px -57px 0 -57px !important;
+  background:transparent!important;
 }
 
 .events-wrapper {
 	margin-bottom:60px !important;
+}
+
+@media (max-width : 650px){
+  .event-page-wrapper{
+    margin: 0px -57px 0 -57px !important;
+  }
 }
 
 .hamburgerNav i {
@@ -1623,3 +1640,272 @@ justify-content: center;
   }
 
   End of Calendar */
+
+  /*Dashboard Style */
+  .dashboard-card {
+      width: 100%;
+      height: 152px;
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      list-style-type: none;
+      border-radius: 5px;
+      box-shadow: 0 0 18px rgba(0,0,0,0.6);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.4s;
+      overflow:hidden;
+  }
+
+  .dashboard-card:hover {
+    transform: scale(1.1);
+    z-index: 999;
+    cursor: pointer;
+  }
+
+  .dashboard-caption {
+    position: absolute;
+    right: 0;
+    bottom: 0px;
+    left: 0;
+    z-index: 10;
+    padding-top: 15px;
+    padding-bottom: 20px;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    height: inherit;
+    padding-bottom: 25px;
+    box-shadow: inset 0px -181px 53px rgba(0,0,0,0.2);
+    border-radius: 5px;
+  }
+
+  .dashboard-footer{
+    margin-top:75px;
+    margin-left:8px;
+    text-align:center;
+    text-transform: uppercase;  
+  }  
+
+  .dashboard-img{
+    position: center;
+    padding-top:10px;
+    z-index: 10;
+    text-align: center;
+    color: #fff;
+    width: 35px;
+    height: 60px;
+    border-radius: 5px;
+    font-size:3rem !important;
+    text-shadow: 2px 2px 12px rgb(230, 223, 223) !important;
+
+  }
+
+  .dashboard-data {
+    position: absolute;
+    right: 0;
+    bottom: 0px;
+    left: 0;
+    z-index: 10;
+    padding-top: 70px;
+    padding-bottom: 20px;
+    text-align: center;
+    color: #fff;
+    width: 100%;
+    height: inherit;
+    border-radius: 5px;
+    font-size:3rem !important;
+    text-shadow: 2px 2px 12px #000 !important;
+  }
+
+  .dashboard-caption h3 {
+    text-shadow: 2px 2px 12px #000 !important;
+    font-weight: 400;
+    font-size:1.1rem !important;
+  }
+
+  .dashboard-caption button {
+    padding: 5px 25px;
+    margin-right: 0px;
+    background-color: #e91e63 !important;
+    border: 1px solid #e91e63 !important;
+    color: #fff !important;
+    background-color: #fff !important;
+    border: 1px solid #fff !important;
+    color: #333 !important;
+    opacity: 0.9;
+  }
+
+  .dashboard-events-card{
+    width: 100%;
+    height: 225px;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    list-style-type: none;
+    border-radius: 5px;
+    box-shadow: 0 0 18px rgba(0,0,0,0.6);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s;
+    overflow:hidden!important;
+  }
+
+  .dashboard-events-card:hover {
+    transform: scale(1.1);
+    z-index: 999;
+    cursor: pointer;
+  }
+
+  .dashboard-events-caption {
+    position: absolute;
+    color: white;
+    text-align: center;
+    height:15%!important;
+    width: 100%;
+    height: inherit;
+    padding-bottom: 25px;
+    box-shadow: inset 0px -181px 53px rgba(0, 0, 0, 0.116);
+    
+    z-index:1000;
+    background:transparent!important;
+  }
+
+  .dashboard-events-caption h3 {
+    padding-top:7px;
+    text-shadow: 2px 2px 12px #000 !important;
+    font-weight: 400;
+    font-size:1.1rem !important;
+  }
+
+  .dashboard-events {
+    position: absolute;
+    right: 0;
+    bottom: 0px;
+    left: 0;
+    z-index: 10;
+    padding-top: 15px;
+    padding-bottom: 20px;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    height: inherit;
+    padding-bottom: 25px;
+    box-shadow: inset 0px -181px 53px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    background:linear-gradient(to left, rgba(226, 161, 218, 0.836),rgb(145, 99, 139),rgb(129, 87, 124))!important;
+    background:linear-gradient(to bottom, rgb(51, 64, 104),rgb(41, 60, 75),rgb(13, 13, 14))!important;
+  }
+
+  .dashboard-events-list{
+    padding-top:30px;
+    float:left;
+    text-align:left;
+    
+    
+  } 
+
+  .dashboard-events-list h4{
+    padding-left:15px;
+    text-transform: capitalize!important;
+    text-shadow: 2px 2px 12px rgb(15, 8, 8) !important;
+    font-weight: 400;
+    font-size:1.1rem !important;
+    border-bottom:2px solid rgba(27, 31, 43, 0.377);  
+    cursor:pointer;
+    color:white;
+  }
+  .dashboard-events-list h4:hover{
+    color:rgb(176, 178, 206);
+  }
+
+  .dashboard-events-list-sale h4:hover{
+    color:rgb(176, 178, 206);
+  }
+
+  .dashboard-no-event{
+    padding-top:35px;
+    padding-left:20px;
+    padding-right:20px;
+    text-transform: capitalize!important;
+    text-shadow: 2px 2px 12px rgb(15, 8, 8) !important;
+    font-weight: 400;
+    font-size:1.1rem !important; 
+  }
+
+  .dashboard-events-list-sale{
+    padding-top:30px;
+    padding-bottom:10px;
+    text-align:center;
+  } 
+
+  .dashboard-events-list-sale h4{
+    padding-right:5px;
+    text-transform: capitalize!important;
+    text-shadow: 2px 2px 12px #000 !important;
+    font-weight: 400;
+    font-size:1.1rem !important;
+    border-bottom:2px solid rgba(81, 84, 95, 0.377); 
+    border-bottom:2px solid rgba(27, 31, 43, 0.377); 
+  }
+
+  .dashboard-chart{
+    position: absolute;
+    right: 0;
+    bottom: 0px;
+    left: 0;
+    z-index: 10;
+    padding-top: 15px;
+    padding-bottom: 20px;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    height: inherit;
+    padding-bottom: 25px;
+    box-shadow: inset 0px -181px 53px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    background:linear-gradient(to left, rgba(226, 161, 218, 0.836),rgb(145, 99, 139),rgb(129, 87, 124))!important;
+    background:linear-gradient(45deg, rgb(24, 1, 1),rgb(97, 15, 15),black)!important;
+    background:linear-gradient(139deg, rgb(211, 107, 231),rgb(253, 197, 42))!important;
+
+  }
+
+  .dashboard-uniswap{
+    padding-top:50px;
+    text-shadow: 2px 2px 12px rgb(235, 227, 236) !important;
+    font-weight: 800;
+    font-size:1.1rem !important;
+    color:rgb(172, 55, 166);
+  }
+
+  .dashboard-caption a{
+    text-decoration: none!important;
+
+  }
+
+  .dashboard-bar {
+    position: absolute;
+    z-index: 10;
+    padding-top: 40px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    height: inherit;
+    box-shadow: inset 0px -181px 53px rgba(0,0,0,0.2);
+    background:linear-gradient(to bottom, rgb(51, 64, 104),rgb(41, 60, 75),rgb(13, 13, 14))!important;
+  }
+
+  .dashboard-hydro{
+      height: 19px;
+      margin-right: 2px;
+      margin-top: -6px;
+      border-radius:10px;
+      border:2px solid white;
+  }
+  /*End Dashboard Style */
+  

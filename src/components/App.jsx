@@ -26,8 +26,10 @@ import LocationLandingPage from './LocationLandingPage';
 import LocationsLandingPage from './LocationsLandingPage';
 import Calendars from './Calendars';
 import Token from './Token';
+import Dashboard from './Dashboard';
 
 import Notify from './Notify';
+import NotifyApprove from './NotifyApprove';
 import NotifySuccess from './NotifySuccess';
 import NotifyEventSuccess from './NotifyEventSuccess';
 import NotifyApproveSuccess from './NotifyApproveSuccess';
@@ -65,6 +67,7 @@ class App extends Component
 			upload:false,
 			done:false,
 			error:false,
+			afterApprove:false,
 
 			getHydro:'',
 		};
@@ -160,7 +163,7 @@ async loadBlockchainData() {
 		let txreceiptApproved='';
 		let txconfirmedApproved = '';
 		let txerror = '';
-
+		//if(this.state.afterApprove)
 		this.state.buyticket.send({from:this.state.account})
 		.on('transactionHash',(hash)=>{
 			if(hash !==null){
@@ -195,8 +198,9 @@ async loadBlockchainData() {
 					pauseOnHover: true
 					})
 			   	}
-	  	  	})
-		},3000)
+				})
+			this.setState({afterApprove:false})
+		},2000)
 
 	//Buy Function, Notify listen for transaction status.
 	buy = () =>{
@@ -210,7 +214,7 @@ async loadBlockchainData() {
 
 		.on('transactionHash',(hash)=>{
 			if(hash !==null){
-				toast(<Notify hash={hash} />, {
+				toast(<NotifyApprove hash={hash} />, {
 					position: "bottom-right",
 					autoClose: true,
 					pauseOnHover: true
@@ -223,12 +227,14 @@ async loadBlockchainData() {
 			 txreceipt = receipt
 			 txconfirmed = confirmationNumber
 			if (txconfirmed == 0 && txreceipt.status == true){
+				
 				toast(<NotifyApproveSuccess hash={txreceipt.transactionHash} />,
 					{
 					position: "bottom-right",
 					autoClose: true,
 					pauseOnHover: true
 					})
+					this.afterApprove()
 				}
 
 			}
@@ -242,11 +248,11 @@ async loadBlockchainData() {
 				autoClose: true,
 				pauseOnHover: true
 				})
+				this.afterApprove()
 			   }
 	  	  	})
-		this.afterApprove()
+		
 	}
-
 		else{
 		this.state.buyticket.send({value:this.state.fee, from:this.state.account})
 
@@ -486,7 +492,8 @@ async loadBlockchainData() {
 					<Route path="/topic/:page/:id" render={props => <TopicLandingPage {...props} inquire = {this.inquireBuy}/>}/>
 					<Route path="/locations" component={LocationsLandingPage} />
 					<Route path="/location/:page" component={LocationLandingPage} />
-					<Route path="/Calendar" component={Calendars} />
+					<Route path="/calendar" component={Calendars} />
+					<Route path="/dashboard" component={Dashboard} account ={this.state.account} />
 					<Route path="/how-it-works" component={Home} />
 				</div>
 			;

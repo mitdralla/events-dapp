@@ -195,13 +195,13 @@ class Event extends Component {
 			let disabledStatus = '';
 		
 				disabled = true;
-				buttonText = <span><span role="img" aria-label="alert"> </span> Sold Out.</span>;
+				buttonText = <span><span role="img" aria-label="alert"> </span> Sold Out</span>;
 				soldOut = <p className="sold_out">Sold Out</p>;
 			}
 
 			if (date.getTime() < new Date().getTime()) {
 				disabled = true;
-        buttonText = "This event has ended.";
+        buttonText = "This event has ended";
 			}
 
       let badge = "";
@@ -250,7 +250,7 @@ class Event extends Component {
 					</div>
 
 					<div className="card-body">
-						<h5 className="card-title event-title">
+						<h5 className="card-title event-title" title={event_data[0]} >
 							<Link to={titleURL} >{badge}{event_data[0]}</Link>
 						</h5>
 						{description}

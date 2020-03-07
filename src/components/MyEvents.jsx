@@ -217,16 +217,16 @@ class MyEvents extends Component {
 		}
 
 		return (
-			<div>
+			<div className="event-page-wrapper">
 				
 				<h2 className="col-md-10"><i className="fa fa-calendar-alt "></i> My{this.state.isActive ?' Active':' Past'}  Events</h2>
-				<div className="input-group input-group-lg mt-5 mb-4">
-				<button className="btn sort_button col-md-2 mx-3"  onClick={this.ActiveEvent} >Active Events</button>
-				<button className="btn sort_button col-md-2 ml-3"  onClick={this.PastEvent} >Past Events</button>
-        		<div className="input-group-prepend ml-5">
-         		<span className="input-group-text search-icon " id="inputGroup-sizing-lg"><i className="fa fa-search"></i>&nbsp;Search </span>
+				<div className="input-group input-group-lg mb-2">
+				<button className="btn rounded-pill btn-dark  col-md-2 mx-2 mt-2"  onClick={this.ActiveEvent} >Active Events</button>
+				<button className="btn rounded-pill btn-dark col-md-2 mx-2 mt-2"  onClick={this.PastEvent} >Past Events</button>
+        		<div className="input-group-prepend ml-2 mt-2">
+         		<span className="input-group-text rounded-left search-icon"  id="inputGroup-sizing-lg"><i className="fa fa-search"></i>&nbsp;Search </span>
         		</div> 
-        		<input type="text" value={this.state.value} onChange={this.updateSearch.bind(this)} className="form-control col-md-5" aria-label="Large" aria-describedby="inputGroup-sizing-sm" />				
+        		<input type="text" value={this.state.value} onChange={this.updateSearch.bind(this)} className="form-control mr-2 mt-2 col-md-6" aria-label="Large" aria-describedby="inputGroup-sizing-sm" />				
 				</div>
 				
 				<hr />

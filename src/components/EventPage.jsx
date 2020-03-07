@@ -267,7 +267,6 @@ class EventPage extends Component {
 
 				if(this.state.active_length <= 0){
 					sold=false;
-
 				}
 
 				let myEvent = false;
@@ -368,7 +367,7 @@ class EventPage extends Component {
 		}
 
 		return (
-			<div>
+			<div className="event-page-wrapper">
 				<h2><i className="fa fa-calendar-alt"></i> Event</h2>
 				<hr />
 				{body}

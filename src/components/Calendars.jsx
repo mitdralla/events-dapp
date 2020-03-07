@@ -106,11 +106,12 @@ class Calendars extends Component {
             }
         
        return (
-        <div>
+        <div className="retract-page-inner-wrapper-alternative">
+        <div className="pl-2 pr-2">
             <h2 className="col-md-10"><i className="fa fa-calendar-alt"></i> Event Calendar</h2> 
         <hr/>
             {body}
-                
+          </div>      
         </div>  
         )
     }
