@@ -407,6 +407,13 @@ async loadBlockchainData() {
 
 	}
 
+	createNewEvent= () =>{
+		this.setState({error:false,
+			done:false,
+			upload:false},()=>console.log())
+		
+	}
+
 	render() {
 
 		let body;
@@ -479,6 +486,7 @@ async loadBlockchainData() {
 
 					<Route path="/createevent" render={props=><CreateEvent  {...props}
 					passtransaction = {this.passtransaction}
+					createNewEvent  = {this.createNewEvent}
 					upload={this.state.upload}
 					done = {this.state.done}
 					error = {this.state.error}

@@ -335,10 +335,10 @@ class TopicLandingPage extends Component
       <div>
           <h2 className =""><i className={this.state.isActive ?' fa fa-calendar-alt':' fa fa-archive'}></i>{this.state.isActive ?' Active':' Past'} Events In The <strong>{topic.name}</strong> Topic</h2>
 
-          <div className="mt-4">
-          <button className="btn sort_button col-md-2 mr-4"  onClick={this.ActiveEvent} >Active Events</button>
-				  <button className="btn sort_button col-md-2 ml-1"  onClick={this.PastEvent} >Past Events</button>
-          <button className="btn sort_button col-md-2 float-right" value={this.state.value} onClick={this.toggleSortDate} onChange={this.toggleSortDate.bind(this)}>{this.state.isOldestFirst ?'Sort: Oldest':'Sort: Newest'}</button>
+          <div className="row row_mobile mt-4 mb-2">
+          <button className="btn sort_button col-md-2 mx-2 mt-2"  onClick={this.ActiveEvent} >Active Events</button>
+				  <button className="btn sort_button col-md-2 mx-2 mt-2"  onClick={this.PastEvent} >Past Events</button>
+          <button className="btn sort_button col-md-2 mx-2 mt-2" value={this.state.value} onClick={this.toggleSortDate} onChange={this.toggleSortDate.bind(this)}>{this.state.isOldestFirst ?'Sort: Oldest':'Sort: Newest'}</button>
           </div>
 
           <hr />

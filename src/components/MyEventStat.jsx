@@ -269,9 +269,9 @@ class MyEventStat extends Component {
 				let image = this.getImage();
 				let description = this.getDescription();
 				let locations = this.getLocation();
-				let buttonText = " Buy Ticket";
+				let buttonText = event_data[3]? " Buy Ticket": " Get Ticket";
 
-				let symbol = event_data[3] ? 'hydro.png' : 'ethereum.png';
+				let symbol = event_data[3] ? 'hydro.png' : 'hydro.png';
 				let price = this.context.drizzle.web3.utils.fromWei(event_data[2]);
 				let date = new Date(parseInt(event_data[1], 10) * 1000);
 
@@ -392,7 +392,7 @@ class MyEventStat extends Component {
 						<ul className="list-group list-group-flush">
                   		<li className="list-group-item ">{locations}</li>
 						<li className="list-group-item">Category: {category}</li>
-						<li className="list-group-item">Price: <img src={'/images/'+symbol} className="event_price-image"  alt="Event Price" /> {event_data[3]? numeral(price).format('0,0'):price} 
+						<li className="list-group-item">Price: <img src={'/images/'+symbol} className="event_price-image"  alt="Event Price" /> {event_data[3]? numeral(price).format('0,0'):'Free'} 
 							{event_data[3] ? ' or ':''} 
 							{event_data[3]? <img src={'/images/dollarsign.png'} className="event_price-image"  alt="Event Price" />:''} 
 							{event_data[3]?numeral(price * this.state.hydro_market.usd).format('0,0.00'):''}</li>
@@ -486,7 +486,7 @@ class MyEventStat extends Component {
 
 
 						</div>
-						 	<p className="col-md-8">Price Per Ticket: <img src={'/images/'+symbol} className="event_price-image2"  alt="Event Price" /> {event_data[3]? numeral(price).format('0,0'):price} 
+						 	<p className="col-md-8">Price Per Ticket: <img src={'/images/'+symbol} className="event_price-image2"  alt="Event Price" /> {event_data[3]? numeral(price).format('0,0'):'Free'} 
 							{event_data[3] ? ' or ':''} 
 							{event_data[3]? <img src={'/images/dollarsign.png'} className="event_price-image2"  alt="Event Price" />:''} 
 							{event_data[3]?numeral(price * this.state.hydro_market.usd).format('0,0.00'):''}

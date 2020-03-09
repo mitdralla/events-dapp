@@ -20,7 +20,7 @@ class CreateEvent extends Component {
 			stage: 0,
 			title: null,
 			error: false,
-			error_text: null,
+			error_text: 'IPFS Error',
 			ipfs: null,
 			fileImg: null,
 			data: {
@@ -134,6 +134,13 @@ class CreateEvent extends Component {
 		}
 	}*/
 
+	createNewEvent= () =>{
+		this.setState({error:false,
+					done:false,
+					upload:false},()=>console.log())
+	}
+
+
 	transactionChecker = (id) => {
 		let tx_checker = setInterval(() => {
 			let tx = this.props.transactionStack[id];
@@ -168,12 +175,10 @@ class CreateEvent extends Component {
 		if(this.props.account.length !== 0){
 			disabled = false;
 		}
-		if (this.state.error || this.props.error) {
-			return <Error message={this.state.error_text} />;
-		}
+		
 
 		if (this.props.done) {
-			return <Done/>
+			return <Done createNewEvent = {this.createNewEvent} createNewEvent2 = {this.props.createNewEvent}/>
 			;
 		}
 
@@ -187,8 +192,12 @@ class CreateEvent extends Component {
 				</React.Fragment>
 		;
 
+		if (this.state.error || this.props.error) {
+			body= <Error message={this.state.error_text} createNewEvent = {this.createNewEvent} createNewEvent2 = {this.props.createNewEvent}/>;
+		}
+
 		return (
-			<div>
+			<div className="home-wrapper">
 				
 				<h2><i className="fa fa-edit"></i> Create Event</h2>
 				{disabled && <div className = "alert-connection col-lg-6 mb-6">

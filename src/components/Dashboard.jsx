@@ -64,7 +64,7 @@ class Dashboard extends Component {
   
 
 	render() {
-        let body = <Loading />;
+        let body = '';
     
 		if (typeof this.props.contracts['OpenEvents'].eventsOf[this.events] !== 'undefined') {
 

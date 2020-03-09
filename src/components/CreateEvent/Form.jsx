@@ -65,8 +65,10 @@ class Form extends Component {
 
 	handleCurrency = (event) => {
 		this.setState({
-			currency: event.target.value
-		});
+			currency: event.target.value,
+			price: '0'
+		},()=>console.log('currency',this.state.currency, this.state.price));
+	
 	}
 
 	handleLimited = () => {
@@ -154,11 +156,18 @@ class Form extends Component {
 	}
 
 	priceChange = (event) => {
+		if(this.state.currency === 'hydro'){
 		let price = this.form.price.value;
 
 		this.setState({
 			price: price
-		});
+		},()=>console.log('price', this.state.price));}
+		else{ 
+		let price = '0';
+		this.setState({
+			price: price
+		},()=>console.log('price', this.state.price))
+		}
 	}
 
 	ticketsChange = (event) => {
@@ -179,7 +188,7 @@ class Form extends Component {
 		if (this.form.description.value === '') form_validation.push('description');
 		if (this.state.wrong_file === true || this.state.file === null) form_validation.push('image');
 		if (this.state.time === 0) form_validation.push('time');
-		if (this.form.price.value === '') form_validation.push('price');
+		if (this.state.price === '') form_validation.push('price');
 		if (this.state.limited === true && this.form.seats.value < 1) form_validation.push('seats');
 		if (this.state.type === '') form_validation.push('type');
 
@@ -198,7 +207,7 @@ class Form extends Component {
 				this.state.type,
 				this.state.topic,
 				this.state.currency,
-				this.form.price.value,
+				this.state.price,
 				this.state.limited,
 				this.form.seats.value
 			);
@@ -207,8 +216,12 @@ class Form extends Component {
 
 	render() {
 		
-		let symbol = this.state.currency === 'eth' ? 'ethereum.png' : 'hydro.png';
+		let symbol = 'hydro.png';
 		let currency = this.state.currency === 'eth' ? 'ETH' : 'Hydro';
+		let	freeEvent = '';
+			if( this.state.currency === 'eth'){
+			freeEvent = <p className="free_event">Free Event</p>
+			}
 
 		let file_label = !this.state.wrong_file && this.state.file_name !== '' ? this.state.file_name : 'Select file';
 
@@ -315,14 +328,14 @@ class Form extends Component {
 				<hr />
 				<br />
 				<div className="form-group">
-					<p>Payment Options:</p>
+					<p>Event Options:</p>
 					<div className="custom-control custom-radio custom-control-inline">
 						<input type="radio" id="payment2" name="payment" className="custom-control-input" defaultChecked="true" value="hydro" title="Hydro" onChange={this.handleCurrency} autoComplete="off" />
-						<label className="custom-control-label" htmlFor="payment2">Hydro</label>
+						<label className="custom-control-label" htmlFor="payment2">Paid Event</label>
 					</div>
 					<div className="custom-control custom-radio custom-control-inline">
 						<input type="radio" id="payment1" name="payment" className="custom-control-input" value="eth" title="Ethereum" onChange={this.handleCurrency} autoComplete="off" />
-						<label className="custom-control-label" htmlFor="payment1">Ethereum</label>
+						<label className="custom-control-label" htmlFor="payment1">Free Event</label>
 					</div>
 				</div>
 				<div className="form-group row">
@@ -332,13 +345,22 @@ class Form extends Component {
 							<div className="input-group-prepend">
 								<span className="input-group-text"><img src={'/images/'+symbol} className="event_price-image" alt="" /></span>
 							</div>
-							<input type="number" min="0.00000001" className={"form-control " + warning.price} id="price" title={"Price in " + currency} ref={(input) => this.form.price = input} autoComplete="off" onChange={this.priceChange} />
+							{this.state.currency === 'hydro' &&<input type="number" min="0.00000001" className={"form-control " + warning.price} id="price" title={"Price in Hydro"} ref={(input) => this.form.price = input} autoComplete="off" onChange={this.priceChange} />}
+							{this.state.currency === 'eth' &&<input type="number" min="0.00000001" className={"form-control " + warning.price} id="price" title={"Price in Hydro"} value = {this.state.price} autoComplete="off" onChange={this.priceChange} />}
+
 						</div>
 						{this.state.currency === 'hydro' &&<div className="input-group mb-3">
 							<div className="input-group-prepend">
 								<span className="input-group-text"><img src={'/images/dollarsign.png'} className="event_price-image" alt="" /></span>
 							</div>
 							 <div className={"form-control " + warning.price} title="Price in USD">{numeral(this.state.price * this.state.hydro_market.usd).format('0,0.00')} </div>
+						</div>}
+
+						{this.state.currency === 'eth' &&<div className="input-group mb-3">
+							<div className="input-group-prepend">
+								<span className="input-group-text"><img src={'/images/dollarsign.png'} className="event_price-image" alt="" /></span>
+							</div>
+							 <div className={"form-control " + warning.price} title="Price in USD">0.00 </div>
 						</div>}
 					</div>
 				</div>
@@ -364,9 +386,12 @@ class Form extends Component {
 <div className="col col-xl-4 col-lg-4 col-md-12 col-sm-12 create-event">
 <label>Event Preview:</label>
 <div className="card">
+<div className="image_wrapper">
 	<Link to={"/event/"}>
 		<img className="card-img-top event-image" src={this.state.fileImg} alt="Placeholder Event" />
 	</Link>
+	{freeEvent}
+	</div>
 	<div className="card-header text-muted event-header">
 		<img className="float-left" src={this.state.blockie} alt="" />
 		<p className="small text-truncate mb-0">{organizerForHumans}</p>

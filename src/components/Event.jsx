@@ -177,23 +177,29 @@ class Event extends Component {
 			let description = this.getDescription();
 			let locations = this.getLocation();
 
-     		let buttonText = "Buy Ticket";
+			let buttonText = event_data[3]? "Buy Ticket": "Get Ticket";
+
+			let	freeEvent = '';
+			if(!event_data[3]){
+			freeEvent = <p className="free_event">Free Event</p>
+			}
 
 			if (event_data[3] !=='undefined'){
-			let symbol = event_data[3] ? 'hydro.png' : 'ethereum.png';
+			let symbol = 'hydro.png';
 
-			let price = this.context.drizzle.web3.utils.fromWei(event_data[2]);
+			let price = event_data[3]? this.context.drizzle.web3.utils.fromWei(event_data[2]) : 'Free Event';
 			let date = new Date(parseInt(event_data[1], 10) * 1000);
 
 			let max_seats = event_data[4] ? event_data[5] : '∞';
 
 			let disabled = false;
 			let soldOut = " ";
+			let sold = false;
 
 			if (event_data[4] && (Number(event_data[6]) >= Number(event_data[5]))) {
 
 			let disabledStatus = '';
-		
+				sold = true
 				disabled = true;
 				buttonText = <span><span role="img" aria-label="alert"> </span> Sold Out</span>;
 				soldOut = <p className="sold_out">Sold Out</p>;
@@ -201,7 +207,7 @@ class Event extends Component {
 
 			if (date.getTime() < new Date().getTime()) {
 				disabled = true;
-        buttonText = "This event has ended";
+        buttonText = "Event has ended";
 			}
 
       let badge = "";
@@ -243,6 +249,7 @@ class Event extends Component {
             <img className="card-img-top event-image" src={image} alt={event_data[0]} />
           </Link>
 		  {soldOut}
+		  {!sold && freeEvent}
 		  </div>
 					<div className="card-header text-muted event-header ">
 						<img className="float-left" src={makeBlockie(event_data[9])} alt={event_data[9]} />
