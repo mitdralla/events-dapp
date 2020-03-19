@@ -6,6 +6,16 @@ import makeBlockie from 'ethereum-blockies-base64';
 import ipfs from '../utils/ipfs';
 import Web3 from 'web3';
 
+import {
+	EmailShareButton,
+	FacebookShareButton,
+	InstapaperShareButton,
+	LinkedinShareButton,
+	RedditShareButton,
+	TelegramShareButton,
+	TwitterShareButton,
+	WhatsappShareButton,
+} from "react-share";
 
 import Loading from './Loading';
 import EventNotFound from './EventNotFound';
