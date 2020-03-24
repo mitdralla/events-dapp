@@ -9,12 +9,21 @@ import Web3 from 'web3';
 import {
 	EmailShareButton,
 	FacebookShareButton,
-	InstapaperShareButton,
 	LinkedinShareButton,
 	RedditShareButton,
 	TelegramShareButton,
 	TwitterShareButton,
-	WhatsappShareButton,
+	WhatsappShareButton
+} from "react-share";
+
+import {
+	EmailIcon,
+	FacebookIcon,
+	LinkedinIcon,
+	RedditIcon,
+	TelegramIcon,
+	TwitterIcon,
+	WhatsappIcon
 } from "react-share";
 
 import Loading from './Loading';
@@ -241,12 +250,18 @@ class EventPage extends Component {
 		render() {
 		let body = <Loading />;
 
+		
+
 		if (typeof this.props.contracts['OpenEvents'].getEvent[this.event] !== 'undefined') {
 			if (this.props.contracts['OpenEvents'].getEvent[this.event].error) {
 				body = <div className="text-center mt-5"><span role="img" aria-label="unicorn">🦄</span> Hydro Event not found</div>;
 			} else {
 
 				let event_data = this.props.contracts['OpenEvents'].getEvent[this.event].value;
+
+				let shareUrl = window.location;
+				let title = event_data[0];
+
         let event_tit
 				let image = this.getImage();
 				let description = this.getDescription();
@@ -315,8 +330,50 @@ class EventPage extends Component {
            		 {description}
             	<button className="btn btn-dark" onClick={this.inquire} disabled={disabled}><i className="fas fa-ticket-alt"></i>{buttonText}</button>
             	<label className="pl-2 small">{disabledStatus}</label>
-
+				
             	<br />
+				<EmailShareButton
+					url={shareUrl}
+					title={title}>
+            		<EmailIcon size={32} round />
+          		</EmailShareButton>
+
+				  <FacebookShareButton
+					url={shareUrl}
+					title={title}>
+            		<FacebookIcon size={32} round />
+          		</FacebookShareButton>
+
+				  <LinkedinShareButton
+					url={shareUrl}
+					title={title}>
+            		<LinkedinIcon size={32} round />
+          		</LinkedinShareButton>
+
+				  <RedditShareButton
+					url={shareUrl}
+					title={title}>
+            		<RedditIcon size={32} round />
+          		</RedditShareButton>
+
+				  <TelegramShareButton
+					url={shareUrl}
+					title={title}>
+            		<TelegramIcon size={32} round />
+          		</TelegramShareButton>
+
+				  <TwitterShareButton
+					url={shareUrl}
+					title={title}>
+            		<TwitterIcon size={32} round />
+          		</TwitterShareButton>
+
+				<WhatsappShareButton
+					url={shareUrl}
+					title={title}>
+            		<WhatsappIcon size={32} round />
+          		</WhatsappShareButton>
+				<br />
 				{myEvent === true && <Link to ={"/event-stat/"+pagetitle+"/" + this.props.match.params.id}>
 				<button className="btn btn-dark mt-2"><i className="fas fa-chart-bar"></i> View Event Stat</button>
 				</Link>}
