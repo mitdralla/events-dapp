@@ -389,7 +389,6 @@ class EventPage extends Component {
 						<WhatsappIcon size={32} round />
 					</WhatsappShareButton>
 				</div>
-				<br />
 				{myEvent === true && <Link to ={"/event-stat/"+pagetitle+"/" + this.props.match.params.id}>
 				<button className="btn btn-dark mt-2"><i className="fas fa-chart-bar"></i> View Event Stat</button>
 				</Link>}
