@@ -332,47 +332,63 @@ class EventPage extends Component {
             	<label className="pl-2 small">{disabledStatus}</label>
 				
             	<br />
-				<EmailShareButton
-					url={shareUrl}
-					title={title}>
-            		<EmailIcon size={32} round />
-          		</EmailShareButton>
+				<div className="social-share-btns-div">
+					<EmailShareButton
+						url={shareUrl}
+						title={title}
+						resetButtonStyle={false}
+						>
+						<EmailIcon size={32} round />
+					</EmailShareButton>
 
-				  <FacebookShareButton
-					url={shareUrl}
-					title={title}>
-            		<FacebookIcon size={32} round />
-          		</FacebookShareButton>
+					<FacebookShareButton
+						url={shareUrl}
+						title={title}
+						resetButtonStyle={false}
+						>
+						<FacebookIcon size={32} round />
+					</FacebookShareButton>
 
-				  <LinkedinShareButton
-					url={shareUrl}
-					title={title}>
-            		<LinkedinIcon size={32} round />
-          		</LinkedinShareButton>
+					<LinkedinShareButton
+						url={shareUrl}
+						title={title}
+						resetButtonStyle={false}
+						>
+						<LinkedinIcon size={32} round />
+					</LinkedinShareButton>
 
-				  <RedditShareButton
-					url={shareUrl}
-					title={title}>
-            		<RedditIcon size={32} round />
-          		</RedditShareButton>
+					<RedditShareButton
+						url={shareUrl}
+						title={title}
+						resetButtonStyle={false}
+						>
+						<RedditIcon size={32} round />
+					</RedditShareButton>
 
-				  <TelegramShareButton
-					url={shareUrl}
-					title={title}>
-            		<TelegramIcon size={32} round />
-          		</TelegramShareButton>
+					<TelegramShareButton
+						url={shareUrl}
+						title={title}
+						resetButtonStyle={false}
+						>
+						<TelegramIcon size={32} round />
+					</TelegramShareButton>
 
-				  <TwitterShareButton
-					url={shareUrl}
-					title={title}>
-            		<TwitterIcon size={32} round />
-          		</TwitterShareButton>
+					<TwitterShareButton
+						url={shareUrl}
+						title={title}
+						resetButtonStyle={false}
+						>
+						<TwitterIcon size={32} round />
+					</TwitterShareButton>
 
-				<WhatsappShareButton
-					url={shareUrl}
-					title={title}>
-            		<WhatsappIcon size={32} round />
-          		</WhatsappShareButton>
+					<WhatsappShareButton
+						url={shareUrl}
+						title={title}
+						resetButtonStyle={false}
+						>
+						<WhatsappIcon size={32} round />
+					</WhatsappShareButton>
+				</div>
 				<br />
 				{myEvent === true && <Link to ={"/event-stat/"+pagetitle+"/" + this.props.match.params.id}>
 				<button className="btn btn-dark mt-2"><i className="fas fa-chart-bar"></i> View Event Stat</button>
