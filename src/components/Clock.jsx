@@ -52,7 +52,7 @@ class Clock extends Component {
                                              
      else
        return (
-        <div className = "countdown col-lg-5 col md-5">
+        <div className = "countdown col-lg-5 col-md-5">
            <div className="box"> 
                 <h5 className="mt-2 mb-1">This Event Will Close In</h5>
            </div>

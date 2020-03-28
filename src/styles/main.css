@@ -1337,7 +1337,6 @@ border: 2px dashed rgb(209, 177, 59);
   border:1px solid #343a40;
   max-height:90px;
   max-width:360px;
-  min-width:360px;
   float:right;
   position:relative;
   padding-left: 5px;
@@ -1356,7 +1355,6 @@ border: 2px dashed rgb(209, 177, 59);
   border-top-right-radius:5px;
   overflow:hidden;
   background:#333940;
-  
   box-shadow: 0 0 17px rgba(83, 74, 74, 0.5);
   max-height:90px;
   float:right;
@@ -1403,9 +1401,14 @@ justify-content: center;
   box-shadow: 0 0 17px rgba(123, 124, 124, 0.5);
   border-radius:5px;
   border: 1px solid rgb(155, 155, 155);
-  margin:1px;
-  
+  margin:1px; 
  
+}
+
+@media(max-width:650px){
+  .clock p {
+    padding: 7px 6px 7px;
+  }
 }
 
 .clock p:last-child{
