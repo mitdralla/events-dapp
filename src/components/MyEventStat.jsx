@@ -40,11 +40,12 @@ Chart.helpers.extend(Chart.controllers.doughnut.prototype, {
 	var total = chart.config.data.datasets[0].data[0] + chart.config.data.datasets[0].data[1]
 	percentage = numeral(chart.config.data.datasets[0].data[0] *100/total).format('0.00')
 
-	if(!chart.config.data.datasets[0].data[1]){
+	if(chart.config.data.datasets[0].data[1] == -1){
 	var text = 'N/A',
 	textX = Math.round((width - ctx.measureText(text).width) / 2),
 	textY = height / 2.3;
 	}
+
 	else{
 	var text = percentage+'%',
         textX = Math.round((width - ctx.measureText(text).width) / 2),

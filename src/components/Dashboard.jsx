@@ -149,7 +149,7 @@ class Dashboard extends Component {
 						hoverBorderWidth:1,
 						weight:5,
 						borderAlign:'center',
-						data: [soldSeats,totalSeats],
+						data: [soldSeats, totalSeats - soldSeats],
 						}],					
 					  }	
 					}
@@ -167,7 +167,7 @@ class Dashboard extends Component {
               hoverBorderWidth:1,
               weight:5,
               borderAlign:'center',
-              data: [0.1,0],
+              data: [0,-1],
               }],					
               }	
            }
