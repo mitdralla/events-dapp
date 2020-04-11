@@ -90,14 +90,37 @@ class MyTickets extends Component {
 				if (pages > 1) {
 					let links = [];
 
-					for (let i = 1; i <= pages; i++) {
+					if (pages > 5 && currentPage >= 3){
+            			for (let i = currentPage - 2; i <= currentPage + 2 && i<=pages; i++) {
+                 		let active = i === currentPage ? 'active' : '';
+               			links.push(
+                		<li className={"page-item " + active} key={i}>
+							<Link to={"/mytickets/" + i}  className="page-link">{i}</Link>
+                		</li>
+             				 );
+            			} 
+          			}
+
+          			else if (pages > 5 && currentPage < 3){
+           				 for (let i = 1 ; i <= 5 && i<=pages; i++) {
+              			let active = i === currentPage ? 'active' : '';
+              			links.push(
+                			<li className={"page-item " + active} key={i}>
+								<Link to={"/mytickets/" + i}  className="page-link">{i}</Link>
+                			</li>
+              					);
+           					} 
+          				} 
+					else{
+            			for (let i = 1; i <= pages; i++) {
 						let active = i === currentPage ? 'active' : '';
 						links.push(
 							<li className={"page-item " + active} key={i}>
-								<Link to={"/mytickets/" + i} className="page-link">{i}</Link>
+								<Link to={"/mytickets/" + i}  className="page-link">{i}</Link>
 							</li>
-						);
-					}
+							);
+						}
+       				}
 
 					pagination =
 						<nav>

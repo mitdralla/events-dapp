@@ -435,10 +435,9 @@ class MyEventStat extends Component {
     							  y:53,
     							  excavate: false,
 							  }}/>
-							
-							  <p>Event QR-Code</p></p>
+							<p>Event QR-Code</p>
+							</p>
   						
-						 	
 							<p className="col-md-8">Tickets Sold: {event_data[6]} Tickets
 						 	</p> 
 

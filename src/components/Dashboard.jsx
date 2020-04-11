@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Carousel from 'react-bootstrap/Carousel'
 
 import Loading from './Loading';
-import { Bar, Doughnut,HorizontalBar, Chart } from 'react-chartjs-2';
+import { Bar, Doughnut} from 'react-chartjs-2';
 
 import topicsJson from '../config/topics.json';
 
