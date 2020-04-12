@@ -3,7 +3,7 @@
 Demo running on the Rinkeby network: [Hydro Events DApp](https://rinkeby.hydroevents.io/)
 
 ## What is it?
-OpenTicket it is a dApp based on Ethereum Blockchain that provides an ability to create events and sell tickets for events as ERC721 tokens.
+Hydro Events DApp it is a dApp based on Ethereum Blockchain that provides an ability to create events and sell tickets for events as ERC721 tokens.
 
 ## Use Cases
 
