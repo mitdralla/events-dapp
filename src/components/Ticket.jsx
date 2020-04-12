@@ -8,6 +8,26 @@ import ipfs from '../utils/ipfs';
 
 import Loading from './Loading';
 
+import {
+	EmailShareButton,
+	FacebookShareButton,
+	LinkedinShareButton,
+	RedditShareButton,
+	TelegramShareButton,
+	TwitterShareButton,
+	WhatsappShareButton
+} from "react-share";
+
+import {
+	EmailIcon,
+	FacebookIcon,
+	LinkedinIcon,
+	RedditIcon,
+	TelegramIcon,
+	TwitterIcon,
+	WhatsappIcon
+} from "react-share";
+
 var QRCode = require('qrcode.react');
 
 class Ticket extends Component {
@@ -147,7 +167,8 @@ class Ticket extends Component {
       		.split(' ')
       		.map((s) => s.charAt(0).toUpperCase() + s.substring(1))
 			.join(' ');
-			let titleURL = "/event/"+pagetitle+"/" + ticket_data[0];
+			let titleURL = "/event/" + pagetitle+"/" + ticket_data[0];
+			let shareUrl = window.location.origin + titleURL;
 
 			let card_body;
 
@@ -172,23 +193,81 @@ class Ticket extends Component {
 								<span className="pl-2">{date.toLocaleDateString()} at {date.toLocaleTimeString()}</span>
 							</h4>
 							{timeStatus}
-							<h5 className="text-center mb-0">Your seat: {ticket_data[1]}</h5>
-						</div>
-						<img className="card-img event-image" src={image} alt={event_data[0]}  />
-						<div className="card-body">
-							<h5 className="card-title event-title">
-								<Link to={titleURL}>{event_data[0]}</Link>
-							</h5>
-							{description}
-						</div>
-						<div className="card-footer text-muted event-header">
-							<img className="float-left" src={makeBlockie(event_data[9])} alt={event_data[9]} />
-							<p className="small text-truncate mb-2">
-								Creator: <a href={"https://rinkeby.etherscan.io/address/" + event_data[9]} target="_blank">
-									{event_data[9]}
-								</a>
-							</p>
-						</div>
+							<h5 className="text-center">Your seat: {ticket_data[1]}</h5>
+							<h6 className="text-center mb-0">Share with friends: </h6>
+							<div className="text-center social-share-btns-div">
+								<EmailShareButton
+									url={shareUrl}
+									title={rawTitle}
+									resetButtonStyle={false}
+									>
+									<EmailIcon size={32} round />
+								</EmailShareButton>
+
+								<FacebookShareButton
+									url={shareUrl}
+									title={rawTitle}
+									resetButtonStyle={false}
+									>
+									<FacebookIcon size={32} round />
+								</FacebookShareButton>
+
+								<LinkedinShareButton
+									url={shareUrl}
+									title={rawTitle}
+									resetButtonStyle={false}
+									>
+									<LinkedinIcon size={32} round />
+								</LinkedinShareButton>
+
+								<RedditShareButton
+									url={shareUrl}
+									title={rawTitle}
+									resetButtonStyle={false}
+									>
+									<RedditIcon size={32} round />
+								</RedditShareButton>
+
+								<TelegramShareButton
+									url={shareUrl}
+									title={rawTitle}
+									resetButtonStyle={false}
+									>
+									<TelegramIcon size={32} round />
+								</TelegramShareButton>
+
+								<TwitterShareButton
+									url={shareUrl}
+									title={rawTitle}
+									resetButtonStyle={false}
+									>
+									<TwitterIcon size={32} round />
+								</TwitterShareButton>
+
+								<WhatsappShareButton
+									url={shareUrl}
+									title={rawTitle}
+									resetButtonStyle={false}
+									>
+									<WhatsappIcon size={32} round />
+								</WhatsappShareButton>
+										</div>
+									</div>
+									<img className="card-img event-image" src={image} alt={event_data[0]}  />
+									<div className="card-body">
+										<h5 className="card-title event-title">
+											<Link to={titleURL}>{event_data[0]}</Link>
+										</h5>
+										{description}
+									</div>
+									<div className="card-footer text-muted event-header">
+										<img className="float-left" src={makeBlockie(event_data[9])} alt={event_data[9]} />
+										<p className="small text-truncate mb-2">
+											Creator: <a href={"https://rinkeby.etherscan.io/address/" + event_data[9]} target="_blank">
+												{event_data[9]}
+											</a>
+										</p>
+							</div>
 					</div>
 				;
 			} else {
