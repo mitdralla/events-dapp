@@ -26,7 +26,7 @@ class Form extends Component {
 			location: '',
 			time: 0,
 			timeForHumans: null,
-			currency: 'hydro',
+			currency: 'phnx',
 			type: 'auto-boat-and-air',
 			topic: 'appearance-or-signing',
 			limited: false,
@@ -38,18 +38,18 @@ class Form extends Component {
 			fileImg: "/images/event-placeholder.jpg",
 			form_validation: [],
 
-			hydro_market:'',
+			PhoenixDAO_market:'',
 			dateDisplay:new Date(parseInt('1577952000', 10) * 1000)
 		}
 	}
 
 
-	getHydroMarketValue = () => {
+	getPhoenixDAOMarketValue = () => {
 
-		fetch('https://api.coingecko.com/api/v3/simple/price?ids=Hydro&vs_currencies=usd&include_market_cap=true&include_24hr_change=ture&include_last_updated_at=ture')
+		fetch('https://api.coingecko.com/api/v3/simple/price?ids=PHNX&vs_currencies=usd&include_market_cap=true&include_24hr_change=ture&include_last_updated_at=ture')
 			  .then(res => res.json())
-			  .then((data) => {	
-				this.setState({hydro_market: data.hydro})})
+			  .then((data) => {
+				this.setState({PhoenixDAO_market: data.PhoenixDAO})})
 			  .catch(console.log)
 	  }
 
@@ -57,7 +57,7 @@ class Form extends Component {
 		if (typeof date === 'object' && date.isValid()) {
 			this.setState({
 				timeForHumans: date.time,
-				time: date.unix(),		
+				time: date.unix(),
 			},()=>this.setState({dateDisplay: new Date(parseInt(this.state.time, 10) * 1000)}));
 			console.log(date)
 		}
@@ -68,7 +68,7 @@ class Form extends Component {
 			currency: event.target.value,
 			price: '0'
 		},()=>console.log('currency',this.state.currency, this.state.price));
-	
+
 	}
 
 	handleLimited = () => {
@@ -156,13 +156,13 @@ class Form extends Component {
 	}
 
 	priceChange = (event) => {
-		if(this.state.currency === 'hydro'){
+		if(this.state.currency === 'phnx'){
 		let price = this.form.price.value;
 
 		this.setState({
 			price: price
 		},()=>console.log('price', this.state.price));}
-		else{ 
+		else{
 		let price = '0';
 		this.setState({
 			price: price
@@ -215,9 +215,9 @@ class Form extends Component {
 	}
 
 	render() {
-		
+
 		let symbol = 'hydro.png';
-		let currency = this.state.currency === 'eth' ? 'ETH' : 'Hydro';
+		let currency = this.state.currency === 'eth' ? 'ETH' : 'PHNX';
 		let	freeEvent = '';
 			if( this.state.currency === 'eth'){
 			freeEvent = <p className="free_event">Free Event</p>
@@ -263,18 +263,18 @@ class Form extends Component {
 
 		}
 		let date = new Date(parseInt(this.state.date, 10) * 1000);
-		
+
 		let disabled = false;
 		if(this.props.account.length == 0){
 			disabled = true;
-		} 
+		}
 
 		return (
 			<React.Fragment>
 			<div className="row">
 			<div className="col col-xl-8 col-lg-8 col-md-12 col-sm-12">
 			<form>
-				
+
 				<div className="form-group">
 					<label htmlFor="name">Event Name:</label>
 					<input type="text" className={"form-control " + warning.name} id="name" title="Event Name" value={this.state.title} onChange={this.titleChange} autoComplete="off" />
@@ -330,7 +330,7 @@ class Form extends Component {
 				<div className="form-group">
 					<p>Event Options:</p>
 					<div className="custom-control custom-radio custom-control-inline">
-						<input type="radio" id="payment2" name="payment" className="custom-control-input" defaultChecked="true" value="hydro" title="Hydro" onChange={this.handleCurrency} autoComplete="off" />
+						<input type="radio" id="payment2" name="payment" className="custom-control-input" defaultChecked="true" value="phnx" title="PHNX" onChange={this.handleCurrency} autoComplete="off" />
 						<label className="custom-control-label" htmlFor="payment2">Paid Event</label>
 					</div>
 					<div className="custom-control custom-radio custom-control-inline">
@@ -345,15 +345,15 @@ class Form extends Component {
 							<div className="input-group-prepend">
 								<span className="input-group-text"><img src={'/images/'+symbol} className="event_price-image" alt="" /></span>
 							</div>
-							{this.state.currency === 'hydro' &&<input type="number" min="0.00000001" className={"form-control " + warning.price} id="price" title={"Price in Hydro"} ref={(input) => this.form.price = input} autoComplete="off" onChange={this.priceChange} />}
-							{this.state.currency === 'eth' &&<input type="number" min="0.00000001" className={"form-control " + warning.price} id="price" title={"Price in Hydro"} value = {this.state.price} autoComplete="off" onChange={this.priceChange} />}
+							{this.state.currency === 'phnx' &&<input type="number" min="0.00000001" className={"form-control " + warning.price} id="price" title={"Price in PHNX"} ref={(input) => this.form.price = input} autoComplete="off" onChange={this.priceChange} />}
+							{this.state.currency === 'eth' &&<input type="number" min="0.00000001" className={"form-control " + warning.price} id="price" title={"Price in PHNX"} value = {this.state.price} autoComplete="off" onChange={this.priceChange} />}
 
 						</div>
-						{this.state.currency === 'hydro' &&<div className="input-group mb-3">
+						{this.state.currency === 'phnx' &&<div className="input-group mb-3">
 							<div className="input-group-prepend">
 								<span className="input-group-text"><img src={'/images/dollarsign.png'} className="event_price-image" alt="" /></span>
 							</div>
-							 <div className={"form-control " + warning.price} title="Price in USD">{numeral(this.state.price * this.state.hydro_market.usd).format('0,0.00')} </div>
+							 <div className={"form-control " + warning.price} title="Price in USD">{numeral(this.state.price * this.state.PhoenixDAO_market.usd).format('0,0.00')} </div>
 						</div>}
 
 						{this.state.currency === 'eth' &&<div className="input-group mb-3">
@@ -403,14 +403,14 @@ class Form extends Component {
 		{this.state.description}
 	</div>
 	<ul className="list-group list-group-flush">
-		
-		{this.state.currency == 'hydro' &&<li className="list-group-item"><strong>Price:</strong> <img src={'/images/'+symbol} className="event_price-image" alt="" /> {numeral(this.state.price).format('0,0.00')} or <img src={'/images/dollarsign.png'} className="event_price-image"  alt="Event Price" />
-		{numeral(this.state.price * this.state.hydro_market.usd).format('0,0.00')}</li>}
+
+		{this.state.currency == 'phnx' &&<li className="list-group-item"><strong>Price:</strong> <img src={'/images/'+symbol} className="event_price-image" alt="" /> {numeral(this.state.price).format('0,0.00')} or <img src={'/images/dollarsign.png'} className="event_price-image"  alt="Event Price" />
+		{numeral(this.state.price * this.state.PhoenixDAO_market.usd).format('0,0.00')}</li>}
 		{this.state.currency == 'eth' &&<li className="list-group-item"><strong>Price:</strong> <img src={'/images/'+symbol} className="event_price-image" alt="" /> {this.state.price}</li>}
 		<li className="list-group-item"><strong>Date: {this.state.dateDisplay.toLocaleDateString()} at {this.state.dateDisplay.toLocaleTimeString()}</strong>  </li>
 		<li className="list-group-item"><strong>Location:</strong> {this.state.location} </li>
 		<li className="list-group-item"><strong>Tickets Sold:</strong> {seatsForHumans}</li>
-		
+
 	</ul>
 	<div className="card-footer text-muted text-center">
 		<button className="btn btn-dark" disabled=""><i className="fas fa-ticket-alt"></i> Buy Now</button>
@@ -423,9 +423,8 @@ class Form extends Component {
 	}
 
 	componentDidMount(){
-		this.getHydroMarketValue()
+		this.getPhoenixDAOMarketValue()
 	}
 }
 
 export default Form;
-

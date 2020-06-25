@@ -34,24 +34,24 @@ import { Link } from 'react-router-dom';
 
 import CheckUser from './CheckUser';
 import {Open_events_ABI, Open_events_Address} from '../config/OpenEvents';
-import {Hydro_Testnet_Token_ABI, Hydro_Testnet_Token_Address} from '../config/hydrocontract_testnet';
+import {PhoenixDAO_Testnet_Token_ABI, PhoenixDAO_Testnet_Token_Address} from '../config/phoenixDAOcontract_testnet';
 
 let numeral = require('numeral');
 
 const customStyles = {
     ul: {
 		border:'rgb(10, 53, 88)'
-        
+
     },
     li: {
 		border:'rgb(10, 53, 88)'
-       
+
     },
     a: {
 		color: '#007bff',
-		
+
 	},
-	
+
 };
 
 class EventPage extends Component {
@@ -59,23 +59,23 @@ class EventPage extends Component {
     constructor(props, context) {
 		try {
 			var contractConfig = {
-			  contractName: 'Hydro',
+			  contractName: 'PHNX',
 			  web3Contract: new context.drizzle.web3.eth.Contract(
-				Hydro_Testnet_Token_ABI,
-				Hydro_Testnet_Token_Address,
+				PhoenixDAO_Testnet_Token_ABI,
+				PhoenixDAO_Testnet_Token_Address,
 			  ),
 
 			};
 			context.drizzle.addContract(contractConfig);
-			//Importing Hydro/OMG contracts
+			//Importing PhoenixDAO/OMG contracts
 			// **** ENDS UP HERE, SO THIS WORKS
 			/*console.log(
 			  "SUCCESS",
-			  Hydro_Testnet_Token_Address,
+			  PhoenixDAO_Testnet_Token_Address,
 			  context.drizzle.contracts
 			);*/
 		  } catch (e) {
-			//console.log("ERROR", Hydro_Testnet_Token_Address, e);
+			//console.log("ERROR", PhoenixDAO_Testnet_Token_Address, e);
 		  }
       super(props);
 		  this.contracts = context.drizzle.contracts;
@@ -91,7 +91,7 @@ class EventPage extends Component {
 
 			  soldTicket:[],
 			  latestblocks:5000000,
-			  hydro_market:[],
+			  phoenixDAO_market:[],
 
 			  fee:'',
 			  token:'',
@@ -113,7 +113,7 @@ class EventPage extends Component {
 
     if (this._isMounted){
     this.setState({openEvents});
-    this.setState({hydroTransfer:[]});}
+    this.setState({phoenixDAOTransfer:[]});}
 
     const blockNumber = await web3.eth.getBlockNumber();
     if (this._isMounted){
@@ -154,14 +154,14 @@ class EventPage extends Component {
     }),15000)
   }
 
-  //get market cap & dollar value of hydro
-  async getHydroMarketValue(){
+  //get market cap & dollar value of PhoenixDAO
+  async getPhoenixDAOMarketValue(){
 
-	fetch('https://api.coingecko.com/api/v3/simple/price?ids=Hydro&vs_currencies=usd&include_market_cap=true&include_24hr_change=ture&include_last_updated_at=ture')
+	fetch('https://api.coingecko.com/api/v3/simple/price?ids=PHNX&vs_currencies=usd&include_market_cap=true&include_24hr_change=ture&include_last_updated_at=ture')
 		  .then(res => res.json())
 		  .then((data) => {
 			if (this._isMounted){
-			this.setState({hydro_market: data.hydro })}
+			this.setState({PhoenixDAO_market: data.PHNX })}
 		  })
 		  .catch(console.log)
   }
@@ -221,7 +221,7 @@ class EventPage extends Component {
 			token:this.props.contracts['OpenEvents'].getEvent[this.event].value[3],
 			openEvents_address:this.contracts['OpenEvents'].address,
 			buyticket:this.contracts['OpenEvents'].methods.buyTicket(this.props.match.params.id),
-			approve:this.contracts['Hydro'].methods.approve(this.contracts['OpenEvents'].address, this.props.contracts['OpenEvents'].getEvent[this.event].value[2])
+			approve:this.contracts['PHNX'].methods.approve(this.contracts['OpenEvents'].address, this.props.contracts['OpenEvents'].getEvent[this.event].value[2])
 			},()=>{
 				  this.props.inquire(
 					  this.props.id,
@@ -242,7 +242,7 @@ class EventPage extends Component {
     		}
     		return locations;
 		}
-		
+
 		onChangePage(pageTransactions) {
 			this.setState({ pageTransactions });
 		}
@@ -250,11 +250,11 @@ class EventPage extends Component {
 		render() {
 		let body = <Loading />;
 
-		
+
 
 		if (typeof this.props.contracts['OpenEvents'].getEvent[this.event] !== 'undefined') {
 			if (this.props.contracts['OpenEvents'].getEvent[this.event].error) {
-				body = <div className="text-center mt-5"><span role="img" aria-label="unicorn">🦄</span> Hydro Event not found</div>;
+				body = <div className="text-center mt-5"><span role="img" aria-label="unicorn">🦄</span> PhoenixDAO Event not found</div>;
 			} else {
 
 				let event_data = this.props.contracts['OpenEvents'].getEvent[this.event].value;
@@ -298,7 +298,7 @@ class EventPage extends Component {
 				if(event_data[9] === this.account){
 				 myEvent = true;
 				}
-		
+
         let rawCategory = event_data[8];
 
         var categoryRemovedDashes = rawCategory;
@@ -319,7 +319,7 @@ class EventPage extends Component {
       	.join(' ');
 
 		if(this.props.match.params.page === pagetitle){
-		 
+
 				body =
 					<div className="row">
 
@@ -330,7 +330,7 @@ class EventPage extends Component {
            		 {description}
             	<button className="btn btn-dark" onClick={this.inquire} disabled={disabled}><i className="fas fa-ticket-alt"></i>{buttonText}</button>
             	<label className="pl-2 small">{disabledStatus}</label>
-				
+
             	<br />
 				{myEvent === true && <Link to ={"/event-stat/"+pagetitle+"/" + this.props.match.params.id}>
 				<button className="btn btn-dark mt-2"><i className="fas fa-chart-bar"></i> View Event Stat</button>
@@ -392,7 +392,7 @@ class EventPage extends Component {
 						<WhatsappIcon size={32} round />
 					</WhatsappShareButton>
 				</div>
-				
+
            		<br />
            	 	<br />
 
@@ -412,23 +412,23 @@ class EventPage extends Component {
 								<ul className="list-group list-group-flush">
                   					<li className="list-group-item ">{locations}</li>
 									<li className="list-group-item">Category: {category}</li>
-									<li className="list-group-item">Price: <img src={'/images/'+symbol} className="event_price-image"  alt="Event Price" /> {event_data[3]? numeral(price).format('0,0'):'Free'} 
-									{event_data[3] ? ' or ':''} 
-									{event_data[3]? <img src={'/images/dollarsign.png'} className="event_price-image"  alt="Event Price" />:''} 
-									{event_data[3]?numeral(price * this.state.hydro_market.usd).format('0,0.00'):''}</li>
+									<li className="list-group-item">Price: <img src={'/images/'+symbol} className="event_price-image"  alt="Event Price" /> {event_data[3]? numeral(price).format('0,0'):'Free'}
+									{event_data[3] ? ' or ':''}
+									{event_data[3]? <img src={'/images/dollarsign.png'} className="event_price-image"  alt="Event Price" />:''}
+									{event_data[3]?numeral(price * this.state.PhoenixDAO_market.usd).format('0,0.00'):''}</li>
 									<li className="list-group-item">{date.toLocaleDateString()} at {date.toLocaleTimeString()}</li>
 									<li className="list-group-item">Tickets: {event_data[6]}/{max_seats}</li>
 								</ul>
 							</div>
 						{this._isMounted && <Clock deadline = {date} event_unix = {event_data[1]}/>}
-              			<div className="new-transaction-wrapper"><h4 className="transactions">Ticket Purchases</h4> 
+              			<div className="new-transaction-wrapper"><h4 className="transactions">Ticket Purchases</h4>
   						{this.state.load &&<Loading/>}
   						{this.state.pageTransactions.map((sold,index)=>(<p className="sold_text col-md-12" key={index}><img className="float-left blockie" src={makeBlockie(sold.returnValues.buyer)} /> Someone bought 1 ticket for <strong>{event_data[0]}</strong>.</p>))}
   						{!sold &&  <p className="sold_text col-md-12 no-tickets">There are currently no purchases for this ticket.</p>}
   						</div>
 
 						<div className="pagination">
-						<JwPagination items={this.state.soldTicket} onChangePage={this.onChangePage} maxPages={5} pageSize={5} styles={customStyles} />	
+						<JwPagination items={this.state.soldTicket} onChangePage={this.onChangePage} maxPages={5} pageSize={5} styles={customStyles} />
 						</div>
 
 						</div>
@@ -441,12 +441,12 @@ class EventPage extends Component {
 			<hr/>
 			</div>;
 				}
-				
+
 			else {
 				body = <EventNotFound/>;
 				}
 			}
-			
+
 		}
 
 		return (
@@ -455,7 +455,7 @@ class EventPage extends Component {
 				<hr />
 				{body}
 				<hr/>
-				
+
 
 			</div>
 		);
@@ -465,7 +465,7 @@ class EventPage extends Component {
 		this._isMounted = true;
 		this.updateIPFS();
 		this.loadblockhain();
-		this.getHydroMarketValue();
+		this.getPhoenixDAOMarketValue();
 	}
 
 	componentDidUpdate() {

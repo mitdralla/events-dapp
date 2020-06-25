@@ -1,6 +1,6 @@
 import React from 'react';
 
-function HydroLoader() {
+function PhoenixDAOLoader() {
 	return (
 		<div className="wrap">
   <div className="drop-outer">
@@ -10,9 +10,9 @@ function HydroLoader() {
            Q16.5 6.8 25 18
            A12.8 12.8 0 1 1 5 18
            Q13.5 6.8 15 3z" />
-    </svg>  
+    </svg>
   </div>
-  
+
   <div className="ripple ripple-1">
       <svg className="ripple-svg" viewBox="0 0 60 60" version="1.1"
     xmlns="http://www.w3.org/2000/svg">
@@ -35,4 +35,4 @@ function HydroLoader() {
 	);
 }
 
-export default HydroLoader;
+export default PhoenixDAOLoader;

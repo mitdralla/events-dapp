@@ -69,7 +69,7 @@ class App extends Component
 			error:false,
 			afterApprove:false,
 
-			getHydro:'',
+			getPhoenixDAO:'',
 		};
 		this.loadBlockchainData = this.loadBlockchainData.bind(this);
 	}
@@ -140,14 +140,14 @@ async loadBlockchainData() {
 
 	//get value from buyer/from child components
 	inquireBuy = (id,fee,token,openEvents_address,buyticket,approve)=>{
-		if(this.state.account.length !== 0 && this.props.web3.networkId == 4){	
+		if(this.state.account.length !== 0 && this.props.web3.networkId == 4){
 		this.setState({
 			fee:fee,
 			token:token,
 			buyticket:buyticket,
 			approve:approve
 		},()=>this.buy())
-	 } 	 
+	 }
 	 	else {
 		toast(<NotifyNetwork/>, {
 			position: "bottom-right",
@@ -157,7 +157,7 @@ async loadBlockchainData() {
 	 }
 	}
 
-	//TransferFrom when buying with Hydro
+	//TransferFrom when buying with PhoenixDAO
 	//After Approval
 	afterApprove = () => setTimeout(()=>{
 		let txreceiptApproved='';
@@ -204,7 +204,7 @@ async loadBlockchainData() {
 
 	//Buy Function, Notify listen for transaction status.
 	buy = () =>{
-		
+
 		let txreceipt='';
 		let txconfirmed = '';
 		let txerror = '';
@@ -227,7 +227,7 @@ async loadBlockchainData() {
 			 txreceipt = receipt
 			 txconfirmed = confirmationNumber
 			if (txconfirmed == 0 && txreceipt.status == true){
-				
+
 				toast(<NotifyApproveSuccess hash={txreceipt.transactionHash} />,
 					{
 					position: "bottom-right",
@@ -251,7 +251,7 @@ async loadBlockchainData() {
 				this.afterApprove()
 			   }
 	  	  	})
-		
+
 	}
 		else{
 		this.state.buyticket.send({value:this.state.fee, from:this.state.account})
@@ -352,13 +352,13 @@ async loadBlockchainData() {
 	}
 
 
-	getHydro=(getHydro)=>{
+	getPhoenixDAO=(getPhoenixDAO)=>{
 		let txreceipt='';
 		let txconfirmed = '';
 		let txerror = '';
 
-		this.setState({getHydro:getHydro},()=>
-		this.state.getHydro.send({from:this.state.account})
+		this.setState({getPhoenixDAO:getPhoenixDAO},()=>
+		this.state.getPhoenixDAO.send({from:this.state.account})
 
 		.on('transactionHash',(hash)=>{
 			if(hash !==null){
@@ -411,7 +411,7 @@ async loadBlockchainData() {
 		this.setState({error:false,
 			done:false,
 			upload:false},()=>console.log())
-		
+
 	}
 
 	render() {
@@ -452,8 +452,8 @@ async loadBlockchainData() {
 				)
 			{
 			  console.log("web3",process.env.NODE_ENV)
-			  
-			  body = 
+
+			  body =
 			  		<div>
 			  		<Route exact path="/" render={props => <FindEvents  {...props} inquire = {this.inquireBuy}/>} />
 					<Route path="/findevents/:page"  render={props => <FindEvents  {...props} inquire = {this.inquireBuy}/>}  />
@@ -475,7 +475,7 @@ async loadBlockchainData() {
 					<Route path="/how-it-works" component={Home} />
 					</div>
 			}
-		
+
 		else {
 			body =
 				<div>
@@ -495,7 +495,7 @@ async loadBlockchainData() {
 					<Route path="/myevents/:page"  render={props => <MyEvents {...props} inquire = {this.inquireBuy}/>}/>
 					<Route path="/event-stat/:page/:id"  render={props => <MyEventStat {...props} inquire = {this.inquireBuy}/>}/>
 					<Route path="/event/:page/:id"  render={props => <EventPage {...props} inquire = {this.inquireBuy}/>}/>
-					<Route path="/token" render={props => <Token {...props} getHydro = {this.getHydro}/>}/>
+					<Route path="/token" render={props => <Token {...props} getPhoenixDAO = {this.getPhoenixDAO}/>}/>
 					<Route path="/topics" component={TopicsLandingPage} />
 					<Route path="/topic/:page/:id" render={props => <TopicLandingPage {...props} inquire = {this.inquireBuy}/>}/>
 					<Route path="/locations" component={LocationsLandingPage} />
@@ -518,8 +518,8 @@ async loadBlockchainData() {
   						backgroundImage: "url(/images/slides/"+ randomBG + ")",
 						}} />
 						<div className="branding">
-						<img src="/images/hydro.png" className="branding-logo" alt="hydro logo" />
-						<h1>Hydro Events Marketplace</h1>
+						<img src="/images/hydro.png" className="branding-logo" alt="PhoenixDAO logo" />
+						<h1>PhoenixDAO Events Marketplace</h1>
 						<p>What are you going to do?</p>
 						</div>
 						<div className="container-fluid">

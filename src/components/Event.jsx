@@ -3,7 +3,7 @@ import { drizzleConnect } from 'drizzle-react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import makeBlockie from 'ethereum-blockies-base64';
-import {Hydro_Testnet_Token_ABI, Hydro_Testnet_Token_Address} from '../config/hydrocontract_testnet.js';
+import {PhoenixDAO_Testnet_Token_ABI, PhoenixDAO_Testnet_Token_Address} from '../config/phoenixDAOcontract_testnet.js';
 
 import ipfs from '../utils/ipfs';
 
@@ -16,23 +16,23 @@ class Event extends Component {
     constructor(props, context) {
 		try {
 			var contractConfig = {
-			  contractName: 'Hydro',
+			  contractName: 'PHNX',
 			  web3Contract: new context.drizzle.web3.eth.Contract(
-				Hydro_Testnet_Token_ABI,
-				Hydro_Testnet_Token_Address,
+				PhoenixDAO_Testnet_Token_ABI,
+				PhoenixDAO_Testnet_Token_Address,
 			  ),
 
 			};
 			context.drizzle.addContract(contractConfig);
-			//Importing Hydro contracts
+			//Importing PhoenixDAO contracts
 			// **** ENDS UP HERE, SO THIS WORKS
 			/*console.log(
 			  "SUCCESS",
-			  Hydro_Testnet_Token_Address,
+			  PhoenixDAO_Testnet_Token_Address,
 			  context.drizzle.contracts
 			);*/
 		  } catch (e) {
-			//console.log("ERROR", Hydro_Testnet_Token_Address, e);
+			//console.log("ERROR", PhoenixDAO_Testnet_Token_Address, e);
 		  }
 
         super(props);
@@ -46,7 +46,7 @@ class Event extends Component {
 			image: null,
 			ipfs_problem: false,
 			locations:null,
-			hydro_market:[],
+			PhoenixDAO_market:[],
 
 			fee:'',
 			token:'',
@@ -57,14 +57,14 @@ class Event extends Component {
 		this.isCancelled = false;
 	}
 
-	//get market cap & dollar value of hydro
-	async getHydroMarketValue(){
+	//get market cap & dollar value of PHNX
+	async getPhoenixDAOMarketValue(){
 
-		fetch('https://api.coingecko.com/api/v3/simple/price?ids=Hydro&vs_currencies=usd&include_market_cap=true&include_24hr_change=ture&include_last_updated_at=ture')
+		fetch('https://api.coingecko.com/api/v3/simple/price?ids=PHNX&vs_currencies=usd&include_market_cap=true&include_24hr_change=ture&include_last_updated_at=ture')
 			  .then(res => res.json())
 			  .then((data) => {
 				if (this._isMounted){
-				this.setState({hydro_market: data.hydro })}
+				this.setState({PhoenixDAO_market: data.PhoenixDAO })}
 			  })
 			  .catch(console.log)
 	  }
@@ -137,7 +137,7 @@ class Event extends Component {
 			token:this.props.contracts['OpenEvents'].getEvent[this.event].value[3],
 			openEvents_address:this.contracts['OpenEvents'].address,
 			buyticket:this.contracts['OpenEvents'].methods.buyTicket(this.props.id),
-			approve:this.contracts['Hydro'].methods.approve(this.contracts['OpenEvents'].address, this.props.contracts['OpenEvents'].getEvent[this.event].value[2])
+			approve:this.contracts['PHNX'].methods.approve(this.contracts['OpenEvents'].address, this.props.contracts['OpenEvents'].getEvent[this.event].value[2])
 			},()=>{
 				  this.props.inquire(
 					  this.props.id,
@@ -215,7 +215,7 @@ class Event extends Component {
       if (event_data[6] >= 2) {
         badge = <img src="/images/fire.png" className="event_badge-hot" alt="Hot Icon" />;
 	  }
-	  
+
       let rawCategory = event_data[8];
 
       var categoryRemovedDashes = rawCategory;
@@ -241,7 +241,7 @@ class Event extends Component {
 
 	  let titleURL = "/event/"+pagetitle+"/" + this.props.id;
 	  let myEventStatURL = "/event-stat/"+pagetitle+"/" + this.props.id;
-	  
+
 			body =
 				<div className="card">
 					<div className="image_wrapper">
@@ -268,9 +268,9 @@ class Event extends Component {
 						<li className="list-group-item ">{locations}</li>
 						<li className="list-group-item"><strong>Category:</strong> <a href={topicURL}>{category}</a></li>
 						<li className="list-group-item"><strong>Price:</strong> <img src={'/images/'+symbol} className="event_price-image" alt="Event Price Icon" /> {event_data[3] ? '' + numeral(price).format('0,0'): '' + price}
-						{event_data[3] ? ' or ':''} 
-						{event_data[3]? <img src={'/images/dollarsign.png'} className="event_price-image"  alt="Event Price" />:''} 
-						{event_data[3]?numeral(price * this.state.hydro_market.usd).format('0,0.00'):''}</li>
+						{event_data[3] ? ' or ':''}
+						{event_data[3]? <img src={'/images/dollarsign.png'} className="event_price-image"  alt="Event Price" />:''}
+						{event_data[3]?numeral(price * this.state.PhoenixDAO_market.usd).format('0,0.00'):''}</li>
 						<li className="list-group-item"><strong>Date:</strong> {date.toLocaleDateString()} at {date.toLocaleTimeString()}</li>
 						<li className="list-group-item"><strong>Tickets Sold:</strong> {event_data[6]}/{max_seats}</li>
 					</ul>
@@ -292,7 +292,7 @@ class Event extends Component {
 	componentDidMount() {
 		this._isMounted = true;
 		this.updateIPFS();
-		this.getHydroMarketValue();
+		this.getPhoenixDAOMarketValue();
 
 	}
 

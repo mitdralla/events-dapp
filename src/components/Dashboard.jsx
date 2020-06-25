@@ -16,12 +16,12 @@ class Dashboard extends Component {
   constructor(props, context) {
       super(props);
       this.state = {
-         hydro_market:[],
-         
+         PhoenixDAO_market:[],
+
     }
 	    this.contracts = context.drizzle.contracts;
         this.events = this.contracts['OpenEvents'].methods.eventsOf.cacheCall(this.props.accounts[0]);
-        
+
 	    this.perPage = 6;
       this.topicClick = this.topicClick.bind(this);
 	}
@@ -51,53 +51,53 @@ class Dashboard extends Component {
     this.props.history.push(myEventStatURL);
   }
 
-  async getHydroMarketValue(){
+  async getPhoenixDAOMarketValue(){
 
-		fetch('https://api.coingecko.com/api/v3/simple/price?ids=Hydro&vs_currencies=usd&include_market_cap=true&include_24hr_change=ture&include_last_updated_at=ture')
+		fetch('https://api.coingecko.com/api/v3/simple/price?ids=PHNX&vs_currencies=usd&include_market_cap=true&include_24hr_change=ture&include_last_updated_at=ture')
 			  .then(res => res.json())
 			  .then((data) => {
 				if (this._isMounted){
-				this.setState({hydro_market: data.hydro })}
+				this.setState({PhoenixDAO_market: data.PhoenixDAO })}
 			  })
 			  .catch(console.log)
 	  }
-  
+
 
 	render() {
         let body = '';
-    
+
 		if (typeof this.props.contracts['OpenEvents'].eventsOf[this.events] !== 'undefined') {
 
             let eventCount = this.props.contracts['OpenEvents'].eventsOf[this.events].value;
             let eventCache = [];
             let eventDetails = [];
             let check = [5,1,1];
- 
-            for(var i = 0; i < eventCount.length;i++){ 
+
+            for(var i = 0; i < eventCount.length;i++){
               eventCache.push(this.contracts['OpenEvents'].methods.getEvent.cacheCall(eventCount[i]))
               if (typeof this.props.contracts['OpenEvents'].getEvent[eventCache[i]] !== 'undefined' && this.props.contracts['OpenEvents'].getEvent[eventCache[i]].value) {
                 eventDetails.push({result:this.props.contracts['OpenEvents'].getEvent[eventCache[i]].value,id:eventCount[i]})
-               
-              } 
+
+              }
             }
 
             //console.log(eventDetails)
             let sortBySold= eventDetails.concat().sort((a,b)=> b.result.sold - a.result.sold);
-            let hydroRevenue = eventDetails.filter((event_token)=>event_token.result.token == true)
+            let phoenixDAORevenue = eventDetails.filter((event_token)=>event_token.result.token == true)
             let limited = eventDetails.filter((event_seats)=>event_seats.result.limited == true)
-            
-            let top_hydroRevenue = hydroRevenue.concat().sort((a,b)=> 
+
+            let top_PhoenixDAORevenue = phoenixDAORevenue.concat().sort((a,b)=>
             parseInt(b.result.sold * this.context.drizzle.web3.utils.fromWei(b.result.price)) -
             parseInt(a.result.sold * this.context.drizzle.web3.utils.fromWei(a.result.price)));
-           
+
             let sortSold = [];
             let sortTopRevenue = [];
             let toplist = true;
-            
+
             if(sortBySold.length <=0){
               toplist = false;
             }
-           
+
             if(sortBySold.length > 5){
             for(var x = 0; x < 5; x++){
               sortSold.push(sortBySold[x])
@@ -108,23 +108,23 @@ class Dashboard extends Component {
               }
             };
 
-            /*Get Top Hydro Revenue*/
-          
-            if(top_hydroRevenue.length > 5){
+            /*Get Top PhoenixDAO Revenue*/
+
+            if(top_PhoenixDAORevenue.length > 5){
             for(var x = 0; x < 5; x++){
-              sortTopRevenue.push(top_hydroRevenue[x])
+              sortTopRevenue.push(top_PhoenixDAORevenue[x])
             }
             }else{
-              for(var x = 0; x < top_hydroRevenue.length; x++){
-                sortTopRevenue.push(top_hydroRevenue[x])
+              for(var x = 0; x < top_PhoenixDAORevenue.length; x++){
+                sortTopRevenue.push(top_PhoenixDAORevenue[x])
               }
             }
 
             let totalSold = sortBySold.reduce((accumulator, currentValue)=>accumulator + parseInt(currentValue.result.sold),0)
-            let revenue = hydroRevenue.reduce((accumulator, currentValue)=>accumulator + parseInt(currentValue.result.sold * this.context.drizzle.web3.utils.fromWei(currentValue.result.price)),0)
+            let revenue = phoenixDAORevenue.reduce((accumulator, currentValue)=>accumulator + parseInt(currentValue.result.sold * this.context.drizzle.web3.utils.fromWei(currentValue.result.price)),0)
             let soldSeats = limited.reduce((accumulator, currentValue)=>accumulator + parseInt(currentValue.result.sold),0)
             let totalSeats = limited.reduce((accumulator, currentValue)=>accumulator + parseInt(currentValue.result.seats),0)
-         
+
         // Doughnut Chart Data
 		  	this.DoughnutData= (canvas) => {
 				const ctx = canvas.getContext("2d")
@@ -139,7 +139,7 @@ class Dashboard extends Component {
 				return {
 					labels: ['Sold Tickets','Unsold Tickets'],
 					datasets: [{
-						label:'Hydro',
+						label:'PHNX',
 						fontColor:'black',
 						backgroundColor: [gradient2,gradient,gradient],
 						borderColor: 'rgb(228, 83, 138)',
@@ -150,14 +150,14 @@ class Dashboard extends Component {
 						weight:5,
 						borderAlign:'center',
 						data: [soldSeats, totalSeats - soldSeats],
-						}],					
-					  }	
+						}],
+					  }
 					}
          else{
           return {
             labels: ['Sold Tickets','Unsold Tickets'],
             datasets: [{
-              label:'Hydro',
+              label:'PHNX',
               fontColor:'black',
               backgroundColor: [gradient2,gradient,gradient],
               borderColor: 'rgb(228, 83, 138)',
@@ -168,8 +168,8 @@ class Dashboard extends Component {
               weight:5,
               borderAlign:'center',
               data: [0,-1],
-              }],					
-              }	
+              }],
+              }
            }
           }
 
@@ -178,7 +178,7 @@ class Dashboard extends Component {
             const gradient = ctx.createLinearGradient(800,200,500,800,200);
             gradient.addColorStop(1, 'blue');
             gradient.addColorStop(0, 'white');
-    
+
             const gradient2 = ctx.createLinearGradient(100,120,100,100,200);
             gradient2.addColorStop(1, 'rgb(104, 160, 206)');
             gradient2.addColorStop(0, 'rgb(100, 101, 102)');
@@ -186,7 +186,7 @@ class Dashboard extends Component {
             return {
               labels: sortTopRevenue.map(event=>[event.result.name]),
               datasets: [{
-                label:'Hydro',
+                label:'PHNX',
                 fontColor:'black',
                 backgroundColor: [gradient,gradient,gradient,gradient,gradient],
                 borderColor: 'white',
@@ -197,14 +197,14 @@ class Dashboard extends Component {
                 weight:5,
                 borderAlign:'center',
                 data:sortTopRevenue.map(event=>parseInt(event.result.sold * this.context.drizzle.web3.utils.fromWei(event.result.price))),
-                }],					
-                }	
+                }],
+                }
               }
              else{
               return {
                 labels: ['You','Havent','Created','Any','Event'],
                 datasets: [{
-                  label:'Hydro',
+                  label:'PHNX',
                   fontColor:'black',
                   backgroundColor: [gradient,gradient,gradient,gradient,gradient],
                   borderColor: 'rgb(228, 83, 138)',
@@ -215,50 +215,50 @@ class Dashboard extends Component {
                   weight:5,
                   borderAlign:'center',
                   data: [10,5,10,5,10],
-                  }],					
-                  }	
+                  }],
+                  }
                }
               }
-              
+
             body = <div className="retract-page-inner-wrapper-alternative">
 
             <br /><br /><br />
-      
+
             <div>
             <h2><i class="fas fa-chalkboard-teacher"></i> Dashboard</h2>
             <hr />
             <div className="row user-list mt-4">
            <div className="col-lg-4 pb-4 d-flex align-items-stretch" >
-              <div className="dashboard-card">   
+              <div className="dashboard-card">
               <div className="dashboard-caption" style={{ backgroundImage: "url(/images/ethorange.png)"}}>
                   <h3><i class="fas fa-user-astronaut"></i> User Account</h3>
                   <img className="dashboard-img" src={'/images/ethereum.png'} ></img>
                   <p className="mt-2" title = {this.props.accounts[0]}>{this.props.accounts[0].slice(0,15) + '...'}</p>
-                  </div>  
+                  </div>
               </div>
-              </div> 
-      
+              </div>
+
               <div className="col-lg-4 pb-4 d-flex align-items-stretch" >
-              <div className="dashboard-card">   
+              <div className="dashboard-card">
               <div className="dashboard-caption"style={{ backgroundImage: "url(/images/topics/" + topicsJson[21].image +")"}}>
               <h3><i className="fa fa-edit"></i> Total Number Of Created Events</h3>
                   <h4 className="dashboard-data">{eventCount.length}</h4>
                   <p className="dashboard-footer">Events</p>
-                  </div>  
+                  </div>
               </div>
               </div>
-      
+
               <div className="col-lg-4 pb-4 d-flex align-items-stretch" >
-              <div className="dashboard-card">   
+              <div className="dashboard-card">
               <div className="dashboard-caption" style={{ backgroundImage: "url(/images/topics/" + topicsJson[12].image +")"}}>
               <h3><i class="fas fa-ticket-alt" ></i> Total Number Of Tickets Sold</h3>
                   <h4 className="dashboard-data">{totalSold}</h4>
                   <p className="dashboard-footer">Tickets</p></div>
               </div>
               </div>
-      
+
               <div className="col-lg-4 pb-4 d-flex align-items-stretch" >
-              <div className="dashboard-events-card">   
+              <div className="dashboard-events-card">
               <div className="dashboard-events-caption" style={{ backgroundImage: "url(/images/topics/" + topicsJson[17].image +")"}}>
               <h3 title="Top 5 Events Based On Ticket Sale"><i class="fas fa-trophy"></i> Your Top 5 Events</h3>
               </div>
@@ -272,19 +272,19 @@ class Dashboard extends Component {
               {sortSold.map((event,index)=>( <h4 key = {index} title={event.result.sold + " Tickets Sold"} onClick={()=>this.goTo(event.id, event.result.name)}>
                 {event.result.sold}</h4>))}
               </div>
-              </div> } 
+              </div> }
 
               {!toplist &&<div className="dashboard-events">
               <h4 className="dashboard-no-event mt-5">You haven't created an event yet</h4>
               <Link to="/createevent">Try to create one.</Link>
-              </div> }   
+              </div> }
               </div>
               </div>
 
               <div className="col-lg-4 pb-4 d-flex align-items-stretch" >
-              <div className="dashboard-events-card">   
+              <div className="dashboard-events-card">
               <div className="dashboard-events-caption" style={{ backgroundImage: "url(/images/topics/" + topicsJson[17].image +")"}}>
-              <h3 title="Top 5 Events Based On Hydro Revenue"><i class="fas fa-award"></i> Your Top 5 Events</h3>
+              <h3 title="Top 5 Events Based On PHNX Revenue"><i class="fas fa-award"></i> Your Top 5 Events</h3>
               </div>
               <div className="dashboard-bar">
               <Bar className ="bars"
@@ -294,38 +294,38 @@ class Dashboard extends Component {
                 title:{
                 display: true,
                 position:"top",
-                text: 'Based On Hydro Revenue',
+                text: 'Based On PHNX Revenue',
                 fontSize: 16,
                 lineHeight:1.5,
                 padding:1,
-                fontColor:'white',                   
-                },    
+                fontColor:'white',
+                },
                 scales: {
                   yAxes: [{ticks: {beginAtZero:true,fontSize:10,fontColor:'white',fontStyle: '600',precision:0 }}],
                   xAxes: [{ticks: {beginAtZero:true,fontSize:12,fontColor:'white', fontStyle: '600' },barPercentage:1,display: false}]
                 },
                 elements:{
                 rectangle:{borderSkipped:'bottom',}
-                }  
+                }
                 }} data={this.BarData} />
-              </div> 
+              </div>
 
-              
+
               </div>
               </div>
-              
+
               <div className="col-lg-4 pb-4 d-flex align-items-stretch" >
-              <div className="dashboard-events-card">   
+              <div className="dashboard-events-card">
               <div className="dashboard-events-caption" style={{ backgroundImage: "url(/images/topics/" + topicsJson[12].image +")"}}>
               <h3 title="Overall Limited Tickets Sold"><i class="fas fa-ticket-alt"></i> Sold Tickets (Limited) </h3>
               </div>
               <div className="dashboard-chart">
               <div className="mt-5">
-						  <Doughnut data={this.DoughnutData} 
+						  <Doughnut data={this.DoughnutData}
     						options={{
 							  responsive:true,
 							  maintainAspectRatio:false,
-							  cutoutPercentage: 62, 
+							  cutoutPercentage: 62,
         					title:{
        						display: true,
         					position:"bottom",
@@ -333,62 +333,62 @@ class Dashboard extends Component {
         					fontSize: 16,
         					lineHeight:1.5,
         					padding:1.6,
-							    fontColor:'white',   
-							    }, 
+							    fontColor:'white',
+							    },
 							  legend: {
 							  	display:false,
 								  labels: {
 									fontColor: 'white',
-									fontSize:11	
+									fontSize:11
 								},
 							  tooltips: {
            				enabled: true
         					},
 							  }
-    					}}/> 
+    					}}/>
 
 						  </div>
-              </div>   
+              </div>
               </div>
               </div>
 
               <div className="col-lg-4 pb-4 d-flex align-items-stretch" >
-              <div className="dashboard-card">   
+              <div className="dashboard-card">
               <div className="dashboard-caption" style={{ backgroundImage: "url(/images/snowflake2.jpg)"}}>
-                  <h3><img src={'/images/hydro.png'} className="dashboard-hydro" alt="" />  Total Hydro Revenue </h3>
+                  <h3><img src={'/images/hydro.png'} className="dashboard-hydro" alt="" />  Total PHNX Revenue </h3>
                   <h4 className="dashboard-data">{numeral(revenue).format('0,0.00')}</h4>
-                  <p className="dashboard-footer">Hydro</p></div>
+                  <p className="dashboard-footer">PHNX</p></div>
               </div>
               </div>
 
               <div className="col-lg-4 pb-4 d-flex align-items-stretch" >
-              <div className="dashboard-card">   
+              <div className="dashboard-card">
               <div className="dashboard-caption" style={{ backgroundImage: "url(/images/topics/" + topicsJson[20].image +")"}}>
                   <h3><i className="fas fa-hand-holding-usd"></i>  Total Dollar Revenue </h3>
-                  <h4 className="dashboard-data">${numeral(revenue * this.state.hydro_market.usd).format('0,0.00')}</h4>
+                  <h4 className="dashboard-data">${numeral(revenue * this.state.PhoenixDAO_market.usd).format('0,0.00')}</h4>
                   <p className="dashboard-footer">USD</p></div>
               </div>
               </div>
 
 
               <div className="col-lg-4 pb-4 d-flex align-items-stretch" >
-              <div className="dashboard-card">  
+              <div className="dashboard-card">
               <div className="dashboard-caption" style={{ backgroundImage: "url(/images/uniswaps.jpg)"}}>
-              <a href={'https://uniswap.exchange/swap'} target ='blank' className="mt-10"> 
-              <p className="dashboard-uniswap"><i class="fas fa-sync"></i> BUY HYDRO WITH UNISWAP</p></a> 
-              </div>               
+              <a href={'https://uniswap.exchange/swap'} target ='blank' className="mt-10">
+              <p className="dashboard-uniswap"><i class="fas fa-sync"></i> BUY PHNX WITH UNISWAP</p></a>
               </div>
               </div>
-            
+              </div>
+
             </div>
             <hr/>
- 
+
             </div>
           </div>
             }
-            
-            
-		
+
+
+
 
 		return(
       <React.Fragment>
@@ -435,14 +435,14 @@ class Dashboard extends Component {
           </Carousel.Item>
         </Carousel>
         {body}
-	    
+
 
     </React.Fragment>
 		);
   }
   componentDidMount() {
 		this._isMounted = true;
-		this.getHydroMarketValue();
+		this.getPhoenixDAOMarketValue();
 
 	}
 }

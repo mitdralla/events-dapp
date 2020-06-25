@@ -6,7 +6,7 @@ import Carousel from 'react-bootstrap/Carousel'
 
 // Import dApp Components
 import Loading from './Loading';
-import HydroLoader from './HydroLoader';
+import PhoenixDAOLoader from './PhoenixDAOLoader';
 
 import Event from './Event';
 import Web3 from 'web3';
@@ -86,7 +86,7 @@ class PastEvents extends Component
     this.setState({loading:true})
 
     //var newest = events.filter((activeEvents)=>activeEvents.returnValues.time <=(dateNow));
-    var newsort= events.concat().sort((a,b)=> 
+    var newsort= events.concat().sort((a,b)=>
     b.blockNumber- a.blockNumber).filter((pastEvents=>
     pastEvents.returnValues.time <=(dateNow)));
 
@@ -144,13 +144,13 @@ class PastEvents extends Component
 
 	render()
   {
-		let body = <HydroLoader />;
+		let body = <PhoenixDAOLoader />;
 
 		if (typeof this.props.contracts['OpenEvents'].getEventsCount[this.eventCount] !== 'undefined' && this.state.active_length !== 'undefined' && this.state.loading !==true) {
       //let count = Number(this.props.contracts['OpenEvents'].getEventsCount[this.eventCount].value);
       let count = this.state.past_length
       if(this.state.loading){
-        body = <HydroLoader/>
+        body = <PhoenixDAOLoader/>
       }
 			else if (count === 0 && !this.state.loading) {
 				body = <p className="text-center not-found"><span role="img" aria-label="thinking">🤔</span>&nbsp;No events found. <a href="/createevent">Try creating one.</a></p>;
@@ -185,7 +185,7 @@ class PastEvents extends Component
                   <Link to={"/pastevents/" + i} className="page-link">{i}</Link>
                 </li>
               );
-            } 
+            }
           }
 
           else if (pages > 5 && currentPage < 3){
@@ -196,8 +196,8 @@ class PastEvents extends Component
                   <Link to={"/pastevents/" + i} className="page-link">{i}</Link>
                 </li>
               );
-            } 
-          } 
+            }
+          }
 					else{
             for (let i = 1; i <= pages; i++) {
 						let active = i === currentPage ? 'active' : '';
@@ -287,7 +287,7 @@ class PastEvents extends Component
 
       <div>
         <div className="row row_mobile">
-        <h2 className="col-lg-10 col-md-9 col-sm-8"><i className="fa fa-calendar-alt"></i> Past Events</h2> 
+        <h2 className="col-lg-10 col-md-9 col-sm-8"><i className="fa fa-calendar-alt"></i> Past Events</h2>
         <button className="btn sort_button col-lg-2 col-md-3 col-sm-3" value={this.state.value} onClick={this.toggleSortDate} onChange={this.toggleSortDate.bind(this)}>{this.state.isOldestFirst ?'Sort: Oldest':'Sort: Newest'}</button>
         </div>
           <hr />

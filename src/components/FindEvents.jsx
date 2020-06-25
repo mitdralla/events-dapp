@@ -6,7 +6,7 @@ import Carousel from 'react-bootstrap/Carousel'
 
 // Import dApp Components
 import Loading from './Loading';
-import HydroLoader from './HydroLoader';
+import PhoenixDAOLoader from './PhoenixDAOLoader';
 import Event from './Event';
 import Web3 from 'web3';
 import {Open_events_ABI, Open_events_Address} from '../config/OpenEvents';
@@ -71,35 +71,35 @@ class FindEvents extends Component
 
   //Loads Blockhain Data,
   async loadBlockchain(){
-   
+
     const web3 = new Web3(new Web3.providers.WebsocketProvider('wss://rinkeby.infura.io/ws/v3/72e114745bbf4822b987489c119f858b'));
     const openEvents =  new web3.eth.Contract(Open_events_ABI, Open_events_Address);
-    
+
     if (this._isMounted){
     this.setState({openEvents});}
     const dateTime = Date.now();
     const dateNow = Math.floor(dateTime / 1000);
-    
+
     const blockNumber = await web3.eth.getBlockNumber();
     if (this._isMounted){
     this.setState({blocks:blockNumber - 50000});
     this.setState({latestblocks:blockNumber - 1});
     this.setState({Events_Blockchain:[]});}
-  
+
     openEvents.getPastEvents("CreatedEvent",{fromBlock: 5000000, toBlock:this.state.latestblocks})
     .then(events=>{
     if (this._isMounted){
     this.setState({loading:true})
 
-    var newsort= events.concat().sort((a,b)=> 
+    var newsort= events.concat().sort((a,b)=>
     b.blockNumber- a.blockNumber).filter((activeEvents=>
     activeEvents.returnValues.time >=(dateNow)));
-    
+
     this.setState({Events_Blockchain:newsort,event_copy:newsort});
     this.setState({active_length:this.state.Events_Blockchain.length})
-    this.setState({loading:false});   
+    this.setState({loading:false});
     }
-     
+
     }).catch((err)=>console.error(err))
 
 
@@ -162,13 +162,13 @@ class FindEvents extends Component
 
 	render()
   {
-		let body = <HydroLoader />;
+		let body = <PhoenixDAOLoader />;
 
 		if (typeof this.props.contracts['OpenEvents'].getEventsCount[this.eventCount] !== 'undefined' && this.state.active_length !== 'undefined') {
       //let count = Number(this.props.contracts['OpenEvents'].getEventsCount[this.eventCount].value);
       let count = this.state.Events_Blockchain.length
       if(this.state.loading){
-        body = <HydroLoader/>
+        body = <PhoenixDAOLoader/>
       }
 			else if (count === 0 && !this.state.loading) {
 				body = <p className="text-center not-found"><span role="img" aria-label="thinking">🤔</span>&nbsp;No events found. <a href="/createevent">Try creating one.</a></p>;
@@ -194,7 +194,7 @@ class FindEvents extends Component
 				let pagination = '';
 				if (pages > 1) {
           let links = [];
-          
+
           if (pages > 5 && currentPage >= 3){
             for (let i = currentPage - 2; i <= currentPage + 2 && i<=pages; i++) {
                  let active = i === currentPage ? 'active' : '';
@@ -203,7 +203,7 @@ class FindEvents extends Component
 								<Link to={"/findevents/" + i}  className="page-link">{i}</Link>
                 </li>
               );
-            } 
+            }
           }
 
           else if (pages > 5 && currentPage < 3){
@@ -214,8 +214,8 @@ class FindEvents extends Component
 								<Link to={"/findevents/" + i}  className="page-link">{i}</Link>
                 </li>
               );
-            } 
-          } 
+            }
+          }
 					else{
             for (let i = 1; i <= pages; i++) {
 						let active = i === currentPage ? 'active' : '';

@@ -14,7 +14,7 @@ import JwPagination from 'jw-react-pagination';
 
 import CheckUser from './CheckUser';
 import {Open_events_ABI, Open_events_Address} from '../config/OpenEvents';
-import {Hydro_Testnet_Token_ABI, Hydro_Testnet_Token_Address} from '../config/hydrocontract_testnet';
+import {PhoenixDAO_Testnet_Token_ABI, PhoenixDAO_Testnet_Token_Address} from '../config/phoenixDAOcontract_testnet';
 
 //Numerical Setting
 let numeral = require('numeral');
@@ -26,7 +26,7 @@ var originalDoughnutDraw = Chart.controllers.doughnut.prototype.draw;
 Chart.helpers.extend(Chart.controllers.doughnut.prototype, {
   draw: function() {
     originalDoughnutDraw.apply(this, arguments);
-    
+
     var chart = this.chart;
     var width = chart.chart.width,
         height = chart.chart.height,
@@ -50,7 +50,7 @@ Chart.helpers.extend(Chart.controllers.doughnut.prototype, {
 	var text = percentage+'%',
         textX = Math.round((width - ctx.measureText(text).width) / 2),
 		textY = height / 2.3;
-	}		
+	}
     ctx.fillText(text, textX, textY);
   }
 });
@@ -59,17 +59,17 @@ Chart.helpers.extend(Chart.controllers.doughnut.prototype, {
 const customStyles = {
     ul: {
 		border:'rgb(10, 53, 88)'
-        
+
     },
     li: {
 		border:'rgb(10, 53, 88)'
-       
+
     },
     a: {
 		color: '#007bff',
-		
+
 	},
-	
+
 };
 
 class MyEventStat extends Component {
@@ -77,17 +77,17 @@ class MyEventStat extends Component {
     constructor(props, context) {
 		try {
 			var contractConfig = {
-			  contractName: 'Hydro',
+			  contractName: 'PHNX',
 			  web3Contract: new context.drizzle.web3.eth.Contract(
-				Hydro_Testnet_Token_ABI,
-				Hydro_Testnet_Token_Address,
+				PhoenixDAO_Testnet_Token_ABI,
+				PhoenixDAO_Testnet_Token_Address,
 			  ),
 
 			};
 			context.drizzle.addContract(contractConfig);
-			
+
 		  } catch (e) {
-			//console.log("ERROR", Hydro_Testnet_Token_Address, e);
+			//console.log("ERROR", PhoenixDAO_Testnet_Token_Address, e);
 		  }
       super(props);
 		  this.contracts = context.drizzle.contracts;
@@ -103,7 +103,7 @@ class MyEventStat extends Component {
 
 			  soldTicket:[],
 			  latestblocks:5000000,
-			  hydro_market:[],
+			  phoenixDAO_market:[],
 
 			  fee:'',
 			  token:'',
@@ -125,7 +125,7 @@ class MyEventStat extends Component {
 
     if (this._isMounted){
     this.setState({openEvents});
-    this.setState({hydroTransfer:[]});}
+    this.setState({phoenixDAOTransfer:[]});}
 
     const blockNumber = await web3.eth.getBlockNumber();
     if (this._isMounted){
@@ -165,14 +165,14 @@ class MyEventStat extends Component {
     }),15000)
   }
 
-  //get market cap & dollar value of hydro
-  async getHydroMarketValue(){
+  //get market cap & dollar value of PhoenixDAO
+  async getPhoenixDAOMarketValue(){
 
-	fetch('https://api.coingecko.com/api/v3/simple/price?ids=Hydro&vs_currencies=usd&include_market_cap=true&include_24hr_change=ture&include_last_updated_at=ture')
+	fetch('https://api.coingecko.com/api/v3/simple/price?ids=PHNX&vs_currencies=usd&include_market_cap=true&include_24hr_change=ture&include_last_updated_at=ture')
 		  .then(res => res.json())
 		  .then((data) => {
 			if (this._isMounted){
-			this.setState({hydro_market: data.hydro })}
+			this.setState({phoenixDAO_market: data.PHNX })}
 		  })
 		  .catch(console.log)
   }
@@ -231,7 +231,7 @@ class MyEventStat extends Component {
 			token:this.props.contracts['OpenEvents'].getEvent[this.event].value[3],
 			openEvents_address:this.contracts['OpenEvents'].address,
 			buyticket:this.contracts['OpenEvents'].methods.buyTicket(this.props.match.params.id),
-			approve:this.contracts['Hydro'].methods.approve(this.contracts['OpenEvents'].address, this.props.contracts['OpenEvents'].getEvent[this.event].value[2])
+			approve:this.contracts['PHNX'].methods.approve(this.contracts['OpenEvents'].address, this.props.contracts['OpenEvents'].getEvent[this.event].value[2])
 			},()=>{
 				  this.props.inquire(
 					  this.props.id,
@@ -253,7 +253,7 @@ class MyEventStat extends Component {
     	return locations;
 	}
 
-	//Pagination Change Page	
+	//Pagination Change Page
 	onChangePage(pageTransactions) {
 		this.setState({ pageTransactions });
 		}
@@ -263,7 +263,7 @@ class MyEventStat extends Component {
 
 		if (typeof this.props.contracts['OpenEvents'].getEvent[this.event] !== 'undefined') {
 			if (this.props.contracts['OpenEvents'].getEvent[this.event].error) {
-				body = <div className="text-center mt-5"><span role="img" aria-label="unicorn">🦄</span> Hydro Event not found</div>;
+				body = <div className="text-center mt-5"><span role="img" aria-label="unicorn">🦄</span> PhoenixDAO Event not found</div>;
 			} else {
 
 				let event_data = this.props.contracts['OpenEvents'].getEvent[this.event].value;
@@ -299,9 +299,9 @@ class MyEventStat extends Component {
 				}
 
 				let current_revenue = price * event_data[6]
-			
+
 				let unsold_revenue = numeral(price * (max_seats - event_data[6])).format('0,0.00');
-		
+
        			let rawCategory = event_data[8];
 
         		var categoryRemovedDashes = rawCategory;
@@ -316,13 +316,13 @@ class MyEventStat extends Component {
 				let rawTitle = event_data[0];
       			var titleRemovedSpaces = rawTitle;
 	  			titleRemovedSpaces = titleRemovedSpaces.replace(/ /g, '-');
-		
+
       			var pagetitle = titleRemovedSpaces.toLowerCase()
       			.split(' ')
       			.map((s) => s.charAt(0).toUpperCase() + s.substring(1))
 		 		 .join(' ');
-				let titleURL = "https://rinkeby.hydroevents.io/events/" + pagetitle +"/" + this.props.match.params.id; 
-				//let titleURL = "https://rinkeby.hydroevents.io/event/" + this.props.match.params.id; 
+				let titleURL = "https://rinkeby.phoenixevents.io/events/" + pagetitle +"/" + this.props.match.params.id;
+				//let titleURL = "https://rinkeby.phoenixevents.io/event/" + this.props.match.params.id;
 				console.log(titleURL)
 
 		if (this.props.accounts[0] !== event_data[9]){
@@ -345,11 +345,11 @@ class MyEventStat extends Component {
 				const gradient2 = ctx.createLinearGradient(100,120,100,100,200);
 				gradient2.addColorStop(1, 'rgb(104, 160, 206)');
 				gradient2.addColorStop(0, 'rgb(100, 101, 102)');
-				
+
 				return {
 					labels: ['Current Revenue','Unsold Tickets'],
 					datasets: [{
-						label:'Hydro',
+						label:'PHNX',
 						fontColor:'black',
 						backgroundColor: [gradient2,gradient,gradient],
 						borderColor: 'rgb(228, 83, 138)',
@@ -360,11 +360,11 @@ class MyEventStat extends Component {
 						weight:5,
 						borderAlign:'center',
 						data: [price * event_data[6],price * (max_seats - event_data[6])],
-						}],					
-					  }	
+						}],
+					  }
 					}
-				
-		 
+
+
 				body =
 						<div className="row">
 						<div className="col-12">
@@ -393,39 +393,39 @@ class MyEventStat extends Component {
 						<ul className="list-group list-group-flush">
                   		<li className="list-group-item ">{locations}</li>
 						<li className="list-group-item">Category: {category}</li>
-						<li className="list-group-item">Price: <img src={'/images/'+symbol} className="event_price-image"  alt="Event Price" /> {event_data[3]? numeral(price).format('0,0'):'Free'} 
-							{event_data[3] ? ' or ':''} 
-							{event_data[3]? <img src={'/images/dollarsign.png'} className="event_price-image"  alt="Event Price" />:''} 
-							{event_data[3]?numeral(price * this.state.hydro_market.usd).format('0,0.00'):''}</li>
+						<li className="list-group-item">Price: <img src={'/images/'+symbol} className="event_price-image"  alt="Event Price" /> {event_data[3]? numeral(price).format('0,0'):'Free'}
+							{event_data[3] ? ' or ':''}
+							{event_data[3]? <img src={'/images/dollarsign.png'} className="event_price-image"  alt="Event Price" />:''}
+							{event_data[3]?numeral(price * this.state.phoenixDAO_market.usd).format('0,0.00'):''}</li>
 						<li className="list-group-item">{date.toLocaleDateString()} at {date.toLocaleTimeString()}</li>
 						<li className="list-group-item">Tickets: {event_data[6]}/{max_seats}</li>
 						</ul>
 						</div>
 
 						{this._isMounted && <Clock deadline = {date} event_unix = {event_data[1]}/>}
-              			
-						<div className="new-transaction-wrapper"><h4 className="transactions">Ticket Purchases</h4> 
+
+						<div className="new-transaction-wrapper"><h4 className="transactions">Ticket Purchases</h4>
   						{this.state.load &&<Loading/>}
   						{this.state.pageTransactions.map((sold,index)=>(<p className="sold_text col-md-12" key={index}>
-							  <img className="float-left blockie" src={makeBlockie(sold.returnValues.buyer)} /> 
+							  <img className="float-left blockie" src={makeBlockie(sold.returnValues.buyer)} />
 							  <a href={"https://rinkeby.etherscan.io/address/"+sold.returnValues.buyer} target ="blank">
 								  {sold.returnValues.buyer.slice(0,10)+'...'}</a> has <a href={"https://rinkeby.etherscan.io/tx/"+sold.transactionHash} target ="blank">bought</a> 1 ticket for <strong>{event_data[0]}</strong>.</p>))}
   						{!sold &&  <p className="sold_text col-md-12 no-tickets">There are currently no purchases for this ticket.</p>}
   						</div>
 
 						<div className="pagination">
-						<JwPagination items={this.state.soldTicket} onChangePage={this.onChangePage} maxPages={5} pageSize={5} styles={customStyles} />	
+						<JwPagination items={this.state.soldTicket} onChangePage={this.onChangePage} maxPages={5} pageSize={5} styles={customStyles} />
 						</div>
 
-						<div className="new-transaction-wrapper"><h4 className="transactions"><i className="fas fa-ticket-alt"></i> Ticket Sales Info</h4> 
+						<div className="new-transaction-wrapper"><h4 className="transactions"><i className="fas fa-ticket-alt"></i> Ticket Sales Info</h4>
   						{this.state.load &&<Loading/>}
 						  <div className="sold_text col-12">
 
 						  	<p className="myQR text-center col-md-3">
 							  <QRCode value={titleURL}
 							  size={128}
-							  bgColor="transparent" 
-							  fgColor="black" 
+							  bgColor="transparent"
+							  fgColor="black"
 							  level={"H"}
 							  imageSettings = {{
 								  src:'/images/hydro.png',
@@ -437,84 +437,84 @@ class MyEventStat extends Component {
 							  }}/>
 							<p>Event QR-Code</p>
 							</p>
-  						
-							<p className="col-md-8">Tickets Sold: {event_data[6]} Tickets
-						 	</p> 
 
-							{event_data[4]? <p className="col-md-8">Available Tickets: {max_seats - event_data[6]} Tickets 
+							<p className="col-md-8">Tickets Sold: {event_data[6]} Tickets
+						 	</p>
+
+							{event_data[4]? <p className="col-md-8">Available Tickets: {max_seats - event_data[6]} Tickets
 							</p>:<p className="col-md-12">Available Tickets: Unlimited</p>}
 
 
 							{event_data[4]? <p className="col-md-8">Total Tickets For Sale: {event_data[4] ? max_seats:'Unlimited'} Tickets
 							</p>:<p className="col-md-12">Total Tickets For Sale: Unlimited</p>}
-							
+
 						  </div>
-						  </div> 
+						  </div>
 
 						<div className="new-transaction-wrapper">
-							<h4 className="sales"><i className="fas fa-hand-holding-usd"></i> Ticket Revenue </h4> 
-						  
+							<h4 className="sales"><i className="fas fa-hand-holding-usd"></i> Ticket Revenue </h4>
+
 						<div className="sold_text col-12">
 						<div className="chart col-md-3">
-						<Doughnut data={this.data} 
+						<Doughnut data={this.data}
     						options={{
 
 							responsive:true,
 							maintainAspectRatio:false,
-							cutoutPercentage: 62, 
-							
+							cutoutPercentage: 62,
+
         					title:{
        						display: true,
         					position:"bottom",
-       						text: 'Hydro Revenue',
+       						text: 'PHNX Revenue',
         					fontSize: 16,
         					lineHeight:1.5,
         					padding:1.6,
-							fontColor:'white',   
-							 }, 
+							fontColor:'white',
+							 },
 							legend: {
 								display:false,
 								labels: {
 									fontColor: 'white',
-									fontSize:11	
+									fontSize:11
 								},
 							tooltips: {
            						enabled: true
         						},
 							}
-    					}}/> 
+    					}}/>
 
 
 						</div>
-						 	<p className="col-md-8">Price Per Ticket: <img src={'/images/'+symbol} className="event_price-image2"  alt="Event Price" /> {event_data[3]? numeral(price).format('0,0'):'Free'} 
-							{event_data[3] ? ' or ':''} 
-							{event_data[3]? <img src={'/images/dollarsign.png'} className="event_price-image2"  alt="Event Price" />:''} 
-							{event_data[3]?numeral(price * this.state.hydro_market.usd).format('0,0.00'):''}
-						 	</p> 
-						  
-							<p className="col-md-8">Current Revenue For Sold Tickets: <img src={'/images/'+symbol} className="event_price-image2"  alt="Event Price" /> {event_data[3]? numeral(price * event_data[6]).format('0,0'):(price * event_data[6])} 
-							{event_data[3] ? ' or ':''} 
-							{event_data[3]? <img src={'/images/dollarsign.png'} className="event_price-image2"  alt="Event Price" />:''} 
-							{event_data[3]?numeral(price * event_data[6] * this.state.hydro_market.usd).format('0,0.00'):''} 
-						 	</p> 
+						 	<p className="col-md-8">Price Per Ticket: <img src={'/images/'+symbol} className="event_price-image2"  alt="Event Price" /> {event_data[3]? numeral(price).format('0,0'):'Free'}
+							{event_data[3] ? ' or ':''}
+							{event_data[3]? <img src={'/images/dollarsign.png'} className="event_price-image2"  alt="Event Price" />:''}
+							{event_data[3]?numeral(price * this.state.phoenixDAO_market.usd).format('0,0.00'):''}
+						 	</p>
 
-							{event_data[4]? <p className="col-md-8">Expected Revenue For Remaining Tickets: <img src={'/images/'+symbol} className="event_price-image2"  alt="Event Price" /> {event_data[3]? numeral(price * (max_seats - event_data[6])).format('0,0'):price * (max_seats - event_data[6])} 
-							{event_data[3] ? ' or ':''} 
-							{event_data[3]? <img src={'/images/dollarsign.png'} className="event_price-image2"  alt="Event Price" />:''} 
-							{event_data[3]?numeral(price * (max_seats - event_data[6]) * this.state.hydro_market.usd).format('0,0.00'):''}
+							<p className="col-md-8">Current Revenue For Sold Tickets: <img src={'/images/'+symbol} className="event_price-image2"  alt="Event Price" /> {event_data[3]? numeral(price * event_data[6]).format('0,0'):(price * event_data[6])}
+							{event_data[3] ? ' or ':''}
+							{event_data[3]? <img src={'/images/dollarsign.png'} className="event_price-image2"  alt="Event Price" />:''}
+							{event_data[3]?numeral(price * event_data[6] * this.state.phoenixDAO_market.usd).format('0,0.00'):''}
+						 	</p>
+
+							{event_data[4]? <p className="col-md-8">Expected Revenue For Remaining Tickets: <img src={'/images/'+symbol} className="event_price-image2"  alt="Event Price" /> {event_data[3]? numeral(price * (max_seats - event_data[6])).format('0,0'):price * (max_seats - event_data[6])}
+							{event_data[3] ? ' or ':''}
+							{event_data[3]? <img src={'/images/dollarsign.png'} className="event_price-image2"  alt="Event Price" />:''}
+							{event_data[3]?numeral(price * (max_seats - event_data[6]) * this.state.phoenixDAO_market.usd).format('0,0.00'):''}
 							</p>:<p className="col-md-12">Expected Revenue For Remaining Tickets: Unlimited</p>}
 
 
-							{event_data[4]? <p className="col-md-8">Expected Revenue For Sold Out Event: <img src={'/images/'+symbol} className="event_price-image2"  alt="Event Price" /> {event_data[3]? numeral(price * max_seats).format('0,0'):price * max_seats} 
-							{event_data[3] ? ' or ':''} 
-							{event_data[3]? <img src={'/images/dollarsign.png'} className="event_price-image2"  alt="Event Price" />:''} 
-							{event_data[3]?numeral(price * max_seats * this.state.hydro_market.usd).format('0,0.00'):''}
+							{event_data[4]? <p className="col-md-8">Expected Revenue For Sold Out Event: <img src={'/images/'+symbol} className="event_price-image2"  alt="Event Price" /> {event_data[3]? numeral(price * max_seats).format('0,0'):price * max_seats}
+							{event_data[3] ? ' or ':''}
+							{event_data[3]? <img src={'/images/dollarsign.png'} className="event_price-image2"  alt="Event Price" />:''}
+							{event_data[3]?numeral(price * max_seats * this.state.phoenixDAO_market.usd).format('0,0.00'):''}
 							</p>:<p className="col-md-12">Expected Revenue For Sold Out Event: Unlimited</p>}
-							
+
 						  </div>
-						  </div> 
+						  </div>
 						</div>
-						
+
 
             <div className="col-12">
               <div className="mt-5">
@@ -524,12 +524,12 @@ class MyEventStat extends Component {
 			<hr/>
 			</div>;
 				}
-				
+
 			else {
 				body = <EventNotFound/>;
 				}
 			}
-			
+
 		}
 
 		return (
@@ -538,7 +538,7 @@ class MyEventStat extends Component {
 				<hr />
 				{body}
 				<hr/>
-				
+
 
 			</div>
 		);
@@ -548,7 +548,7 @@ class MyEventStat extends Component {
 		this._isMounted = true;
 		this.updateIPFS();
 		this.loadblockhain();
-		this.getHydroMarketValue();
+		this.getPhoenixDAOMarketValue();
 	}
 
 	componentDidUpdate() {

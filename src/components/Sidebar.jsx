@@ -42,7 +42,7 @@ class Sidebar extends Component
 
 
 	render() {
-		
+
 
 		let user =
 			<div>
@@ -94,7 +94,7 @@ class Sidebar extends Component
 						<li>
 							<NavLink to="/Calendar" className="nav-link" activeClassName="nav-link-active"><i className="fa fa-calendar-alt"></i> <span className="toggleHidden">Calendar</span></NavLink>
 						</li>
-						
+
 					</ul>
 					<h5 className="mt-5 toggleHidden">Manage Events</h5>
 					<ul className="nav flex-column">
@@ -112,7 +112,7 @@ class Sidebar extends Component
 							<div className="nav-link" onClick={() => {this.props.connect()}}><i className="fas fa-plug"></i> <span className="toggleHidden">Connect Wallet</span></div>
 						</li>
 					</ul>
-					
+
 					<br />
 					<br /><br />
 					<a aria-label="Homepage" target ="blank" title="GitHub" className="github footer-octicon d-none d-lg-block mx-lg-4" href="https://github.com/mitdralla/events-dapp">
@@ -150,7 +150,7 @@ class Sidebar extends Component
 						<li>
 							<NavLink to="/Calendar" className="nav-link" activeClassName="nav-link-active"><i className="fa fa-calendar-alt" title="Calendar"></i> <span className="toggleHidden">Calendar</span></NavLink>
 						</li>
-						
+
 					</ul>
 					<h5 className="mt-5 toggleHidden">Manage Events</h5>
 					<ul className="nav flex-column">
@@ -158,7 +158,7 @@ class Sidebar extends Component
 						<li>
 							<NavLink to="/dashboard" className="nav-link" activeClassName="nav-link-active" ><i class="fas fa-tachometer-alt" title="Dashboard"></i> <span className="toggleHidden">Dashboard</span></NavLink>
 						</li>
-						
+
 						<li>
 							<NavLink to="/createevent" className="nav-link" activeClassName="nav-link-active" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-edit" title="Create Event"></i> <span className="toggleHidden">Create Event</span></NavLink>
 						</li>
@@ -168,7 +168,7 @@ class Sidebar extends Component
 						<li>
 							<NavLink to="/mytickets/1" className="nav-link" activeClassName="nav-link-active" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-ticket-alt" title="My Tickets"></i> <span className="toggleHidden">My Tickets</span></NavLink>
 						</li>
-						
+
 					</ul>
 					<h5 className="mt-5 toggleHidden">Tools</h5>
 					<ul className="nav flex-column">
@@ -176,7 +176,7 @@ class Sidebar extends Component
 							<NavLink to="/how-it-works" className="nav-link" activeClassName="nav-link-active" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-question-circle" title="How It Works"></i> <span className="toggleHidden">How It Works</span></NavLink>
 						</li>
 						<li className="nav-item">
-							<NavLink to="/token" className="nav-link" activeClassName="nav-link-active"><img src="/images/hydro.png" className="sidebar_hydro-logo" alt="Hydro Token Logo" title="Hydro Faucet"/> <span className="toggleHidden">Get Hydro Tokens</span></NavLink>
+							<NavLink to="/token" className="nav-link" activeClassName="nav-link-active"><img src="/images/hydro.png" className="sidebar_hydro-logo" alt="Hydro Token Logo" title="PHNX Faucet"/> <span className="toggleHidden">Get Hydro Tokens</span></NavLink>
 						</li>
 					</ul>
 					<br />
@@ -187,7 +187,7 @@ class Sidebar extends Component
 				</div>
 			</div>
 		);
-		
+
 	}
 }
 

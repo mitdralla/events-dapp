@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import Loading from './Loading';
-import HydroLoader from './HydroLoader';
+import PhoenixDAOLoader from './PhoenixDAOLoader';
 import Event from './Event';
 
 import Web3 from 'web3';
@@ -252,7 +252,7 @@ class TopicLandingPage extends Component
 		if (typeof this.props.contracts['OpenEvents'].getEventsCount[this.eventCount] !== 'undefined' ) {
       let count = this.state.Topic_Events.length;
       if(this.state.loading){
-        body = <HydroLoader/>
+        body = <PhoenixDAOLoader/>
       }
 			  else if (count === 0 && !this.state.loading) {
 				body = <p className="text-center not-found"><span role="img" aria-label="thinking">🤔</span>&nbsp;No events found. <a href="/createevent">Try creating one.</a></p>;

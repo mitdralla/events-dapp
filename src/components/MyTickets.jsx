@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import Loading from './Loading';
-import HydroLoader from './HydroLoader';
+import PhoenixDAOLoader from './PhoenixDAOLoader';
 
 import Ticket from './Ticket';
 
@@ -19,7 +19,7 @@ class MyTickets extends Component {
 		this.contracts = context.drizzle.contracts;
 		this.tickets = this.contracts['OpenEvents'].methods.ticketsOf.cacheCall(this.props.accounts[0]);
 		this.perPage = 6;
-		
+
 	}
 
   readMoreClick(location)
@@ -43,19 +43,19 @@ class MyTickets extends Component {
 		return newsort
 		}
 	}
-	
+
   }
 
 	render() {
-		let body = <HydroLoader />;
+		let body = <PhoenixDAOLoader />;
 
 		if (typeof this.props.contracts['OpenEvents'].ticketsOf[this.tickets] !== 'undefined') {
 			//let allTickets = this.props.contracts['OpenEvents'].ticketsOf[this.tickets].value;
 			let allTickets = this.getTickets();
 			if(this.state.loading){
-				body = 
+				body =
 				<div>
-				<HydroLoader/>
+				<PhoenixDAOLoader/>
 				<hr/>
 				</div>
 			  }
@@ -98,7 +98,7 @@ class MyTickets extends Component {
 							<Link to={"/mytickets/" + i}  className="page-link">{i}</Link>
                 		</li>
              				 );
-            			} 
+            			}
           			}
 
           			else if (pages > 5 && currentPage < 3){
@@ -109,8 +109,8 @@ class MyTickets extends Component {
 								<Link to={"/mytickets/" + i}  className="page-link">{i}</Link>
                 			</li>
               					);
-           					} 
-          				} 
+           					}
+          				}
 					else{
             			for (let i = 1; i <= pages; i++) {
 						let active = i === currentPage ? 'active' : '';
