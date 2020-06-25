@@ -428,7 +428,7 @@ class Ticket extends Component {
 										bgColor="transparent"
 										fgColor="black"
 										imageSettings={{
-											src: "/images/hydro.png",
+											src: "/images/PhoenixDAO.png",
 											height: 34,
 											width: 34,
 											x: null,

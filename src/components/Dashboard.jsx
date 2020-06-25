@@ -355,7 +355,7 @@ class Dashboard extends Component {
               <div className="col-lg-4 pb-4 d-flex align-items-stretch" >
               <div className="dashboard-card">
               <div className="dashboard-caption" style={{ backgroundImage: "url(/images/snowflake2.jpg)"}}>
-                  <h3><img src={'/images/hydro.png'} className="dashboard-hydro" alt="" />  Total PHNX Revenue </h3>
+                  <h3><img src={'/images/PhoenixDAO.png'} className="dashboard-PhoenixDAO" alt="" />  Total PHNX Revenue </h3>
                   <h4 className="dashboard-data">{numeral(revenue).format('0,0.00')}</h4>
                   <p className="dashboard-footer">PHNX</p></div>
               </div>

@@ -34,7 +34,7 @@ class Topic extends Component {
 			let description = this.getDescription();
       let buttonText = "Buy Ticket";
 
-			let symbol = event_data[3] ? 'hydro.png' : 'ethereum.png';
+			let symbol = event_data[3] ? 'PhoenixDAO.png' : 'ethereum.png';
 
 			let price = this.context.drizzle.web3.utils.fromWei(event_data[2]);
 			let date = new Date(parseInt(event_data[1], 10) * 1000);

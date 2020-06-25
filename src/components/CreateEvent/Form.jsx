@@ -34,7 +34,7 @@ class Form extends Component {
 			wrong_file: false,
 			file_name: null,
 			file: null,
-			blockie: "/images/hydro.png",
+			blockie: "/images/PhoenixDAO.png",
 			fileImg: "/images/event-placeholder.jpg",
 			form_validation: [],
 
@@ -216,7 +216,7 @@ class Form extends Component {
 
 	render() {
 
-		let symbol = 'hydro.png';
+		let symbol = 'PhoenixDAO.png';
 		let currency = this.state.currency === 'eth' ? 'ETH' : 'PHNX';
 		let	freeEvent = '';
 			if( this.state.currency === 'eth'){

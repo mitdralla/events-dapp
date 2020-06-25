@@ -176,7 +176,7 @@ class Sidebar extends Component
 							<NavLink to="/how-it-works" className="nav-link" activeClassName="nav-link-active" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-question-circle" title="How It Works"></i> <span className="toggleHidden">How It Works</span></NavLink>
 						</li>
 						<li className="nav-item">
-							<NavLink to="/token" className="nav-link" activeClassName="nav-link-active"><img src="/images/hydro.png" className="sidebar_hydro-logo" alt="Hydro Token Logo" title="PHNX Faucet"/> <span className="toggleHidden">Get Hydro Tokens</span></NavLink>
+							<NavLink to="/token" className="nav-link" activeClassName="nav-link-active"><img src="/images/PhoenixDAO.png" className="sidebar_PhoenixDAO-logo" alt="PhoenixDAO Token Logo" title="PHNX Faucet"/> <span className="toggleHidden">Get PHNX Tokens</span></NavLink>
 						</li>
 					</ul>
 					<br />

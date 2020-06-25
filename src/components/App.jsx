@@ -518,7 +518,7 @@ async loadBlockchainData() {
   						backgroundImage: "url(/images/slides/"+ randomBG + ")",
 						}} />
 						<div className="branding">
-						<img src="/images/hydro.png" className="branding-logo" alt="PhoenixDAO logo" />
+						<img src="/images/PhoenixDAO.png" className="branding-logo" alt="PhoenixDAO logo" />
 						<h1>PhoenixDAO Events Marketplace</h1>
 						<p>What are you going to do?</p>
 						</div>

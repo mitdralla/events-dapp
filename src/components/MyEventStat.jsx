@@ -272,7 +272,7 @@ class MyEventStat extends Component {
 				let locations = this.getLocation();
 				let buttonText = event_data[3]? " Buy Ticket": " Get Ticket";
 
-				let symbol = event_data[3] ? 'hydro.png' : 'hydro.png';
+				let symbol = event_data[3] ? 'PhoenixDAO.png' : 'PhoenixDAO.png';
 				let price = this.context.drizzle.web3.utils.fromWei(event_data[2]);
 				let date = new Date(parseInt(event_data[1], 10) * 1000);
 
@@ -428,7 +428,7 @@ class MyEventStat extends Component {
 							  fgColor="black"
 							  level={"H"}
 							  imageSettings = {{
-								  src:'/images/hydro.png',
+								  src:'/images/PhoenixDAO.png',
 								  height:34,
 								  width:34,
 								  x: null,

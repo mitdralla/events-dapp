@@ -163,13 +163,14 @@ button {
   color: #fff;
 }
 
-.sidebar_hydro-logo {
-	width: 18px;
-	margin-right: 2px;
-	margin-top: -3px;
+.sidebar_PhoenixDAO-logo {
+  width: 28px;
+  margin-right: 2px;
+  margin-top: -3px;
+  margin-left: -7px;
 }
 
-.header_hydro-logo {
+.header_PhoenixDAO-logo {
 	width: 38px;
 	margin-right: 0;
 	margin-top: -3px;
@@ -197,7 +198,7 @@ button {
 	height: 19px;
 	margin-right: 2px;
   margin-top: -5px;
- 
+
 }
 
 .event_ticket-image {
@@ -337,8 +338,8 @@ button {
 }
 
 .carousel .slide1 button {
-	background-color: #007bff;
-	border-color: #007bff;
+	background-color: #ea952b;
+	border-color: #ea952b;
 }
 
 .carousel .slide1 button:hover {
@@ -476,13 +477,13 @@ button {
 
 .nav-link:hover{
   text-decoration: none!important;
-  color:#0099ff!important;
+  color: #ea952b !important;
 }
 
 .nav-link-active{
 display:block;
 padding: .5rem 1rem;
-color:#0099ff!important;
+color: #ea952b !important;
 
 }
 
@@ -745,7 +746,7 @@ button.read-more:hover {
   overflow:hidden;
   }
 
-  
+
   .sort_button:hover{
 	color:rgb(250, 250, 250);
 	border-color: #4f6e8d;
@@ -1133,9 +1134,10 @@ button.read-more:hover {
   font-size: 20px !important;
 }
 
-.sidebar-closed .sidebar_hydro-logo {
+.sidebar-closed .sidebar_PhoenixDAO-logo {
   margin-right: 0px !important;
-  width: 20px !important;
+  width: 32px !important;
+  margin-left: -5px;
 }
 
 .pagination {
@@ -1165,7 +1167,7 @@ button.read-more:hover {
 }
 
 
-.page-item.first .page-link,.page-item.last .page-link, 
+.page-item.first .page-link,.page-item.last .page-link,
 .page-item.previous .page-link, .page-item.next .page-link {
 display:none!important;
 }
@@ -1194,7 +1196,7 @@ display:none!important;
     width: 100%;
     max-width: 100%;
     text-align: left;
-    
+
 }
 
 .new-transaction-wrapper .sold_text {
@@ -1342,9 +1344,9 @@ border: 2px dashed rgb(209, 177, 59);
   padding-left: 5px;
   padding-right: 5px;
   margin-top:20px;
-  border: 1px solid rgb(197, 195, 197); 
+  border: 1px solid rgb(197, 195, 197);
   justify-content: center;
-  
+
 }
 
 .countdownEnded{
@@ -1362,19 +1364,19 @@ border: 2px dashed rgb(209, 177, 59);
   padding-left: 5px;
   padding-right: 5px;
   margin-top:60px;
-  border: 1px solid rgb(197, 195, 197); 
+  border: 1px solid rgb(197, 195, 197);
 }
 .countdownEnded p{
-  font-size:.9rem; 
-  
+  font-size:.9rem;
+
 }
 
 .countdown h5{
   text-align:center;
   text-transform:uppercase;
   font-size:.9rem;
-  font-weight:bold; 
-  
+  font-weight:bold;
+
 }
 
 .clock {
@@ -1384,7 +1386,7 @@ box-shadow: 0 0 17px rgba(224, 224, 224, 0.349);
 margin-top:12px;
 max-width:300px;
 justify-content: center;
- 
+
 }
 
 .clock p{
@@ -1401,8 +1403,8 @@ justify-content: center;
   box-shadow: 0 0 17px rgba(123, 124, 124, 0.5);
   border-radius:5px;
   border: 1px solid rgb(155, 155, 155);
-  margin:1px; 
- 
+  margin:1px;
+
 }
 
 @media(max-width:650px){
@@ -1444,7 +1446,7 @@ justify-content: center;
   padding-left: 5px;
   padding-right: 5px;
   margin-top:20px;
-  border: 1px solid rgb(197, 195, 197); 
+  border: 1px solid rgb(197, 195, 197);
 }
 
 .connection-box{
@@ -1453,7 +1455,7 @@ justify-content: center;
   border-radius:3px;
   background:linear-gradient(to right,rgb(235, 235, 235), rgb(255, 255, 255),rgb(233, 226, 226));
   color:rgb(79, 108, 204);
- 
+
 }
 
 /*QR-Code style*/
@@ -1555,9 +1557,9 @@ justify-content: center;
 	border-top:1px solid rgba(85, 84, 84, 0.548)!important;
 	border-bottom:1px solid rgba(85, 84, 84, 0.548)!important;
   }
-  
+
   .rbc-off-range-bg {
-	background:rgba(143, 101, 121, 0.137)!important;	
+	background:rgba(143, 101, 121, 0.137)!important;
   }
 
   .rbc-month-row{
@@ -1608,7 +1610,7 @@ justify-content: center;
   margin:3px!important;
   box-shadow: 0 0 8px rgba(83, 74, 74, 0.5);
   transition: all .2s ease-in-out;
-  
+
   }
 
 .rbc-toolbar button:hover{
@@ -1620,16 +1622,16 @@ justify-content: center;
 .rbc-toolbar{
 	margin-bottom:20px!important;
   }
-  
+
 .rbc-today{
 	background:rgba(5, 146, 211, 0.26)!important;
 	color:white;
   }
-  
+
 .rbc-time-content{
 	color:rgb(10, 10, 10)!important;
 	border-top:1px solid rgba(85, 84, 84, 0.548)!important;
-	background:rgba(143, 101, 121, 0.137)!important;	
+	background:rgba(143, 101, 121, 0.137)!important;
 
   }
 
@@ -1643,7 +1645,7 @@ justify-content: center;
 
 .rbc-time-content > * + * > * {
 	border-left: 1px solid rgba(85, 84, 84, 0.548)!important;
-	
+
 }
 
 .rbc-timeslot-group {
@@ -1670,7 +1672,7 @@ justify-content: center;
 	color:rgb(0, 0, 0);
   }
 
- 
+
   /*.rbc-show-more{
 	  color:rgb(219, 217, 217);
   }
@@ -1688,7 +1690,7 @@ justify-content: center;
   .rbc-header{
 	background:linear-gradient(45deg,rgb(3, 47, 65),rgb(17, 13, 14))!important;
 	color:white!important;
-	
+
   }
 
   End of Calendar */
@@ -1737,8 +1739,8 @@ justify-content: center;
     margin-top:75px;
     margin-left:8px;
     text-align:center;
-    text-transform: uppercase;  
-  }  
+    text-transform: uppercase;
+  }
 
   .dashboard-img{
     position: center;
@@ -1820,7 +1822,7 @@ justify-content: center;
     height: inherit;
     padding-bottom: 25px;
     box-shadow: inset 0px -181px 53px rgba(0, 0, 0, 0.116);
-    
+
     z-index:1000;
     background:transparent!important;
   }
@@ -1855,9 +1857,9 @@ justify-content: center;
     padding-top:30px;
     float:left;
     text-align:left;
-    
-    
-  } 
+
+
+  }
 
   .dashboard-events-list h4{
     padding-left:15px;
@@ -1865,7 +1867,7 @@ justify-content: center;
     text-shadow: 2px 2px 12px rgb(15, 8, 8) !important;
     font-weight: 400;
     font-size:1.1rem !important;
-    border-bottom:2px solid rgba(27, 31, 43, 0.377);  
+    border-bottom:2px solid rgba(27, 31, 43, 0.377);
     cursor:pointer;
     color:white;
   }
@@ -1884,14 +1886,14 @@ justify-content: center;
     text-transform: capitalize!important;
     text-shadow: 2px 2px 12px rgb(15, 8, 8) !important;
     font-weight: 400;
-    font-size:1.1rem !important; 
+    font-size:1.1rem !important;
   }
 
   .dashboard-events-list-sale{
     padding-top:30px;
     padding-bottom:10px;
     text-align:center;
-  } 
+  }
 
   .dashboard-events-list-sale h4{
     padding-right:5px;
@@ -1899,8 +1901,8 @@ justify-content: center;
     text-shadow: 2px 2px 12px #000 !important;
     font-weight: 400;
     font-size:1.1rem !important;
-    border-bottom:2px solid rgba(81, 84, 95, 0.377); 
-    border-bottom:2px solid rgba(27, 31, 43, 0.377); 
+    border-bottom:2px solid rgba(81, 84, 95, 0.377);
+    border-bottom:2px solid rgba(27, 31, 43, 0.377);
   }
 
   .dashboard-chart{
@@ -1952,7 +1954,7 @@ justify-content: center;
     background:linear-gradient(to bottom, rgb(51, 64, 104),rgb(41, 60, 75),rgb(13, 13, 14))!important;
   }
 
-  .dashboard-hydro{
+  .dashboard-PhoenixDAO{
       height: 19px;
       margin-right: 2px;
       margin-top: -6px;
@@ -1960,4 +1962,3 @@ justify-content: center;
       border:2px solid white;
   }
   /*End Dashboard Style */
-  

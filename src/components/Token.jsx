@@ -72,7 +72,7 @@ class Token extends Component {
 
 			body =
 				<div className="text-center mt-5" >
-					<h4>Your balance is: <img src="/images/hydro.png" width="25" alt="PhoenixDAO branding" />&nbsp;{numeral(balance).format('0,0.00')}</h4>
+					<h4>Your balance is: <img src="/images/PhoenixDAO.png" width="25" alt="PhoenixDAO branding" />&nbsp;{numeral(balance).format('0,0.00')}</h4>
 					<button className="btn btn-dark mt-5" onClick={this.mintToken}>Get PHNX Tokens</button>
 				</div>
 			;

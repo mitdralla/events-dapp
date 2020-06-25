@@ -64,7 +64,7 @@ class Event extends Component {
 			  .then(res => res.json())
 			  .then((data) => {
 				if (this._isMounted){
-				this.setState({PhoenixDAO_market: data.PhoenixDAO })}
+				this.setState({phoenixDAO_market: data.PHNX })}
 			  })
 			  .catch(console.log)
 	  }
@@ -185,7 +185,7 @@ class Event extends Component {
 			}
 
 			if (event_data[3] !=='undefined'){
-			let symbol = 'hydro.png';
+			let symbol = 'PhoenixDAO.png';
 
 			let price = event_data[3]? this.context.drizzle.web3.utils.fromWei(event_data[2]) : 'Free Event';
 			let date = new Date(parseInt(event_data[1], 10) * 1000);
