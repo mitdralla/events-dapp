@@ -149,7 +149,7 @@ button {
 	width: 65px;
 	height: 65px;
 	border-radius: 50%;
-	margin-top: -41px;
+	margin-top: -75px;
 	border: 5px solid #f7f7f7;
 	box-shadow: 0 0 17px rgba(0,0,0,0.5);
 }
@@ -179,6 +179,10 @@ button {
 .card-header {
   z-index:100;
   background-color: #eaeaea;
+}
+
+.event-header {
+  padding: 0.0rem 1rem;;
 }
 
 .card-footer {
