@@ -225,13 +225,13 @@ class Dashboard extends Component {
             <br /><br /><br />
 
             <div>
-            <h2><i class="fas fa-chalkboard-teacher"></i> Dashboard</h2>
+            <h2><i className="fas fa-chalkboard-teacher"></i> Dashboard</h2>
             <hr />
             <div className="row user-list mt-4">
            <div className="col-lg-4 pb-4 d-flex align-items-stretch" >
               <div className="dashboard-card">
               <div className="dashboard-caption" style={{ backgroundImage: "url(/images/ethorange.png)"}}>
-                  <h3><i class="fas fa-user-astronaut"></i> User Account</h3>
+                  <h3><i className="fas fa-user-astronaut"></i> User Account</h3>
                   <img className="dashboard-img" src={'/images/ethereum.png'} ></img>
                   <p className="mt-2" title = {this.props.accounts[0]}>{this.props.accounts[0].slice(0,15) + '...'}</p>
                   </div>
@@ -251,7 +251,7 @@ class Dashboard extends Component {
               <div className="col-lg-4 pb-4 d-flex align-items-stretch" >
               <div className="dashboard-card">
               <div className="dashboard-caption" style={{ backgroundImage: "url(/images/topics/" + topicsJson[12].image +")"}}>
-              <h3><i class="fas fa-ticket-alt" ></i> Total Number Of Tickets Sold</h3>
+              <h3><i className="fas fa-ticket-alt" ></i> Total Number Of Tickets Sold</h3>
                   <h4 className="dashboard-data">{totalSold}</h4>
                   <p className="dashboard-footer">Tickets</p></div>
               </div>
@@ -260,7 +260,7 @@ class Dashboard extends Component {
               <div className="col-lg-4 pb-4 d-flex align-items-stretch" >
               <div className="dashboard-events-card">
               <div className="dashboard-events-caption" style={{ backgroundImage: "url(/images/topics/" + topicsJson[17].image +")"}}>
-              <h3 title="Top 5 Events Based On Ticket Sale"><i class="fas fa-trophy"></i> Your Top 5 Events</h3>
+              <h3 title="Top 5 Events Based On Ticket Sale"><i className="fas fa-trophy"></i> Your Top 5 Events</h3>
               </div>
               {toplist &&<div className="dashboard-events">
               <div className="dashboard-events-list">
@@ -284,7 +284,7 @@ class Dashboard extends Component {
               <div className="col-lg-4 pb-4 d-flex align-items-stretch" >
               <div className="dashboard-events-card">
               <div className="dashboard-events-caption" style={{ backgroundImage: "url(/images/topics/" + topicsJson[17].image +")"}}>
-              <h3 title="Top 5 Events Based On PHNX Revenue"><i class="fas fa-award"></i> Your Top 5 Events</h3>
+              <h3 title="Top 5 Events Based On PHNX Revenue"><i className="fas fa-award"></i> Your Top 5 Events</h3>
               </div>
               <div className="dashboard-bar">
               <Bar className ="bars"
@@ -317,7 +317,7 @@ class Dashboard extends Component {
               <div className="col-lg-4 pb-4 d-flex align-items-stretch" >
               <div className="dashboard-events-card">
               <div className="dashboard-events-caption" style={{ backgroundImage: "url(/images/topics/" + topicsJson[12].image +")"}}>
-              <h3 title="Overall Limited Tickets Sold"><i class="fas fa-ticket-alt"></i> Sold Tickets (Limited) </h3>
+              <h3 title="Overall Limited Tickets Sold"><i className="fas fa-ticket-alt"></i> Sold Tickets (Limited) </h3>
               </div>
               <div className="dashboard-chart">
               <div className="mt-5">
@@ -375,7 +375,7 @@ class Dashboard extends Component {
               <div className="dashboard-card">
               <div className="dashboard-caption" style={{ backgroundImage: "url(/images/uniswaps.jpg)"}}>
               <a href={'https://uniswap.exchange/swap'} target ='blank' className="mt-10">
-              <p className="dashboard-uniswap"><i class="fas fa-sync"></i> BUY PHNX WITH UNISWAP</p></a>
+              <p className="dashboard-uniswap"><i className="fas fa-sync"></i> BUY PHNX WITH UNISWAP</p></a>
               </div>
               </div>
               </div>

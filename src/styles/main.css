@@ -484,7 +484,7 @@ button {
 display:block;
 padding: .5rem 1rem;
 color: #ea952b !important;
-
+font-weight: bold;
 }
 
 .navbar-light .navbar-nav .nav-link {

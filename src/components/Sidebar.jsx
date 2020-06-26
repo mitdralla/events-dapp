@@ -54,7 +54,7 @@ class Sidebar extends Component
 		;
 
 		if (this.props.connection === true && this.props.account.length !== 0) {
-			console.log(this.props.account)
+			// console.log(this.props.account)
 			user =
 				<div>
 					<div className="user-status-icon">
@@ -156,14 +156,14 @@ class Sidebar extends Component
 					<ul className="nav flex-column">
 
 						<li>
-							<NavLink to="/dashboard" className="nav-link" activeClassName="nav-link-active" ><i class="fas fa-tachometer-alt" title="Dashboard"></i> <span className="toggleHidden">Dashboard</span></NavLink>
+							<NavLink to="/dashboard" className="nav-link" activeClassName="nav-link-active" ><i className="fas fa-tachometer-alt" title="Dashboard"></i> <span className="toggleHidden">Dashboard</span></NavLink>
 						</li>
 
 						<li>
 							<NavLink to="/createevent" className="nav-link" activeClassName="nav-link-active" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-edit" title="Create Event"></i> <span className="toggleHidden">Create Event</span></NavLink>
 						</li>
 						<li >
-							<NavLink to="/myevents/1" className="nav-link" activeClassName="nav-link-active" onClick={() => {this.sidebarClick(this)}}><i class="fas fa-list-alt" title="My Created Events"></i> <span className="toggleHidden">My Created Events</span></NavLink>
+							<NavLink to="/myevents/1" className="nav-link" activeClassName="nav-link-active" onClick={() => {this.sidebarClick(this)}}><i className="fas fa-list-alt" title="My Created Events"></i> <span className="toggleHidden">My Created Events</span></NavLink>
 						</li>
 						<li>
 							<NavLink to="/mytickets/1" className="nav-link" activeClassName="nav-link-active" onClick={() => {this.sidebarClick(this)}}><i className="fa fa-ticket-alt" title="My Tickets"></i> <span className="toggleHidden">My Tickets</span></NavLink>
