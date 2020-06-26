@@ -35,7 +35,7 @@ class Form extends Component {
 			file_name: null,
 			file: null,
 			blockie: "/images/PhoenixDAO.png",
-			fileImg: "/images/event-placeholder.jpg",
+			fileImg: "/images/event-placeholder.png",
 			form_validation: [],
 
 			PhoenixDAO_market:'',
@@ -346,7 +346,7 @@ class Form extends Component {
 								<span className="input-group-text"><img src={'/images/'+symbol} className="event_price-image" alt="" /></span>
 							</div>
 							{this.state.currency === 'phnx' &&<input type="number" min="0.00000001" className={"form-control " + warning.price} id="price" title={"Price in PHNX"} ref={(input) => this.form.price = input} autoComplete="off" onChange={this.priceChange} />}
-							{this.state.currency === 'eth' &&<input type="number" min="0.00000001" className={"form-control " + warning.price} id="price" title={"Price in PHNX"} value = {this.state.price} autoComplete="off" onChange={this.priceChange} />}
+							{this.state.currency === 'eth' &&<input type="number" min="0.00000001" className={"form-control " + warning.price} id="price" title={"Price in ETH"} value = {this.state.price} autoComplete="off" onChange={this.priceChange} />}
 
 						</div>
 						{this.state.currency === 'phnx' &&<div className="input-group mb-3">

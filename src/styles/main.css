@@ -178,6 +178,7 @@ button {
 
 .card-header {
   z-index:100;
+  background-color: #eaeaea;
 }
 
 .card-footer {
@@ -462,6 +463,15 @@ button {
 
 .bg-light {
   background-color: rgb(50, 56, 64) !important;
+}
+
+.card-footer a {
+  color:828282;
+}
+
+.nav-tabs .nav-link {
+  color: #333;
+  font-weight: 400;
 }
 
 .navbar-brand h1 {
@@ -1288,16 +1298,22 @@ border: 2px dashed rgb(209, 177, 59);
 
 }
 
+.not-found a {
+  color: #FF9800;
+}
+
 .free_event{
   top:1rem;
   left:-6rem;
-  color:rgb(224, 160, 41);
+  /* color:rgb(224, 160, 41); */
+  color: #fff;
   display:block;
   position:absolute;
   text-align:center;
   text-decoration:none;
   letter-spacing:.06rem;
-  background:linear-gradient(45deg, rgb(6, 106, 136),rgb(3, 58, 65),rgb(44, 68, 60))!important;
+  background: linear-gradient(45deg, #FF9800,#FF9800,#FF9800) !important;
+  /* background:linear-gradient(45deg, rgb(6, 106, 136),rgb(3, 58, 65),rgb(44, 68, 60))!important; */
   padding:0.5em 5em 0.4em 5em;
   -webkit-transform: rotate(-45deg) scale(0.75,1);
   z-index:10;
