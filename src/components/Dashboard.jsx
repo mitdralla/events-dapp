@@ -57,7 +57,7 @@ class Dashboard extends Component {
 			  .then(res => res.json())
 			  .then((data) => {
 				if (this._isMounted){
-				this.setState({PhoenixDAO_market: data.PhoenixDAO })}
+				this.setState({PhoenixDAO_market: data.phoenixdao })}
 			  })
 			  .catch(console.log)
 	  }
@@ -220,7 +220,7 @@ class Dashboard extends Component {
                }
               }
 
-            body = <div className="retract-page-inner-wrapper-alternative">
+            body = <div className="retract-page-inner-wrapper-alternative dash">
 
             <br /><br /><br />
 

@@ -101,7 +101,7 @@ class LocationsLandingPage extends Component {
           </Carousel.Item>
         </Carousel>
 
-			<div className="retract-page-inner-wrapper-alternative">
+			<div className="retract-page-inner-wrapper-alternative dash">
 
       <br /><br />
 
