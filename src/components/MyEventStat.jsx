@@ -168,11 +168,11 @@ class MyEventStat extends Component {
   //get market cap & dollar value of PhoenixDAO
   async getPhoenixDAOMarketValue(){
 
-	fetch('https://api.coingecko.com/api/v3/simple/price?ids=PHNX&vs_currencies=usd&include_market_cap=true&include_24hr_change=ture&include_last_updated_at=ture')
+	fetch('https://api.coingecko.com/api/v3/simple/price?ids=phoenixdao&vs_currencies=usd&include_market_cap=true&include_24hr_change=ture&include_last_updated_at=ture')
 		  .then(res => res.json())
 		  .then((data) => {
 			if (this._isMounted){
-			this.setState({phoenixDAO_market: data.PHNX })}
+			this.setState({phoenixDAO_market: data.phoenixdao })}
 		  })
 		  .catch(console.log)
   }

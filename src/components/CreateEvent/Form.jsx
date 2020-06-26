@@ -46,10 +46,10 @@ class Form extends Component {
 
 	getPhoenixDAOMarketValue = () => {
 
-		fetch('https://api.coingecko.com/api/v3/simple/price?ids=PHNX&vs_currencies=usd&include_market_cap=true&include_24hr_change=ture&include_last_updated_at=ture')
+		fetch('https://api.coingecko.com/api/v3/simple/price?ids=phoenixdao&vs_currencies=usd&include_market_cap=true&include_24hr_change=ture&include_last_updated_at=ture')
 			  .then(res => res.json())
 			  .then((data) => {
-				this.setState({PhoenixDAO_market: data.PhoenixDAO})})
+				this.setState({PhoenixDAO_market: data.phoenixdao})})
 			  .catch(console.log)
 	  }
 
