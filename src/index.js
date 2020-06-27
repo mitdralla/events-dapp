@@ -14,20 +14,21 @@ const options = {
 	},
 
 	contracts: [OpenEvents, StableToken],
-	
+
 	events: {
 		OpenEvents: ['CreatedEvent','SoldTicket']
 	},
 	polls:{
 		blocks:2500
 	},
-	
+
 	transactions:{
 		txHash:{
-			
+
 		}
 	}
 };
+
 //debugger;
 //const rootElement = document.getElementById("root")
 //ReactDOM.render(<App/>,rootElement);

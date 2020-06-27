@@ -435,6 +435,8 @@ button {
   position: inherit;
 	color: #fff;
 	text-shadow: 2px 2px 24px #000;
+  max-width: 1600px;
+  margin: 0 auto;
 }
 
 .branding p {
