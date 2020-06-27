@@ -199,7 +199,7 @@ class Ticket extends Component {
 		console.log("png", pngUrl);
 		let downloadLink = document.createElement("a");
 		downloadLink.href = pngUrl;
-		downloadLink.download = "Hydro-Event-Ticket.png";
+		downloadLink.download = "Event-Ticket.png";
 		document.body.appendChild(downloadLink);
 		downloadLink.click();
 		document.body.removeChild(downloadLink);
